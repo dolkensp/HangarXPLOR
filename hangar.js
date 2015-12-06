@@ -113,7 +113,7 @@
     var $value = $('<input type="hidden" class="js-custom-filter" value="' + options[0].Value + '" />');
     
     for (var i = 0, j = options.length; i < j; i++)
-      $ul.append('<li class="js-option option" rel="' + options[i].Value + '">' + options[i].Text + '</li>');
+      $ul.append('<li class="js-option option ' + (options[i].Class || '') + '" rel="' + options[i].Value + '">' + options[i].Text + '</li>');
     var $options = $('li', $ul);
     
     $filter.append($style);
@@ -148,16 +148,19 @@
     $('.js-pager').remove();
     
     var $typeFilter = createFilter([
-      { Value: 'All', Text: 'All Types' },
+      { Value: 'All', Text: 'All Types', Class: 'selected first' },
+      { Value: 'HasShip', Text: 'Ships + Packages' },
       { Value: 'IsShip', Text: 'Ships' },
       { Value: 'IsPackage', Text: 'Packages' },
-      { Value: 'HasShip', Text: 'Ships + Packages' },
       { Value: 'IsUpgrade', Text: 'Upgrades' },
-      { Value: 'IsFlair', Text: 'Flair' },
+      { Value: 'IsFlair', Text: 'All Flair', Class: 'split' },
+      { Value: 'IsDecoration', Text: 'Decorations' },
+      { Value: 'IsPoster', Text: 'Posters' },
+      { Value: 'IsModel', Text: 'Models' },
     ]);
     
     var $featureFilter = createFilter([
-      { Value: 'All', Text: 'All Features' },
+      { Value: 'All', Text: 'All Features', Class: 'selected first' },
       { Value: 'HasLTI', Text: 'LTI' },
       { Value: 'IsGiftable', Text: 'Giftable' },
       { Value: 'HasValue', Text: 'Valuable' },
@@ -167,7 +170,7 @@
     
     render('.js-custom-filter');
     
-    $(document.body).append('<style>js-inventory h3 { margin-top: -5px !important }</style>');
+    $(document.body).append('<style>js-inventory h3 { margin-top: -5px !important } .first { border-bottom: 3px double #162a3f } .split { border-top: 1px solid #162a3f; }</style>');
   }
   
   /*********************************************
@@ -193,8 +196,11 @@
     this.isGiftable = $('.label:contains(Gift)', this).length > 0;
     this.isPackage = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;
     this.isShip = this.hasShip && !this.isPackage;
-    this.isUpgrade = (titleParts[0] == "Ship Upgrades") || (titleParts[0] == "Cross-Chassis Upgrades");
+    this.isUpgrade = (titleParts[0] == "Ship Upgrades") || (titleParts[0] == "Cross-Chassis Upgrades") || (titleParts[0] == "Add-Ons");
+    this.isPoster = (titleParts[0] == "Posters");
+    this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
     this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade;
+    this.isDecoration = !this.isModel && !this.isPoster && this.isFlair;
     
     if (this.isShip) {
       for (var i = 0, j = ships.length; i < j; i++) {
@@ -248,6 +254,15 @@
         break;
       case "HasValue":
         items = $.grep(items, function(item) { return item.hasValue; });
+        break;
+      case "IsModel":
+        items = $.grep(items, function(item) { return item.isModel; });
+        break;
+      case "IsPoster":
+        items = $.grep(items, function(item) { return item.isPoster; });
+        break;
+      case "IsDecoration":
+        items = $.grep(items, function(item) { return item.isDecoration; });
         break;
     }
     

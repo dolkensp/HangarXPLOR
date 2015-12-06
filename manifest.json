@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "HangarXPLOR",
   "description": "This extension improves the Hangar page on RobertsSpaceIndustries.com",
-  "version": "2.1",
+  "version": "2.2",
   "permissions": [
     "https://robertsspaceindustries.com/*"
   ],
