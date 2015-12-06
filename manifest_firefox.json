@@ -5,6 +5,12 @@
   "version": "2.3",
   
   "author": "/u/alluran (Peter Dolkens)",
+
+  "applications": {
+    "gecko": {
+      "id": "HangarXPLOR@ddrit.com"
+    }
+  },
   
   "permissions": [ "https://robertsspaceindustries.com/*" ],
   

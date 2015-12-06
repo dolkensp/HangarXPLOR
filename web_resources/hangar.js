@@ -123,12 +123,15 @@
     $style.append($value);
     
     $filter.bind('click', function() { $ul.toggle(); });
+    $options.bind('mouseover', function() { $(this).addClass('hover'); });
+    $options.bind('mouseout', function() { $(this).removeClass('hover'); });
     $options.bind('click', function() {
       var $this = $(this);
         
       var nextFilter = $this.attr('rel');
       
       $options.removeClass('selected');
+      $options.removeClass('hover');
       $this.addClass('selected');
       
       if ($value.val() != nextFilter) {
@@ -136,6 +139,10 @@
         $label.text($this.text());
         render('.js-custom-filter');
       }
+      
+      $('ul.body').hide();
+      
+      return false;
     });
     
     return $filter;
@@ -152,7 +159,9 @@
       { Value: 'HasShip', Text: 'Ships + Packages' },
       { Value: 'IsShip', Text: 'Ships' },
       { Value: 'IsPackage', Text: 'Packages' },
+      { Value: 'IsExtra', Text: 'All Extras', Class: 'split' },
       { Value: 'IsUpgrade', Text: 'Upgrades' },
+      { Value: 'IsAddOn', Text: 'Add Ons' },
       { Value: 'IsFlair', Text: 'All Flair', Class: 'split' },
       { Value: 'IsDecoration', Text: 'Decorations' },
       { Value: 'IsPoster', Text: 'Posters' },
@@ -164,13 +173,14 @@
       { Value: 'HasLTI', Text: 'LTI' },
       { Value: 'IsGiftable', Text: 'Giftable' },
       { Value: 'HasValue', Text: 'Valuable' },
+      { Value: 'IsUpgraded', Text: 'Upgraded' },
     ]);
     
     $controls.append($typeFilter, $featureFilter);
     
     render('.js-custom-filter');
     
-    $(document.body).append('<style>js-inventory h3 { margin-top: -5px !important } .first { border-bottom: 3px double #162a3f } .split { border-top: 1px solid #162a3f; }</style>');
+    $(document.body).append('<style>.js-inventory h3 { margin-top: -5px !important } .first { border-bottom: 3px double #162a3f } .split { border-top: 1px solid #162a3f; }</style>');
   }
   
   /*********************************************
@@ -193,10 +203,12 @@
     this.hasValue = this.pledgeValue != '$0.00 USD';
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
     this.hasShip = $ship.length > 0;
+    this.isUpgraded = $('.upgraded', this).length > 0;
     this.isGiftable = $('.label:contains(Gift)', this).length > 0;
     this.isPackage = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;
     this.isShip = this.hasShip && !this.isPackage;
-    this.isUpgrade = (titleParts[0] == "Ship Upgrades") || (titleParts[0] == "Cross-Chassis Upgrades") || (titleParts[0] == "Add-Ons");
+    this.isUpgrade = (titleParts[0] == "Ship Upgrades") || (titleParts[0] == "Cross-Chassis Upgrades");
+    this.isAddOn = (titleParts[0] == "Add-Ons");
     this.isPoster = (titleParts[0] == "Posters");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
     this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade;
@@ -249,6 +261,15 @@
       case "IsUpgrade":
         items = $.grep(items, function(item) { return item.isUpgrade; });
         break;
+      case "IsUpgraded":
+        items = $.grep(items, function(item) { return item.isUpgraded; });
+        break;
+      case "IsAddOn":
+        items = $.grep(items, function(item) { return item.isAddOn; });
+        break;
+      case "IsExtra":
+        items = $.grep(items, function(item) { return item.isAddOn || item.isUpgrade; });
+        break;
       case "IsFlair":
         items = $.grep(items, function(item) { return item.isFlair; });
         break;
@@ -282,6 +303,9 @@
     
     $(filterSelector).each(function() { filtered = filter(filtered, $(this).val()); });
     
+    if (filtered.length == 0)
+      filtered.push($('<h4 class="empy-list">Your hangar is empty.</h4>'));
+      
     $list.empty();
     $list.append(filtered);
   }
