@@ -105,27 +105,69 @@
     });
   }
   
-  function initialize() {
-    render();
-    $('.controls').empty();
-    $('.js-pager').remove();
-    $('.controls').append('<div class="custom-filter js-custom-filter" style="width: 150px;"><span class="js-selectlist selectlist" href=""><div class="arrow"></div><span>All</span><ul class="body" style="display: none;"><li class="js-option option selected" rel="All">All</li><li class="js-option option" rel="Ships">Ships</li><li class="js-option option" rel="ContainsShip">Ships + Packages</li><li class="js-option option" rel="Packages">Packages</li><li class="js-option option" rel="Upgrades">Upgrades</li><li class="js-option option" rel="Flair">Flair</li></ul><input type="hidden" /></span></div>');
-    var $ul = $('.js-custom-filter ul');
-    var $span = $('.js-custom-filter .js-selectlist span');
-    var lastFilter = "All";
-    $('.js-custom-filter .js-selectlist').bind('click', function() {
-      $ul.show();
-    });
-    $('.js-custom-filter .js-selectlist li').bind('click', function() {
-      $ul.hide();
-      var nextFilter = $(this).attr('rel');
-      if (lastFilter != nextFilter) {
-        lastFilter = nextFilter;
-        $span.text($(this).text());
-        render(nextFilter);
+  function createFilter(options) {
+    var $filter = $('<div style="width: 150px;">');
+    var $style = $('<div class="js-selectlist selectlist" />');
+    var $label = $('<span>' + options[0].Text + '</span>');
+    var $ul= $('<ul class="body" style="display: none" />');
+    var $value = $('<input type="hidden" class="js-custom-filter" value="' + options[0].Value + '" />');
+    
+    for (var i = 0, j = options.length; i < j; i++)
+      $ul.append('<li class="js-option option" rel="' + options[i].Value + '">' + options[i].Text + '</li>');
+    var $options = $('li', $ul);
+    
+    $filter.append($style);
+    $style.append('<div class="arrow" />');
+    $style.append($label);
+    $style.append($ul);
+    $style.append($value);
+    
+    $filter.bind('click', function() { $ul.toggle(); });
+    $options.bind('click', function() {
+      var $this = $(this);
+        
+      var nextFilter = $this.attr('rel');
+      
+      $options.removeClass('selected');
+      $this.addClass('selected');
+      
+      if ($value.val() != nextFilter) {
+        $value.val(nextFilter);
+        $label.text($this.text());
+        render('.js-custom-filter');
       }
-      return false;
     });
+    
+    return $filter;
+  }
+  
+  function initialize() {
+    var $controls = $('.controls');
+    $controls.empty();
+    
+    $('.js-pager').remove();
+    
+    var $typeFilter = createFilter([
+      { Value: 'All', Text: 'All Types' },
+      { Value: 'IsShip', Text: 'Ships' },
+      { Value: 'IsPackage', Text: 'Packages' },
+      { Value: 'HasShip', Text: 'Ships + Packages' },
+      { Value: 'IsUpgrade', Text: 'Upgrades' },
+      { Value: 'IsFlair', Text: 'Flair' },
+    ]);
+    
+    var $featureFilter = createFilter([
+      { Value: 'All', Text: 'All Features' },
+      { Value: 'HasLTI', Text: 'LTI' },
+      { Value: 'IsGiftable', Text: 'Giftable' },
+      { Value: 'HasValue', Text: 'Valuable' },
+    ]);
+    
+    $controls.append($typeFilter, $featureFilter);
+    
+    render('.js-custom-filter');
+    
+    $(document.body).append('<style>js-inventory h3 { margin-top: -5px !important }</style>');
   }
   
   /*********************************************
@@ -145,18 +187,21 @@
     
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.shipName = $ship.prev().text();
+    this.hasValue = this.pledgeValue != '$0.00 USD';
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
+    this.hasShip = $ship.length > 0;
+    this.isGiftable = $('.label:contains(Gift)', this).length > 0;
     this.isPackage = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;
-    this.isShip = $ship.length > 0 && !this.isPackage;
+    this.isShip = this.hasShip && !this.isPackage;
     this.isUpgrade = (titleParts[0] == "Ship Upgrades") || (titleParts[0] == "Cross-Chassis Upgrades");
     this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade;
     
     if (this.isShip) {
       for (var i = 0, j = ships.length; i < j; i++) {
-          if (this.shipName.toLowerCase().indexOf(ships[i].name.toLowerCase()) > -1) {
-            $('.basic-infos .image', this).css({ 'background-image': 'url("' + ships[i].thumbnail + '")'});
-            break;
-          }
+        if (this.shipName.toLowerCase().indexOf(ships[i].name.toLowerCase()) > -1) {
+          $('.basic-infos .image', this).css({ 'background-image': 'url("' + ships[i].thumbnail + '")'});
+          break;
+        }
       }
     }
     
@@ -175,43 +220,54 @@
     items.push(this);
   }
   
+  function filter(items, filter) {
+    
+    console.log('Filtering on', filter);
+    
+    switch (filter) {
+      case "HasLTI":
+        items = $.grep(items, function(item) { return item.hasLTI; });
+        break;
+      case "IsGiftable":
+        items = $.grep(items, function(item) { return item.isGiftable; });
+        break;
+      case "IsShip":
+        items = $.grep(items, function(item) { return item.isShip; });
+        break;
+      case "HasShip":
+        items = $.grep(items, function(item) { return item.hasShip; });
+        break;
+      case "IsPackage":
+        items = $.grep(items, function(item) { return item.isPackage; });
+        break;
+      case "IsUpgrade":
+        items = $.grep(items, function(item) { return item.isUpgrade; });
+        break;
+      case "IsFlair":
+        items = $.grep(items, function(item) { return item.isFlair; });
+        break;
+      case "HasValue":
+        items = $.grep(items, function(item) { return item.hasValue; });
+        break;
+    }
+    
+    return items;
+  }
+  
   /*********************************************
    * Renders the list of inventory, according  *
    * to the currently selected filters         *
    *********************************************/
-  function render(filter) {
-    $list.empty();
+  function render(filterSelector) {
+    
+    console.log('Rendering', filterSelector);
     
     var filtered = items;
     
-    switch (filter) {
-      case "Ships":
-        filtered = $.grep(items, function(item) {
-          return item.isShip;
-        });
-        break;
-      case "ContainsShip":
-        filtered = $.grep(items, function(item) {
-          return item.isShip || item.isPackage;
-        });
-        break;
-      case "Packages":
-        filtered = $.grep(items, function(item) {
-          return item.isPackage;
-        });
-        break;
-      case "Upgrades":
-        filtered = $.grep(items, function(item) {
-          return item.isUpgrade;
-        });
-        break;
-      case "Flair":
-        filtered = $.grep(items, function(item) {
-          return item.isFlair;
-        });
-        break;
-    }
     
+    $(filterSelector).each(function() { filtered = filter(filtered, $(this).val()); });
+    
+    $list.empty();
     $list.append(filtered);
   }
   
@@ -219,6 +275,7 @@
   
   if ($lists.length == 2) {
     $list = $($lists[1]);
+    $list.addClass('js-inventory');
     delete $lists;
     getPages(1);
   }
