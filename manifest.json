@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "HangarXPLOR",
+  "description": "This extension improves the Hangar page on RobertsSpaceIndustries.com",
+  "version": "2.0",
+  "permissions": [
+    "https://robertsspaceindustries.com/*"
+  ],
+  "icons": { "48": "icon48.png",
+             "128": "icon128.png" },
+  "content_scripts": [
+    {
+      "matches": ["https://robertsspaceindustries.com/account/pledges*"],
+      "js": ["jquery.min.js", "hangar.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "author": "/u/alluran (Peter Dolkens)"
+}
