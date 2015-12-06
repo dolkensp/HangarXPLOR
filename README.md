@@ -25,3 +25,7 @@ https://chrome.google.com/webstore/detail/hangarxplor/bhkgemjdepodofcnmekdobmmbi
 # Safari Add-On
 
 ** Not Scheduled **
+
+# Screenshots
+
+![New and improved UI](http://i.imgur.com/Om3Zzbv.png "New and improved UI")
