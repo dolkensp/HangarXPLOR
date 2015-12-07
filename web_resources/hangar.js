@@ -105,12 +105,15 @@
     });
   }
   
-  function createFilter(options) {
-    var $filter = $('<div style="width: 150px;">');
+  function createFilter(options, width) {
+    
+    width = width || "150px";
+    
+    var $ul = $('<ul class="body" style="display: none" />');
     var $style = $('<div class="js-selectlist selectlist" />');
     var $label = $('<span>' + options[0].Text + '</span>');
-    var $ul= $('<ul class="body" style="display: none" />');
     var $value = $('<input type="hidden" class="js-custom-filter" value="' + options[0].Value + '" />');
+    var $filter = $('<div style="width: ' + width + '">');
     
     for (var i = 0, j = options.length; i < j; i++)
       $ul.append('<li class="js-option option ' + (options[i].Class || '') + '" rel="' + options[i].Value + '">' + options[i].Text + '</li>');
@@ -162,11 +165,13 @@
       { Value: 'IsExtra', Text: 'All Extras', Class: 'split' },
       { Value: 'IsUpgrade', Text: 'Upgrades' },
       { Value: 'IsAddOn', Text: 'Add Ons' },
+      { Value: 'IsComponent', Text: 'Components' },
       { Value: 'IsFlair', Text: 'All Flair', Class: 'split' },
       { Value: 'IsDecoration', Text: 'Decorations' },
       { Value: 'IsPoster', Text: 'Posters' },
       { Value: 'IsModel', Text: 'Models' },
-    ]);
+      { Value: 'IsReward', Text: 'Rewards' },
+    ], "160px");
     
     var $featureFilter = createFilter([
       { Value: 'All', Text: 'All Features', Class: 'selected first' },
@@ -174,7 +179,7 @@
       { Value: 'IsGiftable', Text: 'Giftable' },
       { Value: 'HasValue', Text: 'Valuable' },
       { Value: 'IsUpgraded', Text: 'Upgraded' },
-    ]);
+    ], "140px");
     
     $controls.append($typeFilter, $featureFilter);
     
@@ -196,6 +201,21 @@
     var pledgeName = $('.js-pledge-name', this).val();
     var pledgeId = $('.js-pledge-id', this).val();
     
+    // Clean up existing hangar items
+    pledgeName = pledgeName.replace('Subscribers Exclusive - ', '');
+    pledgeName = pledgeName.replace('StellarSonic JukeBox', 'Decorations - StellarSonic JukeBox');
+    pledgeName = pledgeName.replace('UEE Calendar', 'Decorations - UEE Calendar');
+    pledgeName = pledgeName.replace('Puglisi Collection:', 'Puglisi Collection');
+    pledgeName = pledgeName.replace('Puglisi Collection ', 'Puglisi Collection - ');
+    pledgeName = pledgeName.replace('Takuetsu', 'Models - Takuetsu');
+    pledgeName = pledgeName.replace('TAKUETSU', 'Models - Takuetsu');
+    pledgeName = pledgeName.replace('Badger and Badges', 'Rewards - Badger and Badges');
+    pledgeName = pledgeName.replace('Gimbals and Guns', 'Rewards - Gimbals and Guns');
+    pledgeName = pledgeName.replace('Surf and Turf', 'Rewards - Surf and Turf');
+    pledgeName = pledgeName.replace('Gladius and Gold', 'Rewards - Gladius and Gold');
+    
+    // TODO - Space Globe support
+    
     var titleParts = pledgeName.split(/\s-\s/);
     
     this.pledgeValue = $('.js-pledge-value', this).val();
@@ -206,13 +226,21 @@
     this.isUpgraded = $('.upgraded', this).length > 0;
     this.isGiftable = $('.label:contains(Gift)', this).length > 0;
     this.isPackage = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;
-    this.isShip = this.hasShip && !this.isPackage;
+    this.isShip = $ship.length == 1;
     this.isUpgrade = (titleParts[0] == "Ship Upgrades") || (titleParts[0] == "Cross-Chassis Upgrades");
     this.isAddOn = (titleParts[0] == "Add-Ons");
     this.isPoster = (titleParts[0] == "Posters");
+    this.isFishtank = (titleParts[0] == "Fishtank");
+    this.isReward = (titleParts[0] == "Rewards");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
-    this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade;
+    this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade && !this.isAddOn;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair;
+    this.isComponent = $('.kind:contains(Component)', this).length > 0;
+    
+    // Special case for Gladius and Gold referal reward
+    if (titleParts[1] == 'Gladius and Gold') this.isFlair = this.isModel = this.isDecoration = true;
+    if (titleParts[1] == 'Gimbals and Guns') this.isFlair = this.isDecoration = false;
+    if (titleParts[1] == 'Badger and Badges') this.isFlair = false;
     
     if (this.isShip) {
       for (var i = 0, j = ships.length; i < j; i++) {
@@ -284,6 +312,12 @@
         break;
       case "IsDecoration":
         items = $.grep(items, function(item) { return item.isDecoration; });
+        break;
+      case "IsComponent":
+        items = $.grep(items, function(item) { return item.isComponent; });
+        break;
+      case "IsReward":
+        items = $.grep(items, function(item) { return item.isReward; });
         break;
     }
     
