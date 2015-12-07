@@ -94,29 +94,35 @@
    * custom filtering and sorting of inventory *
    *********************************************/
   function getPages(pageNo) {
+    if (pageNo == 1) {
+      var currentPage = $('.js-pager .selected').attr('rel');
+      if (currentPage == '/account/pledges?page=1&pagesize=100')
+        return processPage($(document.body), pageNo);
+    }
+    
     $.ajax({
       url: '/account/pledges?page=' + pageNo + '&pagesize=100', 
       method: 'GET', 
-      success: function(html) {
-        var $page = $(html);
-        
-        var $lists = $('.list-items', $page);
-        
-        if ($lists.length == 2)
-        {
-          var $items = $('li', $lists[1]);
-          
-          $items.each(insertItem);
-          
-          if ($items.length < 100)
-            initialize();
-          else
-            getPages(pageNo + 1)
-        } else {
-          initialize();
-        }
-      }
+      success: function(html) { processPage($(html), pageNo) }
     });
+  }
+  
+  function processPage($page, pageNo) {
+    var $lists = $('.list-items', $page);
+    
+    if ($lists.length == 2)
+    {
+      var $items = $('li', $lists[1]);
+      
+      $items.each(insertItem);
+      
+      if ($items.length < 100)
+        initialize();
+      else
+        getPages(pageNo + 1)
+    } else {
+      initialize();
+    }
   }
   
   function createFilter(options, width) {
@@ -278,6 +284,8 @@
         h3Text.textContent = pledgeName + ' (' + pledgeId + ')';
       }
       
+    } else {
+      console.log('Warning: Error parsing', h3Text.textContent);
     }
 
     items.push(this);
