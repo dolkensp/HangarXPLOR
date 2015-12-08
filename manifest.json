@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "Star Citizen Hangar XPLORer",
   "short_name": "HangarXPLOR",
-  "version": "2.8",
+  "version": "2.9",
   
   "author": "/u/alluran (Peter Dolkens)",
   
@@ -19,5 +19,19 @@
     "js": ["content_scripts/loader.js"],
     "run_at": "document_end"
   }],
-  "web_accessible_resources": [ "web_resources/hangar.js" ]
+  "web_accessible_resources": [
+    "web_resources/HangarXPLOR.DrawUI.js",
+    "web_resources/HangarXPLOR.Dropdown.js",
+    "web_resources/HangarXPLOR.Filter.js",
+    "web_resources/HangarXPLOR.LoadPage.js",
+    "web_resources/HangarXPLOR.ProcessItem.js",
+    "web_resources/HangarXPLOR.ProcessPage.js",
+    "web_resources/HangarXPLOR.Render.js",
+    "web_resources/HangarXPLOR.Search.js",
+    "web_resources/HangarXPLOR.SearchBox.js",
+    "web_resources/HangarXPLOR.Ships.js",
+    "web_resources/HangarXPLOR.Sort.js",
+    "web_resources/HangarXPLOR.Toggle.js",
+    "web_resources/HangarXPLOR.js"
+  ]
 }
