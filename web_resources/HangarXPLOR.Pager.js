@@ -2,13 +2,14 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 // Render a toggle that sets the value of an element
-HangarXPLOR.Pager = function(className, callback)
+HangarXPLOR.Pager = function(options, width, className, callback)
 {
-  className = className || '';
+  width = width || '150px';
+  className = className || 'js-custom-pager';
   
   console.log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
   
-  var $control = $('<div class="options-selector pager-wrapper' + className + '" />');
+  var $control = $('<div class="options-selector pager-wrapper ' + className + '" />');
   var $pager = $('<div class="pager clearfix js-pager" />');
   var $left = $('<div class="left" />');
   var $right = $('<div class="right" />');
@@ -20,10 +21,19 @@ HangarXPLOR.Pager = function(className, callback)
   HangarXPLOR.RefreshPager = function() {
   
     var maxPages = Math.ceil(HangarXPLOR._totalRecords / HangarXPLOR._pageCount);
-    var firstPage = Math.max(1, Math.min(maxPages - maxButtons, HangarXPLOR._pageNo - Math.floor(maxButtons / 2)));
-    if (HangarXPLOR._pageNo == maxPages) firstPage = Math.max(1, maxPages - Math.floor(maxButtons / 2));
+    if (HangarXPLOR._pageNo > maxPages) HangarXPLOR._pageNo = maxPages;
+    
+    var firstPage = Math.max(1, Math.min(Math.max(1, maxPages - maxButtons), HangarXPLOR._pageNo - Math.floor(maxButtons / 2)));
+    if (HangarXPLOR._pageNo == maxPages) firstPage = Math.max(1, maxPages - maxButtons);
     
     $right.empty();
+    
+    if (maxPages == 1) {
+      $left.addClass('mr0');
+      return;
+    } else {
+      $left.removeClass('mr0');
+    }
     
     for (var i = firstPage, j = Math.min(firstPage + maxButtons - 1, maxPages); i <= j; i++)
       $right.append('<a class="trans-02s trans-color' + ((i == HangarXPLOR._pageNo) ? ' active' : '') + '" rel="' + i + '">' + i + '</a>');
@@ -50,12 +60,7 @@ HangarXPLOR.Pager = function(className, callback)
   
   HangarXPLOR.RefreshPager();
   
-  $left.append(HangarXPLOR.Dropdown([
-    { Value: '10', Text: '10 per page', Class: 'selected' },
-    { Value: '20', Text: '20 per page' },
-    { Value: '50', Text: '50 per page' },
-    { Value: '100', Text: '100 per page' },
-  ], '140px', 'js-custom-pager', function(e, pageCount) {
+  $left.append(HangarXPLOR.Dropdown(options, width, className, function(e, pageCount) {
     HangarXPLOR._pageNo = 1;
     HangarXPLOR._pageCount = pageCount;
     

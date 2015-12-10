@@ -5,6 +5,7 @@ var HangarXPLOR = HangarXPLOR || {};
 HangarXPLOR.DrawUI = function()
 {
   var $controls = $('.controls');
+  $controls.addClass('js-custom-controls');
   $controls.empty();
   
   $('.js-pager').remove();
@@ -12,7 +13,7 @@ HangarXPLOR.DrawUI = function()
   var $filters = [];
   
   $filters.push(HangarXPLOR.Dropdown([
-    { Value: 'All', Text: 'All Types', Class: 'selected first' },
+    { Value: 'All', Text: 'All Types', Class: 'first', Selected: true },
     { Value: 'HasShip', Text: 'Ships + Packages' },
     { Value: 'IsShip', Text: 'Ships' },
     { Value: 'IsPackage', Text: 'Packages' },
@@ -25,24 +26,28 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsPoster', Text: 'Posters' },
     { Value: 'IsModel', Text: 'Models' },
     { Value: 'IsReward', Text: 'Rewards' },
-  ], '160px', 'js-custom-filter', function() { HangarXPLOR.Render(); HangarXPLOR.RefreshPager() }));
+  ], '158px', 'js-custom-filter', function() { HangarXPLOR.Render(); HangarXPLOR.RefreshPager() }));
   
   $filters.push(HangarXPLOR.Dropdown([
-    { Value: 'All', Text: 'All Features', Class: 'selected first' },
-    { Value: 'HasLTI', Text: 'LTI' },
-    { Value: '!HasLTI', Text: 'Standard Insurance' },
+    { Value: 'All', Text: 'All Features', Class: 'first', Selected: true },
+    { Value: 'HasLTI', Text: 'LTI', Class: 'split' },
+    { Value: '!HasLTI', Text: 'STI' },
     { Value: 'IsGiftable', Text: 'Giftable', Class: 'split' },
     { Value: '!IsGiftable', Text: 'Account Bound' },
     { Value: 'HasValue', Text: 'Valuable', Class: 'split' },
     { Value: '!HasValue', Text: 'Worthless' },
     { Value: 'IsUpgraded', Text: 'Upgraded', Class: 'split' },
     { Value: '!IsUpgraded', Text: 'Original' },
-  ], '140px', 'js-custom-filter', function() { HangarXPLOR.Render(); HangarXPLOR.RefreshPager() }));
+  ], '137px', 'js-custom-filter', function() { HangarXPLOR.Render(); HangarXPLOR.RefreshPager() }));
   
   $controls.append($filters);
-  $controls.append(HangarXPLOR.Pager('js-custom-pager', HangarXPLOR.Render));
-  
-  $(document.body).append('<style>.js-inventory h3 { margin-top: -5px !important } .first { border-bottom: 3px double #162a3f } .split { border-top: 1px solid #162a3f; }</style>');
+  $controls.append(HangarXPLOR.Pager([
+    { Value: '9999', Text: 'Display All', Class: 'first' },
+    { Value: '10', Text: '10 per page', Selected: true },
+    { Value: '20', Text: '20 per page' },
+    { Value: '50', Text: '50 per page' },
+    { Value: '100', Text: '100 per page' },
+  ], '140px', 'js-custom-pager', HangarXPLOR.Render));
   
   HangarXPLOR.Render();
   HangarXPLOR.RefreshPager();

@@ -43,6 +43,7 @@ HangarXPLOR._ships = [
   { 'name': 'Gladius', 'thumbnail': '/media/b623f9bkn0c3ur/heap_infobox/Gladius_Front_Perspective.jpg' },
   { 'name': 'Glaive', 'thumbnail': '/media/ygnjk175atmcer/heap_infobox/Vanduul_glaive_viz3.jpg' },
   { 'name': 'Herald', 'thumbnail': '/media/rq2gv7b4b3id0r/heap_infobox/Herald-1.jpg' },
+  { 'name': 'Hornet F7C', 'thumbnail': '/media/m6e374a9zb7dlr/heap_infobox/F7c_hornet_storefront_visual.jpg' },
   { 'name': 'Hull A', 'thumbnail': '/media/tpw5r365mowmar/heap_infobox/Hull_A_Final.jpg' },
   { 'name': 'Hull B', 'thumbnail': '/media/xg8d8kyo0bjsmr/heap_infobox/HullB_landedcompv3b.jpg' },
   { 'name': 'Hull C', 'thumbnail': '/media/w54u21vkhci5vr/heap_infobox/Hull_C_Final.jpg' },

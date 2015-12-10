@@ -15,8 +15,14 @@ HangarXPLOR.Dropdown = function(options, width, className, callback)
   var $value = $('<input type="hidden" class="' + className + '" value="' + options[0].Value + '" />');
   var $dropdown = $('<div style="width: ' + width + '">');
   
-  for (var i = 0, j = options.length; i < j; i++)
+  for (var i = 0, j = options.length; i < j; i++) {
+    if (options[i].Selected) {
+      $label.text(options[i].Text);
+      $value.val(options[i].Value);
+      options[i].Class = options[i].Class + ' selected';
+    }
     $ul.append('<li class="js-option option ' + (options[i].Class || '') + '" rel="' + options[i].Value + '">' + options[i].Text + '</li>');
+  }
   var $options = $('li', $ul);
   
   $dropdown.append($style);
