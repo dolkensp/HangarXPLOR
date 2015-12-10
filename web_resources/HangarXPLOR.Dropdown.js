@@ -2,7 +2,7 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 // Render a dropdown that sets the value of an element
-HangarXPLOR.Dropdown = function(options, width, className)
+HangarXPLOR.Dropdown = function(options, width, className, callback)
 {
   console.log('Rendering Dropdown', options);
   
@@ -29,25 +29,30 @@ HangarXPLOR.Dropdown = function(options, width, className)
   $options.bind('mouseout', function() { $(this).removeClass('hover'); });
   
   $dropdown.bind('click', function() { $ul.toggle(); });
-  $options.bind('click', function() {
+  $options.bind('click', function(e) {
     var $this = $(this);
-      
-    var nextFilter = $this.attr('rel');
     
     $options.removeClass('selected');
     $options.removeClass('hover');
     $this.addClass('selected');
     
-    if ($value.val() != nextFilter) {
-      $value.val(nextFilter);
-      $label.text($this.text());
-      HangarXPLOR.Render(className);
-    }
-    
     $('ul.body').hide();
+    
+    var newValue = $this.attr('rel');
+    if ($value.val() != newValue) {
+      $value.val(newValue);
+      $label.text($this.text());
+      if (typeof callback === 'function') callback.call(this, e, newValue);
+    }
     
     return false;
   });
+  
+  $dropdown.val = function(value) {
+    // TODO: Update selected
+    
+    return $value.val(value);
+  }
   
   return $dropdown;
 }

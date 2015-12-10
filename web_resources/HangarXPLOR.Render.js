@@ -1,14 +1,18 @@
 
 var HangarXPLOR = HangarXPLOR || {};
 
+HangarXPLOR._pageNo = 1;
+HangarXPLOR._pageCount = 10;
+HangarXPLOR._totalRecords = 10;
+
 // Render items that match the search, filter and sort criteria
-HangarXPLOR.Render = function(filterBy, sortBy, searchBy)
+HangarXPLOR.Render = function()
 {
-  filterBy = filterBy || 'js-custom-filter';
-  sortBy = sortBy || 'js-custom-sort';
-  searchBy = searchBy || 'js-custom-search';
+  var filterBy = 'js-custom-filter';
+  var sortBy = 'js-custom-sort';
+  var searchBy = 'js-custom-search';
   
-  console.log('Rendering', filterBy, sortBy, searchBy);
+  console.log('Rendering', filterBy, sortBy, searchBy, HangarXPLOR._pageNo, HangarXPLOR._pageCount);
   
   filterBy = '.' + filterBy;
   sortBy = '.' + sortBy;
@@ -22,6 +26,10 @@ HangarXPLOR.Render = function(filterBy, sortBy, searchBy)
   
   if (buffer.length == 0)
     buffer.push($('<h4 class="empy-list">Your hangar is empty.</h4>'));
+  
+  HangarXPLOR._totalRecords = buffer.length;
+  
+  buffer = buffer.slice((HangarXPLOR._pageNo - 1) * HangarXPLOR._pageCount, HangarXPLOR._pageNo * HangarXPLOR._pageCount);
     
   HangarXPLOR.$list.empty();
   HangarXPLOR.$list.append(buffer);

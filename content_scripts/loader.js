@@ -5,6 +5,7 @@
     'HangarXPLOR.Dropdown.js',
     'HangarXPLOR.Filter.js',
     'HangarXPLOR.LoadPage.js',
+    'HangarXPLOR.Pager.js',
     'HangarXPLOR.ProcessItem.js',
     'HangarXPLOR.ProcessPage.js',
     'HangarXPLOR.Render.js',
