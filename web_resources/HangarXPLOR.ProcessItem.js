@@ -10,12 +10,14 @@ HangarXPLOR.ProcessItem = function()
     
   var h3Text = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
     
-  var pledgeName = $('.js-pledge-name', this).val().trim() || '';
-  var originalName = pledgeName;
-  var pledgeId = $('.js-pledge-id', this).val().trim();
+  var pledgeName = $('.js-pledge-name', this).val() || '';
   
   if (pledgeName.length > 0) {
     // Clean up existing hangar items
+    
+    pledgeName = pledgeName.trim();
+    this.originalName = pledgeName;
+    
     pledgeName = pledgeName.replace(/^Subscribers Exclusive - /i, '');
     pledgeName = pledgeName.replace(/^(UEE Environment Coat|UEE Calendar|Workbench|Patron of the Arts Award|StellarSonic JukeBox|Locker from Another Universe|UEE Towel|Mr. Refinement's Cabinet of Rare & Exquisite Spirits)/i, 'Decorations - $1');
     pledgeName = pledgeName.replace(/^Puglisi Collection[: ]/i, 'Puglisi Collection - ');
@@ -46,16 +48,16 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^F7A Military Hornet Upgrade$/i, 'Ship Upgrades - F7A Military Hornet Upgrade');
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
     pledgeName = pledgeName.replace(/^(Banu Merchantman|Xi'An Scout -  Khartu|Anvil Gladiator Bomber|Drake Interplanetary Caterpillar|ORIGIN M50 Interceptor|Aegis Dynamics Idris Corvette|Captured Vanduul Fighter)( - LTI)?$/i, 'Standalone Ship - $1$2');
-    pledgeName = pledgeName.replace(/^(Digital Scout|Freelancer|Colonel|Digital Pirate|Rear Admiral|Digital Colonel|Colonel)( - LTI)?$/i, 'Package - $1$2');
+    pledgeName = pledgeName.replace(/^(Weekend Warrior|Digital Scout|Freelancer|Colonel|Digital Pirate|Rear Admiral|Digital Colonel|Colonel)( - LTI)?$/i, 'Package - $1$2');
     
     // 
     // Package - Mustang Omega : AMD Edition
     // 1 Year Imperator Reward - 15% Coupon: SSSSSSSSSS
     // Greycat PTV
 
-    
     var titleParts = pledgeName.split(/\s-\s/);
     
+    this.pledgeId = $('.js-pledge-id', this).val().trim();
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.shipName = $ship.prev().text().replace('M50 Interceptor', 'M50').replace('M50', 'M50 Interceptor');
     this.hasValue = this.pledgeValue != '$0.00 USD';
@@ -84,7 +86,7 @@ HangarXPLOR.ProcessItem = function()
     if (titleParts[1] == 'Gimbals and Guns') this.isFlair = this.isDecoration = false;
     if (titleParts[1] == 'Badger and Badges') this.isFlair = false;
     
-    if (this.isShip || this.isUpgraded) {
+    if (this.isShip) {
       for (var i = 0, j = HangarXPLOR._ships.length; i < j; i++) {
         if (this.shipName.toLowerCase().indexOf(HangarXPLOR._ships[i].name.toLowerCase()) > -1) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._ships[i].thumbnail + '")'});
@@ -98,18 +100,17 @@ HangarXPLOR.ProcessItem = function()
     var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
     
     if (this.isUpgraded || this.isPackage || this.isReward)
-      $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + originalName + '</div>'));
+      $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + this.originalName + '</div>'));
     
-    if (this.isPackage || this.isShip)
-      h3Text.textContent = titleParts[0] + ' - ' + this.shipName + ltiSuffix + ' (' + pledgeId + ')';
+    if (this.isShip)
+      h3Text.textContent = titleParts[0] + ' - ' + this.shipName + ltiSuffix + ' (' + this.pledgeId + ')';
     else if (this.isSpaceGlobe)
       h3Text.textContent = $('.title', this).text();
     else
-      h3Text.textContent = pledgeName + ' (' + pledgeId + ')';
+      h3Text.textContent = pledgeName + ' (' + this.pledgeId + ')';
   } else {
     console.log('Warning: Error parsing', this.innerHTML);
   }
 
-  
   HangarXPLOR._inventory.push(this);
 }

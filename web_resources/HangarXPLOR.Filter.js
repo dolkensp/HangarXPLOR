@@ -17,7 +17,7 @@ HangarXPLOR.Filter = function(list, filter)
       list = $.grep(list, function(item) { return !item.isGiftable; });
       break;
     case "IsShip":
-      list = $.grep(list, function(item) { return item.isShip; });
+      list = $.grep(list, function(item) { return item.isShip && !item.isPackage; });
       break;
     case "HasShip":
       list = $.grep(list, function(item) { return item.hasShip; });

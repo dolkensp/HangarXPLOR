@@ -4,7 +4,9 @@ var HangarXPLOR = HangarXPLOR || {};
 HangarXPLOR.$list = null;                            // Element where we display the pledges
 HangarXPLOR._inventory = [];                         // Inventory containing all pledges
 HangarXPLOR._debugRoot = $('#xplor-js-1').attr('src').replace(/(.*)web_resources.*/, "$1");
-
+HangarXPLOR._pageNo = 1;
+HangarXPLOR._pageCount = $.cookie('HangarXPLOR._pageCount') || 10;
+  
 HangarXPLOR.Initialize = function()
 {
   var $lists = $('.list-items');

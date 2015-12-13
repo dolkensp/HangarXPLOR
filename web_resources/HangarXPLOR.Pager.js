@@ -49,6 +49,7 @@ HangarXPLOR.Pager = function(options, width, className, callback)
       
       if (newPage != HangarXPLOR._pageNo) {
         HangarXPLOR._pageNo = newPage;
+        $.cookie('HangarXPLOR._pageNo', HangarXPLOR._pageNo);
         
         if (typeof callback === 'function') callback.call(this, e, HangarXPLOR._pageNo);
         
@@ -63,6 +64,7 @@ HangarXPLOR.Pager = function(options, width, className, callback)
   $left.append(HangarXPLOR.Dropdown(options, width, className, function(e, pageCount) {
     HangarXPLOR._pageNo = 1;
     HangarXPLOR._pageCount = pageCount;
+    $.cookie('HangarXPLOR._pageCount', HangarXPLOR._pageCount);
     
     HangarXPLOR.RefreshPager();
     
