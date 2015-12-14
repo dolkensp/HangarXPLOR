@@ -35,7 +35,7 @@ HangarXPLOR.DrawUI = function()
   $filters.push(HangarXPLOR.Dropdown([
     { Value: 'All', Text: 'All Features', Class: 'first', Selected: filter2 == 'All' },
     { Value: 'HasLTI', Text: 'LTI', Class: 'split', Selected: filter2 == 'HasLTI' },
-    { Value: '!HasLTI', Text: 'STI', Selected: filter2 == '!HasLTI' },
+    { Value: '!HasLTI', Text: 'SHI', Selected: filter2 == '!HasLTI' },
     { Value: 'IsGiftable', Text: 'Giftable', Class: 'split', Selected: filter2 == 'IsGiftable' },
     { Value: '!IsGiftable', Text: 'Account Bound', Selected: filter2 == '!IsGiftable' },
     { Value: 'HasValue', Text: 'Valuable', Class: 'split', Selected: filter2 == 'HasValue' },
