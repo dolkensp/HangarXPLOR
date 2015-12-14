@@ -49,6 +49,12 @@ HangarXPLOR.Filter = function(list, filter)
     case "!HasValue":
       list = $.grep(list, function(item) { return !item.hasValue; });
       break;
+    case "IsMeltable":
+      list = $.grep(list, function(item) { return item.isMeltable; });
+      break;
+    case "!IsMeltable":
+      list = $.grep(list, function(item) { return !item.isMeltable; });
+      break;
     case "IsModel":
       list = $.grep(list, function(item) { return item.isModel; });
       break;

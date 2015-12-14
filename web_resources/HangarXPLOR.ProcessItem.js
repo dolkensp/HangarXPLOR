@@ -19,7 +19,8 @@ HangarXPLOR.ProcessItem = function()
     this.originalName = pledgeName;
     
     pledgeName = pledgeName.replace(/^Subscribers Exclusive - /i, '');
-    pledgeName = pledgeName.replace(/^(UEE Environment Coat|UEE Calendar|Workbench|Patron of the Arts Award|StellarSonic JukeBox|Locker from Another Universe|UEE Towel|Mr. Refinement's Cabinet of Rare & Exquisite Spirits)/i, 'Decorations - $1');
+    pledgeName = pledgeName.replace(/^(UEE Calendar|Workbench|Patron of the Arts Award|StellarSonic JukeBox|Locker from Another Universe|UEE Towel|Mr. Refinement's Cabinet of Rare & Exquisite Spirits)/i, 'Decorations - $1');
+    pledgeName = pledgeName.replace(/^(UEE Environment Coat|Omni Role Combat Armor \(ORC\) mk9)/i, 'Add-Ons - $1');
     pledgeName = pledgeName.replace(/^Puglisi Collection[: ]/i, 'Puglisi Collection - ');
     pledgeName = pledgeName.replace(/Battlefield Upgrade Kit/i, 'BUK');
     pledgeName = pledgeName.replace(/^Takuetsu/i, 'Models - Takuetsu');
@@ -43,12 +44,11 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^December 2014 Backer Reward/i, 'Reward - Takuetsu Mustang Model - December 2014');
     pledgeName = pledgeName.replace(/^(Hornet|Freelancer|Decorations - CitizenCon \d+) Poster/i, 'Posters - $1');
     pledgeName = pledgeName.replace(/ Poster$/i, '');
-    pledgeName = pledgeName.replace(/^Omni Role Combat Armor (ORC) mk9$/i, 'Add-Ons - Omni Role Combat Armor (ORC) mk9');
     pledgeName = pledgeName.replace(/^(.*) Skin$/i, 'Skins - $1');
     pledgeName = pledgeName.replace(/^F7A Military Hornet Upgrade$/i, 'Ship Upgrades - F7A Military Hornet Upgrade');
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
-    pledgeName = pledgeName.replace(/^(Banu Merchantman|Xi'An Scout -  Khartu|Anvil Gladiator Bomber|Drake Interplanetary Caterpillar|ORIGIN M50 Interceptor|Aegis Dynamics Idris Corvette|Captured Vanduul Fighter)( - LTI)?$/i, 'Standalone Ship - $1$2');
-    pledgeName = pledgeName.replace(/^(Weekend Warrior|Digital Scout|Freelancer|Colonel|Digital Pirate|Rear Admiral|Digital Colonel|Colonel)( - LTI)?$/i, 'Package - $1$2');
+    pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|ORIGIN M50 Interceptor|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
+    pledgeName = pledgeName.replace(/^(Digital )?(Arbiter|Colonel|Cutlass|Freelancer|Pirate|Rear Admiral|Scout|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
     
     // 
     // Package - Mustang Omega : AMD Edition
@@ -63,6 +63,7 @@ HangarXPLOR.ProcessItem = function()
     this.hasValue = this.pledgeValue != '$0.00 USD';
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
     this.hasShip = $ship.length > 0;
+    this.isMeltable = $('.js-reclaim', this).length > 0;
     this.isUpgraded = $('.upgraded', this).length > 0;
     this.isGiftable = $('.label:contains(Gift)', this).length > 0;
     this.isPackage = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;

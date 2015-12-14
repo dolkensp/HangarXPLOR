@@ -42,6 +42,8 @@ HangarXPLOR.DrawUI = function()
     { Value: '!HasValue', Text: 'Worthless', Selected: filter2 == '!HasValue' },
     { Value: 'IsUpgraded', Text: 'Upgraded', Class: 'split', Selected: filter2 == 'IsUpgraded' },
     { Value: '!IsUpgraded', Text: 'Original', Selected: filter2 == '!IsUpgraded' },
+    { Value: 'IsMeltable', Text: 'Meltable', Class: 'split', Selected: filter2 == 'IsMeltable' },
+    { Value: '!IsMeltable', Text: 'Unmeltable', Selected: filter2 == '!IsMeltable' },
   ], '137px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Feature', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager() }));
   
   $controls.append($filters);
