@@ -2,3 +2,59 @@
 .js-custom-controls .first { border-bottom: 3px double #162a3f }
 .js-custom-controls .split { border-top: 1px solid #162a3f; }
 .js-custom-controls .mr0 { margin-right: 0px !important; }
+.js-inventory .js-selected { background: rgba(179,212,250,0.2) !important; }
+.js-custom-controls .controls { height: auto !important; margin-bottom: 0px !important; }
+.js-custom-controls { margin-bottom: 15px; }
+
+
+/*
+    font-size: 23px;
+    color: #25e4ff;
+    font-family: 'Electrolize';
+    text-decoration: none;
+    font-style: normal;
+*/
+
+/*
+    font-size: 10px;
+    color: #6c84a2;
+    font-family: 'Electrolize';
+    display: block;
+    text-transform: uppercase;
+*/
+
+
+/*
+
+<div class="tag js-tag on">
+  <div class="left">
+    <div class="effect trans-02s trans-opacity"></div>
+  </div>
+  <div class="tag-content">
+    <div class="effect trans-02s trans-opacity"></div>
+      <a href="?order_status=O,C,X" class="text">Show Cancelled</a>
+  </div>
+</div>
+*/
+
+/*
+<a class="shadow-button trans-02s trans-color js-reclaim reclaim rm">
+  <span class="label js-label trans-02s">Exchange for Store Credits</span>
+  <span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span>
+  <span class="left-section"></span>
+  <span class="right-section"></span>
+</a>
+*/
+
+/*
+<a class="shadow-button trans-02s trans-color js-gift gift">
+  <span class="label js-label trans-02s">Gift</span>
+  <span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span>
+  <span class="left-section"></span>
+  <span class="right-section"></span>
+</a>
+*/
+
+/*
+border: 1px solid rgba(12, 103, 161, 0.8)
+*/

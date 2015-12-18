@@ -4,9 +4,15 @@ var HangarXPLOR = HangarXPLOR || {};
 // Render UI controls
 HangarXPLOR.DrawUI = function()
 {
-  var $controls = $('.controls');
+  var $controls = $($('.controls')[0]);
   $controls.addClass('js-custom-controls');
+  $controls.removeClass('controls');
   $controls.empty();
+  
+  var $controls1 = $('<div class="controls clearfix" />');
+  var $controls2 = $('<div class="controls clearfix" />');
+  
+  $controls.append($controls1, $controls2);
   
   $('.js-pager').remove();
   
@@ -28,7 +34,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsPoster', Text: 'Posters', Selected: filter1 == 'IsPoster' },
     { Value: 'IsModel', Text: 'Models', Selected: filter1 == 'IsModel' },
     { Value: 'IsReward', Text: 'Rewards', Selected: filter1 == 'IsReward' },
-  ], '158px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Type', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager() }));
+  ], '158px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Type', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); HangarXPLOR.ResetBulkUI(); }));
   
   var filter2 = $.cookie('HangarXPLOR.Feature') || 'All';
   
@@ -44,17 +50,26 @@ HangarXPLOR.DrawUI = function()
     { Value: '!IsUpgraded', Text: 'Original', Selected: filter2 == '!IsUpgraded' },
     { Value: 'IsMeltable', Text: 'Meltable', Class: 'split', Selected: filter2 == 'IsMeltable' },
     { Value: '!IsMeltable', Text: 'Unmeltable', Selected: filter2 == '!IsMeltable' },
-  ], '137px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Feature', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager() }));
+  ], '137px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Feature', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); HangarXPLOR.ResetBulkUI(); }));
   
-  $controls.append($filters);
-  $controls.append(HangarXPLOR.Pager([
+  $controls1.append($filters);
+  
+  $controls1.append(HangarXPLOR.Pager([
     { Value: '9999', Text: 'Display All', Class: 'first', Selected: HangarXPLOR._pageCount == 9999 },
     { Value: '10', Text: '10 per page', Selected: HangarXPLOR._pageCount == 10 },
     { Value: '20', Text: '20 per page', Selected: HangarXPLOR._pageCount == 20 },
     { Value: '50', Text: '50 per page', Selected: HangarXPLOR._pageCount == 50 },
     { Value: '100', Text: '100 per page', Selected: HangarXPLOR._pageCount == 100 },
-  ], '140px', 'js-custom-pager', HangarXPLOR.Render));
+  ], '140px', 'js-custom-pager', HangarXPLOR.Render ));
+  var sort1 = $.cookie('HangarXPLOR.Sort') || 'Purchased';
   
+  $controls2.append(HangarXPLOR.Dropdown([
+    { Value: 'Purchased', Text: 'Purchase Date', Selected: sort1 == 'Purchased' },
+    { Value: 'Name', Text: 'Pledge Name', Selected: sort1 == 'Name' },
+    { Value: 'Value', Text: 'Pledge Value', Selected: sort1 == 'Value' },
+  ], '137px', 'js-custom-sort', function(e, value) { $.cookie('HangarXPLOR.Sort', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); }));
+  
+  HangarXPLOR.BulkUI();
   HangarXPLOR.Render();
   HangarXPLOR.RefreshPager();
 }

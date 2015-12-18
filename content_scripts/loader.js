@@ -7,6 +7,7 @@
   ];
   
   var scripts = [
+    'web_resources/HangarXPLOR.BulkUI.js',
     'web_resources/HangarXPLOR.DrawUI.js',
     'web_resources/HangarXPLOR.Dropdown.js',
     'web_resources/HangarXPLOR.Filter.js',

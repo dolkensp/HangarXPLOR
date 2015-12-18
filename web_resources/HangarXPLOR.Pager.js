@@ -1,5 +1,12 @@
 
 var HangarXPLOR = HangarXPLOR || {};
+HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
+HangarXPLOR._callbacks.Pager = [];
+
+HangarXPLOR.RefreshPager = function() {
+  for (var i = 0, j = HangarXPLOR._callbacks.Pager.length; i < j; i++)
+    HangarXPLOR._callbacks.Pager[i]();
+}
 
 // Render a toggle that sets the value of an element
 HangarXPLOR.Pager = function(options, width, className, callback)
@@ -18,15 +25,32 @@ HangarXPLOR.Pager = function(options, width, className, callback)
   $control.append($pager);
   $pager.append($left, $right);
   
-  HangarXPLOR.RefreshPager = function() {
-  
+  HangarXPLOR._callbacks.Pager.push(function() {
+    
+    for (var i = 0, j = options.length; i < j; i++)
+    {
+      options[i].Selected = HangarXPLOR._pageCount == options[i].Value;
+      options[i].Class = '';
+    }
+    
     var maxPages = Math.ceil(HangarXPLOR._totalRecords / HangarXPLOR._pageCount);
     if (HangarXPLOR._pageNo > maxPages) HangarXPLOR._pageNo = maxPages;
     
     var firstPage = Math.max(1, Math.min(Math.max(1, maxPages - maxButtons), HangarXPLOR._pageNo - Math.floor(maxButtons / 2)));
     if (HangarXPLOR._pageNo == maxPages) firstPage = Math.max(1, maxPages - maxButtons);
     
+    $left.empty();
     $right.empty();
+    
+    $left.append(HangarXPLOR.Dropdown(options, width, className, function(e, pageCount) {
+      HangarXPLOR._pageNo = 1;
+      HangarXPLOR._pageCount = pageCount;
+      $.cookie('HangarXPLOR._pageCount', HangarXPLOR._pageCount);
+      
+      HangarXPLOR.RefreshPager();
+      
+      if (typeof callback === 'function') callback.call(this, e, HangarXPLOR._pageNo);
+    }));
     
     if (maxPages == 1) {
       $left.addClass('mr0');
@@ -56,20 +80,9 @@ HangarXPLOR.Pager = function(options, width, className, callback)
         HangarXPLOR.RefreshPager();
       }
     });
-    
-  };
+  });
   
   HangarXPLOR.RefreshPager();
-  
-  $left.append(HangarXPLOR.Dropdown(options, width, className, function(e, pageCount) {
-    HangarXPLOR._pageNo = 1;
-    HangarXPLOR._pageCount = pageCount;
-    $.cookie('HangarXPLOR._pageCount', HangarXPLOR._pageCount);
-    
-    HangarXPLOR.RefreshPager();
-    
-    if (typeof callback === 'function') callback.call(this, e, HangarXPLOR._pageNo);
-  }));
   
   return $control;
 }

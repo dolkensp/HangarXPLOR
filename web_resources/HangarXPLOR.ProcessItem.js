@@ -44,23 +44,31 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^December 2014 Backer Reward/i, 'Reward - Takuetsu Mustang Model - December 2014');
     pledgeName = pledgeName.replace(/^(Hornet|Freelancer|Decorations - CitizenCon \d+) Poster/i, 'Posters - $1');
     pledgeName = pledgeName.replace(/ Poster$/i, '');
+    pledgeName = pledgeName.replace(/"Be A Hero"$/i, 'Be A Hero');
+    pledgeName = pledgeName.replace(/^Cross-Chassis Upgrades/i, 'Ship Upgrades');
     pledgeName = pledgeName.replace(/^(.*) Skin$/i, 'Skins - $1');
     pledgeName = pledgeName.replace(/^F7A Military Hornet Upgrade$/i, 'Ship Upgrades - F7A Military Hornet Upgrade');
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
     pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|ORIGIN M50 Interceptor|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
     pledgeName = pledgeName.replace(/^(Digital )?(Arbiter|Colonel|Cutlass|Freelancer|Pirate|Rear Admiral|Scout|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
+    pledgeName = pledgeName.replace("  ", " ").trim();
+    // TODO: Add pre-processing for Reliant Variants Here if required
     
     // 
     // Package - Mustang Omega : AMD Edition
     // 1 Year Imperator Reward - 15% Coupon: SSSSSSSSSS
     // Greycat PTV
-
+    
     var titleParts = pledgeName.split(/\s-\s/);
+    
+    for (var i = 0, j = titleParts.length; i < j; i++)
+      titleParts[i] = titleParts[i].trim();
     
     this.pledgeId = $('.js-pledge-id', this).val().trim();
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.shipName = $ship.prev().text().replace('M50 Interceptor', 'M50').replace('M50', 'M50 Interceptor');
-    this.hasValue = this.pledgeValue != '$0.00 USD';
+    this.value = parseInt(this.pledgeValue.replace("$", "").replace(" USD", ""));
+    this.hasValue = this.value > 0;
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
     this.hasShip = $ship.length > 0;
     this.isMeltable = $('.js-reclaim', this).length > 0;
@@ -68,7 +76,7 @@ HangarXPLOR.ProcessItem = function()
     this.isGiftable = $('.label:contains(Gift)', this).length > 0;
     this.isPackage = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;
     this.isShip = $ship.length == 1;
-    this.isUpgrade = (titleParts[0] == "Ship Upgrades") || (titleParts[0] == "Cross-Chassis Upgrades");
+    this.isUpgrade = (titleParts[0] == "Ship Upgrades");
     this.isAddOn = (titleParts[0] == "Add-Ons");
     this.isTrophy = (titleParts[0] == "Trophy");
     this.isPoster = (titleParts[0] == "Posters");
@@ -79,6 +87,7 @@ HangarXPLOR.ProcessItem = function()
     this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade && !this.isAddOn;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
+    this.isSelected = false;
     
     if (this.hasLTI && titleParts[2] == null) titleParts[2] = ' - LTI';
     
@@ -104,11 +113,17 @@ HangarXPLOR.ProcessItem = function()
       $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + this.originalName + '</div>'));
     
     if (this.isShip)
-      h3Text.textContent = titleParts[0] + ' - ' + this.shipName + ltiSuffix + ' (' + this.pledgeId + ')';
+      this.displayName = titleParts[0] + ' - ' + this.shipName + ltiSuffix + ' (' + this.pledgeId + ')';
     else if (this.isSpaceGlobe)
-      h3Text.textContent = $('.title', this).text();
+      this.displayName = $('.title', this).text();
     else
-      h3Text.textContent = pledgeName + ' (' + this.pledgeId + ')';
+      this.displayName = pledgeName + ' (' + this.pledgeId + ')';
+    
+    if ($.cookie('noPrefix') == 'true')
+      this.displayName = this.displayName.replace(/^.*? - (.*)$/, '$1');
+      
+    h3Text.textContent = this.displayName;
+    
   } else {
     console.log('Warning: Error parsing', this.innerHTML);
   }

@@ -199,3 +199,5 @@ publish
 
 # Ignore published packages
 *.zip
+*.xpi
+*.crx

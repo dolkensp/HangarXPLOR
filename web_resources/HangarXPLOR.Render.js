@@ -21,8 +21,10 @@ HangarXPLOR.Render = function()
   var buffer = HangarXPLOR._inventory;
   
   $(filterBy).each(function() { buffer = HangarXPLOR.Filter(buffer, $(this).val()); });
-  $(sortBy).each(function() { buffer = HangarXPLOR.Sort(buffer, $(this).val()); });
   $(searchBy).each(function() { buffer = HangarXPLOR.Search(buffer, $(this).val()); });
+  $(sortBy).each(function() { buffer = HangarXPLOR.Sort(buffer, $(this).val()); });
+  
+  HangarXPLOR._filtered = buffer;
   
   if (buffer.length == 0)
     buffer.push($('<h4 class="empy-list">Your hangar is empty.</h4>'));
