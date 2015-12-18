@@ -3,12 +3,12 @@
 .js-custom-controls .split { border-top: 1px solid #162a3f; }
 .js-custom-controls .mr0 { margin-right: 0px !important; }
 .js-inventory .js-selected { background: rgba(179,212,250,0.2) !important; }
-.js-custom-controls { margin-bottom: 15px; }
-.js-custom-controls .controls { height: auto !important; margin-bottom: 0px !important; }
+.js-custom-controls { margin-bottom: 10px; }
+.js-custom-controls .controls { height: auto !important; margin-bottom: 5px !important; }
 .js-custom-controls .tag-wrapper .tag .left .effect { background: #0b2031; box-shadow: 0 0 20px #0b2031; }
 .js-custom-controls .tag-wrapper .off .left .effect { background: #C00; box-shadow: 0 0 20px #C00; opacity: 1 !important; transition: all 125ms linear }
 .js-custom-controls .tag-wrapper .on  .left .effect { background: #00e7ff; box-shadow: 0 0 20px #0ff; }
-
+.js-custom-controls .pager { margin-bottom: 0px !important; }
 /*
     font-size: 23px;
     color: #25e4ff;

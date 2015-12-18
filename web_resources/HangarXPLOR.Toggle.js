@@ -2,7 +2,7 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 // Render a toggle that sets the value of an element
-HangarXPLOR.Toggle = function(label, value1, value2, className)
+HangarXPLOR.Toggle = function(label, value1, value2, className, callback)
 {
   console.log('Rendering Toggle', label, value1, value2, className);
   
@@ -38,6 +38,8 @@ HangarXPLOR.Toggle = function(label, value1, value2, className)
       $tag.addClass('off');
       $value.val($toggle.Value2);
     }
+    
+    if (typeof callback === 'function') callback.call(this, e, $value.val());
   });
   
   return $toggle;

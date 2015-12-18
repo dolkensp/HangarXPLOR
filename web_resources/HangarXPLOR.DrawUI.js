@@ -57,11 +57,11 @@ HangarXPLOR.DrawUI = function()
     HangarXPLOR.ResetBulkUI(); 
   };
   
-  $controls2.append(HangarXPLOR.Toggle('LTI',      'HasLTI',     '!HasLTI',     'js-custom-toggle', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Giftable', 'IsGiftable', '!IsGiftable', 'js-custom-toggle', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Meltable', 'IsMeltable', '!IsMeltable', 'js-custom-toggle', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-toggle', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Valuable', 'IsValuable', '!IsValuable', 'js-custom-toggle', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('LTI',      'HasLTI',     '!HasLTI',     'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Giftable', 'IsGiftable', '!IsGiftable', 'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Meltable', 'IsMeltable', '!IsMeltable', 'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Valuable', 'HasValue',   '!HasValue',   'js-custom-filter', toggleHandler));
   
   /*
   var filter2 = $.cookie('HangarXPLOR.Feature') || 'All';
