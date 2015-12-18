@@ -16,11 +16,9 @@ HangarXPLOR.DrawUI = function()
   
   $('.js-pager').remove();
   
-  var $filters = [];
-  
   var filter1 = $.cookie('HangarXPLOR.Type') || 'All';
   
-  $filters.push(HangarXPLOR.Dropdown([
+  $controls1.append(HangarXPLOR.Dropdown([
     { Value: 'All', Text: 'All Types', Class: 'first', Selected: filter1 == 'All' },
     { Value: 'HasShip', Text: 'Ships + Packages', Selected: filter1 == 'HasShip' },
     { Value: 'IsShip', Text: 'Ships', Selected: filter1 == 'IsShip' },
@@ -36,6 +34,36 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsReward', Text: 'Rewards', Selected: filter1 == 'IsReward' },
   ], '158px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Type', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); HangarXPLOR.ResetBulkUI(); }));
   
+  var sort1 = $.cookie('HangarXPLOR.Sort') || 'Purchased';
+  $controls1.append(HangarXPLOR.Dropdown([
+    { Value: 'Purchased', Text: 'Purchase Date', Selected: sort1 == 'Purchased' },
+    { Value: 'Name', Text: 'Pledge Name', Selected: sort1 == 'Name' },
+    { Value: 'Value', Text: 'Pledge Value', Selected: sort1 == 'Value' },
+  ], '137px', 'js-custom-sort', function(e, value) { $.cookie('HangarXPLOR.Sort', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); }));
+  
+  $controls1.append(HangarXPLOR.Pager([
+    { Value: '9999', Text: 'Display All', Class: 'first', Selected: HangarXPLOR._pageCount == 9999 },
+    { Value: '10', Text: '10 per page', Selected: HangarXPLOR._pageCount == 10 },
+    { Value: '20', Text: '20 per page', Selected: HangarXPLOR._pageCount == 20 },
+    { Value: '50', Text: '50 per page', Selected: HangarXPLOR._pageCount == 50 },
+    { Value: '100', Text: '100 per page', Selected: HangarXPLOR._pageCount == 100 },
+  ], '140px', 'js-custom-pager', HangarXPLOR.Render ));
+  
+  var toggleHandler = function(e, value)
+  {
+    // $.cookie('HangarXPLOR.Feature', value);
+    HangarXPLOR.Render();
+    HangarXPLOR.RefreshPager();
+    HangarXPLOR.ResetBulkUI(); 
+  };
+  
+  $controls2.append(HangarXPLOR.Toggle('LTI',      'HasLTI',     '!HasLTI',     'js-custom-toggle', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Giftable', 'IsGiftable', '!IsGiftable', 'js-custom-toggle', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Meltable', 'IsMeltable', '!IsMeltable', 'js-custom-toggle', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-toggle', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Valuable', 'IsValuable', '!IsValuable', 'js-custom-toggle', toggleHandler));
+  
+  /*
   var filter2 = $.cookie('HangarXPLOR.Feature') || 'All';
   
   $filters.push(HangarXPLOR.Dropdown([
@@ -51,23 +79,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsMeltable', Text: 'Meltable', Class: 'split', Selected: filter2 == 'IsMeltable' },
     { Value: '!IsMeltable', Text: 'Unmeltable', Selected: filter2 == '!IsMeltable' },
   ], '137px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Feature', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); HangarXPLOR.ResetBulkUI(); }));
-  
-  $controls1.append($filters);
-  
-  $controls1.append(HangarXPLOR.Pager([
-    { Value: '9999', Text: 'Display All', Class: 'first', Selected: HangarXPLOR._pageCount == 9999 },
-    { Value: '10', Text: '10 per page', Selected: HangarXPLOR._pageCount == 10 },
-    { Value: '20', Text: '20 per page', Selected: HangarXPLOR._pageCount == 20 },
-    { Value: '50', Text: '50 per page', Selected: HangarXPLOR._pageCount == 50 },
-    { Value: '100', Text: '100 per page', Selected: HangarXPLOR._pageCount == 100 },
-  ], '140px', 'js-custom-pager', HangarXPLOR.Render ));
-  var sort1 = $.cookie('HangarXPLOR.Sort') || 'Purchased';
-  
-  $controls2.append(HangarXPLOR.Dropdown([
-    { Value: 'Purchased', Text: 'Purchase Date', Selected: sort1 == 'Purchased' },
-    { Value: 'Name', Text: 'Pledge Name', Selected: sort1 == 'Name' },
-    { Value: 'Value', Text: 'Pledge Value', Selected: sort1 == 'Value' },
-  ], '137px', 'js-custom-sort', function(e, value) { $.cookie('HangarXPLOR.Sort', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); }));
+  */
   
   HangarXPLOR.BulkUI();
   HangarXPLOR.Render();
