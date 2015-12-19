@@ -35,9 +35,10 @@ HangarXPLOR.Pager = function(options, width, className, callback)
     
     var maxPages = Math.ceil(HangarXPLOR._totalRecords / HangarXPLOR._pageCount);
     if (HangarXPLOR._pageNo > maxPages) HangarXPLOR._pageNo = maxPages;
+
     
-    var firstPage = Math.max(1, Math.min(Math.max(1, maxPages - maxButtons), HangarXPLOR._pageNo - Math.floor(maxButtons / 2)));
-    if (HangarXPLOR._pageNo == maxPages) firstPage = Math.max(1, maxPages - maxButtons);
+    var firstPage = Math.max(1, HangarXPLOR._pageNo - Math.floor(maxButtons / 2));
+    if (firstPage > maxPages - maxButtons) firstPage = Math.max(1, maxPages - maxButtons + 1);
     
     $left.empty();
     $right.empty();

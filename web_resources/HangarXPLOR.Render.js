@@ -34,7 +34,7 @@ HangarXPLOR.Render = function()
   var maxPages = Math.ceil(HangarXPLOR._totalRecords / HangarXPLOR._pageCount);
   if (HangarXPLOR._pageNo > maxPages) HangarXPLOR._pageNo = maxPages;
   
-  buffer = buffer.slice((HangarXPLOR._pageNo - 1) * HangarXPLOR._pageCount, HangarXPLOR._pageNo * HangarXPLOR._pageCount);
+  if (HangarXPLOR._pageCount < 1000) buffer = buffer.slice((HangarXPLOR._pageNo - 1) * HangarXPLOR._pageCount, HangarXPLOR._pageNo * HangarXPLOR._pageCount);
     
   HangarXPLOR.$list.empty();
   HangarXPLOR.$list.append(buffer);

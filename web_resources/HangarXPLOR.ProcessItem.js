@@ -64,7 +64,7 @@ HangarXPLOR.ProcessItem = function()
     for (var i = 0, j = titleParts.length; i < j; i++)
       titleParts[i] = titleParts[i].trim();
     
-    this.pledgeId = $('.js-pledge-id', this).val().trim();
+    this.pledgeId = parseInt($('.js-pledge-id', this).val().trim());
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.shipName = $ship.prev().text().replace('M50 Interceptor', 'M50').replace('M50', 'M50 Interceptor');
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(" USD", ""));
@@ -119,8 +119,10 @@ HangarXPLOR.ProcessItem = function()
     else
       this.displayName = pledgeName + ' (' + this.pledgeId + ')';
     
+    this.sortName = this.displayName.replace(/^.*? - (.*)$/, '$1');
+    
     if ($.cookie('noPrefix') == 'true')
-      this.displayName = this.displayName.replace(/^.*? - (.*)$/, '$1');
+      this.displayName = this.sortName;
       
     h3Text.textContent = this.displayName;
     
