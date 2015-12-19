@@ -5,58 +5,26 @@
 .js-inventory .js-selected { background: rgba(179,212,250,0.2) !important; }
 .js-custom-controls { margin-bottom: 10px; }
 .js-custom-controls .controls { height: auto !important; margin-bottom: 5px !important; }
+.js-custom-controls .tag-wrapper .tag { margin-right: 0px !important; }
 .js-custom-controls .tag-wrapper .tag .left .effect { background: #0b2031; box-shadow: 0 0 20px #0b2031; }
 .js-custom-controls .tag-wrapper .off .left .effect { background: #C00; box-shadow: 0 0 20px #C00; opacity: 1 !important; transition: all 125ms linear }
 .js-custom-controls .tag-wrapper .on  .left .effect { background: #00e7ff; box-shadow: 0 0 20px #0ff; }
 .js-custom-controls .pager { margin-bottom: 0px !important; }
-/*
-    font-size: 23px;
-    color: #25e4ff;
-    font-family: 'Electrolize';
-    text-decoration: none;
-    font-style: normal;
-*/
 
-/*
-    font-size: 10px;
-    color: #6c84a2;
-    font-family: 'Electrolize';
-    display: block;
-    text-transform: uppercase;
-*/
+.js-bulk-ui { top: 160px; left: 0px; z-index: 102; position: fixed; background: rgba(12,19,25,0.9); }
+.js-bulk-ui .inner { padding: 15px 20px 15px 20px; background: url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-top.png') repeat-x top left, url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-bottom.png') repeat-x bottom left, rgba(0,0,0,0.4); }
+.js-bulk-ui .value { text-align: right; }
+.js-bulk-ui .value .amount { color: #25e4ff; font-size: 23px; text-transform: none; font-family: 'Electrolize'; display: inline-block; text-align: right; }
+.js-bulk-ui .value .label { color: #6c84a2; font-size: 10px; text-transform: uppercase; font-family: 'Electrolize'; display: inline-block; width: 67px; text-align: left; }
+.js-bulk-ui .actions a { margin-left: 20px; margin-top: 5px; }
+.js-bulk-ui .actions a:first-child { margin-left: 0px !important; }
 
+@media only screen and (max-width: 1145px) {
+.js-bulk-ui .inner { padding: 15px 15px 15px 10px }
+.js-bulk-ui .value .amount { font-size: 21px; }
+.js-bulk-ui .value .label { font-size: 8px; width: 55px; }
+}
 
-/*
-
-<div class="tag js-tag on">
-  <div class="left">
-    <div class="effect trans-02s trans-opacity"></div>
-  </div>
-  <div class="tag-content">
-    <div class="effect trans-02s trans-opacity"></div>
-      <a href="?order_status=O,C,X" class="text">Show Cancelled</a>
-  </div>
-</div>
-*/
-
-/*
-<a class="shadow-button trans-02s trans-color js-reclaim reclaim rm">
-  <span class="label js-label trans-02s">Exchange for Store Credits</span>
-  <span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span>
-  <span class="left-section"></span>
-  <span class="right-section"></span>
-</a>
-*/
-
-/*
-<a class="shadow-button trans-02s trans-color js-gift gift">
-  <span class="label js-label trans-02s">Gift</span>
-  <span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span>
-  <span class="left-section"></span>
-  <span class="right-section"></span>
-</a>
-*/
-
-/*
-border: 1px solid rgba(12, 103, 161, 0.8)
-*/
+@media only screen and (max-width: 1024px) {
+.js-bulk-ui .inner { padding: 15px 10px }
+}

@@ -31,8 +31,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsDecoration', Text: 'Decorations', Selected: filter1 == 'IsDecoration' },
     { Value: 'IsPoster', Text: 'Posters', Selected: filter1 == 'IsPoster' },
     { Value: 'IsModel', Text: 'Models', Selected: filter1 == 'IsModel' },
-    { Value: 'IsReward', Text: 'Rewards', Selected: filter1 == 'IsReward' },
-  ], '158px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Type', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); HangarXPLOR.ResetBulkUI(); }));
+  ], '158px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Type', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); /* HangarXPLOR.ResetBulkUI(); */ }));
   
   var sort1 = $.cookie('HangarXPLOR.Sort') || 'Purchased';
   $controls1.append(HangarXPLOR.Dropdown([
@@ -54,7 +53,7 @@ HangarXPLOR.DrawUI = function()
     // $.cookie('HangarXPLOR.Feature', value);
     HangarXPLOR.Render();
     HangarXPLOR.RefreshPager();
-    HangarXPLOR.ResetBulkUI(); 
+    // HangarXPLOR.ResetBulkUI(); 
   };
   
   $controls2.append(HangarXPLOR.Toggle('LTI',      'HasLTI',     '!HasLTI',     'js-custom-filter', toggleHandler));
@@ -62,6 +61,8 @@ HangarXPLOR.DrawUI = function()
   $controls2.append(HangarXPLOR.Toggle('Meltable', 'IsMeltable', '!IsMeltable', 'js-custom-filter', toggleHandler));
   $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-filter', toggleHandler));
   $controls2.append(HangarXPLOR.Toggle('Valuable', 'HasValue',   '!HasValue',   'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Reward',   'IsReward',   '!IsReward',   'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Selected', 'IsSelected', null,          'js-custom-filter', toggleHandler));
   
   /*
   var filter2 = $.cookie('HangarXPLOR.Feature') || 'All';
@@ -81,7 +82,7 @@ HangarXPLOR.DrawUI = function()
   ], '137px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Feature', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); HangarXPLOR.ResetBulkUI(); }));
   */
   
-  HangarXPLOR.BulkUI();
   HangarXPLOR.Render();
+  HangarXPLOR.BulkUI();
   HangarXPLOR.RefreshPager();
 }

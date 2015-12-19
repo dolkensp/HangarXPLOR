@@ -8,7 +8,7 @@ HangarXPLOR.Sort = function(list, sort)
     case "Purchased":
       return list.sort(function(a, b) { return a.pledgeId > b.pledgeId ? -1 : 1 });
     case "Value":
-      return list.sort(function(a, b) { return a.value > b.value ? -1 : 1; });
+      return list.sort(function(a, b) { return a.meltValue > b.meltValue ? -1 : 1; });
     case "Name":
       return list.sort(function(a, b) { return a.displayName < b.displayName ? -1 : 1; });
   }

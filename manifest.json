@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "Star Citizen Hangar XPLORer",
   "short_name": "HangarXPLOR",
-  "version": "2.19",
+  "version": "2.20",
   
   "author": "/u/alluran (Peter Dolkens)",
   
@@ -21,6 +21,7 @@
   }],
   "web_accessible_resources": [
     "web_resources/HangarXPLOR.BulkUI.js",
+    "web_resources/HangarXPLOR.Button.js",
     "web_resources/HangarXPLOR.DrawUI.js",
     "web_resources/HangarXPLOR.Dropdown.js",
     "web_resources/HangarXPLOR.Filter.js",
