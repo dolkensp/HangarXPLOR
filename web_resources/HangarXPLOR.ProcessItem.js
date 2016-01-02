@@ -50,7 +50,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^F7A Military Hornet Upgrade$/i, 'Ship Upgrades - F7A Military Hornet Upgrade');
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
     pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
-    pledgeName = pledgeName.replace(/^(Digital )?(Arbiter|Colonel|Cutlass|Freelancer|Pirate|Rear Admiral|Scout|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
+    pledgeName = pledgeName.replace(/^(Digital )?(Arbiter|Colonel|Cutlass|Freelancer|Mercenary|Pirate|Rear Admiral|Scout|Specter|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
     pledgeName = pledgeName.replace("  ", " ").trim();
     // TODO: Add pre-processing for Reliant Variants Here if required
     
