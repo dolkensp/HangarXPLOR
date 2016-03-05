@@ -1,4 +1,9 @@
 
+if ($.cookie('logsEnabled') == "true") {
+  var HangarXPLOR = HangarXPLOR || {};
+  HangarXPLOR.logsEnabled = true;
+}
+
 if ($.cookie('debug') == "true") {
   var HangarXPLOR = HangarXPLOR || {};
 
@@ -7,7 +12,9 @@ if ($.cookie('debug') == "true") {
   {
     var url = HangarXPLOR._debugRoot + 'debug/hangar-' + pageNo + '.html';
     
-    console.log('Loading', url);
+    if (HangarXPLOR.logsEnabled) {
+      console.log('Loading', url);
+    }
     
     $.ajax({ url, method: 'GET', 
       success: function(html) { HangarXPLOR.ProcessPage(html, pageNo) }, 

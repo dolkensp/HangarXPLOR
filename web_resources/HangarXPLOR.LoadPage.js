@@ -9,7 +9,9 @@ HangarXPLOR.LoadPage = function(pageNo)
   if (pageNo == 1 && document.location.search == '?page=1&pagesize=100')
       return HangarXPLOR.ProcessPage(document.body, pageNo);
   
-  console.log('Loading', url);
+  if (HangarXPLOR.logsEnabled) {
+    console.log('Loading', url);
+  }
   
   $.ajax({ url, method: 'GET', success: function(html) { HangarXPLOR.ProcessPage(html, pageNo) } });
 }
