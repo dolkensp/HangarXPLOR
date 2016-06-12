@@ -4,7 +4,9 @@ var HangarXPLOR = HangarXPLOR || {};
 // Render a button that calls a callback
 HangarXPLOR.Button = function(label, className, callback)
 {
-  console.log('Rendering Button', label, className);
+  if (HangarXPLOR.logsEnabled) {
+    console.log('Rendering Button', label, className);
+  }
   
   className = className || 'js-custom-button';
   

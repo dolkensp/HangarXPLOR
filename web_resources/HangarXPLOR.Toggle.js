@@ -4,7 +4,9 @@ var HangarXPLOR = HangarXPLOR || {};
 // Render a toggle that sets the value of an element
 HangarXPLOR.Toggle = function(label, value1, value2, className, callback)
 {
-  console.log('Rendering Toggle', label, value1, value2, className);
+  if (HangarXPLOR.logsEnabled) {
+    console.log('Rendering Toggle', label, value1, value2, className);
+  }
   
   var $toggle = $('<div class="status-selector tag-wrapper" />');
   var $tag = $(

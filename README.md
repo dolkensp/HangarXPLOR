@@ -20,7 +20,7 @@ https://chrome.google.com/webstore/detail/hangarxplor/bhkgemjdepodofcnmekdobmmbi
 
 # Firefox Add-On
 
-** Coming Soon **
+https://addons.mozilla.org/en-US/firefox/addon/star-citizen-hangar-xplorer/
 
 # Safari Add-On
 

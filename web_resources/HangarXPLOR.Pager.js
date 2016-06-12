@@ -14,7 +14,9 @@ HangarXPLOR.Pager = function(options, width, className, callback)
   width = width || '150px';
   className = className || 'js-custom-pager';
   
-  console.log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
+  if (HangarXPLOR.logsEnabled) {
+    console.log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
+  }
   
   var $control = $('<div class="options-selector pager-wrapper ' + className + '" />');
   var $pager = $('<div class="pager clearfix js-pager" />');
@@ -35,7 +37,6 @@ HangarXPLOR.Pager = function(options, width, className, callback)
     
     var maxPages = Math.ceil(HangarXPLOR._totalRecords / HangarXPLOR._pageCount);
     if (HangarXPLOR._pageNo > maxPages) HangarXPLOR._pageNo = maxPages;
-
     
     var firstPage = Math.max(1, HangarXPLOR._pageNo - Math.floor(maxButtons / 2));
     if (firstPage > maxPages - maxButtons) firstPage = Math.max(1, maxPages - maxButtons + 1);
