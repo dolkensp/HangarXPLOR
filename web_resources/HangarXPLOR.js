@@ -11,8 +11,8 @@ HangarXPLOR.Initialize = function()
 {
   var $lists = $('.list-items');
   
-  if ($lists.length == 2) {
-    HangarXPLOR.$list = $($lists[1]);
+  if ($lists.length == 1) {
+    HangarXPLOR.$list = $($lists[0]);
     HangarXPLOR.$list.addClass('js-inventory');
     delete $lists;
     HangarXPLOR.LoadPage(1);

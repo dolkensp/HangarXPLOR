@@ -8,9 +8,9 @@ HangarXPLOR.ProcessPage = function(html, pageNo)
   var $lists = $('.list-items', $page);
 
   // Check to see if we have 2 lists - The Hangar, and the Inventory
-  if ($lists.length == 2)
+  if ($lists.length == 1)
   {
-    var $items = $('li', $lists[1]);
+    var $items = $('li', $lists[0]);
       
     $items.each(HangarXPLOR.ProcessItem);
       

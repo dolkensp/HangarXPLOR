@@ -3,7 +3,12 @@
   "manifest_version": 2,
   "name": "Star Citizen Hangar XPLORer",
   "short_name": "HangarXPLOR",
-  "version": "2.25",
+  "version": "2.40",
+  "applications": {
+    "gecko": {
+      "id": "HangarXPLOR@ddrit.com"
+    }
+  },
   
   "author": "/u/alluran (Peter Dolkens)",
   

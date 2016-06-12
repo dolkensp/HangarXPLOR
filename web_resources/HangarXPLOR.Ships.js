@@ -55,7 +55,7 @@ HangarXPLOR._ships = [
   { 'name': 'Khartu-Al', 'thumbnail': '/media/zzycyqkpn9vu8r/heap_infobox/Image_landed.jpg' },
   { 'name': 'M50 Interceptor', 'thumbnail': '/media/xfs6elgejzxz9r/heap_infobox/M50_new_comp47.jpg' },
   { 'name': 'M50', 'thumbnail': '/media/xfs6elgejzxz9r/heap_infobox/M50_new_comp47.jpg' },
-  { 'name': 'Merchantman', 'thumbnail': '/media/63lxivb7mi3vzr/heap_infobox/Banu_merchantman_side_Version_A.jpg' },
+  { 'name': 'Merchantman', 'thumbnail': '/media/d8ktckex1ucmrr/heap_infobox/Banu3.jpg' }, // /media/63lxivb7mi3vzr/heap_infobox/Banu_merchantman_side_Version_A.jpg
   { 'name': 'Mustang Alpha', 'thumbnail': '/media/ssh2spko70pz6r/heap_infobox/Alpha-Front.jpg' },
   { 'name': 'Mustang Beta', 'thumbnail': '/media/ltw03c5rli6uwr/heap_infobox/Beta-Front.jpg' },
   { 'name': 'Mustang Delta', 'thumbnail': '/media/dtqy8jpl0f9cbr/heap_infobox/Delta-Front.jpg' },
@@ -83,4 +83,7 @@ HangarXPLOR._ships = [
   { 'name': 'Vanguard Warden', 'thumbnail': '/media/4bnuwyj849f3hr/heap_infobox/Vanguard_34_final_Bachiller_02.png' },
   { 'name': 'Vanguard', 'thumbnail': '/media/4bnuwyj849f3hr/heap_infobox/Vanguard_34_final_Bachiller_02.png' },
   { 'name': 'Xi\'an Scout', 'thumbnail': '/media/zzycyqkpn9vu8r/heap_infobox/Image_landed.jpg' },
+  { 'name': 'Esperia Vanduul Blade', 'thumbnail': '/media/d63g0lqsljoyfr/heap_infobox/01.jpg' },
+  { 'name': 'Drake Buccaneer', 'thumbnail': '/media/eiua12z9nxlkar/heap_infobox/Buc_final120_compFlat.jpg' },
+  { 'name': 'Prospector', 'thumbnail': '/media/smfwnj15y4gq5r/heap_infobox/MISC-Mining-Vehicle-PIECE-2-V19.jpg' }
 ]
