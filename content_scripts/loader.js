@@ -1,6 +1,6 @@
 
 !function() {
-  var namespace = 'xplor';
+  var namespace = 'HangarXPLOR';
   
   var styles = [
     'web_resources/HangarXPLOR.css'
@@ -21,10 +21,13 @@
     'web_resources/HangarXPLOR.SearchBox.js',
     'web_resources/HangarXPLOR.Ships.js',
     'web_resources/HangarXPLOR.Sort.js',
+    'web_resources/HangarXPLOR.Templates.js',
     'web_resources/HangarXPLOR.Toggle.js',
     'web_resources/HangarXPLOR.Debug.js', // Uncomment to debug third party hangar HTML
     'web_resources/HangarXPLOR.js'
   ];
+  
+  var templates = [ ];
   
   for (var i = 0, j = styles.length; i < j; i++) {
     var styleURL = chrome.extension.getURL(styles[i]);
@@ -44,6 +47,16 @@
     script.id = namespace + '-js-' + i;
     script.type = 'text/javascript';
     script.src = scriptURL;
+    document.body.appendChild(script);
+  }
+  
+  for (var i = 0, j = templates.length; i < j; i++) {
+    var templateURL = chrome.extension.getURL(templates[i].url);
+    console.log('Loading', templateURL);
+    var script = document.createElement('script');
+    script.id = templates[i].id;
+    script.type = 'text/x-jsmart-tmpl';
+    script.src = templateURL;
     document.body.appendChild(script);
   }
 }()

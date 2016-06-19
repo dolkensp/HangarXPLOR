@@ -1,11 +1,16 @@
 
 var HangarXPLOR = HangarXPLOR || {};
 
+HangarXPLOR.BulkEnabled = HangarXPLOR.BulkEnabled || false;
+
 HangarXPLOR.$bulkUI = null;
 
 HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
 HangarXPLOR._callbacks.Gift = HangarXPLOR._callbacks.Gift || function(e) { window.alert('Coming Soon') }
+HangarXPLOR._callbacks.GiftConfirm = HangarXPLOR._callbacks.GiftConfirm || function(e) { window.alert('Coming Soon') }
+
 HangarXPLOR._callbacks.Melt = HangarXPLOR._callbacks.Melt || function(e) { window.alert('Coming Soon') }
+HangarXPLOR._callbacks.MeltConfirm = HangarXPLOR._callbacks.MeltConfirm || function(e) { window.alert('Coming Soon') }
 
 // Render UI controls
 HangarXPLOR.BulkUI = function()
@@ -56,15 +61,14 @@ HangarXPLOR.BulkUI = function()
 
 HangarXPLOR.RefreshBulkUI = function()
 {
-  var totalMelt = 0.00;
-  var selectedMelt = 0.00;
-  
   HangarXPLOR._meltable = [];
   HangarXPLOR._giftable = [];
+  HangarXPLOR._selectedMelt = 0.00;
+  HangarXPLOR._totalMelt = 0.00;
   HangarXPLOR._selected = $.grep(HangarXPLOR._inventory, function(item) {
-    totalMelt += item.meltValue;
+    HangarXPLOR._totalMelt += item.meltValue;
     if (item.isSelected) {
-      selectedMelt += item.meltValue;
+      HangarXPLOR._selectedMelt += item.meltValue;
       if (item.isMeltable) HangarXPLOR._meltable.push(item);
       if (item.isGiftable) HangarXPLOR._giftable.push(item);
       return true;
@@ -83,14 +87,15 @@ HangarXPLOR.RefreshBulkUI = function()
   
   HangarXPLOR.$bulkUI.$value.empty();
   
-  if (HangarXPLOR._selected.length > 0)
-    HangarXPLOR.$bulkUI.$value.append('<span class="amount">$' + selectedMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Selected</span><br />');
-  HangarXPLOR.$bulkUI.$value.append('<span class="amount">$' + totalMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Total Value</span>');
+  if (HangarXPLOR._selected.length > 0) {
+    HangarXPLOR.$bulkUI.$value.append('<span class="amount">$' + HangarXPLOR._selectedMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Selected</span><br />');
+  }
+  HangarXPLOR.$bulkUI.$value.append('<span class="amount">$' + HangarXPLOR._totalMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Total Value</span>');
   
   HangarXPLOR.$bulkUI.$actions.empty();
   
-  // if (HangarXPLOR._meltable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Melt ' + HangarXPLOR._meltable.length + ' Items', 'reclaim rm js-bulk-reclaim', HangarXPLOR._callbacks.Melt));
-  // if (HangarXPLOR._giftable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Gift ' + HangarXPLOR._giftable.length + ' Items', 'gift js-bulk-gift', HangarXPLOR._callbacks.Gift));
+  if (HangarXPLOR.BulkEnabled && HangarXPLOR._meltable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Melt ' + HangarXPLOR._meltable.length + ' Items', 'reclaim rm js-bulk-reclaim', HangarXPLOR._callbacks.Melt));
+  if (HangarXPLOR.BulkEnabled && HangarXPLOR._giftable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Gift ' + HangarXPLOR._giftable.length + ' Items', 'gift js-bulk-gift', HangarXPLOR._callbacks.Gift));
 }
 
 HangarXPLOR.ResetBulkUI = function()

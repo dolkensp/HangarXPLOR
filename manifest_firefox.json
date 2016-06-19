@@ -39,6 +39,7 @@
     "web_resources/HangarXPLOR.SearchBox.js",
     "web_resources/HangarXPLOR.Ships.js",
     "web_resources/HangarXPLOR.Sort.js",
+    "web_resources/HangarXPLOR.Templates.js",
     "web_resources/HangarXPLOR.Toggle.js",
     "web_resources/HangarXPLOR.Debug.js",
     "web_resources/HangarXPLOR.js",
