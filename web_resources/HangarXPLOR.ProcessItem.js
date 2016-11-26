@@ -109,8 +109,10 @@ HangarXPLOR.ProcessItem = function()
         }
       }
     }
-    
-    $wrapper.append($("<div class='date-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
+
+    if (hangarXPLORoptions.showMeltValues) {
+      $wrapper.append($("<div class='date-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
+    }
     
     var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
     
