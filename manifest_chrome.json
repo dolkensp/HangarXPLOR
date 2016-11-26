@@ -3,11 +3,19 @@
   "manifest_version": 2,
   "name": "Star Citizen Hangar XPLORer",
   "short_name": "HangarXPLOR",
-  "version": "2.42",
+  "version": "2.43",
   
   "author": "/u/alluran (Peter Dolkens)",
+
+  "options_ui": {
+    "page": "options/index.html",
+    "chrome_style": true
+  },
   
-  "permissions": [ "https://robertsspaceindustries.com/*" ],
+  "permissions": [
+    "https://robertsspaceindustries.com/*",
+    "storage"
+  ],
   
   "icons": {
     "48": "icons/icon_48.png",

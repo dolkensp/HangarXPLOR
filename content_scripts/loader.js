@@ -59,4 +59,15 @@
     script.src = templateURL;
     document.body.appendChild(script);
   }
-}()
+
+  var browser = chrome || browser;
+  browser.storage.local.get({
+    showMeltValues: true
+  }, function (items) {
+    var script = document.createElement("script");
+    script.id = "hangarXPLORoptions";
+    script.type = "text/javascript";
+    script.innerHTML = "var hangarXPLORoptions = " + JSON.stringify(items);
+    document.body.appendChild(script);
+  });
+}();
