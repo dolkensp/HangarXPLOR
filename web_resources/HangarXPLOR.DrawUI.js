@@ -36,7 +36,7 @@ HangarXPLOR.DrawUI = function()
   
   var sort1 = $.cookie('HangarXPLOR.Sort') || 'Purchased';
   $controls1.append(HangarXPLOR.Dropdown([
-    { Value: 'Purchased', Text: 'Purchase Date', Selected: sort1 == 'Purchased' },
+    { Value: 'Purchased', Text: 'Pledge Date', Selected: sort1 == 'Purchased' },
     { Value: 'Name', Text: 'Pledge Name', Selected: sort1 == 'Name' },
     { Value: 'Value', Text: 'Pledge Value', Selected: sort1 == 'Value' },
   ], '137px', 'js-custom-sort', function(e, value) { $.cookie('HangarXPLOR.Sort', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); }));
