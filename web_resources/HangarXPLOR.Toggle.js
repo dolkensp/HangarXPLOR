@@ -65,7 +65,7 @@ HangarXPLOR.Toggle = function(label, value1, value2, className, callback, defaul
     
     updateState();
     
-    if (typeof callback === 'function') callback.call(this, e, $value.val());
+    if (typeof callback === 'function') callback.call(this, e, label, $value.val());
   });
   
   return $toggle;

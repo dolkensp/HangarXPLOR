@@ -49,20 +49,23 @@ HangarXPLOR.DrawUI = function()
     { Value: '100', Text: '100 per page', Selected: HangarXPLOR._pageCount == 100 },
   ], '140px', 'js-custom-pager', HangarXPLOR.Render ));
   
-  var toggleHandler = function(e, value)
+  var toggleHandler = function(e, label, value)
   {
-    // $.cookie('HangarXPLOR.Feature', value);
+    $.cookie('HangarXPLOR.Feature.' + label, value);
+    
+    console.log('HangarXPLOR.Feature.' + label, value);
+    
     HangarXPLOR.Render();
     HangarXPLOR.RefreshPager();
     // HangarXPLOR.ResetBulkUI(); 
   };
   
-  $controls2.append(HangarXPLOR.Toggle('LTI',      'HasLTI',     '!HasLTI',     'js-custom-filter', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Giftable', 'IsGiftable', '!IsGiftable', 'js-custom-filter', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Meltable', 'IsMeltable', '!IsMeltable', 'js-custom-filter', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-filter', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Valuable', 'HasValue',   '!HasValue',   'js-custom-filter', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Reward',   'IsReward',   '!IsReward',   'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('LTI',      'HasLTI',     '!HasLTI',     'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.LTI')));
+  $controls2.append(HangarXPLOR.Toggle('Giftable', 'IsGiftable', '!IsGiftable', 'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Giftable')));
+  $controls2.append(HangarXPLOR.Toggle('Meltable', 'IsMeltable', '!IsMeltable', 'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Meltable')));
+  $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Upgraded')));
+  $controls2.append(HangarXPLOR.Toggle('Valuable', 'HasValue',   '!HasValue',   'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Valuable')));
+  $controls2.append(HangarXPLOR.Toggle('Reward',   'IsReward',   '!IsReward',   'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Reward')));
   $controls2.append(HangarXPLOR.Toggle('Selected', 'IsSelected',  null,         'js-custom-filter', toggleHandler));
   $controls2.append(HangarXPLOR.Toggle('Free CCUs','IsFreeCCU',  '!IsFreeCCU',  'js-custom-filter', toggleHandler, '!IsFreeCCU'));
   
