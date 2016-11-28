@@ -1,6 +1,12 @@
 
 var HangarXPLOR = HangarXPLOR || {};
 
+HangarXPLOR._shipCount     = HangarXPLOR._shipCount || 0;
+HangarXPLOR._upgradeCount  = HangarXPLOR._upgradeCount || 0;
+HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
+HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
+HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
+
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
@@ -90,9 +96,17 @@ HangarXPLOR.ProcessItem = function()
     this.isSpaceGlobe = (titleParts[0] == "Space Globes");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
     this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade && !this.isAddOn;
+    // this.isCombo = this.hasShip && !this.isShip && !this.isPackage;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
     this.isSelected = false;
+    
+    HangarXPLOR._shipCount += $ship.length;
+    if (this.hasShip) this.isAddOn = false;
+    if (this.isUpgrade)  HangarXPLOR._upgradeCount += 1;
+    if (this.isPackage)  HangarXPLOR._packageCount += 1;
+    if (this.isGiftable) HangarXPLOR._giftableCount += 1;
+    if (this.hasLTI)     HangarXPLOR._ltiCount += 1;
     
     if (this.hasLTI && titleParts[2] == null) titleParts[2] = ' - LTI';
     
@@ -110,15 +124,35 @@ HangarXPLOR.ProcessItem = function()
       }
     }
     
-    $wrapper.append($("<div class='date-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
+    $wrapper.append($("<div class='date-col melt-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
     
     var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
     
-    if (this.isUpgraded || this.isPackage || this.isReward)
-      $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + this.originalName + '</div>'));
+    // var pluralSuffix = '';
+    // if ($ship.length != 1) pluralSuffix = 's';
+    
+    if (this.isUpgraded || this.isPackage || this.isReward || this.hasShip) {
+      // $wrapper.append($('<div class="date-col count-col"><label>Pledge Contains</label>' + $ship.length + ' Ship' + pluralSuffix + '</div>'));
+      $wrapper.append($('<div class="items-col"><label>Base Pledge</label>' + this.originalName + '</div>'));
+    }
+    
+    // if (this.isUpgrade) {
+    //   $wrapper.append($('<div class="date-col count-col"><label>Pledge Contains</label>1 Upgrade</div>'));
+    // }
+    
+    if (this.hasShip)
+      titleParts[0] = 'Combo';
+    if (this.isShip)
+      titleParts[0] = 'Ship';
+    if (this.isPackage)
+      titleParts[0] = 'Package';
+    if (this.isUpgrade)
+      titleParts[0] = 'Upgrade';
     
     if (this.isShip)
       this.displayName = titleParts[0] + ' - ' + this.shipName + ltiSuffix + ' (' + this.pledgeId + ')';
+    else if (this.hasShip || this.isUpgrade)
+      this.displayName = titleParts[0] + ' - ' + titleParts[1] + ltiSuffix + ' (' + this.pledgeId + ')';
     else if (this.isSpaceGlobe)
       this.displayName = $('.title', this).text();
     else

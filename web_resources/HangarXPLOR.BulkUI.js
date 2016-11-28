@@ -17,7 +17,7 @@ HangarXPLOR.BulkUI = function()
 {
   var bulkHeight = $('.js-bulk-ui').height();
   var maxOffset = document.body.scrollHeight - ($('#billing .inner-content').height() + $('#billing .inner-content').offset().top - 150);
-  var minOffset = $('.billing-title-pager-wrapper').offset().top + 150;
+  var minOffset = $('.billing-title-pager-wrapper').offset().top;
   
   HangarXPLOR.$list.on('click.HangarXPLOR', 'a', function(e) { e.originalEvent.isButton = true; });
   HangarXPLOR.$list.on('click.HangarXPLOR', 'li', function(e) {
@@ -44,10 +44,30 @@ HangarXPLOR.BulkUI = function()
   var $billing = $('#billing');
   
   HangarXPLOR.$bulkUI = $('<div class="js-bulk-ui"></div>');
+  HangarXPLOR.$bulkUI.summaryType = $.cookie('HangarXPLOR.$bulkUI.summaryType') || 'cash';
   HangarXPLOR.$bulkUI.$inner = $('<div class="inner content-block1"></div>');
   HangarXPLOR.$bulkUI.$value = $('<div class="value"></div>');
   HangarXPLOR.$bulkUI.$actions = $('<div class="actions"></div>');
-  // HangarXPLOR.$bulkUI.hide();
+  HangarXPLOR.$bulkUI.$value.bind('click', function() {
+    
+    HangarXPLOR.$bulkUI.removeClass(HangarXPLOR.$bulkUI.summaryType);
+    HangarXPLOR.$list.removeClass(HangarXPLOR.$bulkUI.summaryType);
+    
+    switch (HangarXPLOR.$bulkUI.summaryType)
+    {
+      case "cash": HangarXPLOR.$bulkUI.summaryType = "count"; break;
+      case "count": HangarXPLOR.$bulkUI.summaryType = "cash"; break;
+    }
+    $.cookie('HangarXPLOR.$bulkUI.summaryType', HangarXPLOR.$bulkUI.summaryType);
+    
+    HangarXPLOR.$bulkUI.addClass(HangarXPLOR.$bulkUI.summaryType);
+    HangarXPLOR.$list.addClass(HangarXPLOR.$bulkUI.summaryType);
+    
+    HangarXPLOR.RefreshBulkUI();
+  });
+  
+  HangarXPLOR.$bulkUI.addClass(HangarXPLOR.$bulkUI.summaryType);
+  HangarXPLOR.$list.addClass(HangarXPLOR.$bulkUI.summaryType);
   
   $billing.append(HangarXPLOR.$bulkUI);
   HangarXPLOR.$bulkUI.append(HangarXPLOR.$bulkUI.$inner);
@@ -63,6 +83,9 @@ HangarXPLOR.RefreshBulkUI = function()
 {
   HangarXPLOR._meltable = [];
   HangarXPLOR._giftable = [];
+  HangarXPLOR._selectedUpgrades = 0;
+  HangarXPLOR._selectedShips = 0;
+  HangarXPLOR._selectedPackages = 0;
   HangarXPLOR._selectedMelt = 0.00;
   HangarXPLOR._totalMelt = 0.00;
   HangarXPLOR._selected = $.grep(HangarXPLOR._inventory, function(item) {
@@ -71,6 +94,9 @@ HangarXPLOR.RefreshBulkUI = function()
       HangarXPLOR._selectedMelt += item.meltValue;
       if (item.isMeltable) HangarXPLOR._meltable.push(item);
       if (item.isGiftable) HangarXPLOR._giftable.push(item);
+      if (item.isUpgrade) HangarXPLOR._selectedUpgrades += 1;
+      if (item.isPackage) HangarXPLOR._selectedPackages += 1;
+      if (item.hasShip) HangarXPLOR._selectedShips += $('.kind:contains(Ship)', item).length;
       return true;
     }
     return false
@@ -86,12 +112,13 @@ HangarXPLOR.RefreshBulkUI = function()
   */
   
   HangarXPLOR.$bulkUI.$value.empty();
+
+  if (HangarXPLOR._selected.length > 0) HangarXPLOR.$bulkUI.$value.append('<span class="count"><span class="amount">' + HangarXPLOR._selectedUpgrades + '</span> <span class="label-short">CCUs</span><span class="amount">'  + HangarXPLOR._selectedShips + '</span> <span class="label-short">Ships</span><span class="amount">' + HangarXPLOR._selectedPackages + '</span> <span class="label">Packages</span><br /></span>');
+  if (HangarXPLOR._selected.length > 0) HangarXPLOR.$bulkUI.$value.append('<span class="cash"><span class="amount">$' + HangarXPLOR._selectedMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Selected</span><br /></span>');
   
-  if (HangarXPLOR._selected.length > 0) {
-    HangarXPLOR.$bulkUI.$value.append('<span class="amount">$' + HangarXPLOR._selectedMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Selected</span><br />');
-  }
-  HangarXPLOR.$bulkUI.$value.append('<span class="amount">$' + HangarXPLOR._totalMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Total Value</span>');
-  
+  HangarXPLOR.$bulkUI.$value.append('<span class="count"><span class="amount">' + HangarXPLOR._upgradeCount + '</span> <span class="label-short">CCUs</span><span class="amount">'  + HangarXPLOR._shipCount + '</span> <span class="label-short">Ships</span><span class="amount">' + HangarXPLOR._packageCount + '</span> <span class="label">Packages</span></span>');
+  HangarXPLOR.$bulkUI.$value.append('<span class="cash"><span class="amount">$' + HangarXPLOR._totalMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</span> <span class="label">Total Spend</span></span>');
+
   HangarXPLOR.$bulkUI.$actions.empty();
   
   if (HangarXPLOR.BulkEnabled && HangarXPLOR._meltable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Melt ' + HangarXPLOR._meltable.length + ' Items', 'reclaim rm js-bulk-reclaim', HangarXPLOR._callbacks.Melt));

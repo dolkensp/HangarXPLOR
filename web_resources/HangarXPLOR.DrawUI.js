@@ -20,9 +20,10 @@ HangarXPLOR.DrawUI = function()
   
   $controls1.append(HangarXPLOR.Dropdown([
     { Value: 'All', Text: 'All Types', Class: 'first', Selected: filter1 == 'All' },
-    { Value: 'HasShip', Text: 'Ships + Packages', Selected: filter1 == 'HasShip' },
-    { Value: 'IsShip', Text: 'Ships', Selected: filter1 == 'IsShip' },
-    { Value: 'IsPackage', Text: 'Packages', Selected: filter1 == 'IsPackage' },
+    { Value: 'HasShip', Text: 'All Ships', Selected: filter1 == 'HasShip' },
+    { Value: 'IsShip', Text: 'Standalone Ships', Selected: filter1 == 'IsShip' },
+    { Value: 'IsPackage', Text: 'Game Packages', Selected: filter1 == 'IsPackage' },
+    { Value: 'IsCombo', Text: 'Combo Packs', Selected: filter1 == 'IsCombo' },
     { Value: 'IsExtra', Text: 'All Extras', Class: 'split', Selected: filter1 == 'IsExtra' },
     { Value: 'IsUpgrade', Text: 'Upgrades', Selected: filter1 == 'IsUpgrade' },
     { Value: 'IsAddOn', Text: 'Add Ons', Selected: filter1 == 'IsAddOn' },
@@ -62,25 +63,8 @@ HangarXPLOR.DrawUI = function()
   $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-filter', toggleHandler));
   $controls2.append(HangarXPLOR.Toggle('Valuable', 'HasValue',   '!HasValue',   'js-custom-filter', toggleHandler));
   $controls2.append(HangarXPLOR.Toggle('Reward',   'IsReward',   '!IsReward',   'js-custom-filter', toggleHandler));
-  $controls2.append(HangarXPLOR.Toggle('Selected', 'IsSelected', null,          'js-custom-filter', toggleHandler));
-  
-  /*
-  var filter2 = $.cookie('HangarXPLOR.Feature') || 'All';
-  
-  $filters.push(HangarXPLOR.Dropdown([
-    { Value: 'All', Text: 'All Features', Class: 'first', Selected: filter2 == 'All' },
-    { Value: 'HasLTI', Text: 'LTI', Class: 'split', Selected: filter2 == 'HasLTI' },
-    { Value: '!HasLTI', Text: 'SHI', Selected: filter2 == '!HasLTI' },
-    { Value: 'IsGiftable', Text: 'Giftable', Class: 'split', Selected: filter2 == 'IsGiftable' },
-    { Value: '!IsGiftable', Text: 'Account Bound', Selected: filter2 == '!IsGiftable' },
-    { Value: 'HasValue', Text: 'Valuable', Class: 'split', Selected: filter2 == 'HasValue' },
-    { Value: '!HasValue', Text: 'Worthless', Selected: filter2 == '!HasValue' },
-    { Value: 'IsUpgraded', Text: 'Upgraded', Class: 'split', Selected: filter2 == 'IsUpgraded' },
-    { Value: '!IsUpgraded', Text: 'Original', Selected: filter2 == '!IsUpgraded' },
-    { Value: 'IsMeltable', Text: 'Meltable', Class: 'split', Selected: filter2 == 'IsMeltable' },
-    { Value: '!IsMeltable', Text: 'Unmeltable', Selected: filter2 == '!IsMeltable' },
-  ], '137px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Feature', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); HangarXPLOR.ResetBulkUI(); }));
-  */
+  $controls2.append(HangarXPLOR.Toggle('Selected', 'IsSelected',  null,         'js-custom-filter', toggleHandler));
+  $controls2.append(HangarXPLOR.Toggle('Free CCUs','IsFreeCCU',  '!IsFreeCCU',  'js-custom-filter', toggleHandler, '!IsFreeCCU'));
   
   HangarXPLOR.Render();
   HangarXPLOR.BulkUI();
