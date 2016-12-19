@@ -70,6 +70,9 @@ HangarXPLOR.Filter = function(list, filter)
     case "IsPoster":
       list = $.grep(list, function(item) { return item.isPoster; });
       break;
+    case "IsPlant":
+      list = $.grep(list, function(item) { return item.isSpacePlant; });
+      break;
     case "IsDecoration":
       list = $.grep(list, function(item) { return item.isDecoration; });
       break;

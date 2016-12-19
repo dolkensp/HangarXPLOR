@@ -1,6 +1,12 @@
 
 var HangarXPLOR = HangarXPLOR || {};
 
+HangarXPLOR._shipCount     = HangarXPLOR._shipCount || 0;
+HangarXPLOR._upgradeCount  = HangarXPLOR._upgradeCount || 0;
+HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
+HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
+HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
+
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
@@ -18,10 +24,12 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.trim();
     this.originalName = pledgeName;
     
+    pledgeName = pledgeName.replace(/^(Conner.s Beard Moss|Opera Mushroom)/i, 'Space Plant - $1');
+    pledgeName = pledgeName.replace(/^Space (?:Plant|Cactus|Flower) - /i, 'Space Plant - ');
     pledgeName = pledgeName.replace(/^Subscribers Exclusive - /i, '');
     pledgeName = pledgeName.replace(/^(UEE Calendar|Workbench|Patron of the Arts Award|StellarSonic JukeBox|Locker from Another Universe|UEE Towel|Mr. Refinement's Cabinet of Rare & Exquisite Spirits)/i, 'Decorations - $1');
     pledgeName = pledgeName.replace(/^(UEE Environment Coat|Omni Role Combat Armor \(ORC\) mk9)/i, 'Add-Ons - $1');
-    pledgeName = pledgeName.replace(/^Puglisi Collection[: ]/i, 'Puglisi Collection - ');
+    pledgeName = pledgeName.replace(/^(The |)Puglisi Collection[: ]/i, 'Puglisi Collection - ');
     pledgeName = pledgeName.replace(/Battlefield Upgrade Kit/i, 'BUK');
     pledgeName = pledgeName.replace(/^Takuetsu/i, 'Models - Takuetsu');
     pledgeName = pledgeName.replace(/^Takuetsu (.*) Model$/i, 'Models - Takuetsu $1');
@@ -92,13 +100,20 @@ HangarXPLOR.ProcessItem = function()
     this.isPoster = (titleParts[0] == "Posters");
     this.isFishtank = (titleParts[0] == "Fishtank");
     this.isReward = (titleParts[0] == "Reward");
+    this.isSpacePlant = (titleParts[0] == "Space Plant");
     this.isSpaceGlobe = (titleParts[0] == "Space Globes");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
-    // this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade && !this.isAddOn && !this.isCombo && !this.isComponent;
-    this.isDecoration = !this.isModel && !this.isPoster && this.isFlair;
-    this.isComponent = $('.kind:contains(Component)', this).length > 0;
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
+    this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
+    this.isComponent = $('.kind:contains(Component)', this).length > 0;
     this.isSelected = false;
+    
+    HangarXPLOR._shipCount += $ship.length;
+    if (this.hasShip) this.isAddOn = false;
+    if (this.isUpgrade)  HangarXPLOR._upgradeCount += 1;
+    if (this.isPackage)  HangarXPLOR._packageCount += 1;
+    if (this.isGiftable) HangarXPLOR._giftableCount += 1;
+    if (this.hasLTI)     HangarXPLOR._ltiCount += 1;
     
     if (this.hasLTI && titleParts[2] == null) titleParts[2] = ' - LTI';
     
@@ -116,7 +131,7 @@ HangarXPLOR.ProcessItem = function()
       }
     }
     
-    $wrapper.append($("<div class='date-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
+    $wrapper.append($("<div class='date-col melt-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
     
     var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
     
