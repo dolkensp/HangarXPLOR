@@ -2,7 +2,7 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 // Render a toggle that sets the value of an element
-HangarXPLOR.Toggle = function(label, value1, value2, className, callback)
+HangarXPLOR.Toggle = function(label, value1, value2, className, callback, defaultValue)
 {
   if (HangarXPLOR.logsEnabled) {
     console.log('Rendering Toggle', label, value1, value2, className);
@@ -16,9 +16,11 @@ HangarXPLOR.Toggle = function(label, value1, value2, className, callback)
     '    <span class="text">' + label + '</span>' +
     '  </div>' +
     '</div>');
+    
+  defaultValue = defaultValue || '';
   
   // TODO: Set default value
-  var $value = $('<input type="hidden" class="' + className + '" value="" />');
+  var $value = $('<input type="hidden" class="' + className + '" value="' + defaultValue + '" />');
   
   $toggle.append($tag);
   $toggle.append($value);
@@ -26,22 +28,44 @@ HangarXPLOR.Toggle = function(label, value1, value2, className, callback)
   $toggle.Value1 = value1 || '';
   $toggle.Value2 = value2 || '';
   
-  $toggle.bind('click', function(e) {
+  var getState = function() {
     if ($value.val() == '')
+      return null;
+    else if ($value.val() == $toggle.Value2)
+      return false;
+    else
+      return true;
+  }
+  
+  var updateState = function() {
+    var state = getState();
+    
+    $tag.removeClass('off');
+    $tag.removeClass('on');
+
+    switch (state)
     {
-      $tag.addClass('on');
-      $value.val($toggle.Value1);
-    } else if ($value.val() == $toggle.Value2 || $toggle.Value2 == '') {
-      $tag.removeClass('off');
-      $tag.removeClass('on');
-      $value.val(null);
-    } else {
-      $tag.removeClass('on');
-      $tag.addClass('off');
-      $value.val($toggle.Value2);
+      case true: $tag.addClass('on'); break;
+      case false: $tag.addClass('off'); break;
+    }
+  };
+  
+  updateState();
+  
+  $toggle.bind('click', function(e) {
+  
+    var state = getState();
+    
+    switch (state)
+    {
+      case null:  $value.val($toggle.Value1); break;
+      case true:  $value.val($toggle.Value2); break;
+      case false: $value.val(null); break;
     }
     
-    if (typeof callback === 'function') callback.call(this, e, $value.val());
+    updateState();
+    
+    if (typeof callback === 'function') callback.call(this, e, label, $value.val());
   });
   
   return $toggle;

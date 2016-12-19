@@ -19,6 +19,9 @@ HangarXPLOR.Filter = function(list, filter)
     case "IsShip":
       list = $.grep(list, function(item) { return item.isShip && !item.isPackage; });
       break;
+    case "IsCombo":
+      list = $.grep(list, function(item) { return !item.isShip && item.hasShip; });
+      break;
     case "HasShip":
       list = $.grep(list, function(item) { return item.hasShip; });
       break;
@@ -78,6 +81,12 @@ HangarXPLOR.Filter = function(list, filter)
       break;
     case "IsSelected":
       list = $.grep(list, function(item) { return item.isSelected; });
+      break;
+    case "IsFreeCCU":
+      list = $.grep(list, function(item) { return item.isUpgrade && !item.hasValue; });
+      break;
+    case "!IsFreeCCU":
+      list = $.grep(list, function(item) { return !item.isUpgrade || item.hasValue; });
       break;
   }
   

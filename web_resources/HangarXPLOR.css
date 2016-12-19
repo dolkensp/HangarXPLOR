@@ -16,8 +16,15 @@
 .js-bulk-ui .value { text-align: right; }
 .js-bulk-ui .value .amount { color: #25e4ff; font-size: 23px; text-transform: none; font-family: 'Electrolize'; display: inline-block; text-align: right; }
 .js-bulk-ui .value .label { color: #6c84a2; font-size: 10px; text-transform: uppercase; font-family: 'Electrolize'; display: inline-block; width: 67px; text-align: left; }
+.js-bulk-ui .value .label-short { color: #6c84a2; font-size: 10px; text-transform: uppercase; font-family: 'Electrolize'; display: inline-block; width: 40px; text-align: left; }
 .js-bulk-ui .actions a { margin-left: 20px; margin-top: 5px; }
 .js-bulk-ui .actions a:first-child { margin-left: 0px !important; }
+
+.count .cash,
+.cash .count { display: none; }
+
+.count .melt-col { display: none; }
+.cash .count-col { display: none; }
 
 @media only screen and (max-width: 1145px) {
 .js-bulk-ui .inner { padding: 15px 15px 15px 10px }

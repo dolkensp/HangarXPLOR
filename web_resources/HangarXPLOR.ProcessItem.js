@@ -47,7 +47,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/ Poster$/i, '');
     pledgeName = pledgeName.replace(/^Space Globe /i, 'Space Globes ');
     pledgeName = pledgeName.replace(/^Standalone Ship - Drake Dragonfly Ride Together Two-Pack/i, 'Combo - Drake Dragonfly Ride Together Two-Pack');
-    pledgeName = pledgeName.replace(/^Add-ons - (.*) Mega Pack$/i, 'Combo - $1 Mega Pack');
+    pledgeName = pledgeName.replace(/^Add-ons - (.*) Mega(?: |-)Pack$/i, 'Combo - $1 Mega Pack');
     pledgeName = pledgeName.replace(/ - Holiday 20\d\d$/i, '');
     pledgeName = pledgeName.replace(/"Be A Hero"$/i, 'Be A Hero');
     pledgeName = pledgeName.replace(/^Cross-Chassis Upgrades/i, 'Ship Upgrades');
@@ -57,6 +57,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/ Upgrade$/i, '');
     pledgeName = pledgeName.replace(/^You Got Our Backs (Electro Skin Hull)$/i, 'Ship Upgrades - You Got Our Backs (Electro Skin Hull)');
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
+    pledgeName = pledgeName.replace(/Discount Pack/i, 'Pack');
     pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
     pledgeName = pledgeName.replace(/^(Digital )?(Advanced Hunter|Arbiter|Bounty Hunter|Colonel|Cutlass|Freelancer|Mercenary|Pirate|Rear Admiral|Scout|Specter|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
     pledgeName = pledgeName.replace("  ", " ").trim();
@@ -120,15 +121,18 @@ HangarXPLOR.ProcessItem = function()
     var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
     
     if (this.isShip) titleParts[1] = this.shipName;
-    if (this.isShip) titleParts[0] = "Standalone Ship";
+    if (this.isShip) titleParts[0] = "Ship";
     if (this.isCombo) titleParts[0] = "Combo";
     if (this.isPackage) titleParts[0] = "Package";
+    if (this.isUpgrade) titleParts[0] = "Upgrade";
     
     if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip)
-      $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + this.originalName + '</div>'));
+      $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + this.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '') + '</div>'));
     
     if (this.hasShip)
       this.displayName = titleParts[0] + ' - ' + titleParts[1] + ltiSuffix + ' (' + this.pledgeId + ')';
+    else if (this.isUpgrade)
+      this.displayName = titleParts[0] + ' - ' + titleParts[1] + ' (' + this.pledgeId + ')';
     else if (this.isSpaceGlobe)
       this.displayName = $('.title', this).text();
     else
