@@ -82,6 +82,9 @@ HangarXPLOR.Filter = function(list, filter)
     case "IsReward":
       list = $.grep(list, function(item) { return item.isReward; });
       break;
+    case "!IsReward":
+      list = $.grep(list, function(item) { return !item.isReward; });
+      break;
     case "IsSelected":
       list = $.grep(list, function(item) { return item.isSelected; });
       break;
