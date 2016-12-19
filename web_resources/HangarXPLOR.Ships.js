@@ -10,7 +10,7 @@ HangarXPLOR._ships = [
   { 'name': '890 JUMP', 'thumbnail': '/media/aokcb6ay0i0jpr/heap_infobox/890_beautyShot-Concept_V01High_NF_140709.jpg' },
   { 'name': 'Aurora CL', 'thumbnail': '/media/fh1gtu93mndsur/heap_infobox/Rsi_aurora_cl_storefront_visual.jpg' },
   { 'name': 'Aurora ES', 'thumbnail': '/media/9u8061zhf29fir/heap_infobox/Rsi_aurora_es_storefront_visual.jpg' },
-  { 'name': 'Aurora LN', 'thumbnail': '/media/r5rqlavbaw18vr/heap_infobox/Auroralnheader.jpg' },
+  { 'name': 'Aurora LN', 'thumbnail': '/media/ljgowkr9tdwetr/heap_infobox/Rsi_aurora_ln_storefront_visual.jpg' },
   { 'name': 'Aurora LX', 'thumbnail': '/media/xfq27owiysn6ar/heap_infobox/Aurora-LX_Ortho.jpg' },
   { 'name': 'Aurora MR', 'thumbnail': '/media/ohbfgn1ebcsnar/heap_infobox/Rsi_aurora_mr_storefront_visual.jpg' },
   { 'name': 'Aurora', 'thumbnail': '/media/9u8061zhf29fir/heap_infobox/Rsi_aurora_es_storefront_visual.jpg' },
