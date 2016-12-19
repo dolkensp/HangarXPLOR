@@ -19,10 +19,11 @@ HangarXPLOR.DrawUI = function()
   var filter1 = $.cookie('HangarXPLOR.Type') || 'All';
   
   $controls1.append(HangarXPLOR.Dropdown([
-    { Value: 'All', Text: 'All Types', Class: 'first', Selected: filter1 == 'All' },
-    { Value: 'HasShip', Text: 'Ships + Packages', Selected: filter1 == 'HasShip' },
-    { Value: 'IsShip', Text: 'Ships', Selected: filter1 == 'IsShip' },
-    { Value: 'IsPackage', Text: 'Packages', Selected: filter1 == 'IsPackage' },
+    { Value: 'All', Text: 'Everything', Class: 'first', Selected: filter1 == 'All' },
+    { Value: 'HasShip', Text: 'All Ships', Selected: filter1 == 'HasShip' },
+    { Value: 'IsShip', Text: 'Standalone Ships', Selected: filter1 == 'IsShip' },
+    { Value: 'IsCombo', Text: 'Combo Packs', Selected: filter1 == 'IsCombo' },
+    { Value: 'IsPackage', Text: 'Game Packages', Selected: filter1 == 'IsPackage' },
     { Value: 'IsExtra', Text: 'All Extras', Class: 'split', Selected: filter1 == 'IsExtra' },
     { Value: 'IsUpgrade', Text: 'Upgrades', Selected: filter1 == 'IsUpgrade' },
     { Value: 'IsAddOn', Text: 'Add Ons', Selected: filter1 == 'IsAddOn' },
