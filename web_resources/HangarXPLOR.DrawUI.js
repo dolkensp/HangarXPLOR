@@ -25,13 +25,14 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsPackage', Text: 'Game Packages', Selected: filter1 == 'IsPackage' },
     { Value: 'IsCombo', Text: 'Combo Packs', Selected: filter1 == 'IsCombo' },
     { Value: 'IsExtra', Text: 'All Extras', Class: 'split', Selected: filter1 == 'IsExtra' },
-    { Value: 'IsUpgrade', Text: 'Upgrades', Selected: filter1 == 'IsUpgrade' },
     { Value: 'IsAddOn', Text: 'Add Ons', Selected: filter1 == 'IsAddOn' },
     { Value: 'IsComponent', Text: 'Components', Selected: filter1 == 'IsComponent' },
+    { Value: 'IsUpgrade', Text: 'Upgrades', Selected: filter1 == 'IsUpgrade' },
     { Value: 'IsFlair', Text: 'All Flair', Class: 'split', Selected: filter1 == 'IsFlair' },
     { Value: 'IsDecoration', Text: 'Decorations', Selected: filter1 == 'IsDecoration' },
-    { Value: 'IsPoster', Text: 'Posters', Selected: filter1 == 'IsPoster' },
     { Value: 'IsModel', Text: 'Models', Selected: filter1 == 'IsModel' },
+    { Value: 'IsPlant', Text: 'Plants', Selected: filter1 == 'IsPlant' },
+    { Value: 'IsPoster', Text: 'Posters', Selected: filter1 == 'IsPoster' },
   ], '158px', 'js-custom-filter', function(e, value) { $.cookie('HangarXPLOR.Type', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); /* HangarXPLOR.ResetBulkUI(); */ }));
   
   var sort1 = $.cookie('HangarXPLOR.Sort') || 'Purchased';

@@ -28,6 +28,12 @@ HangarXPLOR.Filter = function(list, filter)
     case "IsPackage":
       list = $.grep(list, function(item) { return item.isPackage; });
       break;
+    case "!IsPackage":
+      list = $.grep(list, function(item) { return !item.isPackage && item.hasShip; });
+      break;
+    case "IsCombo":
+      list = $.grep(list, function(item) { return item.isCombo; });
+      break;
     case "IsUpgrade":
       list = $.grep(list, function(item) { return item.isUpgrade; });
       break;
@@ -64,6 +70,9 @@ HangarXPLOR.Filter = function(list, filter)
     case "IsPoster":
       list = $.grep(list, function(item) { return item.isPoster; });
       break;
+    case "IsPlant":
+      list = $.grep(list, function(item) { return item.isSpacePlant; });
+      break;
     case "IsDecoration":
       list = $.grep(list, function(item) { return item.isDecoration; });
       break;
@@ -72,6 +81,9 @@ HangarXPLOR.Filter = function(list, filter)
       break;
     case "IsReward":
       list = $.grep(list, function(item) { return item.isReward; });
+      break;
+    case "!IsReward":
+      list = $.grep(list, function(item) { return !item.isReward; });
       break;
     case "IsSelected":
       list = $.grep(list, function(item) { return item.isSelected; });

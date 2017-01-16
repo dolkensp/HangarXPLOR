@@ -12,6 +12,7 @@ HangarXPLOR.ProcessItem = function()
 {
   
   var $ship = $('.kind:contains(Ship)', this);
+  var $component = $('.kind:contains(Component)', this);
   var $wrapper = $('.wrapper-col', this);
     
   var h3Text = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
@@ -24,10 +25,13 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.trim();
     this.originalName = pledgeName;
     
+    pledgeName = pledgeName.replace(/^1 Year (Centurion|Imperator) Reward - /i, 'Reward - ');
+    pledgeName = pledgeName.replace(/^(Conner.s Beard Moss|Opera Mushroom)/i, 'Space Plant - $1');
+    pledgeName = pledgeName.replace(/^Space (?:Plant|Cactus|Flower) - /i, 'Space Plant - ');
     pledgeName = pledgeName.replace(/^Subscribers Exclusive - /i, '');
     pledgeName = pledgeName.replace(/^(UEE Calendar|Workbench|Patron of the Arts Award|StellarSonic JukeBox|Locker from Another Universe|UEE Towel|Mr. Refinement's Cabinet of Rare & Exquisite Spirits)/i, 'Decorations - $1');
     pledgeName = pledgeName.replace(/^(UEE Environment Coat|Omni Role Combat Armor \(ORC\) mk9)/i, 'Add-Ons - $1');
-    pledgeName = pledgeName.replace(/^Puglisi Collection[: ]/i, 'Puglisi Collection - ');
+    pledgeName = pledgeName.replace(/^(The |)Puglisi Collection[: ]/i, 'Puglisi Collection - ');
     pledgeName = pledgeName.replace(/Battlefield Upgrade Kit/i, 'BUK');
     pledgeName = pledgeName.replace(/^Takuetsu/i, 'Models - Takuetsu');
     pledgeName = pledgeName.replace(/^Takuetsu (.*) Model$/i, 'Models - Takuetsu $1');
@@ -52,6 +56,9 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^(Hornet|Freelancer|Decorations - CitizenCon \d+) Poster/i, 'Posters - $1');
     pledgeName = pledgeName.replace(/ Poster$/i, '');
     pledgeName = pledgeName.replace(/^Space Globe /i, 'Space Globes ');
+    pledgeName = pledgeName.replace(/^Standalone Ship - Drake Dragonfly Ride Together Two-Pack/i, 'Combo - Drake Dragonfly Ride Together Two-Pack');
+    pledgeName = pledgeName.replace(/^Add-ons - (.*) Mega(?: |-)Pack$/i, 'Combo - $1 Mega Pack');
+    pledgeName = pledgeName.replace(/ - Holiday 20\d\d$/i, '');
     pledgeName = pledgeName.replace(/"Be A Hero"$/i, 'Be A Hero');
     pledgeName = pledgeName.replace(/^Cross-Chassis Upgrades/i, 'Ship Upgrades');
     pledgeName = pledgeName.replace(/^(.*) Skin$/i, 'Skins - $1');
@@ -60,7 +67,8 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/ Upgrade$/i, '');
     pledgeName = pledgeName.replace(/^You Got Our Backs (Electro Skin Hull)$/i, 'Ship Upgrades - You Got Our Backs (Electro Skin Hull)');
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
-    pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
+    pledgeName = pledgeName.replace(/Discount Pack/i, 'Pack');
+    pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
     pledgeName = pledgeName.replace(/^(Digital )?(Advanced Hunter|Arbiter|Bounty Hunter|Colonel|Cutlass|Freelancer|Mercenary|Pirate|Rear Admiral|Scout|Specter|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
     pledgeName = pledgeName.replace("  ", " ").trim();
     // TODO: Add pre-processing for Reliant Variants Here if required
@@ -77,6 +85,7 @@ HangarXPLOR.ProcessItem = function()
     
     this.pledgeId = parseInt($('.js-pledge-id', this).val().trim());
     this.pledgeValue = $('.js-pledge-value', this).val();
+    this.componentName = $component.prev().text();
     this.shipName = $ship.prev().text().replace('M50 Interceptor', 'M50').replace('M50', 'M50 Interceptor');
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
     this.hasValue = this.meltValue > 0;
@@ -85,19 +94,20 @@ HangarXPLOR.ProcessItem = function()
     this.isMeltable = $('.js-reclaim', this).length > 0;
     this.isUpgraded = $('.upgraded', this).length > 0;
     this.isGiftable = $('.label:contains(Gift)', this).length > 0;
-    this.isPackage = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;
+    this.isPackage = ($('.title:contains(Squadron 42 Digital Download)', this).length + $('.title:contains(Star Citizen Digital Download)', this).length) > 0;
     this.isShip = $ship.length == 1;
+    this.isCombo = $ship.length > 1;
     this.isUpgrade = (titleParts[0] == "Ship Upgrades");
     this.isAddOn = (titleParts[0] == "Add-Ons");
     this.isTrophy = (titleParts[0] == "Trophy");
     this.isPoster = (titleParts[0] == "Posters");
     this.isFishtank = (titleParts[0] == "Fishtank");
-    this.isReward = (titleParts[0] == "Reward");
+    this.isReward = (titleParts[0] == "Reward"); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
+    this.isSpacePlant = (titleParts[0] == "Space Plant");
     this.isSpaceGlobe = (titleParts[0] == "Space Globes");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
-    this.isFlair = !this.isShip && !this.isPackage && !this.isUpgrade && !this.isAddOn;
-    // this.isCombo = this.hasShip && !this.isShip && !this.isPackage;
-    this.isDecoration = !this.isModel && !this.isPoster && this.isFlair;
+    this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
+    this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
     this.isSelected = false;
     
@@ -124,39 +134,37 @@ HangarXPLOR.ProcessItem = function()
       }
     }
     
+    if (this.isComponent && !this.hasShip) {
+      for (var i = 0, j = HangarXPLOR._components.length; i < j; i++) {
+        if (this.componentName.toLowerCase().indexOf(HangarXPLOR._components[i].name.toLowerCase()) > -1) {
+          $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._components[i].thumbnail + '")'});
+          break;
+        }
+      }
+    }
+    
     $wrapper.append($("<div class='date-col melt-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
     
     var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
     
-    // var pluralSuffix = '';
-    // if ($ship.length != 1) pluralSuffix = 's';
+    if (this.isSpaceGlobe) titleParts = $('.title', this).text().split(' - ');
     
-    if (this.isUpgraded || this.isPackage || this.isReward || this.hasShip) {
-      // $wrapper.append($('<div class="date-col count-col"><label>Pledge Contains</label>' + $ship.length + ' Ship' + pluralSuffix + '</div>'));
-      $wrapper.append($('<div class="items-col"><label>Base Pledge</label>' + this.originalName + '</div>'));
-    }
+    if (titleParts.length == 1) titleParts[1] = pledgeName;
     
-    // if (this.isUpgrade) {
-    //   $wrapper.append($('<div class="date-col count-col"><label>Pledge Contains</label>1 Upgrade</div>'));
-    // }
+    if (this.isShip) titleParts[1] = this.shipName;
+    if (this.isShip) titleParts[0] = "Ship";
+    if (this.isCombo) titleParts[0] = "Combo";
+    if (this.isPackage) titleParts[0] = "Package";
+    if (this.isUpgrade) titleParts[0] = "Upgrade";
+    if (this.isReward) titleParts[0] = "Reward";
+    
+    if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip)
+      $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + this.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '') + '</div>'));
     
     if (this.hasShip)
-      titleParts[0] = 'Combo';
-    if (this.isShip)
-      titleParts[0] = 'Ship';
-    if (this.isPackage)
-      titleParts[0] = 'Package';
-    if (this.isUpgrade)
-      titleParts[0] = 'Upgrade';
-    
-    if (this.isShip)
-      this.displayName = titleParts[0] + ' - ' + this.shipName + ltiSuffix + ' (' + this.pledgeId + ')';
-    else if (this.hasShip || this.isUpgrade)
       this.displayName = titleParts[0] + ' - ' + titleParts[1] + ltiSuffix + ' (' + this.pledgeId + ')';
-    else if (this.isSpaceGlobe)
-      this.displayName = $('.title', this).text();
     else
-      this.displayName = pledgeName + ' (' + this.pledgeId + ')';
+      this.displayName = titleParts[0] + ' - ' + titleParts[1] + ' (' + this.pledgeId + ')';
     
     this.sortName = this.displayName.replace(/^.*? - (.*)$/, '$1');
     
