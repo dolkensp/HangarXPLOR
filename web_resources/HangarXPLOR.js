@@ -27,4 +27,4 @@ HangarXPLOR.Initialize = function()
   }
 }
 
-HangarXPLOR.Initialize();
+$(document).ready(HangarXPLOR.Initialize);

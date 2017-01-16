@@ -39,7 +39,8 @@ HangarXPLOR.BulkUI = function()
     else HangarXPLOR.$bulkUI[0].style.top = '160px';
   };
   
-  $(document).on('scroll', positionUI);
+  var FF = !(window.mozInnerScreenX == null);
+  if (!FF) $(document).on('scroll', positionUI);
   
   var $billing = $('#billing');
   
