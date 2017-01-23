@@ -18,6 +18,7 @@ HangarXPLOR.Initialize = function()
   var $lists = $('.list-items');
   
   if ($lists.length == 1) {
+    HangarXPLOR.BulkUI();
     HangarXPLOR.$list = $($lists[0]);
     HangarXPLOR.$list.addClass('js-inventory');
     delete $lists;
@@ -27,4 +28,4 @@ HangarXPLOR.Initialize = function()
   }
 }
 
-$(document).ready(HangarXPLOR.Initialize);
+HangarXPLOR.Initialize();

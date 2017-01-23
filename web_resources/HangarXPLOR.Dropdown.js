@@ -4,18 +4,16 @@ var HangarXPLOR = HangarXPLOR || {};
 // Render a dropdown that sets the value of an element
 HangarXPLOR.Dropdown = function(options, width, className, callback)
 {
-  if (HangarXPLOR.logsEnabled) {
-    console.log('Rendering Dropdown', options);
-  }
+  if (HangarXPLOR.logsEnabled) console.log('Rendering Dropdown', options);
   
   className = className || 'js-custom-filter';
   width = width || '150px';
   
-  var $ul = $('<ul class="body" style="display: none" />');
-  var $style = $('<div class="js-selectlist selectlist" />');
-  var $label = $('<span>' + options[0].Text + '</span>');
-  var $value = $('<input type="hidden" class="' + className + '" value="' + options[0].Value + '" />');
-  var $dropdown = $('<div style="width: ' + width + '">');
+  var $ul = $('<ul>', { class: 'body', style: 'display: none' });
+  var $style = $('<div>', { class: 'js-selectlist selectlist' });
+  var $label = $('<span>', { text: options[0].Text });
+  var $value = $('<input>', { type: 'hidden', class: className, value: options[0].Value });
+  var $dropdown = $('<div>', { style: 'width: ' + width });
   
   for (var i = 0, j = options.length; i < j; i++) {
     if (options[i].Selected) {
@@ -23,12 +21,12 @@ HangarXPLOR.Dropdown = function(options, width, className, callback)
       $value.val(options[i].Value);
       options[i].Class = options[i].Class + ' selected';
     }
-    $ul.append('<li class="js-option option ' + (options[i].Class || '') + '" rel="' + options[i].Value + '">' + options[i].Text + '</li>');
+    $ul.append($('<li>', { class: 'js-option option ' + (options[i].Class || ''), rel: options[i].Value, text: options[i].Text }));
   }
   var $options = $('li', $ul);
   
   $dropdown.append($style);
-  $style.append('<div class="arrow" />');
+  $style.append($('<div>', { class: 'arrow' }));
   $style.append($label);
   $style.append($ul);
   $style.append($value);

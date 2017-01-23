@@ -4,23 +4,23 @@ var HangarXPLOR = HangarXPLOR || {};
 // Render a toggle that sets the value of an element
 HangarXPLOR.Toggle = function(label, value1, value2, className, callback, defaultValue)
 {
-  if (HangarXPLOR.logsEnabled) {
-    console.log('Rendering Toggle', label, value1, value2, className);
-  }
+  if (HangarXPLOR.logsEnabled) console.log('Rendering Toggle', label, value1, value2, className);
   
-  var $toggle = $('<div class="status-selector tag-wrapper" />');
-  var $tag = $(
-    '<div class="tag js-tag">' +
-    '  <div class="left"><div class="effect trans-02s trans-opacity"></div></div>' +
-    '  <div class="tag-content"><div class="effect trans-02s trans-opacity"></div>' + 
-    '    <span class="text">' + label + '</span>' +
-    '  </div>' +
-    '</div>');
+  var $toggle = $('<div>', { class: 'status-selector tag-wrapper' });
+  var $tag = 
+    $('<div>', { class: 'tag js-tag' }).append(
+      $('<div>', { class: 'left' }).append(
+        $('<div>', { class: 'effect trans-02s trans-opacity' })),
+      $('<div>', { class: 'tag-content' }).append(
+        $('<div>', { class: 'effect trans-02s trans-opacity' }),
+        $('<span>', { class: 'text', text: label })
+      )
+    );
     
   defaultValue = defaultValue || '';
   
   // TODO: Set default value
-  var $value = $('<input type="hidden" class="' + className + '" value="' + defaultValue + '" />');
+  var $value = $('<input>', { type: 'hidden', class: className, value: defaultValue });
   
   $toggle.append($tag);
   $toggle.append($value);

@@ -7,25 +7,25 @@
   ];
   
   var scripts = [
-    'web_resources/HangarXPLOR.BulkUI.js',
-    'web_resources/HangarXPLOR.Button.js',
-    'web_resources/HangarXPLOR.Components.js',
-    'web_resources/HangarXPLOR.DrawUI.js',
-    'web_resources/HangarXPLOR.Dropdown.js',
-    'web_resources/HangarXPLOR.Filter.js',
-    'web_resources/HangarXPLOR.LoadPage.js',
-    'web_resources/HangarXPLOR.Pager.js',
-    'web_resources/HangarXPLOR.ProcessItem.js',
-    'web_resources/HangarXPLOR.ProcessPage.js',
-    'web_resources/HangarXPLOR.Render.js',
-    'web_resources/HangarXPLOR.Search.js',
-    'web_resources/HangarXPLOR.SearchBox.js',
-    'web_resources/HangarXPLOR.Ships.js',
-    'web_resources/HangarXPLOR.Sort.js',
-    'web_resources/HangarXPLOR.Templates.js',
-    'web_resources/HangarXPLOR.Toggle.js',
+    'web_resources/HangarXPLOR.js',
     'web_resources/HangarXPLOR.Debug.js', // Uncomment to debug third party hangar HTML
-    'web_resources/HangarXPLOR.js'
+    'web_resources/HangarXPLOR.Toggle.js',
+    'web_resources/HangarXPLOR.Templates.js',
+    'web_resources/HangarXPLOR.Sort.js',
+    'web_resources/HangarXPLOR.Ships.js',
+    'web_resources/HangarXPLOR.SearchBox.js',
+    'web_resources/HangarXPLOR.Search.js',
+    'web_resources/HangarXPLOR.Render.js',
+    'web_resources/HangarXPLOR.ProcessPage.js',
+    'web_resources/HangarXPLOR.ProcessItem.js',
+    'web_resources/HangarXPLOR.Pager.js',
+    'web_resources/HangarXPLOR.LoadPage.js',
+    'web_resources/HangarXPLOR.Filter.js',
+    'web_resources/HangarXPLOR.Dropdown.js',
+    'web_resources/HangarXPLOR.DrawUI.js',
+    'web_resources/HangarXPLOR.Components.js',
+    'web_resources/HangarXPLOR.Button.js',
+    'web_resources/HangarXPLOR.BulkUI.js'
   ];
   
   var templates = [ ];
@@ -41,16 +41,6 @@
     document.body.appendChild(style);
   }
   
-  for (var i = 0, j = scripts.length; i < j; i++) {
-    var scriptURL = chrome.extension.getURL(scripts[i]);
-    console.log('Loading', scriptURL);
-    var script = document.createElement('script');
-    script.id = namespace + '-js-' + i;
-    script.type = 'text/javascript';
-    script.src = scriptURL;
-    document.body.appendChild(script);
-  }
-  
   for (var i = 0, j = templates.length; i < j; i++) {
     var templateURL = chrome.extension.getURL(templates[i].url);
     console.log('Loading', templateURL);
@@ -60,4 +50,26 @@
     script.src = templateURL;
     document.body.appendChild(script);
   }
+  
+  var i = 1;
+  
+  var loadScript = function() {
+    if (scripts.length == 0) return;
+    
+    var scriptURL = chrome.extension.getURL(scripts.pop());
+    console.log('Loading', scriptURL);
+    var script = document.createElement('script');
+    script.id = namespace + '-js-' + i++;
+    script.type = 'text/javascript';
+    script.src = scriptURL;
+    
+    script.onload = loadScript;
+    script.onreadystatechange = function() {
+      if (this.readyState == 'complete') loadScript();
+    }
+
+    document.body.appendChild(script);
+  };
+  
+  loadScript();
 }()
