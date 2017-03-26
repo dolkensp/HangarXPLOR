@@ -14,14 +14,12 @@ HangarXPLOR.Pager = function(options, width, className, callback)
   width = width || '150px';
   className = className || 'js-custom-pager';
   
-  if (HangarXPLOR.logsEnabled) {
-    console.log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
-  }
+  if (HangarXPLOR.logsEnabled) console.log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
   
-  var $control = $('<div class="options-selector pager-wrapper ' + className + '" />');
-  var $pager = $('<div class="pager clearfix js-pager" />');
-  var $left = $('<div class="left" />');
-  var $right = $('<div class="right" />');
+  var $control = $('<div>', { class: 'options-selector pager-wrapper ' + className });
+  var $pager = $('<div>', { class: 'pager clearfix js-pager' });
+  var $left = $('<div>', { class: 'left' });
+  var $right = $('<div>', { class: 'right' });
   var maxButtons = 5;
   
   $control.append($pager);
@@ -62,7 +60,7 @@ HangarXPLOR.Pager = function(options, width, className, callback)
     }
     
     for (var i = firstPage, j = Math.min(firstPage + maxButtons - 1, maxPages); i <= j; i++)
-      $right.append('<a class="trans-02s trans-color' + ((i == HangarXPLOR._pageNo) ? ' active' : '') + '" rel="' + i + '">' + i + '</a>');
+      $right.append($('<a>', { class: 'trans-02s trans-color' + ((i == HangarXPLOR._pageNo) ? ' active' : ''), rel: i, text: i }));
     var $buttons = $('a', $right);
     
     $buttons.bind('click', function(e) {

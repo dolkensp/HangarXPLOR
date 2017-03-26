@@ -1,4 +1,7 @@
 .js-inventory h3 { margin-top: -5px !important }
+.js-inventory .title-col span,
+.js-inventory .date-col,
+.js-inventory .items-col { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; cursor: default; }
 .js-custom-controls .first { border-bottom: 3px double #162a3f }
 .js-custom-controls .split { border-top: 1px solid #162a3f; }
 .js-custom-controls .mr0 { margin-right: 0px !important; }
@@ -15,10 +18,15 @@
 .js-bulk-ui .inner { padding: 15px 20px 15px 20px; background: url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-top.png') repeat-x top left, url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-bottom.png') repeat-x bottom left, rgba(0,0,0,0.4); }
 .js-bulk-ui .value { text-align: right; }
 .js-bulk-ui .value .amount { color: #25e4ff; font-size: 23px; text-transform: none; font-family: 'Electrolize'; display: inline-block; text-align: right; }
-.js-bulk-ui .value .label { color: #6c84a2; font-size: 10px; text-transform: uppercase; font-family: 'Electrolize'; display: inline-block; width: 67px; text-align: left; }
-.js-bulk-ui .value .label-short { color: #6c84a2; font-size: 10px; text-transform: uppercase; font-family: 'Electrolize'; display: inline-block; width: 40px; text-align: left; }
+.js-bulk-ui .value .label,
+.js-bulk-ui .value .label-short { color: #6c84a2; font-size: 10px; text-transform: uppercase; font-family: 'Electrolize'; display: inline-block; text-align: left; padding-left: 4px; width: 67px; }
+.js-bulk-ui .value .label-short { width: 40px; }
 .js-bulk-ui .actions a { margin-left: 20px; margin-top: 5px; }
 .js-bulk-ui .actions a:first-child { margin-left: 0px !important; }
+.js-bulk-ui .status { display: none; }
+.js-bulk-ui .loading .actions,
+.js-bulk-ui .loading .value { display: none; }
+.js-bulk-ui .loading .status { display: block; }
 
 .count .cash,
 .cash .count { display: none; }

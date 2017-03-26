@@ -11,11 +11,11 @@ HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
 HangarXPLOR.ProcessItem = function()
 {
   
-  var $ship = $('.kind:contains(Ship)', this);
+  var $ship      = $('.kind:contains(Ship)', this);
   var $component = $('.kind:contains(Component)', this);
-  var $wrapper = $('.wrapper-col', this);
+  var $wrapper   = $('.wrapper-col', this);
     
-  var h3Text = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
+  var h3Text     = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
     
   var pledgeName = $('.js-pledge-name', this).val() || '';
   
@@ -73,7 +73,6 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace("  ", " ").trim();
     // TODO: Add pre-processing for Reliant Variants Here if required
     
-    // 
     // Package - Mustang Omega : AMD Edition
     // 1 Year Imperator Reward - 15% Coupon: SSSSSSSSSS
     // Greycat PTV
@@ -143,7 +142,7 @@ HangarXPLOR.ProcessItem = function()
       }
     }
     
-    $wrapper.append($("<div class='date-col melt-col'><label>Melt Value</label>" + this.pledgeValue + '</div>'));
+    $wrapper.append($("<div>", { class: 'date-col melt-col' }).append($('<label>', { text: 'Melt Value' }), this.pledgeValue));
     
     var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
     
@@ -158,8 +157,9 @@ HangarXPLOR.ProcessItem = function()
     if (this.isUpgrade) titleParts[0] = "Upgrade";
     if (this.isReward) titleParts[0] = "Reward";
     
-    if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip)
-      $wrapper.append($("<div class='items-col'><label>Base Pledge</label>" + this.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '') + '</div>'));
+    if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip) {
+      $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '')));
+    }
     
     if (this.hasShip)
       this.displayName = titleParts[0] + ' - ' + titleParts[1] + ltiSuffix + ' (' + this.pledgeId + ')';

@@ -9,8 +9,8 @@ HangarXPLOR.DrawUI = function()
   $controls.removeClass('controls');
   $controls.empty();
   
-  var $controls1 = $('<div class="controls clearfix" />');
-  var $controls2 = $('<div class="controls clearfix" />');
+  var $controls1 = $('<div>', { class: 'controls clearfix' });
+  var $controls2 = $('<div>', { class: 'controls clearfix' });
   
   $controls.append($controls1, $controls2);
   
@@ -54,7 +54,7 @@ HangarXPLOR.DrawUI = function()
   {
     $.cookie('HangarXPLOR.Feature.' + label, value);
     
-    console.log('HangarXPLOR.Feature.' + label, value);
+    if (HangarXPLOR.logsEnabled) console.log('HangarXPLOR.Feature.' + label, value);
     
     HangarXPLOR.Render();
     HangarXPLOR.RefreshPager();
@@ -71,6 +71,7 @@ HangarXPLOR.DrawUI = function()
   $controls2.append(HangarXPLOR.Toggle('Free CCUs','IsFreeCCU',  '!IsFreeCCU',  'js-custom-filter', toggleHandler, '!IsFreeCCU'));
   
   HangarXPLOR.Render();
-  HangarXPLOR.BulkUI();
+  HangarXPLOR.BindBulkUI();
+  HangarXPLOR.RefreshBulkUI();
   HangarXPLOR.RefreshPager();
 }
