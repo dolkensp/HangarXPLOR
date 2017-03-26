@@ -1,12 +1,11 @@
 
+var HangarXPLOR = HangarXPLOR || {};
+
 if ($.cookie('logsEnabled') == "true") {
-  var HangarXPLOR = HangarXPLOR || {};
   HangarXPLOR.logsEnabled = true;
 }
 
 if ($.cookie('debug') == "true") {
-  var HangarXPLOR = HangarXPLOR || {};
-
   // Load a page of pledges from RSI
   HangarXPLOR.LoadPage = function(pageNo)
   {

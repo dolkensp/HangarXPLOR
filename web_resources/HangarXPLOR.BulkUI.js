@@ -20,8 +20,9 @@ HangarXPLOR.BulkUI = function()
   var minOffset = $('.billing-title-pager-wrapper').offset().top;
   
   var positionUI = function() {
-    if (document.body.scrollTop > document.body.scrollHeight - maxOffset - bulkHeight) HangarXPLOR.$bulkUI[0].style.top = (document.body.scrollHeight - maxOffset - bulkHeight - document.body.scrollTop + 150) + 'px';
-    else if (document.body.scrollTop < minOffset) HangarXPLOR.$bulkUI[0].style.top = (minOffset - document.body.scrollTop + 150) + 'px';
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (scrollTop > document.body.scrollHeight - maxOffset - bulkHeight) HangarXPLOR.$bulkUI[0].style.top = (document.body.scrollHeight - maxOffset - bulkHeight - scrollTop + 150) + 'px';
+    else if (scrollTop < minOffset) HangarXPLOR.$bulkUI[0].style.top = (minOffset - scrollTop + 150) + 'px';
     else HangarXPLOR.$bulkUI[0].style.top = '160px';
   };
   
