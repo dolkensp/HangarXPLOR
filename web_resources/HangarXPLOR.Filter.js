@@ -31,6 +31,12 @@ HangarXPLOR.Filter = function(list, filter)
     case "!IsPackage":
       list = $.grep(list, function(item) { return !item.isPackage && item.hasShip; });
       break;
+    case "IsWarbond":
+      list = $.grep(list, function(item) { return item.isWarbond && item.hasShip; });
+      break;
+    case "!IsWarbond":
+      list = $.grep(list, function(item) { return !item.isWarbond && item.hasShip; });
+      break;
     case "IsCombo":
       list = $.grep(list, function(item) { return item.isCombo; });
       break;

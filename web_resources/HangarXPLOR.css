@@ -4,7 +4,7 @@
 .js-inventory .items-col { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; cursor: default; }
 .js-custom-controls .first { border-bottom: 3px double #162a3f }
 .js-custom-controls .split { border-top: 1px solid #162a3f; }
-.js-custom-controls .mr0 { margin-right: 0px !important; }
+.js-custom-controls .mr5 { margin-right: 5px; }
 .js-inventory .js-selected { background: rgba(179,212,250,0.2) !important; }
 .js-custom-controls { margin-bottom: 10px; }
 .js-custom-controls .controls { height: auto !important; margin-bottom: 5px !important; }
@@ -12,7 +12,10 @@
 .js-custom-controls .tag-wrapper .tag .left .effect { background: #0b2031; box-shadow: 0 0 20px #0b2031; }
 .js-custom-controls .tag-wrapper .off .left .effect { background: #C00; box-shadow: 0 0 20px #C00; opacity: 1 !important; transition: all 125ms linear }
 .js-custom-controls .tag-wrapper .on  .left .effect { background: #00e7ff; box-shadow: 0 0 20px #0ff; }
-.js-custom-controls .pager { margin-bottom: 0px !important; }
+.js-custom-controls .pager { margin-bottom: 0px !important; margin-right: 15px; }
+.js-custom-controls .mrn15 { margin-right: -15px; }
+.js-custom-controls .mrn5 { margin-right: -5px; }
+.js-custom-controls .content .row { margin-left: 0xp; }
 
 .js-bulk-ui { top: 160px; left: 0px; z-index: 102; position: fixed; background: rgba(12,19,25,0.9); }
 .js-bulk-ui .inner { padding: 15px 20px 15px 20px; background: url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-top.png') repeat-x top left, url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-bottom.png') repeat-x bottom left, rgba(0,0,0,0.4); }

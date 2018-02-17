@@ -53,10 +53,10 @@ HangarXPLOR.Pager = function(options, width, className, callback)
     }));
     
     if (maxPages == 1) {
-      $left.addClass('mr0');
+      $left.addClass('mr5');
       return;
     } else {
-      $left.removeClass('mr0');
+      $left.removeClass('mr5');
     }
     
     for (var i = firstPage, j = Math.min(firstPage + maxButtons - 1, maxPages); i <= j; i++)

@@ -9,8 +9,8 @@ HangarXPLOR.DrawUI = function()
   $controls.removeClass('controls');
   $controls.empty();
   
-  var $controls1 = $('<div>', { class: 'controls clearfix' });
-  var $controls2 = $('<div>', { class: 'controls clearfix' });
+  var $controls1 = $('<div>', { class: 'controls clearfix mrn15' });
+  var $controls2 = $('<div>', { class: 'controls clearfix mrn15' });
   
   $controls.append($controls1, $controls2);
   
@@ -62,12 +62,13 @@ HangarXPLOR.DrawUI = function()
   };
   
   $controls2.append(HangarXPLOR.Toggle('LTI',      'HasLTI',     '!HasLTI',     'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.LTI')));
+  $controls2.append(HangarXPLOR.Toggle('Warbond',  'IsWarbond',  '!IsWarbond',  'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Warbond')));
   $controls2.append(HangarXPLOR.Toggle('Giftable', 'IsGiftable', '!IsGiftable', 'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Giftable')));
   $controls2.append(HangarXPLOR.Toggle('Meltable', 'IsMeltable', '!IsMeltable', 'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Meltable')));
   $controls2.append(HangarXPLOR.Toggle('Upgraded', 'IsUpgraded', '!IsUpgraded', 'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Upgraded')));
   $controls2.append(HangarXPLOR.Toggle('Valuable', 'HasValue',   '!HasValue',   'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Valuable')));
   $controls2.append(HangarXPLOR.Toggle('Reward',   'IsReward',   '!IsReward',   'js-custom-filter', toggleHandler, $.cookie('HangarXPLOR.Feature.Reward')));
-  $controls2.append(HangarXPLOR.Toggle('Selected', 'IsSelected',  null,         'js-custom-filter', toggleHandler));
+  // $controls2.append(HangarXPLOR.Toggle('Selected', 'IsSelected',  null,         'js-custom-filter', toggleHandler));
   $controls2.append(HangarXPLOR.Toggle('Free CCUs','IsFreeCCU',  '!IsFreeCCU',  'js-custom-filter', toggleHandler, '!IsFreeCCU'));
   
   HangarXPLOR.Render();

@@ -6,12 +6,13 @@ HangarXPLOR._upgradeCount  = HangarXPLOR._upgradeCount || 0;
 HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
 HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
+HangarXPLOR._warbondCount  = HangarXPLOR._warbondCount || 0;
 
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
   
-  var $ship      = $('.kind:contains(Ship)', this);
+  var $ship      = $('.kind:contains(Ship)', this).parent().find('.title');
   var $component = $('.kind:contains(Component)', this);
   var $wrapper   = $('.wrapper-col', this);
     
@@ -85,7 +86,10 @@ HangarXPLOR.ProcessItem = function()
     this.pledgeId = parseInt($('.js-pledge-id', this).val().trim());
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.componentName = $component.prev().text();
-    this.shipName = $ship.prev().text().replace('M50 Interceptor', 'M50').replace('M50', 'M50 Interceptor');
+    this.shipName = $ship.text();
+    this.shipName = this.shipName.replace('M50 Interceptor', 'M50');
+    this.shipName = this.shipName.replace('M50', 'M50 Interceptor');
+    this.shipName = this.shipName.replace('Nova Tank', 'Nova Tonk');
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
     this.hasValue = this.meltValue > 0;
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
@@ -108,6 +112,7 @@ HangarXPLOR.ProcessItem = function()
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
+    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1;
     this.isSelected = false;
     
     HangarXPLOR._shipCount += $ship.length;
@@ -115,6 +120,7 @@ HangarXPLOR.ProcessItem = function()
     if (this.isUpgrade)  HangarXPLOR._upgradeCount += 1;
     if (this.isPackage)  HangarXPLOR._packageCount += 1;
     if (this.isGiftable) HangarXPLOR._giftableCount += 1;
+    if (this.isWarbond)  HangarXPLOR._warbondCount += 1;
     if (this.hasLTI)     HangarXPLOR._ltiCount += 1;
     
     if (this.hasLTI && titleParts[2] == null) titleParts[2] = ' - LTI';
