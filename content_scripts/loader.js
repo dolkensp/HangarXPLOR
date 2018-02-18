@@ -21,6 +21,7 @@
     'web_resources/HangarXPLOR.Pager.js',
     'web_resources/HangarXPLOR.LoadPage.js',
     'web_resources/HangarXPLOR.Filter.js',
+    'web_resources/HangarXPLOR.Download.js',
     'web_resources/HangarXPLOR.Dropdown.js',
     'web_resources/HangarXPLOR.DrawUI.js',
     'web_resources/HangarXPLOR.Components.js',

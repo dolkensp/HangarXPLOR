@@ -6,18 +6,59 @@ HangarXPLOR._upgradeCount  = HangarXPLOR._upgradeCount || 0;
 HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
 HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
+HangarXPLOR._warbondCount  = HangarXPLOR._warbondCount || 0;
 
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
   
-  var $ship      = $('.kind:contains(Ship)', this);
+  // Preprocess Tumbril Cyclone
+  $('.without-images .title:contains(Tumbril Cyclone)', this).each(function() {
+    var $tumbril = $(this);
+    var name = $tumbril.text().trim();
+    if (name == "Tumbril Cyclone") name = "Tumbril Cyclone-RN";
+    
+    if (name != "Tumbril Cyclone-AA" &&
+        name != "Tumbril Cyclone-TR" &&
+        name != "Tumbril Cyclone-RN" &&
+        name != "Tumbril Cyclone-RC") return;
+        
+    var $block = $tumbril.closest('.content-block1');
+    var $images = $('.with-images', $block);
+    if ($images.length == 0) {
+      $block.prepend($('<div />').addClass('also-contains').text("Also Contains"));
+      $block.prepend($images = $('<div />').addClass('with-images'));
+    }
+    
+    var cyclone = {
+      "Tumbril Cyclone-RN": "/media/ao2p3pw2e7k94r/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-01-Showroom-V009.jpg",
+      "Tumbril Cyclone-TR": "/media/cmq3rwpo5ghpvr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-04-Desert-V012.jpg",
+      "Tumbril Cyclone-RC": "/media/w3vw5498xb25mr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-05-Rocky-Beach-Sport-Fin.jpg",
+      "Tumbril Cyclone-AA": "/media/n6535dpiwv2pgr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-06-Lagoon-V011.jpg",
+    };
+    
+    var $item = $('<div />').addClass('item').append(
+      $('<div />').addClass('image').css({ 'background-image': 'url("' + cyclone[name] + '")' }),
+      $('<div />').addClass('text').append(
+        $('<div />').addClass('title').text(name),
+        $('<div />').addClass('kind').text("Ship"),
+        $('<div />').addClass('liner').append("Tumbril (", $('<span />').text("TMBL"), ")")
+      )
+    );
+    $images.prepend($item);
+    $tumbril.parent().remove();
+  })
+  
+  // End Preprocessing
+  
+  var pledgeName = $('.js-pledge-name', this).val() || '';
+  
+  var $ship      = $('.kind:contains(Ship)', this).parent().find('.title');
   var $component = $('.kind:contains(Component)', this);
   var $wrapper   = $('.wrapper-col', this);
     
   var h3Text     = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
     
-  var pledgeName = $('.js-pledge-name', this).val() || '';
   
   if (pledgeName.length > 0) {
     // Clean up existing hangar items
@@ -68,6 +109,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^You Got Our Backs (Electro Skin Hull)$/i, 'Ship Upgrades - You Got Our Backs (Electro Skin Hull)');
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
     pledgeName = pledgeName.replace(/Discount Pack/i, 'Pack');
+    pledgeName = pledgeName.replace(/Tumbril Cyclone LTI Presale/i, 'Tumbril Cyclone - LTI');
     pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
     pledgeName = pledgeName.replace(/^(Digital )?(Advanced Hunter|Arbiter|Bounty Hunter|Colonel|Cutlass|Freelancer|Mercenary|Pirate|Rear Admiral|Scout|Specter|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
     pledgeName = pledgeName.replace("  ", " ").trim();
@@ -85,7 +127,10 @@ HangarXPLOR.ProcessItem = function()
     this.pledgeId = parseInt($('.js-pledge-id', this).val().trim());
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.componentName = $component.prev().text();
-    this.shipName = $ship.prev().text().replace('M50 Interceptor', 'M50').replace('M50', 'M50 Interceptor');
+    this.shipName = $ship.text();
+    this.shipName = this.shipName.replace('Origin 600i Exploration Module', 'Origin 600i');
+    this.shipName = this.shipName.replace('M50 Interceptor', 'M50');
+    this.shipName = this.shipName.replace('M50', 'M50 Interceptor');
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
     this.hasValue = this.meltValue > 0;
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
@@ -108,13 +153,15 @@ HangarXPLOR.ProcessItem = function()
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
+    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1;
     this.isSelected = false;
     
     HangarXPLOR._shipCount += $ship.length;
-    if (this.hasShip) this.isAddOn = false;
+    if (this.hasShip)    this.isAddOn = false;
     if (this.isUpgrade)  HangarXPLOR._upgradeCount += 1;
     if (this.isPackage)  HangarXPLOR._packageCount += 1;
     if (this.isGiftable) HangarXPLOR._giftableCount += 1;
+    if (this.isWarbond)  HangarXPLOR._warbondCount += 1;
     if (this.hasLTI)     HangarXPLOR._ltiCount += 1;
     
     if (this.hasLTI && titleParts[2] == null) titleParts[2] = ' - LTI';

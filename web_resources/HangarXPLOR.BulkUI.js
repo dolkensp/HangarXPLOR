@@ -36,6 +36,7 @@ HangarXPLOR.BulkUI = function()
   HangarXPLOR.$bulkUI.$inner = $('<div>', { class: 'inner content-block1 loading' });
   HangarXPLOR.$bulkUI.$value = $('<div>', { class: 'value' });
   HangarXPLOR.$bulkUI.$actions = $('<div>', { class: 'actions' });
+  HangarXPLOR.$bulkUI.$downloads = $('<div>', { class: 'actions' });
   HangarXPLOR.$bulkUI.$loading = $('<div>', { class: 'status value' });
   
   HangarXPLOR.$bulkUI.addClass(HangarXPLOR.$bulkUI.summaryType);
@@ -46,11 +47,15 @@ HangarXPLOR.BulkUI = function()
     HangarXPLOR.$bulkUI.$loading,
     HangarXPLOR.$bulkUI.$value,
     HangarXPLOR.$bulkUI.$actions,
+    HangarXPLOR.$bulkUI.$downloads,
     $('<div>', { class: 'top-line-thin' }),
     $('<div>', { class: 'top-line' }),
     $('<div>', { class: 'corner corner-top-right' }),
     $('<div>', { class: 'corner corner-bottom-right' }));
   
+  HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download CSV', 'download js-download-csv', HangarXPLOR._callbacks.DownloadCSV));
+  HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download JSON', 'download js-download-json', HangarXPLOR._callbacks.DownloadJSON));
+
   bulkHeight = $('.js-bulk-ui').height();
   positionUI();
 }
@@ -177,6 +182,7 @@ HangarXPLOR.RefreshBulkUI = function()
   
   if (HangarXPLOR.BulkEnabled && HangarXPLOR._meltable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Melt ' + HangarXPLOR._meltable.length + ' Items', 'reclaim rm js-bulk-reclaim', HangarXPLOR._callbacks.Melt));
   if (HangarXPLOR.BulkEnabled && HangarXPLOR._giftable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Gift ' + HangarXPLOR._giftable.length + ' Items', 'gift js-bulk-gift', HangarXPLOR._callbacks.Gift));
+  
 }
 
 HangarXPLOR.ResetBulkUI = function()
