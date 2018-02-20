@@ -6,6 +6,8 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
 (function() {
 
   var $download = $('<a />');
+  $download.hide();
+  $(document.body).append($download);
 
   var _manufacturerShortMap = {
     'ANVL': 'Anvil',
@@ -61,8 +63,9 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     
     var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
     
-    $download.attr('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetShipList($target), null, 2)));
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetShipList($target), null, 2)));
     $download.attr('download', 'shiplist.json');
+    $download.attr('type', 'text/json');
     $download[0].click();
   }
   
@@ -74,9 +77,9 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     var buffer = "Manufacturer, Ship, Lti, Warbond, ID, Pledge, Cost, Date\n";
     buffer = buffer + HangarXPLOR.GetShipList($target).map(function(ship) { return [ '"' + ship.manufacturer + '"', '"' + ship.name + '"', ship.lti, ship.warbond, ship.package_id, '"' + ship.pledge + '"', '"' + ship.cost + '"', '"' + ship.pledge_date + '"' ].join(',')}).join('\n')
 
-    $download.attr('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(buffer));
+    $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
     $download.attr('download', 'shiplist.csv');
+    $download.attr('type', 'text/csv');
     $download[0].click();
   }
 })();
-

@@ -9,6 +9,7 @@
   var scripts = [
     'web_resources/HangarXPLOR.js',
     'web_resources/HangarXPLOR.Debug.js', // Uncomment to debug third party hangar HTML
+    'web_resources/HangarXPLOR.Download.js',
     'web_resources/HangarXPLOR.Toggle.js',
     'web_resources/HangarXPLOR.Templates.js',
     'web_resources/HangarXPLOR.Sort.js',
@@ -21,7 +22,6 @@
     'web_resources/HangarXPLOR.Pager.js',
     'web_resources/HangarXPLOR.LoadPage.js',
     'web_resources/HangarXPLOR.Filter.js',
-    'web_resources/HangarXPLOR.Download.js',
     'web_resources/HangarXPLOR.Dropdown.js',
     'web_resources/HangarXPLOR.DrawUI.js',
     'web_resources/HangarXPLOR.Components.js',
@@ -73,4 +73,5 @@
   };
   
   loadScript();
+  
 }()

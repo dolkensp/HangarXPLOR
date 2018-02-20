@@ -22,6 +22,7 @@ HangarXPLOR.Button = function(label, className, callback)
     e.preventDefault();
     e.stopPropagation();
     if (typeof callback === 'function') callback.call(this, e);
+    else console.log('Error With Callback', callback);
   });
   
   return $button;

@@ -3,17 +3,18 @@
   "manifest_version": 2,
   "name": "Star Citizen Hangar XPLORer",
   "short_name": "HangarXPLOR",
-  "version": "2.42",
+  "version": "3.0.0.1",
   
   "author": "/u/alluran (Peter Dolkens)",
   
   "permissions": [ "https://robertsspaceindustries.com/*" ],
   
   "icons": {
-    "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
-             
+  "browser_action": {
+    "default_icon": "icons/icon_128-fill.png"
+  },
   "content_scripts": [{
     "matches": ["https://robertsspaceindustries.com/account/pledges*"],
     "js": ["content_scripts/loader.js"],
@@ -22,7 +23,9 @@
   "web_accessible_resources": [
     "web_resources/HangarXPLOR.BulkUI.js",
     "web_resources/HangarXPLOR.Button.js",
+    "web_resources/HangarXPLOR.Components.js",
     "web_resources/HangarXPLOR.DrawUI.js",
+    "web_resources/HangarXPLOR.Download.js",
     "web_resources/HangarXPLOR.Dropdown.js",
     "web_resources/HangarXPLOR.Filter.js",
     "web_resources/HangarXPLOR.LoadPage.js",
