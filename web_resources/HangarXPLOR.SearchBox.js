@@ -16,3 +16,17 @@ HangarXPLOR.SearchBox = function(callback)
 
   return $searchBox;
 }
+
+HangarXPLOR.SearchBoxSuggestion = function(callback)
+{
+    if (HangarXPLOR.logsEnabled) {
+      console.log('Rendering SearchBoxSuggestion', value);
+    }
+
+    var $suggestion = $('<p>', { class: 'js-custom-search-suggestion' });
+    $suggestion.keyup(function(event) {
+        callback(event);
+    });
+
+    return $suggestion;
+}
