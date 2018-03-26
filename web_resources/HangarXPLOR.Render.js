@@ -4,7 +4,7 @@ var HangarXPLOR = HangarXPLOR || {};
 HangarXPLOR._pageNo = 1;
 HangarXPLOR._pageCount = 10;
 HangarXPLOR._totalRecords = 10;
-HangarXPLOR._similarityThreshold = 0.2;
+HangarXPLOR._similarityThreshold = 0.5;
 
 // Render items that match the search, filter and sort criteria
 HangarXPLOR.Render = function()

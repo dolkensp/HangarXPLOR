@@ -29,7 +29,7 @@
 .js-bulk-ui .loading .value { display: none; }
 .js-bulk-ui .loading .status { display: block; }
 
-.js-custom-search {  border: 1px solid rgba(22, 42, 63, 0.8); font-size: 12px; color: #355e78; width: 100%; padding: 10px 15px; display: block; margin-bottom: 3px; -moz-box-sizing: border-box; box-sizing: border-box; -webkit-transition: all 0.2s !important; -moz-transition: all 0.2s !important; -o-transition: all 0.2s !important; -ms-transition: all 0.2s !important; transition: all 0.2s !important;
+.js-custom-search {  border: 1px solid rgba(22, 42, 63, 0.8); font-size: 12px; color: #355e78; width: 100%; padding: 10px 15px; display: block; -moz-box-sizing: border-box; box-sizing: border-box; -webkit-transition: all 0.2s !important; -moz-transition: all 0.2s !important; -o-transition: all 0.2s !important; -ms-transition: all 0.2s !important; transition: all 0.2s !important;
     position: absolute;
     top: 0;
     left: 0;
@@ -46,8 +46,8 @@
  }
 
 .js-custom-search-wrapper {
-    width: 100%;
-     position: relative;
+    position: relative;
+    padding-top: 35px;
 }
 
 .count .cash,

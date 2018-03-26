@@ -2,9 +2,16 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 //@Source https://gist.github.com/doorhammer/9957864
+HangarXPLOR.similarityCache = {};
+
 HangarXPLOR.similarity = function(sa1, sa2){
     var s1 = sa1.replace(/\s/g, "").toLowerCase();
     var s2 = sa2.replace(/\s/g, "").toLowerCase();
+    const cacheKey = (s1 + s2);
+
+    if(cacheKey in HangarXPLOR.similarityCache) {
+        return HangarXPLOR.similarityCache[cacheKey];
+    }
 
     function intersect(arr1, arr2) {
         var r = [], o = {}, l = arr2.length, i, v;
@@ -33,7 +40,7 @@ HangarXPLOR.similarity = function(sa1, sa2){
     var similarity_den = pairs(s1).length + pairs(s2).length;
     var similarity = similarity_num / similarity_den;
 
-    return similarity;
+    return HangarXPLOR.similarityCache[cacheKey] = similarity;
 };
 //@End-Source
 
@@ -48,8 +55,10 @@ HangarXPLOR.Search = function(list, term)
 
   //--- Calculate similarity score for all entities
   list.forEach(function(e) {
-      const itemName = (e.shipName || e.displayName).toLowerCase();
-      e.similarityScore = HangarXPLOR.similarity(term.toLowerCase(), itemName);
+      e.similarityScore = Math.max(
+                            HangarXPLOR.similarity(term.toLowerCase(), e.shipName.toLowerCase()),
+                            HangarXPLOR.similarity(term.toLowerCase(), e.displayName.toLowerCase())
+                        );
       maxSimilarity = Math.max(e.similarityScore, maxSimilarity);
   });
 
@@ -79,8 +88,10 @@ HangarXPLOR.SearchSuggestion = function(list, term, elementClass) {
         var similarityScore = 0;
 
         list.forEach(function(e) {
-            const itemName = (e.shipName || e.displayName).toLowerCase();
-            var _t = HangarXPLOR.similarity(term.toLowerCase(), itemName);
+            var _t = e.similarityScore = Math.max(
+                                  HangarXPLOR.similarity(term.toLowerCase(), e.shipName.toLowerCase()),
+                                  HangarXPLOR.similarity(term.toLowerCase(), e.displayName.toLowerCase())
+                              );
 
             if(_t > similarityScore) {
                 similarityScore = _t;

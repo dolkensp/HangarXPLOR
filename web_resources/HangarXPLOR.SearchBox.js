@@ -8,10 +8,8 @@ HangarXPLOR.SearchBox = function(callback)
     console.log('Rendering SearchBox', value);
   }
 
-  var $searchBox = $('<div>').append(
-      $('<input>', { id: 'searchInput', class: 'js-custom-search' }),
-      $('<input>', { class: 'js-custom-search js-custom-search-complete', disabled: "disabled" })
-  );
+  const $searchBox = $('<input>', { id: 'searchInput', class: 'js-custom-search' });
+  const $searchBoxMirror = $('<input>', { class: 'js-custom-search js-custom-search-complete', disabled: "disabled" })
 
   $searchBox.keyup(function(event) {
       callback(event);
@@ -24,5 +22,5 @@ HangarXPLOR.SearchBox = function(callback)
       }
   })
 
-  return $searchBox;
+  return [$searchBox, $searchBoxMirror];
 }
