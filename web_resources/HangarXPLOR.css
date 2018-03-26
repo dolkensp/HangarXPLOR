@@ -28,6 +28,16 @@
 .js-bulk-ui .loading .value { display: none; }
 .js-bulk-ui .loading .status { display: block; }
 
+.js-custom-search {
+	background-color: #040A13;
+	border: 1px solid #070F1C;
+    color: #53A7C5;
+    width: 100%;
+	padding: 0px 0px 0px 10px;
+    font-size: 14px;
+	font-family: "univia-pro", sans-serif;
+}
+
 .count .cash,
 .cash .count { display: none; }
 
