@@ -71,10 +71,7 @@ HangarXPLOR.DrawUI = function()
   $controls2.append(HangarXPLOR.Toggle('Selected', 'IsSelected',  null,         'js-custom-filter', toggleHandler));
   $controls2.append(HangarXPLOR.Toggle('Free CCUs','IsFreeCCU',  '!IsFreeCCU',  'js-custom-filter', toggleHandler, '!IsFreeCCU'));
 
-  $controls3.append(HangarXPLOR.SearchBox(function(event) {
-      HangarXPLOR.Render();
-      HangarXPLOR.RefreshPager();
-  }));
+  $controls3.append(HangarXPLOR.SearchBox(function(event) { HangarXPLOR.Render();  HangarXPLOR.RefreshPager(); }));
 
   HangarXPLOR.Render();
   HangarXPLOR.BindBulkUI();
