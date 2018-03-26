@@ -11,7 +11,7 @@ HangarXPLOR.DrawUI = function()
 
   var $controls1 = $('<div>', { class: 'controls clearfix' });
   var $controls2 = $('<div>', { class: 'controls clearfix' });
-  var $controls3 = $('<div>', { class: 'controls clearfix' });
+  var $controls3 = $('<div>', { class: 'controls clearfix js-custom-search-wrapper'}); //@TODO !!!!!
 
   $controls.append($controls1, $controls2, $controls3);
 
@@ -72,7 +72,6 @@ HangarXPLOR.DrawUI = function()
   $controls2.append(HangarXPLOR.Toggle('Free CCUs','IsFreeCCU',  '!IsFreeCCU',  'js-custom-filter', toggleHandler, '!IsFreeCCU'));
 
   $controls3.append(HangarXPLOR.SearchBox(function(event) { HangarXPLOR.Render();  HangarXPLOR.RefreshPager(); }));
-  $controls3.append(HangarXPLOR.SearchBoxSuggestion(function(event) { HangarXPLOR.Render();  HangarXPLOR.RefreshPager(); }));
 
   HangarXPLOR.Render();
   HangarXPLOR.BindBulkUI();

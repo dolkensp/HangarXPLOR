@@ -4,7 +4,7 @@ var HangarXPLOR = HangarXPLOR || {};
 HangarXPLOR._pageNo = 1;
 HangarXPLOR._pageCount = 10;
 HangarXPLOR._totalRecords = 10;
-HangarXPLOR._similarityThreshold = 0.12;
+HangarXPLOR._similarityThreshold = 0.2;
 
 // Render items that match the search, filter and sort criteria
 HangarXPLOR.Render = function()
@@ -26,7 +26,7 @@ HangarXPLOR.Render = function()
   $(filterBy).each(function() { buffer = HangarXPLOR.Filter(buffer, $(this).val()); });
   $(sortBy).each(function() { buffer = HangarXPLOR.Sort(buffer, $(this).val()); });
   $(searchBy).each(function() {
-       var suggestion = HangarXPLOR.SearchSuggestion(buffer, $(this).val(), '.js-custom-search-suggestion');
+       var suggestion = HangarXPLOR.SearchSuggestion(buffer, $(this).val(), '.js-custom-search-complete');
        buffer = HangarXPLOR.Search(buffer, $(this).val());
   });
 
