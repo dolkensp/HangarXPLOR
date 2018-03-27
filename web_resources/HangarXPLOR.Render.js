@@ -26,12 +26,22 @@ HangarXPLOR.Render = function()
   $(searchBy).each(function() {
       HangarXPLOR.SearchSuggestion(buffer, $(this).val(), '.js-custom-search-complete');
       buffer = HangarXPLOR.Search(buffer, $(this).val());
+
   });
   $(sortBy).each(function() { buffer = HangarXPLOR.Sort(buffer, $(this).val()); });
 
   HangarXPLOR._filtered = buffer;
 
-  if (buffer.length == 0) {
+  //--- User performed search & no results
+  if (
+      HangarXPLOR._inventory.length > 0 &&
+      buffer.length === 0 &&
+      $('#searchInput').val().trim().length !== 0
+  ) {
+      buffer.push($('<h4>', { class: 'empty-list', text: 'Your search returned no results.' }));
+  }
+  //--- Empty Buffer
+  else if (buffer.length == 0) {
     buffer.push($('<h4>', { class: 'empy-list', text: 'Your hangar is empty.' }));
   }
 
