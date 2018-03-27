@@ -19,7 +19,10 @@ HangarXPLOR.SearchBox = function()
   $searchBox.keydown(function(event) {
       if(event.keyCode === 9) {
           event.preventDefault();
-          $('#searchInput').val($('.js-custom-search-complete').val());
+
+          if($('.js-custom-search-complete').val().trim().length > 0) {
+              $('#searchInput').val($('.js-custom-search-complete').val());
+          }
       }
   })
 

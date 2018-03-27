@@ -89,14 +89,14 @@ HangarXPLOR.SearchSuggestion = function(list, term, elementClass) {
         var similarityScore = 0;
 
         list.forEach(function(e) {
-            var _t = e.similarityScore = Math.max(
-                                  HangarXPLOR.similarity(term.toLowerCase(), e.shipName.toLowerCase()),
-                                  HangarXPLOR.similarity(term.toLowerCase(), e.displayName.toLowerCase())
-                              );
+
+            const shipNameSimilarity = HangarXPLOR.similarity(term.toLowerCase(), e.shipName.toLowerCase());
+            const displayNameSimilarity = HangarXPLOR.similarity(term.toLowerCase(), e.displayName.toLowerCase());
+            const _t = e.similarityScore = Math.max(shipNameSimilarity, displayNameSimilarity);
 
             if(_t > similarityScore) {
                 similarityScore = _t;
-                suggestion = e.displayName;
+                suggestion = (shipNameSimilarity > displayNameSimilarity ? e.shipName : e.displayName);
             }
         });
     }
