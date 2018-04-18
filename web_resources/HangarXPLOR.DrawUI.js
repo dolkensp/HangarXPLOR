@@ -41,6 +41,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'Purchased', Text: 'Pledge Date', Selected: sort1 == 'Purchased' },
     { Value: 'Name', Text: 'Pledge Name', Selected: sort1 == 'Name' },
     { Value: 'Value', Text: 'Pledge Value', Selected: sort1 == 'Value' },
+    { Value: 'Score', Text: 'Search Score', Class: 'search-score', Selected: sort1 == 'Score' },
   ], '137px', 'js-custom-sort', function(e, value) { $.cookie('HangarXPLOR.Sort', value); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); }));
 
   $controls1.append(HangarXPLOR.Pager([

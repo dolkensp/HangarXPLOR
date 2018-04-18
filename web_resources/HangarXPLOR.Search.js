@@ -1,107 +1,38 @@
 
 var HangarXPLOR = HangarXPLOR || {};
-
-//@Source https://gist.github.com/doorhammer/9957864
-HangarXPLOR._similarityThreshold = 0.5;
-HangarXPLOR.similarityCache = {};
-
-HangarXPLOR.similarity = function(sa1, sa2){
-    var s1 = sa1.replace(/\s/g, "").toLowerCase();
-    var s2 = sa2.replace(/\s/g, "").toLowerCase();
-    const cacheKey = (s1 + s2);
-
-    if(cacheKey in HangarXPLOR.similarityCache) {
-        return HangarXPLOR.similarityCache[cacheKey];
-    }
-
-    function intersect(arr1, arr2) {
-        var r = [], o = {}, l = arr2.length, i, v;
-        for (i = 0; i < l; i++) {
-            o[arr2[i]] = true;
-        }
-        l = arr1.length;
-        for (i = 0; i < l; i++) {
-            v = arr1[i];
-            if (v in o) {
-                r.push(v);
-            }
-        }
-        return r;
-    }
-
-    var pairs = function(s){
-        var pairs = [];
-        for(var i = 0; i < s.length - 1; i++){
-            pairs[i] = s.slice(i, i+2);
-        }
-        return pairs;
-    }
-
-    var similarity_num = 2 * intersect(pairs(s1), pairs(s2)).length;
-    var similarity_den = pairs(s1).length + pairs(s2).length;
-    var similarity = similarity_num / similarity_den;
-
-    return HangarXPLOR.similarityCache[cacheKey] = similarity;
-};
-//@End-Source
+HangarXPLOR._searchTerm = HangarXPLOR._searchTerm || '';
+HangarXPLOR._suggestion = HangarXPLOR._suggestion || '';
 
 // Search a list, based on the specified search term
 HangarXPLOR.Search = function(list, term)
 {
-
-  if(term.trim().length === 0 || list.length === 0) return list;
-
-  var _modified = [];
-  var maxSimilarity = 0;
-
-  //--- Calculate similarity score for all entities
-  list.forEach(function(e) {
-      e.similarityScore = Math.max(
-                            HangarXPLOR.similarity(term.toLowerCase(), e.shipName.toLowerCase()),
-                            HangarXPLOR.similarity(term.toLowerCase(), e.displayName.toLowerCase())
-                        );
-      maxSimilarity = Math.max(e.similarityScore, maxSimilarity);
-  });
-
-  //--- Normalize similarity score
-  list.forEach(function(e) {
-     e.similarityScore = e.similarityScore / maxSimilarity;
-     if(e.similarityScore >= HangarXPLOR._similarityThreshold) {
-         _modified.push(e);
-     }
-  });
-
-  //--- Sort entities; similarity score highest -> lowest
-  _modified.sort(function(a,b) {
-      if(a.similarityScore < b.similarityScore) return 1;
-      else if(a.similarityScore > b.similarityScore) return -1;
-      else return 0;
-  });
-
-  return _modified;
+  HangarXPLOR._searchTerm = term;
+  
+  if(term.trim().length < 2 || list.length === 0) {
+    HangarXPLOR._suggestion = '';
+    return list;
+  }
+  
+  var fuse = new Fuse(list, {
+    tokenize: true,
+    matchAllTokens: true,
+    includeScore: true,
+    threshold: 0.3,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 3,
+    keys: [ "sortName", "shipName", "originalName" ]});
+  
+  var modified = fuse.search(term);
+  
+  modified = modified.map(function(e) { e.item.similarityScore = e.score; return e.item; });
+  
+  if (modified.length > 0) HangarXPLOR._suggestion = modified[0].sortName;
+  
+  return modified;
 }
 
-HangarXPLOR.SearchSuggestion = function(list, term, elementClass) {
-
-    var suggestion = "";
-
-    if(term.trim().length > 0) {
-        var similarityScore = 0;
-
-        list.forEach(function(e) {
-
-            const shipNameSimilarity = HangarXPLOR.similarity(term.toLowerCase(), e.shipName.toLowerCase());
-            const displayNameSimilarity = HangarXPLOR.similarity(term.toLowerCase(), e.displayName.toLowerCase());
-            const _t = e.similarityScore = Math.max(shipNameSimilarity, displayNameSimilarity);
-
-            if(_t > similarityScore) {
-                similarityScore = _t;
-                suggestion = (shipNameSimilarity > displayNameSimilarity ? e.shipName : e.displayName);
-            }
-        });
-    }
-
-    $(elementClass).val(suggestion.substr(suggestion.toLowerCase().indexOf(term.toLowerCase())));
-    return suggestion;
-
+HangarXPLOR.SearchSuggestion = function(list, term) {
+  return term + HangarXPLOR._suggestion.substr(HangarXPLOR._suggestion.toLowerCase().indexOf(term.toLowerCase()) + term.length);
 }
