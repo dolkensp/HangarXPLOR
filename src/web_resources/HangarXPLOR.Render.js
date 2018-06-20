@@ -12,9 +12,7 @@ HangarXPLOR.Render = function()
   var sortBy = 'js-custom-sort';
   var searchBy = 'js-custom-search';
   
-  if (HangarXPLOR.logsEnabled) {
-    console.log('Rendering', filterBy, sortBy, searchBy, HangarXPLOR._pageNo, HangarXPLOR._pageCount);
-  }
+  HangarXPLOR.Log('Rendering', filterBy, sortBy, searchBy, HangarXPLOR._pageNo, HangarXPLOR._pageCount);
   
   filterBy = '.' + filterBy;
   sortBy = '.' + sortBy;
