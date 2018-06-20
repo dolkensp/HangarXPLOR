@@ -2,6 +2,9 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 HangarXPLOR._ships = [
+  { 'name': '100i', 'thumbnail': '/media/bapnpk9usqxxhr/heap_infobox/100i.jpg' },
+  { 'name': '125a', 'thumbnail': '/media/vkuyeedcipouyr/heap_infobox/125a.jpg' },
+  { 'name': '135c', 'thumbnail': '/media/j6gp10aglbb0or/heap_infobox/135c.jpg' },
   { 'name': '300i', 'thumbnail': '/media/ep375pda2jer7r/heap_infobox/300i_storefront_visual.jpg' },
   { 'name': '315p', 'thumbnail': '/media/o34z1cyxt1um8r/heap_infobox/315p_storefront_visual.jpg' },
   { 'name': '325a', 'thumbnail': '/media/gdol1g9fswvjcr/heap_infobox/325a_storefront_visual.jpg' },
@@ -80,6 +83,7 @@ HangarXPLOR._ships = [
   { 'name': 'Nox Kue', 'thumbnail': '/media/z676k3irx41iur/heap_infobox/NoxKue-Left.jpg' },
   { 'name': 'Nox', 'thumbnail': '/media/3y2kl543u5n4qr/heap_infobox/Nox-Left.jpg' },
   { 'name': 'Orion', 'thumbnail': '/media/hfpnkupg7gr6er/heap_infobox/RSI_Orion_Situ1b_150219_GH.jpg' },
+  { 'name': 'Origin 100 Series Pack', 'thumbnail': '/media/jhifpuskfsm4gr/heap_infobox/Origin_100_All_100s_LineUP_Front_sm-Min.jpg' },
   { 'name': 'P-52 Merlin', 'thumbnail': '/media/a9231ysz5cnvor/heap_infobox/Top.jpg' },
   { 'name': 'P-72 Archimedes', 'thumbnail': '/media/xqgbgw3x6o54ir/heap_infobox/Archimedes_Front_01.jpg' },
   { 'name': 'Razor', 'thumbnail': '/media/18235dq8cydhur/heap_infobox/Misc-Razer-Murray-Ringz-Paint-V5.jpg' },

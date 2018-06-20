@@ -7,6 +7,7 @@
   ];
   
   var scripts = [
+    'web_resources/fuse.min.js', // Fuzzy Search Library
     'web_resources/HangarXPLOR.js',
     // 'web_resources/HangarXPLOR.Debug.js', // Uncomment to debug third party hangar HTML
     'web_resources/HangarXPLOR.Download.js',
