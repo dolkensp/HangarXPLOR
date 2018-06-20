@@ -221,7 +221,7 @@ HangarXPLOR.ProcessItem = function()
     h3Text.textContent = this.displayName;
     
   } else {
-    console.log('Warning: Error parsing', this.innerHTML);
+    HangarXPLOR.Log('Warning: Error parsing', this.innerHTML);
   }
 
   HangarXPLOR._inventory.push(this);

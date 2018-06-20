@@ -11,9 +11,7 @@ if ($.cookie('debug') == "true") {
   {
     var url = HangarXPLOR._debugRoot + 'debug/hangar-' + pageNo + '.html';
     
-    if (HangarXPLOR.logsEnabled) {
-      console.log('Loading', url);
-    }
+    HangarXPLOR.Log('Loading', url);
     
     $.ajax({ url, method: 'GET', 
       success: function(html) { HangarXPLOR.ProcessPage(html, pageNo) }, 

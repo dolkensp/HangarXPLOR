@@ -1,0 +1,16 @@
+{
+  "name": "hangarxplor",
+  "description": "This extension improves the Hangar page on RobertsSpaceIndustries.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolkensp/HangarXPLOR.git"
+  },
+  "author": "/u/alluran (Peter Dolkens)",
+  "bugs": {
+    "url": "https://github.com/dolkensp/HangarXPLOR/issues"
+  },
+  "homepage": "https://github.com/dolkensp/HangarXPLOR#readme",
+  "dependencies": {
+    "jszip": "^3.1.5"
+  }
+}
