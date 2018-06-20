@@ -28,8 +28,6 @@ build_script:
   - node --version
   - npm --version
   - node build.js %APPVEYOR_BUILD_VERSION%
-  - ps: grunt test --no-color # PowerShell
-  - cmd: grunt test --no-color
 
 cache:
   - node_modules -> package.json  
