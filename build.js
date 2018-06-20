@@ -41,5 +41,5 @@ support.forEach((browser, index) => {
   
   // TODO: Copy Files In
   
-  zip.generateNodeStream({type:'nodebuffer',streamFiles:true}).pipe(fs.createWriteStream('dist/' + manifest.short_name + '-' + browser + '-v' + manifest.version + '.zip'))
+  zip.generateNodeStream({ type:'nodebuffer', compression: 'DEFLATE', streamFiles:true }).pipe(fs.createWriteStream('dist/' + manifest.short_name + '-' + browser + '-v' + manifest.version + '.zip'))
 });
