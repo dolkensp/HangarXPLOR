@@ -31,7 +31,6 @@ HangarXPLOR.BulkUI = function()
   var $billing = $('#billing');
   
   HangarXPLOR.$bulkUI = $('<div>', { class: 'js-bulk-ui' });
-  HangarXPLOR.$bulkUI.summaryType = $.cookie('HangarXPLOR.$bulkUI.summaryType') || 'cash';
   
   HangarXPLOR.$bulkUI.$inner = $('<div>', { class: 'inner content-block1 loading' });
   HangarXPLOR.$bulkUI.$value = $('<div>', { class: 'value' });
@@ -39,7 +38,7 @@ HangarXPLOR.BulkUI = function()
   HangarXPLOR.$bulkUI.$downloads = $('<div>', { class: 'actions' });
   HangarXPLOR.$bulkUI.$loading = $('<div>', { class: 'status value' });
   
-  HangarXPLOR.$bulkUI.addClass(HangarXPLOR.$bulkUI.summaryType);
+  HangarXPLOR.$bulkUI.addClass(HangarXPLOR._feature.Summary);
   
   $billing.append(HangarXPLOR.$bulkUI);
   HangarXPLOR.$bulkUI.append(HangarXPLOR.$bulkUI.$inner);
@@ -64,7 +63,7 @@ HangarXPLOR.BindBulkUI = function()
 {
 
   HangarXPLOR.$bulkUI.$inner.removeClass('loading');
-  HangarXPLOR.$list.addClass(HangarXPLOR.$bulkUI.summaryType);
+  HangarXPLOR.$list.addClass(HangarXPLOR._feature.Summary);
   HangarXPLOR.$list.on('click.HangarXPLOR', 'a', function(e) { e.originalEvent.isButton = true; });
   HangarXPLOR.$list.on('click.HangarXPLOR', 'li', function(e) {
     if (!e.originalEvent.isButton)
@@ -81,19 +80,19 @@ HangarXPLOR.BindBulkUI = function()
   
   HangarXPLOR.$bulkUI.$value.bind('click', function() {
     
-    HangarXPLOR.$bulkUI.removeClass(HangarXPLOR.$bulkUI.summaryType);
-    HangarXPLOR.$list.removeClass(HangarXPLOR.$bulkUI.summaryType);
+    HangarXPLOR.$bulkUI.removeClass(HangarXPLOR._feature.Summary);
+    HangarXPLOR.$list.removeClass(HangarXPLOR._feature.Summary);
     
-    switch (HangarXPLOR.$bulkUI.summaryType)
+    switch (HangarXPLOR._feature.Summary)
     {
-      case "cash": HangarXPLOR.$bulkUI.summaryType = "count"; break;
-      case "count": HangarXPLOR.$bulkUI.summaryType = "cash"; break;
+      case "cash": HangarXPLOR._feature.Summary = "count"; break;
+      case "count": HangarXPLOR._feature.Summary = "cash"; break;
     }
-    $.cookie('HangarXPLOR.$bulkUI.summaryType', HangarXPLOR.$bulkUI.summaryType);
     
-    HangarXPLOR.$bulkUI.addClass(HangarXPLOR.$bulkUI.summaryType);
-    HangarXPLOR.$list.addClass(HangarXPLOR.$bulkUI.summaryType);
+    HangarXPLOR.$bulkUI.addClass(HangarXPLOR._feature.Summary);
+    HangarXPLOR.$list.addClass(HangarXPLOR._feature.Summary);
     
+    HangarXPLOR.SaveSettings();
     HangarXPLOR.RefreshBulkUI();
   });
   

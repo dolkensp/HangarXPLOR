@@ -14,7 +14,7 @@ HangarXPLOR.Pager = function(options, width, className, callback)
   width = width || '150px';
   className = className || 'js-custom-pager';
   
-  if (HangarXPLOR.logsEnabled) console.log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
+  HangarXPLOR.Log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
   
   var $control = $('<div>', { class: 'options-selector pager-wrapper ' + className });
   var $pager = $('<div>', { class: 'pager clearfix js-pager' });
@@ -45,11 +45,11 @@ HangarXPLOR.Pager = function(options, width, className, callback)
     $left.append(HangarXPLOR.Dropdown(options, width, className, function(e, pageCount) {
       HangarXPLOR._pageNo = 1;
       HangarXPLOR._pageCount = pageCount;
-      $.cookie('HangarXPLOR._pageCount', HangarXPLOR._pageCount);
-      
-      HangarXPLOR.RefreshPager();
       
       if (typeof callback === 'function') callback.call(this, e, HangarXPLOR._pageNo);
+      
+      HangarXPLOR.SaveSettings();
+      HangarXPLOR.RefreshPager();
     }));
     
     if (maxPages == 1) {
@@ -73,10 +73,10 @@ HangarXPLOR.Pager = function(options, width, className, callback)
       
       if (newPage != HangarXPLOR._pageNo) {
         HangarXPLOR._pageNo = newPage;
-        $.cookie('HangarXPLOR._pageNo', HangarXPLOR._pageNo);
         
         if (typeof callback === 'function') callback.call(this, e, HangarXPLOR._pageNo);
         
+        HangarXPLOR.SaveSettings();
         HangarXPLOR.RefreshPager();
       }
     });

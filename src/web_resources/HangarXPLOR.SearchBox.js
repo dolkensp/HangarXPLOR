@@ -4,9 +4,7 @@ var HangarXPLOR = HangarXPLOR || {};
 // Render a searchbox
 HangarXPLOR.SearchBox = function(value)
 {
-  if (HangarXPLOR.logsEnabled) {
-    console.log('Rendering SearchBox', value);
-  }
+  HangarXPLOR.Log('Rendering SearchBox', value);
   
   var $searchBox = null;
   
