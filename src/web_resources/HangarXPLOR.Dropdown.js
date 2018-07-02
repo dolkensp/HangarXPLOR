@@ -4,7 +4,7 @@ var HangarXPLOR = HangarXPLOR || {};
 // Render a dropdown that sets the value of an element
 HangarXPLOR.Dropdown = function(options, width, className, callback)
 {
-  if (HangarXPLOR.logsEnabled) console.log('Rendering Dropdown', options);
+  HangarXPLOR.Log('Rendering Dropdown', options);
   
   className = className || 'js-custom-filter';
   width = width || '150px';

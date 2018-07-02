@@ -127,11 +127,13 @@ HangarXPLOR.ProcessItem = function()
     this.pledgeId = parseInt($('.js-pledge-id', this).val().trim());
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.componentName = $component.prev().text();
-    this.shipName = $ship.text();
+    this.shipName = $.map($ship, $.text).join(", ");
     this.shipName = this.shipName.replace('Origin 600i Exploration Module', 'Origin 600i');
     this.shipName = this.shipName.replace('M50 Interceptor', 'M50');
     this.shipName = this.shipName.replace('M50', 'M50 Interceptor');
+    
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
+    if (this.meltValue != this.meltValue) this.meltValue = 0; // NaN safety
     this.hasValue = this.meltValue > 0;
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
     this.hasShip = $ship.length > 0;
@@ -221,7 +223,7 @@ HangarXPLOR.ProcessItem = function()
     h3Text.textContent = this.displayName;
     
   } else {
-    console.log('Warning: Error parsing', this.innerHTML);
+    HangarXPLOR.Log('Warning: Error parsing', this.innerHTML);
   }
 
   HangarXPLOR._inventory.push(this);

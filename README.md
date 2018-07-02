@@ -1,4 +1,4 @@
-# HangarXPLOR
+# HangarXPLOR [![Build status](https://ci.appveyor.com/api/projects/status/7j87vur0plpw74vx/branch/master?svg=true)](https://ci.appveyor.com/project/dolkensp/hangarxplor/branch/master)
 
 This project aims to improved the default Hangar page at https://robertsspaceindustries.com/account/pledges.
 
