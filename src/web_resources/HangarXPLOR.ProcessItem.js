@@ -62,12 +62,13 @@ HangarXPLOR.ProcessItem = function()
   var pledgeName = $('.js-pledge-name', this).val() || '';
   
   var $ship      = $('.kind:contains(Ship)', this).parent().find('.title');
+  // console.log('ProcessItem $ship', $ship);  
   var $component = $('.kind:contains(Component)', this);
   var $wrapper   = $('.wrapper-col', this);
     
   var h3Text     = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
     
-  
+
   if (pledgeName.length > 0) {
     // Clean up existing hangar items
     
@@ -226,6 +227,7 @@ HangarXPLOR.ProcessItem = function()
     if ($.cookie('noPrefix') == 'true')
       this.displayName = this.sortName;
       
+    // console.log('ProcessItem this.displayName', this.displayName);
     h3Text.textContent = this.displayName;
     
   } else {
