@@ -11,7 +11,7 @@ HangarXPLOR.Dropdown = function(options, width, className, callback)
   
   var $ul = $('<ul>', { class: 'body', style: 'display: none' });
   var $style = $('<div>', { class: 'js-selectlist selectlist' });
-  var $label = $('<span>', { text: options[0].Text });
+  var $label = $('<span>', { text: options[0].Text, style: 'overflow: unset' });
   var $value = $('<input>', { type: 'hidden', class: className, value: options[0].Value });
   var $dropdown = $('<div>', { style: 'width: ' + width });
   

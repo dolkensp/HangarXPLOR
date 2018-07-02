@@ -8,6 +8,14 @@ HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
 HangarXPLOR._warbondCount  = HangarXPLOR._warbondCount || 0;
 
+HangarXPLOR.CleanShipName = function(shipName)
+{
+  shipName = shipName.replace('Origin 600i Exploration Module', 'Origin 600i');
+  shipName = shipName.replace('M50 Interceptor', 'M50');
+  shipName = shipName.replace('M50', 'M50 Interceptor');
+  return shipName;
+}
+
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
@@ -128,9 +136,7 @@ HangarXPLOR.ProcessItem = function()
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.componentName = $component.prev().text();
     this.shipName = $.map($ship, $.text).join(", ");
-    this.shipName = this.shipName.replace('Origin 600i Exploration Module', 'Origin 600i');
-    this.shipName = this.shipName.replace('M50 Interceptor', 'M50');
-    this.shipName = this.shipName.replace('M50', 'M50 Interceptor');
+    this.shipName = HangarXPLOR.CleanShipName(this.shipName);
     
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
     if (this.meltValue != this.meltValue) this.meltValue = 0; // NaN safety
@@ -154,7 +160,7 @@ HangarXPLOR.ProcessItem = function()
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
-    this.isComponent = $('.kind:contains(Component)', this).length > 0;
+    this.isComponent = $component.length > 0;
     this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1;
     this.isSelected = false;
     
@@ -207,7 +213,7 @@ HangarXPLOR.ProcessItem = function()
     if (this.isReward) titleParts[0] = "Reward";
     
     if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip) {
-      $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '')));
+      $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '').replace('lti', 'LTI')));
     }
     
     if (this.hasShip)

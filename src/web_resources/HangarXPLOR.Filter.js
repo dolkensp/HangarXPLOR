@@ -25,6 +25,9 @@ HangarXPLOR.Filter = function(list, filter)
     case "HasShip":
       list = $.grep(list, function(item) { return item.hasShip; });
       break;
+    case "IsUpgradeOrHasShip":
+      list = $.grep(list, function(item) { return item.hasShip || item.isUpgrade; });
+      break;      
     case "IsPackage":
       list = $.grep(list, function(item) { return item.isPackage; });
       break;
