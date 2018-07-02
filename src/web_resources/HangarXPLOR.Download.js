@@ -32,13 +32,13 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._filtered);
     return $target.map(function() { 
       var $pledge = this;
-      var pledge = {};
-      pledge.name = $('.js-pledge-name', $pledge).val();
-      pledge.id = $('.js-pledge-id', $pledge).val();
-      pledge.cost = $('.js-pledge-value', $pledge).val();
-      pledge.lti = $('.title:contains(Lifetime Insurance)', $pledge).length > 0;
-      pledge.date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
-      pledge.warbond = pledge.name.toLowerCase().indexOf('warbond') > -1;
+      var item = {};
+      item.name = $('.js-pledge-name', $pledge).val();
+      item.id = $('.js-pledge-id', $pledge).val();
+      item.cost = $('.js-pledge-value', $pledge).val();
+      item.lti = $('.title:contains(Lifetime Insurance)', $pledge).length > 0;
+      item.date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
+      item.warbond = item.name.toLowerCase().indexOf('warbond') > -1;
 
       return $('.kind:contains(Ship)', this).parent().map(function() {
         var $ship = this;
@@ -47,15 +47,32 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
         ship.manufacturer = _manufacturerShortMap[ship.manufacturer] || ship.manufacturer;
         ship.name = $('.title', $ship).text();
         ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
-        ship.lti = pledge.lti;
-        ship.warbond = pledge.warbond;
-        ship.package_id = pledge.id;
-        ship.pledge = pledge.name;
-        ship.pledge_date = pledge.date;
-        ship.cost = pledge.cost;
+        ship.lti = item.lti;
+        ship.warbond = item.warbond;
+        ship.package_id = item.id;
+        ship.pledge = item.name;
+        ship.pledge_date = item.date;
+        ship.cost = item.cost;
         return ship;
       }).get()
-    }).sort(function(a, b) { return a.manufacturer == b.manufacturer ? (a.name < b.name ? -2 : 2) : (a.manufacturer < b.manufacturer ? -1 : 1); }).get();
+    })
+    // Sort any inner ships by manufacturer and then name
+    .sort(function(a, b) {
+      if (a.manufacturer < b.manufacturer) {
+        return -1
+      }
+      if (a.manufacturer > b.manufacturer) {
+        return 1
+      }
+      if (a.name < b.name) {
+        return -1
+      }
+      if (a.name > b.name) {
+        return 1
+      }
+      return 0;
+    })
+    .get();
   }
   
   HangarXPLOR._callbacks.DownloadJSON = function(e) {
