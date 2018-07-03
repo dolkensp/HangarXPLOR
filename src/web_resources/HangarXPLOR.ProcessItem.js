@@ -242,7 +242,7 @@ HangarXPLOR.ProcessItem = function()
     if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip) {
       this.originalName = this.originalName
         .replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '')
-        .replace(/ lti$/i, 'LTI');
+        .replace(' lti', ' LTI');
       $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.originalName));
     }
     
