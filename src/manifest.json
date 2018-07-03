@@ -20,7 +20,7 @@
     "default_popup": "ui_resources/HangarXPLOR.Settings.html"
   },
   "content_scripts": [{
-    "matches": ["https://robertsspaceindustries.com/account/pledges*"],
+    "matches": ["https://robertsspaceindustries.com/account/pledges*", "https://www.robertsspaceindustries.com/account/pledges*"],
     "js": ["content_scripts/loader.js"],
     "run_at": "document_end"
   }],
