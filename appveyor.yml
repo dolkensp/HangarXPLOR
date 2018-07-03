@@ -28,7 +28,7 @@ build_script:
   - node --version
   - npm --version
   - node build.js %APPVEYOR_BUILD_VERSION%
-  - eslint src
+  - node_modules\.bin\eslint src
 
 cache:
   - node_modules -> package.json  
