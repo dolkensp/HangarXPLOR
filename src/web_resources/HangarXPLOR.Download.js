@@ -41,6 +41,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
       item.warbond = $pledge.isWarbond;
       item.giftable = $pledge.isGiftable;
       item.pledge = $pledge.displayName;
+      item.package = $pledge.isPackage;
 
       if (this.isUpgrade) {
         // console.log('GetDownloadItems $pledge', JSON.stringify($pledge));
@@ -107,7 +108,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     
     var items = HangarXPLOR.GetDownloadItems();
     
-    var buffer = "Pledge,Type,Manufacturer,Name,ID,Cost,Date,LTI,Warbond,Giftable\n";
+    var buffer = "Pledge,Type,Manufacturer,Name,ID,Cost,Date,LTI,Warbond,Package,Giftable\r\n";
     buffer = buffer + items.map(function(item) {
       return [
         '"' + item.pledge + '"',
@@ -119,11 +120,12 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
         '"' + item.date + '"',
         item.lti,
         item.warbond,
+        item.package,
         item.giftable
       ]
       .join(',')
     })
-    .join('\n')
+    .join('\r\n')
 
     // console.log('DownloadCSV buffer\n', buffer);
     // return;

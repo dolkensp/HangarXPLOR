@@ -202,3 +202,4 @@ publish
 *.xpi
 *.crx
 package-lock.json
+*.code-workspace
