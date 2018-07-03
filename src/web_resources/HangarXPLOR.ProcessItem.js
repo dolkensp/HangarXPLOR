@@ -64,6 +64,7 @@ HangarXPLOR.ProcessItem = function()
   var debug = //debugName.includes('tumbril') ||
               //debugName.includes('origin x1') ||
               //debugName.includes('space globe') ||
+              //debugName.includes('anniversary 2017 mustang discount starter package')
               false;
   if (debug) {
     console.log('ProcessItem pledgeName', pledgeName);
@@ -219,7 +220,7 @@ HangarXPLOR.ProcessItem = function()
     
     $wrapper.append($("<div>", { class: 'date-col melt-col' }).append($('<label>', { text: 'Melt Value' }), this.pledgeValue));
     
-    var ltiSuffix = this.hasLTI ? ' - LTI' : (titlePartsLast || '');
+    var ltiSuffix = this.hasLTI ? ' - LTI' : '';
     
     if (this.isSpaceGlobe) {
       titleParts = $('.title', this).text().split(' - ')
@@ -241,7 +242,7 @@ HangarXPLOR.ProcessItem = function()
     if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip) {
       this.originalName = this.originalName
         .replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '')
-        .replace(/ lti$/i, '');
+        .replace(/ lti$/i, 'LTI');
       $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.originalName));
     }
     
