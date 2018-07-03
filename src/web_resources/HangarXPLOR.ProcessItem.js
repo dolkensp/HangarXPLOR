@@ -19,7 +19,6 @@ HangarXPLOR.CleanShipName = function(shipName)
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
-  
   // Preprocess Tumbril Cyclone
   $('.without-images .title:contains(Tumbril Cyclone)', this).each(function() {
     var $tumbril = $(this);
@@ -60,9 +59,17 @@ HangarXPLOR.ProcessItem = function()
   // End Preprocessing
   
   var pledgeName = $('.js-pledge-name', this).val() || '';
-  
+
+  var debugName = pledgeName.toLowerCase();
+  var debug = //debugName.includes('tumbril') ||
+              //debugName.includes('origin x1') ||
+              //debugName.includes('space globe') ||
+              false;
+  if (debug) {
+    console.log('ProcessItem pledgeName', pledgeName);
+  }
+
   var $ship      = $('.kind:contains(Ship)', this).parent().find('.title');
-  // console.log('ProcessItem $ship', $ship);  
   var $component = $('.kind:contains(Component)', this);
   var $wrapper   = $('.wrapper-col', this);
     
@@ -105,7 +112,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^December 2014 Backer Reward/i, 'Reward - Takuetsu Mustang Model - December 2014');
     pledgeName = pledgeName.replace(/^(Hornet|Freelancer|Decorations - CitizenCon \d+) Poster/i, 'Posters - $1');
     pledgeName = pledgeName.replace(/ Poster$/i, '');
-    pledgeName = pledgeName.replace(/^Space Globe /i, 'Space Globes ');
+    pledgeName = pledgeName.replace(/^Space Globes/i, 'Space Globe');
     pledgeName = pledgeName.replace(/^Standalone Ship - Drake Dragonfly Ride Together Two-Pack/i, 'Combo - Drake Dragonfly Ride Together Two-Pack');
     pledgeName = pledgeName.replace(/^Add-ons - (.*) Mega(?: |-)Pack$/i, 'Combo - $1 Mega Pack');
     pledgeName = pledgeName.replace(/ - Holiday 20\d\d$/i, '');
@@ -132,13 +139,27 @@ HangarXPLOR.ProcessItem = function()
     
     for (var i = 0, j = titleParts.length; i < j; i++)
       titleParts[i] = titleParts[i].trim();
-    
+    if (debug) {
+      console.log('ProcessItem titleParts', titleParts);
+    }
+    var titlePartsFirst = titleParts[0];
+    var titlePartsMiddle = titleParts.slice(1, titleParts.length).join(' '); 
+    var titlePartsLast = titleParts[titleParts.length - 1];
+    if (debug) {
+      console.log('ProcessItem titlePartsFirst', titlePartsFirst);
+      console.log('ProcessItem titlePartsMiddle', titlePartsMiddle);
+      console.log('ProcessItem titlePartsLast', titlePartsLast);
+    }
+      
     this.pledgeId = parseInt($('.js-pledge-id', this).val().trim());
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.componentName = $component.prev().text();
     this.shipName = $.map($ship, $.text).join(", ");
     this.shipName = HangarXPLOR.CleanShipName(this.shipName);
-    
+    if (debug) {
+      console.log('ProcessItem this.shipName', this.shipName);
+    }
+      
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
     if (this.meltValue != this.meltValue) this.meltValue = 0; // NaN safety
     this.hasValue = this.meltValue > 0;
@@ -150,14 +171,14 @@ HangarXPLOR.ProcessItem = function()
     this.isPackage = ($('.title:contains(Squadron 42 Digital Download)', this).length + $('.title:contains(Star Citizen Digital Download)', this).length) > 0;
     this.isShip = $ship.length == 1;
     this.isCombo = $ship.length > 1;
-    this.isUpgrade = (titleParts[0] == "Ship Upgrades");
-    this.isAddOn = (titleParts[0] == "Add-Ons");
-    this.isTrophy = (titleParts[0] == "Trophy");
-    this.isPoster = (titleParts[0] == "Posters");
-    this.isFishtank = (titleParts[0] == "Fishtank");
-    this.isReward = (titleParts[0] == "Reward"); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
-    this.isSpacePlant = (titleParts[0] == "Space Plant");
-    this.isSpaceGlobe = (titleParts[0] == "Space Globes");
+    this.isUpgrade = (titlePartsFirst == "Ship Upgrades");
+    this.isAddOn = (titlePartsFirst == "Add-Ons");
+    this.isTrophy = (titlePartsFirst == "Trophy");
+    this.isPoster = (titlePartsFirst == "Posters");
+    this.isFishtank = (titlePartsFirst == "Fishtank");
+    this.isReward = (titlePartsFirst == "Reward"); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
+    this.isSpacePlant = (titlePartsFirst == "Space Plant");
+    this.isSpaceGlobe = (titlePartsFirst == "Space Globe");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
@@ -173,12 +194,10 @@ HangarXPLOR.ProcessItem = function()
     if (this.isWarbond)  HangarXPLOR._warbondCount += 1;
     if (this.hasLTI)     HangarXPLOR._ltiCount += 1;
     
-    if (this.hasLTI && titleParts[2] == null) titleParts[2] = ' - LTI';
-    
     // Special case for Gladius and Gold referal reward
-    if (titleParts[1] == 'Gladius and Gold') this.isFlair = this.isModel = this.isDecoration = true;
-    if (titleParts[1] == 'Gimbals and Guns') this.isFlair = this.isDecoration = false;
-    if (titleParts[1] == 'Badger and Badges') this.isFlair = false;
+    if (titlePartsMiddle == 'Gladius and Gold') this.isFlair = this.isModel = this.isDecoration = true;
+    if (titlePartsMiddle == 'Gimbals and Guns') this.isFlair = this.isDecoration = false;
+    if (titlePartsMiddle == 'Badger and Badges') this.isFlair = false;
     
     if (this.isShip) {
       for (var i = 0, j = HangarXPLOR._ships.length; i < j; i++) {
@@ -200,28 +219,37 @@ HangarXPLOR.ProcessItem = function()
     
     $wrapper.append($("<div>", { class: 'date-col melt-col' }).append($('<label>', { text: 'Melt Value' }), this.pledgeValue));
     
-    var ltiSuffix = this.hasLTI ? ' - LTI' : (titleParts[3] || '');
+    var ltiSuffix = this.hasLTI ? ' - LTI' : (titlePartsLast || '');
     
-    if (this.isSpaceGlobe) titleParts = $('.title', this).text().split(' - ');
-    
-    if (titleParts.length == 1) titleParts[1] = pledgeName;
-    
-    if (this.isShip) titleParts[1] = this.shipName;
-    if (this.isShip) titleParts[0] = "Ship";
-    if (this.isCombo) titleParts[0] = "Combo";
-    if (this.isPackage) titleParts[0] = "Package";
-    if (this.isUpgrade) titleParts[0] = "Upgrade";
-    if (this.isReward) titleParts[0] = "Reward";
-    
-    if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip) {
-      $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '').replace('lti', 'LTI')));
+    if (this.isSpaceGlobe) {
+      titleParts = $('.title', this).text().split(' - ')
+      titlePartsFirst = titleParts[0]
+      titlePartsMiddle = titleParts.slice(1).join(' - ')
     }
     
-    if (this.hasShip)
-      this.displayName = titleParts[0] + ' - ' + titleParts[1] + ltiSuffix + ' (' + this.pledgeId + ')';
-    else
-      this.displayName = titleParts[0] + ' - ' + titleParts[1] + ' (' + this.pledgeId + ')';
+    if (titleParts.length == 1) titlePartsMiddle = pledgeName;
     
+    if (this.isShip) {
+      titlePartsFirst = "Ship";
+      titlePartsMiddle = this.shipName;
+    } 
+    if (this.isCombo) titlePartsFirst = "Combo";
+    if (this.isPackage) titlePartsFirst = "Package";
+    if (this.isUpgrade) titlePartsFirst = "Upgrade";
+    if (this.isReward) titlePartsFirst = "Reward";
+    
+    if (this.isUpgraded || this.isPackage || this.isReward || this.isCombo || this.isShip) {
+      this.originalName = this.originalName
+        .replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '')
+        .replace(/ lti$/i, '');
+      $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.originalName));
+    }
+    
+    this.displayName = titlePartsFirst + ' - ' + titlePartsMiddle
+    if (this.hasShip)
+      this.displayName += ltiSuffix
+    this.displayName += ' (' + this.pledgeId + ')';
+
     this.sortName = this.displayName.replace(/^.*? - (.*)$/, '$1');
     
     if ($.cookie('noPrefix') == 'true')
