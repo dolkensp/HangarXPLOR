@@ -1,16 +1,16 @@
-
-var HangarXPLOR = HangarXPLOR || {};
+/* globals HangarXPLOR */
+var HangarXPLOR = window.HangarXPLOR || {};
 HangarXPLOR.Loading = HangarXPLOR.Loading || false;
 HangarXPLOR.BulkEnabled = HangarXPLOR.BulkEnabled || false;
 
 HangarXPLOR.$bulkUI = null;
 
 HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
-HangarXPLOR._callbacks.Gift = HangarXPLOR._callbacks.Gift || function(e) { window.alert('Coming Soon') }
-HangarXPLOR._callbacks.GiftConfirm = HangarXPLOR._callbacks.GiftConfirm || function(e) { window.alert('Coming Soon') }
+HangarXPLOR._callbacks.Gift = HangarXPLOR._callbacks.Gift || function() { window.alert('Coming Soon') }
+HangarXPLOR._callbacks.GiftConfirm = HangarXPLOR._callbacks.GiftConfirm || function() { window.alert('Coming Soon') }
 
-HangarXPLOR._callbacks.Melt = HangarXPLOR._callbacks.Melt || function(e) { window.alert('Coming Soon') }
-HangarXPLOR._callbacks.MeltConfirm = HangarXPLOR._callbacks.MeltConfirm || function(e) { window.alert('Coming Soon') }
+HangarXPLOR._callbacks.Melt = HangarXPLOR._callbacks.Melt || function() { window.alert('Coming Soon') }
+HangarXPLOR._callbacks.MeltConfirm = HangarXPLOR._callbacks.MeltConfirm || function() { window.alert('Coming Soon') }
 
 // Render UI controls
 HangarXPLOR.BulkUI = function()
@@ -73,8 +73,6 @@ HangarXPLOR.BindBulkUI = function()
       if (this.isSelected) $('.row', this).addClass('js-selected');
       
       HangarXPLOR.RefreshBulkUI();
-      
-      bulkHeight = $('.js-bulk-ui').height();
     }
   });
   
@@ -98,7 +96,7 @@ HangarXPLOR.BindBulkUI = function()
   
 }
 
-HangarXPLOR.UpdateStatus = function(pageNo)
+HangarXPLOR.UpdateStatus = function()
 {
   HangarXPLOR.$bulkUI.$loading.empty();
   

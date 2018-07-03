@@ -1,4 +1,5 @@
 
+/* eslint no-console: "off" */
 var HangarXPLOR = HangarXPLOR || {};
 
 HangarXPLOR.Log = function()
