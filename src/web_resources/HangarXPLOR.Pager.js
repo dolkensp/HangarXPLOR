@@ -59,7 +59,7 @@ HangarXPLOR.Pager = function(options, width, className, callback)
       $left.removeClass('mr5');
     }
     
-    for (var i = firstPage, j = Math.min(firstPage + maxButtons - 1, maxPages); i <= j; i++)
+    for (i = firstPage, j = Math.min(firstPage + maxButtons - 1, maxPages); i <= j; i++)
       $right.append($('<a>', { class: 'trans-02s trans-color' + ((i == HangarXPLOR._pageNo) ? ' active' : ''), rel: i, text: i }));
     var $buttons = $('a', $right);
     

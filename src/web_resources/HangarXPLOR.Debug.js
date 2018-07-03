@@ -13,7 +13,9 @@ if ($.cookie('debug') == "true") {
     
     HangarXPLOR.Log('Loading', url);
     
-    $.ajax({ url, method: 'GET', 
+    $.ajax({
+      url: url,
+      method: 'GET', 
       success: function(html) { HangarXPLOR.ProcessPage(html, pageNo) }, 
       error: function() { HangarXPLOR.DrawUI() }
     });
