@@ -41,7 +41,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
       item.warbond = $pledge.isWarbond;
       item.giftable = $pledge.isGiftable;
       item.pledge = $pledge.displayName;
-      item.package = $pledge.isPackage;
+      item.package = $pledge.isPackage ? 1 : 0;
 
       if (this.isUpgrade) {
         // console.log('GetDownloadItems $pledge', JSON.stringify($pledge));
@@ -57,6 +57,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
           // console.log('GetDownloadItems $ship', JSON.stringify($ship));          
           var ship = Object.assign({}, item);
           item.cost = 0; // Don't report cost for remaining ships in this Package/Combo
+          item.package = 0; // Don't report package for remaining ships in this Package/Combo
           ship.type = 'Ship';
           ship.manufacturer = $('.liner span', $ship).text();
           ship.manufacturer = _manufacturerShortMap[ship.manufacturer] || ship.manufacturer;
