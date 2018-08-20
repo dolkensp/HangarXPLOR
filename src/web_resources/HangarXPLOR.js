@@ -5,13 +5,6 @@ HangarXPLOR.$list = null;                            // Element where we display
 HangarXPLOR._inventory = [];                         // Inventory containing all pledges
 HangarXPLOR._debugRoot = $('#HangarXPLOR-js-1').attr('src').replace(/(.*)web_resources.*/, "$1");
 
-HangarXPLOR.Log = function()
-{
-  if (HangarXPLOR._logEnabled) {
-    console.log.apply(this, Array.from(arguments));
-  }
-}
-
 HangarXPLOR.LoadSettings = function(callback)
 {
   chrome.storage.sync.get(null, function(settings) {
@@ -81,7 +74,7 @@ HangarXPLOR.Initialize = function()
       HangarXPLOR.BulkUI();
       HangarXPLOR.$list = $($lists[0]);
       HangarXPLOR.$list.addClass('js-inventory');
-      delete $lists;
+      $lists = undefined;
       HangarXPLOR.LoadPage(1);
     } else {
       HangarXPLOR.Log('Error locating inventory');

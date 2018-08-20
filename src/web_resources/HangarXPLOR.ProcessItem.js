@@ -127,7 +127,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
     pledgeName = pledgeName.replace(/Discount Pack/i, 'Pack');
     pledgeName = pledgeName.replace(/Tumbril Cyclone LTI Presale/i, 'Tumbril Cyclone - LTI');
-    pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
+    pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout - +Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
     pledgeName = pledgeName.replace(/^(Digital )?(Advanced Hunter|Arbiter|Bounty Hunter|Colonel|Cutlass|Freelancer|Mercenary|Pirate|Rear Admiral|Scout|Specter|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
     pledgeName = pledgeName.replace("  ", " ").trim();
     // TODO: Add pre-processing for Reliant Variants Here if required
@@ -201,7 +201,7 @@ HangarXPLOR.ProcessItem = function()
     if (titlePartsMiddle == 'Badger and Badges') this.isFlair = false;
     
     if (this.isShip) {
-      for (var i = 0, j = HangarXPLOR._ships.length; i < j; i++) {
+      for (i = 0, j = HangarXPLOR._ships.length; i < j; i++) {
         if (this.shipName.toLowerCase().indexOf(HangarXPLOR._ships[i].name.toLowerCase()) > -1) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._ships[i].thumbnail + '")'});
           break;
@@ -210,7 +210,7 @@ HangarXPLOR.ProcessItem = function()
     }
     
     if (this.isComponent && !this.hasShip) {
-      for (var i = 0, j = HangarXPLOR._components.length; i < j; i++) {
+      for (i = 0, j = HangarXPLOR._components.length; i < j; i++) {
         if (this.componentName.toLowerCase().indexOf(HangarXPLOR._components[i].name.toLowerCase()) > -1) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._components[i].thumbnail + '")'});
           break;
