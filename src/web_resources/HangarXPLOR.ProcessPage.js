@@ -5,9 +5,12 @@ var HangarXPLOR = HangarXPLOR || {};
 HangarXPLOR.ProcessPage = function($page, pageNo)
 {
   var $lists = $('.list-items', $page);
-
+  
+  var isEmpty = $('.empty-list', $page).length == 1;
+  isEmpty |= $('.empy-list', $page).length == 1;
+  
   // Check to see if we have 2 lists - The Hangar, and the Inventory
-  if ($lists.length == 1)
+  if (!isEmpty)
   {
     var $items = $('li', $lists[0]);
       
