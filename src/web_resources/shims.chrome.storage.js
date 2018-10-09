@@ -65,8 +65,11 @@ chrome.storage.sync = chrome.storage.sync || {};
       case 'storage.set.response':
       case 'storage.remove.response':
       case 'storage.clear.response':
-        callbacks[event.data.callbackIndex](event.data.result);
-        delete callbacks[event.data.callbackIndex];
+        if (callbacks[event.data.callbackIndex] != undefined)
+        {
+          callbacks[event.data.callbackIndex](event.data.result);
+          delete callbacks[event.data.callbackIndex];
+        }
       break;
     }
   });
