@@ -132,6 +132,7 @@ HangarXPLOR.ProcessItem = function()
     this.shipName = this.shipName.replace('Origin 600i Exploration Module', 'Origin 600i');
     this.shipName = this.shipName.replace('M50 Interceptor', 'M50');
     this.shipName = this.shipName.replace('M50', 'M50 Interceptor');
+    this.shipName = this.shipName.replace('Hornet F7C', 'F7C Hornet');
     
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
     if (this.meltValue != this.meltValue) this.meltValue = 0; // NaN safety
@@ -156,7 +157,7 @@ HangarXPLOR.ProcessItem = function()
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
-    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1;
+    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1 || this.originalName.toLowerCase().indexOf(' wb') > -1;
     this.isSelected = false;
     
     HangarXPLOR._shipCount += $ship.length;
