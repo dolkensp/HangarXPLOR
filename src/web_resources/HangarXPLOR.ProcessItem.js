@@ -123,12 +123,44 @@ HangarXPLOR.CleanShipName = function(shipName)
   return shipName;
 }
 
+HangarXPLOR.CleanComboShips = function(comboShips, debug)
+{
+  comboShips.each(function (index, value) {
+    if (debug) {
+      console.log('CleanComboShips comboShips[' + index + ']=', value);
+    }
+    var comboShip = $(this)
+    if (debug) {
+      console.log('CleanComboShips comboShip BEFORE', comboShip);
+    }
+    var comboShipName = comboShip.text();
+    if (debug) {
+      console.log('CleanComboShips comboShipName BEFORE', comboShipName);
+    }
+    comboShipName = HangarXPLOR.CleanComboShipName(comboShipName);
+    if (debug) {
+      console.log('CleanComboShips comboShipName AFTER', comboShipName);
+    }
+    comboShip[0].textContent = comboShipName;
+    if (debug) {
+      console.log('CleanComboShips comboShip AFTER', comboShip);
+    }
+  })
+}
+
+HangarXPLOR.CleanComboShipName = function(comboShipName)
+{
+  comboShipName = comboShipName.replace('Tumbril Cyclone-TR', 'Tumbril Cyclone TR');
+  return comboShipName;
+}
+
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
   // Preprocessing Begin
   // Tumbril Cyclone
-  $('.without-images .title:contains(Tumbril Cyclone)', this).each(function() {
+  $('.without-images .title:contains(Tumbril Cyclone)', this).each(function(index, value) {
+    //console.log('ProcessItem PreProcessTumbrilCyclone index=' + index + ', value=', value);
     HangarXPLOR.PreProcessTumbrilCyclone($(this));
   })
   // Preprocessing End
@@ -148,12 +180,14 @@ HangarXPLOR.ProcessItem = function()
   }
 
   var $ship      = $('.kind:contains(Ship)', this).parent().find('.title');
+  if (debug) {
+    console.log('ProcessItem $ship', $ship);
+  }
   var $component = $('.kind:contains(Component)', this);
   var $wrapper   = $('.wrapper-col', this);
     
   var h3Text     = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
     
-
   if (pledgeName.length > 0) {
     // Clean up existing hangar items
     
@@ -232,6 +266,10 @@ HangarXPLOR.ProcessItem = function()
           break;
         }
       }
+    }
+
+    if (this.isCombo) {
+      HangarXPLOR.CleanComboShips($ship, debug);
     }
     
     if (this.isComponent && !this.hasShip) {
