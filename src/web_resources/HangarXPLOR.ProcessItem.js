@@ -16,9 +16,9 @@ HangarXPLOR.CleanShipName = function(shipName)
   return shipName;
 }
 
-HangarXPLOR.ProcessTumbrilCyclone = function($tumbril)
+HangarXPLOR.ProcessTumbrilCyclone = function(item)
 {
-  var name = $tumbril.text().trim();
+  var name = item.text().trim();
   if (name == "Tumbril Cyclone") name = "Tumbril Cyclone-RN";
   
   if (name != "Tumbril Cyclone-AA" &&
@@ -26,7 +26,7 @@ HangarXPLOR.ProcessTumbrilCyclone = function($tumbril)
       name != "Tumbril Cyclone-RN" &&
       name != "Tumbril Cyclone-RC") return;
       
-  var $block = $tumbril.closest('.content-block1');
+  var $block = item.closest('.content-block1');
   var $images = $('.with-images', $block);
   if ($images.length == 0) {
     $block.prepend($('<div />').addClass('also-contains').text("Also Contains"));
@@ -49,7 +49,7 @@ HangarXPLOR.ProcessTumbrilCyclone = function($tumbril)
     )
   );
   $images.prepend($item);
-  $tumbril.parent().remove();
+  item.parent().remove();
 }
 
 // Apply a pre-defined filter to a list of items
