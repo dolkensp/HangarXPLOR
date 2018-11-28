@@ -16,55 +16,61 @@ HangarXPLOR.CleanShipName = function(shipName)
   return shipName;
 }
 
+HangarXPLOR.ProcessTumbrilCyclone = function($tumbril)
+{
+  var name = $tumbril.text().trim();
+  if (name == "Tumbril Cyclone") name = "Tumbril Cyclone-RN";
+  
+  if (name != "Tumbril Cyclone-AA" &&
+      name != "Tumbril Cyclone-TR" &&
+      name != "Tumbril Cyclone-RN" &&
+      name != "Tumbril Cyclone-RC") return;
+      
+  var $block = $tumbril.closest('.content-block1');
+  var $images = $('.with-images', $block);
+  if ($images.length == 0) {
+    $block.prepend($('<div />').addClass('also-contains').text("Also Contains"));
+    $block.prepend($images = $('<div />').addClass('with-images'));
+  }
+  
+  var cyclone = {
+    "Tumbril Cyclone-RN": "/media/ao2p3pw2e7k94r/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-01-Showroom-V009.jpg",
+    "Tumbril Cyclone-TR": "/media/cmq3rwpo5ghpvr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-04-Desert-V012.jpg",
+    "Tumbril Cyclone-RC": "/media/w3vw5498xb25mr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-05-Rocky-Beach-Sport-Fin.jpg",
+    "Tumbril Cyclone-AA": "/media/n6535dpiwv2pgr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-06-Lagoon-V011.jpg",
+  };
+  
+  var $item = $('<div />').addClass('item').append(
+    $('<div />').addClass('image').css({ 'background-image': 'url("' + cyclone[name] + '")' }),
+    $('<div />').addClass('text').append(
+      $('<div />').addClass('title').text(name),
+      $('<div />').addClass('kind').text("Ship"),
+      $('<div />').addClass('liner').append("Tumbril (", $('<span />').text("TMBL"), ")")
+    )
+  );
+  $images.prepend($item);
+  $tumbril.parent().remove();
+}
+
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
-  // Preprocess Tumbril Cyclone
+  // Preprocessing Begin
+  // Tumbril Cyclone
   $('.without-images .title:contains(Tumbril Cyclone)', this).each(function() {
-    var $tumbril = $(this);
-    var name = $tumbril.text().trim();
-    if (name == "Tumbril Cyclone") name = "Tumbril Cyclone-RN";
-    
-    if (name != "Tumbril Cyclone-AA" &&
-        name != "Tumbril Cyclone-TR" &&
-        name != "Tumbril Cyclone-RN" &&
-        name != "Tumbril Cyclone-RC") return;
-        
-    var $block = $tumbril.closest('.content-block1');
-    var $images = $('.with-images', $block);
-    if ($images.length == 0) {
-      $block.prepend($('<div />').addClass('also-contains').text("Also Contains"));
-      $block.prepend($images = $('<div />').addClass('with-images'));
-    }
-    
-    var cyclone = {
-      "Tumbril Cyclone-RN": "/media/ao2p3pw2e7k94r/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-01-Showroom-V009.jpg",
-      "Tumbril Cyclone-TR": "/media/cmq3rwpo5ghpvr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-04-Desert-V012.jpg",
-      "Tumbril Cyclone-RC": "/media/w3vw5498xb25mr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-05-Rocky-Beach-Sport-Fin.jpg",
-      "Tumbril Cyclone-AA": "/media/n6535dpiwv2pgr/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-06-Lagoon-V011.jpg",
-    };
-    
-    var $item = $('<div />').addClass('item').append(
-      $('<div />').addClass('image').css({ 'background-image': 'url("' + cyclone[name] + '")' }),
-      $('<div />').addClass('text').append(
-        $('<div />').addClass('title').text(name),
-        $('<div />').addClass('kind').text("Ship"),
-        $('<div />').addClass('liner').append("Tumbril (", $('<span />').text("TMBL"), ")")
-      )
-    );
-    $images.prepend($item);
-    $tumbril.parent().remove();
+    HangarXPLOR.ProcessTumbrilCyclone($(this));
   })
-  
-  // End Preprocessing
+  // Preprocessing End
   
   var pledgeName = $('.js-pledge-name', this).val() || '';
 
   var debugName = pledgeName.toLowerCase();
+  //console.log('ProcessItem debugName', debugName);
   var debug = //debugName.includes('tumbril') ||
               //debugName.includes('origin x1') ||
               //debugName.includes('space globe') ||
               //debugName.includes('anniversary 2017 mustang discount starter package')
+              //debugName.includes('aegis idris-p after market kit')
               false;
   if (debug) {
     console.log('ProcessItem pledgeName', pledgeName);
