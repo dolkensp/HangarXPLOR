@@ -183,8 +183,8 @@ HangarXPLOR.ProcessItem = function()
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
-    this.isComponent = $component.length > 0;
-    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1;
+    this.isComponent = $('.kind:contains(Component)', this).length > 0;
+    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1 || this.originalName.toLowerCase().indexOf(' wb') > -1;
     this.isSelected = false;
     
     HangarXPLOR._shipCount += $ship.length;
