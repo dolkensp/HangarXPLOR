@@ -25,7 +25,7 @@ HangarXPLOR.LoadSettings = function(callback)
     HangarXPLOR._feature.Upgraded = settings._feature_Upgraded || '';
     HangarXPLOR._feature.Valuable = settings._feature_Valuable || '';
     HangarXPLOR._feature.Reward = settings._feature_Reward || '';
-    HangarXPLOR._feature.Summary = settings._feature_Summary || 'cash';
+    HangarXPLOR._feature.Summary = settings._feature_Summary || 'count';
     
     HangarXPLOR.Log('Loaded Settings', settings);
     
