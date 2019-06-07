@@ -6,23 +6,14 @@ HangarXPLOR.ProcessPage = function($page, pageNo)
 {
   var $lists = $('.list-items', $page);
   
-  var isEmpty = $('.empty-list', $page).length == 1;
-  isEmpty |= $('.empy-list', $page).length == 1;
-  
-  // Check to see if we have 2 lists - The Hangar, and the Inventory
-  if (!isEmpty)
+  var $items = $('.list-items > li', $page);
+      
+  $items.each(HangarXPLOR.ProcessItem);
+      
+  if ($items.length < 100)
   {
-    var $items = $('li', $lists[0]);
-      
-    $items.each(HangarXPLOR.ProcessItem);
-      
-    if ($items.length < 100)
-    {
-      HangarXPLOR.DrawUI();
-    } else {
-      HangarXPLOR.LoadPage(pageNo + 1);
-    }
-  } else {
     HangarXPLOR.DrawUI();
+  } else {
+    HangarXPLOR.LoadPage(pageNo + 1);
   }
 }
