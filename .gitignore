@@ -201,3 +201,4 @@ publish
 *.zip
 *.xpi
 *.crx
+package-lock.json

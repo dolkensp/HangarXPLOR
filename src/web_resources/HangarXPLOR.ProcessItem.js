@@ -110,7 +110,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
     pledgeName = pledgeName.replace(/Discount Pack/i, 'Pack');
     pledgeName = pledgeName.replace(/Tumbril Cyclone LTI Presale/i, 'Tumbril Cyclone - LTI');
-    pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout -  Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
+    pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout - +Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
     pledgeName = pledgeName.replace(/^(Digital )?(Advanced Hunter|Arbiter|Bounty Hunter|Colonel|Cutlass|Freelancer|Mercenary|Pirate|Rear Admiral|Scout|Specter|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
     pledgeName = pledgeName.replace("  ", " ").trim();
     // TODO: Add pre-processing for Reliant Variants Here if required
@@ -123,15 +123,19 @@ HangarXPLOR.ProcessItem = function()
     
     for (var i = 0, j = titleParts.length; i < j; i++)
       titleParts[i] = titleParts[i].trim();
+
     
     this.pledgeId = parseInt($('.js-pledge-id', this).val().trim());
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.componentName = $component.prev().text();
-    this.shipName = $ship.text();
+    this.shipName = $.map($ship, $.text).join(", ");
     this.shipName = this.shipName.replace('Origin 600i Exploration Module', 'Origin 600i');
     this.shipName = this.shipName.replace('M50 Interceptor', 'M50');
     this.shipName = this.shipName.replace('M50', 'M50 Interceptor');
+    this.shipName = this.shipName.replace('Hornet F7C', 'F7C Hornet');
+    
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
+    if (this.meltValue != this.meltValue) this.meltValue = 0; // NaN safety
     this.hasValue = this.meltValue > 0;
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
     this.hasShip = $ship.length > 0;
@@ -153,7 +157,7 @@ HangarXPLOR.ProcessItem = function()
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
-    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1;
+    this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1 || this.originalName.toLowerCase().indexOf(' wb') > -1;
     this.isSelected = false;
     
     HangarXPLOR._shipCount += $ship.length;
@@ -172,7 +176,7 @@ HangarXPLOR.ProcessItem = function()
     if (titleParts[1] == 'Badger and Badges') this.isFlair = false;
     
     if (this.isShip) {
-      for (var i = 0, j = HangarXPLOR._ships.length; i < j; i++) {
+      for (i = 0, j = HangarXPLOR._ships.length; i < j; i++) {
         if (this.shipName.toLowerCase().indexOf(HangarXPLOR._ships[i].name.toLowerCase()) > -1) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._ships[i].thumbnail + '")'});
           break;
@@ -181,7 +185,7 @@ HangarXPLOR.ProcessItem = function()
     }
     
     if (this.isComponent && !this.hasShip) {
-      for (var i = 0, j = HangarXPLOR._components.length; i < j; i++) {
+      for (i = 0, j = HangarXPLOR._components.length; i < j; i++) {
         if (this.componentName.toLowerCase().indexOf(HangarXPLOR._components[i].name.toLowerCase()) > -1) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._components[i].thumbnail + '")'});
           break;
@@ -221,7 +225,7 @@ HangarXPLOR.ProcessItem = function()
     h3Text.textContent = this.displayName;
     
   } else {
-    console.log('Warning: Error parsing', this.innerHTML);
+    HangarXPLOR.Log('Warning: Error parsing', this.innerHTML);
   }
 
   HangarXPLOR._inventory.push(this);

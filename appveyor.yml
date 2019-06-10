@@ -1,0 +1,64 @@
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+version: 3.3.{build}
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+#branches:
+#  only:
+#  - master
+
+# Start builds on tags only (GitHub and BitBucket)
+# skip_non_tags: true
+skip_tags: true
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+install:
+  - npm install
+
+build_script:
+  - node --version
+  - npm --version
+  - node build.js %APPVEYOR_BUILD_VERSION%
+  - node_modules\.bin\eslint src
+
+cache:
+  - node_modules -> package.json  
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+  # packaging chrome
+  - path: dist\HangarXPLOR-chrome-v$(APPVEYOR_BUILD_VERSION).zip
+    name: chrome
+
+  # packaging firefox
+  - path: dist\HangarXPLOR-firefox-v$(APPVEYOR_BUILD_VERSION).zip
+    name: firefox
+
+  # packaging edge
+  - path: dist\HangarXPLOR-edge-v$(APPVEYOR_BUILD_VERSION).zip
+    name: edge
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: Yi3KGQnx6Ui4ise0Dss0CRYo4FXHnN9xqWfol7mbKk13e13QDPQgNVfjPHGAg0ec
+  artifact: /.*\.zip/
+  draft: false
+  prerelease: false
+  tag: v$(APPVEYOR_BUILD_VERSION)
+  release: HangarXPLOR Browser Extensions
+  description: View [ReadMe](https://github.com/dolkensp/HangarXPLOR/blob/master/README.md) for more instructions.
+  on:
+    branch: master
