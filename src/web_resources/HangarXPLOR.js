@@ -15,7 +15,7 @@ HangarXPLOR.LoadSettings = function(callback)
     HangarXPLOR._sort = settings._sort || 'Purchased';
     HangarXPLOR._pageNo = settings._pageNo || 1;
     HangarXPLOR._pageCount = settings._pageCount || 10;
-    HangarXPLOR._logEnabled = settings._logEnabled || false;
+    HangarXPLOR._logEnabled = settings._logEnabled || true;
     
     HangarXPLOR._feature = HangarXPLOR._feature || {};
     HangarXPLOR._feature.LTI = settings._feature_LTI || '';
