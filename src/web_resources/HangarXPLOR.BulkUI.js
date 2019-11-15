@@ -2,7 +2,7 @@
 var HangarXPLOR = window.HangarXPLOR || {};
 HangarXPLOR.Loading = HangarXPLOR.Loading || false;
 HangarXPLOR.BulkEnabled = HangarXPLOR.BulkEnabled || false;
-HangarXPLOR.SummaryBothCashAndCount = false;
+HangarXPLOR.SummaryBothCashAndCount = true;
 
 HangarXPLOR.$bulkUI = null;
 
