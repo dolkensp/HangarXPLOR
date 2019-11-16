@@ -8,7 +8,7 @@ HangarXPLOR.ProcessPage = function($page, pageNo)
       
   $items.each(HangarXPLOR.ProcessItem);
       
-  if ($items.length < 100)
+  if ($items.length < 10)
   {
     HangarXPLOR.DrawUI();
   } else {
