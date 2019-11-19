@@ -2,7 +2,7 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 // Render a dropdown that sets the value of an element
-HangarXPLOR.Dropdown = function(options, width, className, callback)
+HangarXPLOR.Dropdown = function(title, options, width, className, callback)
 {
   HangarXPLOR.Log('Rendering Dropdown', options);
   
@@ -13,7 +13,7 @@ HangarXPLOR.Dropdown = function(options, width, className, callback)
   var $style = $('<div>', { class: 'js-selectlist selectlist' });
   var $label = $('<span>', { text: options[0].Text, style: 'overflow: unset' });
   var $value = $('<input>', { type: 'hidden', class: className, value: options[0].Value });
-  var $dropdown = $('<div>', { style: 'width: ' + width });
+  var $dropdown = $('<div>', { style: 'width: ' + width + '; margin-left: 5px' });
   
   for (var i = 0, j = options.length; i < j; i++) {
     if (options[i].Selected) {
@@ -30,7 +30,7 @@ HangarXPLOR.Dropdown = function(options, width, className, callback)
   $style.append($label);
   $style.append($ul);
   $style.append($value);
-  
+
   $options.bind('mouseover', function() { $(this).addClass('hover'); });
   $options.bind('mouseout', function() { $(this).removeClass('hover'); });
   
@@ -56,9 +56,15 @@ HangarXPLOR.Dropdown = function(options, width, className, callback)
   
   $dropdown.val = function(value) {
     // TODO: Update selected
-    
     return $value.val(value);
   }
-  
+
+  if (title) {
+    var $title = $('<div>', { style: 'display: flex; align-items: baseline; color: #bdced4' });
+    $title.append(title);
+    $title.append($dropdown);
+    return $title;
+  }
+
   return $dropdown;
 }
