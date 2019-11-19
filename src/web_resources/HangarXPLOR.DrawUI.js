@@ -46,6 +46,13 @@ HangarXPLOR.DrawUI = function()
   $controls.removeClass('controls');
   $controls.empty();
 
+  var temp = $('#billing > div.content.clearfix > div.inner-content > div.top > h2');
+  temp.css('display', 'none');
+  temp = $('#billing > div.content.clearfix > div.inner-content > div.top > div.separator');
+  temp.css('display', 'flex');
+  temp = $('#billing > div.content.clearfix > div.inner-content > div:nth-child(2) > h3');
+  temp.css('display', 'none');
+
   OverrideMarginsAndPaddings();
 
   var $controls1 = $('<div>', { class: 'controls clearfix mrn15' });
