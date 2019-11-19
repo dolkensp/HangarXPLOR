@@ -1,6 +1,40 @@
 
 var HangarXPLOR = HangarXPLOR || {};
 
+function OverrideMarginsAndPaddings() {
+  var temp;
+
+  temp = $('#contentbody');
+  HangarXPLOR.Log('DrawUI', 'temp=', temp);
+  temp.css('padding-bottom', '15px');
+
+  temp = $('#contentbody > div');
+  HangarXPLOR.Log('DrawUI', 'temp=', temp);
+  temp.css('padding-left', '15px');
+  temp.css('padding-right', '15px');
+  temp.css('max-width', 'none');
+
+  temp = $('#billing');
+  HangarXPLOR.Log('DrawUI', 'temp=', temp);
+  temp.css('padding', '15px');
+  temp.css('padding-top', '30px');
+
+  temp = $('#billing > div.content.clearfix');
+  HangarXPLOR.Log('DrawUI', 'temp=', temp);
+  temp.css('padding-top', '15px');
+  temp.css('padding-bottom', '15px');
+
+  temp = $('#billing .inner-content .top > .separator');
+  HangarXPLOR.Log('DrawUI', 'temp=', temp);
+  temp.css('margin-top', '10px');
+  temp.css('margin-bottom', '10px');
+
+  temp = $('#billing .content h3');
+  HangarXPLOR.Log('DrawUI', 'temp=', temp);
+  temp.css('margin-top', '10px');
+  temp.css('margin-bottom', '10px');
+}
+
 // Render UI controls
 HangarXPLOR.DrawUI = function()
 {
@@ -8,7 +42,9 @@ HangarXPLOR.DrawUI = function()
   $controls.addClass('js-custom-controls');
   $controls.removeClass('controls');
   $controls.empty();
-  
+
+  OverrideMarginsAndPaddings();
+
   var $controls1 = $('<div>', { class: 'controls clearfix mrn15' });
   var $controls2 = $('<div>', { class: 'controls clearfix mrn15' });
   var $controls3 = $('<div>', { class: 'controls clearfix mrn15 js-custom-search-wrapper' });
