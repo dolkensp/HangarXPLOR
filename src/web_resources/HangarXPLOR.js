@@ -11,10 +11,10 @@ HangarXPLOR.LoadSettings = function(callback)
     settings = settings || {};
     
     HangarXPLOR = HangarXPLOR || {};
-    HangarXPLOR._type = settings._type || 'All';
-    HangarXPLOR._sort = settings._sort || 'Purchased';
+    HangarXPLOR._type = settings._type || 'IsUpgradeOrHasShip';
+    HangarXPLOR._sort = settings._sort || 'Value';
     HangarXPLOR._pageNo = settings._pageNo || 1;
-    HangarXPLOR._pageCount = settings._pageCount || 10;
+    HangarXPLOR._pageCount = settings._pageCount || 9999;
     HangarXPLOR._logEnabled = settings._logEnabled || true;
     
     HangarXPLOR._feature = HangarXPLOR._feature || {};
