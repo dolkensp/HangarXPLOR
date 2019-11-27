@@ -169,7 +169,8 @@ HangarXPLOR.ProcessItem = function()
 
   var debugName = pledgeName.toLowerCase();
   //console.log('ProcessItem debugName', debugName);
-  var debug = //debugName.includes('tumbril') ||
+  var debug = //debugName.includes('pisces') ||
+              //debugName.includes('tumbril') ||
               //debugName.includes('origin x1') ||
               //debugName.includes('space globe') ||
               //debugName.includes('anniversary 2017 mustang discount starter package')
@@ -221,6 +222,9 @@ HangarXPLOR.ProcessItem = function()
     }
       
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
+    if (debug) {
+      console.log('ProcessItem this.meltValue', this.meltValue);
+    }
     if (this.meltValue != this.meltValue) this.meltValue = 0; // NaN safety
     this.hasValue = this.meltValue > 0;
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;

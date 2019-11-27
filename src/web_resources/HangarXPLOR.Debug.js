@@ -26,6 +26,7 @@ if ($.cookie('debug') == "true") {
   {
     var $page = $(html);
     var $lists = $('.list-items', $page);
+    //console.log('ProcessPage $lists', $lists);
 
     // Check to see if we have 2 lists - The Hangar, and the Inventory
     if ($lists.length == 2)

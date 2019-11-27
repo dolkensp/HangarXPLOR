@@ -35,7 +35,7 @@ HangarXPLOR.Render = function()
       buffer.length === 0 &&
       $('#searchInput').val().trim().length !== 0
   ) {
-      buffer.push($('<h4>', { class: 'empty-list', text: 'Your search returned no results.' }));
+      buffer.push($('<h4>', { class: 'empy-list', text: 'Your search returned no results.' }));
   }
   //--- Empty Buffer
   else if (buffer.length == 0) {
