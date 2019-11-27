@@ -6,9 +6,9 @@ HangarXPLOR.LoadPage = function(pageNo)
 {
   HangarXPLOR.UpdateStatus(pageNo);
   
-  var url = '/account/pledges?page=' + pageNo + '&pagesize=100';
+  var url = '/account/pledges?page=' + pageNo;
   
-  if (pageNo == 1 && document.location.search == '?page=1&pagesize=100')
+  if (pageNo == 1 && document.location.search == '?page=1')
       return HangarXPLOR.ProcessPage(document.body, pageNo);
   
   HangarXPLOR.Log('Loading', url);
