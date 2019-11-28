@@ -8,7 +8,7 @@ HangarXPLOR.ProcessPage = function($page, pageNo)
   
   var $items = $('.list-items > li', $page);
       
-  $items.each(HangarXPLOR.ProcessItem);
+  if (!isEmpty) $items.each(HangarXPLOR.ProcessItem);
       
   if (isEmpty || $items.length < 10)
   {
