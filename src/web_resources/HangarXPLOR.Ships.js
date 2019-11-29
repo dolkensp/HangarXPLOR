@@ -138,8 +138,7 @@ HangarXPLOR._ships = [
   { 'name': 'Starfarer', 'thumbnail': '/media/k4f44vqnex0m1r/heap_infobox/SF-Chris-O-2.jpg' },
   { 'name': 'Terrapin', 'thumbnail': '/media/lbhilnq9i8t2mr/heap_infobox/Anvil_Terrapin_Piece_03_Surveilance_v3.jpg' },
   { 'name': 'Valkyrie Liberator', 'thumbnail': '/media/l87lynolh4pxyr/heap_infobox/128934g7tt.jpg' },
-  { 'name': 'Valkyrie', 'thumbnail': '/media/k4wwe7c9j342qr/heap_infobox/Hhui677dl-Min.jpg' },
-  // https://robertsspaceindustries.com/media/2fsa0bb3f4e19r/heap_infobox/Valkyrie-Blue-Formation.png
+  { 'name': 'Valkyrie', 'thumbnail': '/media/2fsa0bb3f4e19r/heap_infobox/Valkyrie-Blue-Formation.png' },
   { 'name': 'Vanduul Blade', 'thumbnail': '/media/d63g0lqsljoyfr/heap_infobox/01.jpg' },
   { 'name': 'Vanguard Hoplite', 'thumbnail': '/media/zwyyyap3aa7wwr/heap_infobox/Aegis_Vanguard_Hoplite_01.jpg' },
   { 'name': 'Vanguard Harbinger', 'thumbnail': '/media/c5vioobscp9vkr/heap_infobox/02.jpg' },
