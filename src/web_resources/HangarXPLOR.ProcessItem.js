@@ -66,6 +66,7 @@ HangarXPLOR.ProcessItem = function()
     pledgeName = pledgeName.trim();
     this.originalName = pledgeName;
     
+    pledgeName = pledgeName.replace(/^ORIGIN 600i Exploration Edition - /i, 'Combo - ORIGIN 600i Exploration Edition - ');
     pledgeName = pledgeName.replace(/^1 Year (Centurion|Imperator) Reward - /i, 'Reward - ');
     pledgeName = pledgeName.replace(/^(Conner.s Beard Moss|Opera Mushroom)/i, 'Space Plant - $1');
     pledgeName = pledgeName.replace(/^Space (?:Plant|Cactus|Flower) - /i, 'Space Plant - ');
