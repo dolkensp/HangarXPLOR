@@ -109,6 +109,7 @@ HangarXPLOR._ships = [
   { 'name': 'Nox', 'thumbnail': '/media/3y2kl543u5n4qr/heap_infobox/Nox-Left.jpg' },
   { 'name': 'Orion', 'thumbnail': '/media/hfpnkupg7gr6er/heap_infobox/RSI_Orion_Situ1b_150219_GH.jpg' },
   { 'name': 'P-52 Merlin', 'thumbnail': '/media/a9231ysz5cnvor/heap_infobox/Top.jpg' },
+  { 'name': 'P-72 Archimedes Emerald', 'thumbnail': 'https://media.robertsspaceindustries.com/wonpc3ujtlg9k/heap_infobox.jpg' },
   { 'name': 'P-72 Archimedes', 'thumbnail': '/media/xqgbgw3x6o54ir/heap_infobox/Archimedes_Front_01.jpg' },
   { 'name': 'Pioneer', 'thumbnail': '/media/of1es6gu4pa4ir/heap_infobox/Alderin-Landed-Snow-Shot.jpg' },
   { 'name': 'Pisces Expedition', 'thumbnail': 'https://media.robertsspaceindustries.com/kj7oh12zn2f1l/heap_infobox.jpg' },
