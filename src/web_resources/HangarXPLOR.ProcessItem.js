@@ -146,7 +146,7 @@ HangarXPLOR.ProcessItem = function()
     this.isPackage = ($('.title:contains(Squadron 42 Digital Download)', this).length + $('.title:contains(Star Citizen Digital Download)', this).length) > 0;
     this.isShip = $ship.length == 1;
     this.isCombo = $ship.length > 1;
-    this.isUpgrade = (titleParts[0] == "Ship Upgrades");
+    this.isUpgrade = (titleParts[0] == "Ship Upgrades" || titleParts[0] == "Upgrade");
     this.isAddOn = (titleParts[0] == "Add-Ons");
     this.isTrophy = (titleParts[0] == "Trophy");
     this.isPoster = (titleParts[0] == "Posters");
