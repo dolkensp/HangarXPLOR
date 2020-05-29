@@ -148,6 +148,7 @@ HangarXPLOR.ProcessItem = function()
     this.isCombo = $ship.length > 1;
     this.isUpgrade = (titleParts[0] == "Ship Upgrades" || titleParts[0] == "Upgrade");
     this.isAddOn = (titleParts[0] == "Add-Ons");
+    this.isPaint = (titleParts[0] == "Paints");
     this.isTrophy = (titleParts[0] == "Trophy");
     this.isPoster = (titleParts[0] == "Posters");
     this.isFishtank = (titleParts[0] == "Fishtank");
