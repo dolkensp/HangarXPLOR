@@ -10,7 +10,7 @@ HangarXPLOR._ships = [
   { 'name': '315p', 'thumbnail': '/media/o34z1cyxt1um8r/heap_infobox/315p_storefront_visual.jpg' },
   { 'name': '325a', 'thumbnail': '/media/gdol1g9fswvjcr/heap_infobox/325a_storefront_visual.jpg' },
   { 'name': '350r', 'thumbnail': '/media/9k0k3orww22zer/heap_infobox/350r.jpg' },
-  { 'name': '600i Executive', 'thumbnail': '/media/ew63gkfbd7ki2r/subscribers_vault_thumbnail/600i_02.jpg' },
+  { 'name': '600i Executive', 'thumbnail': '/media/ew63gkfbd7ki2r/heap_infobox/600i_02.jpg' },
   { 'name': '600i Exploration', 'thumbnail': '/media/8sqwytgh6ij03r/heap_infobox/600i-Exploration.jpg' },
   { 'name': '600i Touring', 'thumbnail': '/media/z642zdp6d3mkzr/heap_infobox/600i-Touring.jpg' },
   { 'name': '600i', 'thumbnail': '/media/8sqwytgh6ij03r/heap_infobox/600i-Exploration.jpg' },
