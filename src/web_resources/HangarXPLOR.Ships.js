@@ -10,6 +10,7 @@ HangarXPLOR._ships = [
   { 'name': '315p', 'thumbnail': '/media/o34z1cyxt1um8r/heap_infobox/315p_storefront_visual.jpg' },
   { 'name': '325a', 'thumbnail': '/media/gdol1g9fswvjcr/heap_infobox/325a_storefront_visual.jpg' },
   { 'name': '350r', 'thumbnail': '/media/9k0k3orww22zer/heap_infobox/350r.jpg' },
+  { 'name': '600i Executive', 'thumbnail': '/media/ew63gkfbd7ki2r/subscribers_vault_thumbnail/600i_02.jpg' },
   { 'name': '600i Exploration', 'thumbnail': '/media/8sqwytgh6ij03r/heap_infobox/600i-Exploration.jpg' },
   { 'name': '600i Touring', 'thumbnail': '/media/z642zdp6d3mkzr/heap_infobox/600i-Touring.jpg' },
   { 'name': '600i', 'thumbnail': '/media/8sqwytgh6ij03r/heap_infobox/600i-Exploration.jpg' },
@@ -92,7 +93,8 @@ HangarXPLOR._ships = [
   { 'name': 'Kraken Privateer', 'thumbnail': 'https://media.robertsspaceindustries.com/vz94xqyun7q6q/heap_infobox.jpg' },
   { 'name': 'Kraken', 'thumbnail': 'https://media.robertsspaceindustries.com/vz94xqyun7q6q/heap_infobox.jpg' },
   { 'name': 'Khartu-Al', 'thumbnail': '/media/zzycyqkpn9vu8r/heap_infobox/Image_landed.jpg' },
-  { 'name': 'Lightning', 'thumbnail': '/media/vdwks9gq7ch8pr/heap_infobox/Sq42_SneakPeekF8.png' },
+  { 'name': 'F8C Lightning Civilian', 'thumbnail': '/media/6yu51ic3y27b6r/heap_infobox/F8C.png' },
+  { 'name': 'F8C Lightning Executive', 'thumbnail': '/media/ldeqyuto9lb46r/heap_infobox/F8C-Executive.png' },
   { 'name': 'M50', 'thumbnail': '/media/q1jk89gqz2231r/heap_infobox/Jumppoint-Final-Crop.jpg' },
   { 'name': 'Mantis', 'thumbnail': 'https://media.robertsspaceindustries.com/y3abkhxhriuvc/heap_infobox.jpg' },
   { 'name': 'Merchantman', 'thumbnail': '/media/d8ktckex1ucmrr/heap_infobox/Banu3.jpg' }, // /media/63lxivb7mi3vzr/heap_infobox/Banu_merchantman_side_Version_A.jpg
