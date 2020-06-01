@@ -10,7 +10,6 @@ HangarXPLOR.LoadCache = function(callback)
     if (HangarXPLOR._cacheHash == HangarXPLOR._activeHash && cache['cache:count'] > 0)
     {
       HangarXPLOR._fromCache = true;
-      var cacheItems = [];
       
       for (var i = 0; i < cache['cache:count']; i++) { HangarXPLOR.ProcessItem.apply($(cache['cache:' + i])[0]) }
       

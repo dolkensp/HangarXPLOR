@@ -9,7 +9,9 @@ HangarXPLOR._upgradeCount  = HangarXPLOR._upgradeCount || 0;
 HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
 HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
-  
+
+var RSI = RSI || {};
+
 HangarXPLOR.Initialize = function()
 {
   HangarXPLOR.LoadSettings(function() {
@@ -19,7 +21,7 @@ HangarXPLOR.Initialize = function()
       HangarXPLOR.BulkUI();
       HangarXPLOR.$list = $($lists[0]);
       HangarXPLOR.$list.addClass('js-inventory');
-      delete $lists;
+      $lists = undefined;
       
       HangarXPLOR.UpdateStatus(0);
       
