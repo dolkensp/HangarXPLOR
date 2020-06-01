@@ -145,16 +145,17 @@ HangarXPLOR.ProcessItem = function()
     this.hasShip = $ship.length > 0;
     this.isMeltable = $('.js-reclaim', this).length > 0;
     this.isUpgraded = $('.upgraded', this).length > 0;
-    this.isGiftable = $('.label:contains(Gift)', this).length > 0;
+    this.isGiftable = $('.label:contains(Gift)', this).length > 0 && this.meltValue < 1001;
     this.isPackage = ($('.title:contains(Squadron 42 Digital Download)', this).length + $('.title:contains(Star Citizen Digital Download)', this).length) > 0;
     this.isShip = $ship.length == 1;
     this.isCombo = $ship.length > 1;
     this.isUpgrade = (titleParts[0] == "Ship Upgrades" || titleParts[0] == "Upgrade");
     this.isAddOn = (titleParts[0] == "Add-Ons");
+    this.isPaint = (titleParts[0] == "Paints");
     this.isTrophy = (titleParts[0] == "Trophy");
     this.isPoster = (titleParts[0] == "Posters");
     this.isFishtank = (titleParts[0] == "Fishtank");
-    this.isReward = (titleParts[0] == "Reward"); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
+    this.isReward = (titleParts[0] == "Reward" || pledgeName.indexOf("VIP") == 0); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
     this.isSpacePlant = (titleParts[0] == "Space Plant");
     this.isSpaceGlobe = (titleParts[0] == "Space Globes");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
