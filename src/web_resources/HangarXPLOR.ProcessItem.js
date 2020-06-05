@@ -175,6 +175,7 @@ HangarXPLOR.ProcessItem = function()
               //debugName.includes('space globe') ||
               //debugName.includes('anniversary 2017 mustang discount starter package')
               //debugName.includes('aegis idris-p after market kit')
+              //debugName.includes('upgrade - ')
               false;
   if (debug) {
     console.log('ProcessItem pledgeName', pledgeName);
@@ -235,7 +236,7 @@ HangarXPLOR.ProcessItem = function()
     this.isPackage = $('.title:contains(Star Citizen Digital Download)', this).length > 0;
     this.isShip = $ship.length == 1;
     this.isCombo = $ship.length > 1;
-    this.isUpgrade = (titlePartsFirst == "Ship Upgrades");
+    this.isUpgrade = (titlePartsFirst == "Ship Upgrades" || titlePartsFirst == "Upgrade");
     this.isAddOn = (titlePartsFirst == "Add-Ons");
     this.isTrophy = (titlePartsFirst == "Trophy");
     this.isPoster = (titlePartsFirst == "Posters");
