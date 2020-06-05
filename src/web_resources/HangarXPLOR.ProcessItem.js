@@ -58,6 +58,7 @@ HangarXPLOR.PreProcessTumbrilCyclone = function(item)
 
 HangarXPLOR.CleanPledgeName = function(pledgeName)
 {
+  pledgeName = pledgeName.replace(/^ORIGIN 600i Exploration Edition - /i, 'Combo - ORIGIN 600i Exploration Edition - ');
   pledgeName = pledgeName.replace(/^1 Year (Centurion|Imperator) Reward - /i, 'Reward - ');
   pledgeName = pledgeName.replace(/^(Conner.s Beard Moss|Opera Mushroom)/i, 'Space Plant - $1');
   pledgeName = pledgeName.replace(/^Space (?:Plant|Cactus|Flower) - /i, 'Space Plant - ');
@@ -175,6 +176,7 @@ HangarXPLOR.ProcessItem = function()
               //debugName.includes('space globe') ||
               //debugName.includes('anniversary 2017 mustang discount starter package')
               //debugName.includes('aegis idris-p after market kit')
+              //debugName.includes('upgrade - ')
               false;
   if (debug) {
     console.log('ProcessItem pledgeName', pledgeName);
@@ -231,18 +233,19 @@ HangarXPLOR.ProcessItem = function()
     this.hasShip = $ship.length > 0;
     this.isMeltable = $('.js-reclaim', this).length > 0;
     this.isUpgraded = $('.upgraded', this).length > 0;
-    this.isGiftable = $('.label:contains(Gift)', this).length > 0;
-    this.isPackage = $('.title:contains(Star Citizen Digital Download)', this).length > 0;
+    this.isGiftable = $('.label:contains(Gift)', this).length > 0 && this.meltValue < 1001;
+    this.isPackage = ($('.title:contains(Squadron 42 Digital Download)', this).length + $('.title:contains(Star Citizen Digital Download)', this).length) > 0;
     this.isShip = $ship.length == 1;
     this.isCombo = $ship.length > 1;
-    this.isUpgrade = (titlePartsFirst == "Ship Upgrades");
+    this.isUpgrade = (titlePartsFirst == "Ship Upgrades" || titlePartsFirst == "Upgrade");
     this.isAddOn = (titlePartsFirst == "Add-Ons");
+    this.isPaint = (titlePartsFirst == "Paints");
     this.isTrophy = (titlePartsFirst == "Trophy");
     this.isPoster = (titlePartsFirst == "Posters");
     this.isFishtank = (titlePartsFirst == "Fishtank");
-    this.isReward = (titlePartsFirst == "Reward"); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
+    this.isReward = (titlePartsFirst == "Reward" || pledgeName.indexOf("VIP") == 0); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
     this.isSpacePlant = (titlePartsFirst == "Space Plant");
-    this.isSpaceGlobe = (titlePartsFirst == "Space Globe");
+    this.isSpaceGlobe = (titlePartsFirst == "Space Globes");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;

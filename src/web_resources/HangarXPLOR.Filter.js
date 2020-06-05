@@ -52,6 +52,9 @@ HangarXPLOR.Filter = function(list, filter)
     case "IsAddOn":
       list = $.grep(list, function(item) { return item.isAddOn; });
       break;
+    case "IsPaint":
+      list = $.grep(list, function(item) { return item.isPaint; });
+      break;
     case "IsExtra":
       list = $.grep(list, function(item) { return item.isAddOn || item.isUpgrade; });
       break;
