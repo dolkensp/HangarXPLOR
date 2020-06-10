@@ -155,7 +155,7 @@ HangarXPLOR.ProcessItem = function()
     this.isTrophy = (titleParts[0] == "Trophy");
     this.isPoster = (titleParts[0] == "Posters");
     this.isFishtank = (titleParts[0] == "Fishtank");
-    this.isReward = (titleParts[0] == "Reward" || pledgeName.indexOf("VIP") == 0); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
+    this.isReward = (titleParts[0] == "Reward" || pledgeName.indexOf("VIP") == 0 || pledgeName.indexOf("Referral") == 0); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
     this.isSpacePlant = (titleParts[0] == "Space Plant");
     this.isSpaceGlobe = (titleParts[0] == "Space Globes");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
