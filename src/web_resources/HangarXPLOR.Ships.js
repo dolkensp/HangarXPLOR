@@ -18,6 +18,8 @@ HangarXPLOR._ships = [
   { 'name': '890 JUMP', 'thumbnail': '/media/aokcb6ay0i0jpr/heap_infobox/890_beautyShot-Concept_V01High_NF_140709.jpg' },
   { 'name': 'Apollo Triage', 'thumbnail': '/media/rb5f1w3fwj91qr/heap_infobox/RSI_Apollo_landed_topview_03_AL_Pj01-Squashed.jpg' },
   { 'name': 'Apollo', 'thumbnail': '/media/qtbgmjijc8g1vr/heap_infobox/RSI_Apollo_Promo_Recovery_Drone_AL01_PJ01-Squashed.jpg' },
+  { 'name': 'Ares Inferno', 'thumbnail': 'https://media.robertsspaceindustries.com/jkw5h6088fryi/heap_infobox.jpg' },
+  { 'name': 'Ares Ion', 'thumbnail': 'https://media.robertsspaceindustries.com/711aanrxslfo9/heap_infobox.jpg' },
   { 'name': 'Aurora CL', 'thumbnail': '/media/fh1gtu93mndsur/heap_infobox/Rsi_aurora_cl_storefront_visual.jpg' },
   { 'name': 'Aurora ES', 'thumbnail': '/media/9u8061zhf29fir/heap_infobox/Rsi_aurora_es_storefront_visual.jpg' },
   { 'name': 'Aurora LN', 'thumbnail': '/media/ljgowkr9tdwetr/heap_infobox/Rsi_aurora_ln_storefront_visual.jpg' },
