@@ -12,16 +12,17 @@ HangarXPLOR.LoadSettings = function(callback)
     HangarXPLOR._pageNo = settings._pageNo || 1;
     HangarXPLOR._pageCount = settings._pageCount || 10;
     HangarXPLOR._logEnabled = settings._logEnabled || false;
+    HangarXPLOR._cacheHash = settings._cacheHash || 0;
     
-    HangarXPLOR._feature = HangarXPLOR._feature || {};
-    HangarXPLOR._feature.LTI = settings._feature_LTI || '';
-    HangarXPLOR._feature.Warbond = settings._feature_Warbond || '';
+    HangarXPLOR._feature          = HangarXPLOR._feature       || {};
+    HangarXPLOR._feature.LTI      = settings._feature_LTI      || '';
+    HangarXPLOR._feature.Warbond  = settings._feature_Warbond  || '';
     HangarXPLOR._feature.Giftable = settings._feature_Giftable || '';
     HangarXPLOR._feature.Meltable = settings._feature_Meltable || '';
     HangarXPLOR._feature.Upgraded = settings._feature_Upgraded || '';
     HangarXPLOR._feature.Valuable = settings._feature_Valuable || '';
-    HangarXPLOR._feature.Reward = settings._feature_Reward || '';
-    HangarXPLOR._feature.Summary = settings._feature_Summary || 'cash';
+    HangarXPLOR._feature.Reward   = settings._feature_Reward   || '';
+    HangarXPLOR._feature.Summary  = settings._feature_Summary  || 'cash';
     
     HangarXPLOR.Log('Loaded Settings', settings);
     

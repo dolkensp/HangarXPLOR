@@ -7,11 +7,14 @@ HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
 HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
 HangarXPLOR._warbondCount  = HangarXPLOR._warbondCount || 0;
+HangarXPLOR._raw           = HangarXPLOR._raw || [];
 
 // Apply a pre-defined filter to a list of items
 HangarXPLOR.ProcessItem = function()
 {
-  
+  // Pre-cache raw markup
+  if (HangarXPLOR._fromCache != true) HangarXPLOR._raw.push(this.outerHTML);
+
   // Preprocess Tumbril Cyclone
   $('.without-images .title:contains(Tumbril Cyclone)', this).each(function() {
     var $tumbril = $(this);

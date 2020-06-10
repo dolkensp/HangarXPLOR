@@ -12,6 +12,7 @@ HangarXPLOR.ProcessPage = function($page, pageNo)
       
   if (isEmpty || $items.length < 10)
   {
+    HangarXPLOR.SaveCache();
     HangarXPLOR.DrawUI();
   } else {
     HangarXPLOR.LoadPage(pageNo + 1);
