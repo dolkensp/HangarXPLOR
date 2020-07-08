@@ -7,6 +7,7 @@ HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
 HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
 HangarXPLOR._warbondCount  = HangarXPLOR._warbondCount || 0;
+HangarXPLOR._raw           = HangarXPLOR._raw || [];
 
 var cyclone = {
   "Tumbril Cyclone-RN": "/media/ao2p3pw2e7k94r/subscribers_vault_thumbnail/Tumbril-Buggy-Piece-01-Showroom-V009.jpg",
@@ -243,7 +244,7 @@ HangarXPLOR.ProcessItem = function()
     this.isTrophy = (titlePartsFirst == "Trophy");
     this.isPoster = (titlePartsFirst == "Posters");
     this.isFishtank = (titlePartsFirst == "Fishtank");
-    this.isReward = (titlePartsFirst == "Reward" || pledgeName.indexOf("VIP") == 0); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
+    this.isReward = (titlePartsFirst == "Reward" || pledgeName.indexOf("VIP") == 0 || pledgeName.indexOf("Referral") == 0); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
     this.isSpacePlant = (titlePartsFirst == "Space Plant");
     this.isSpaceGlobe = (titlePartsFirst == "Space Globes");
     this.isModel = (pledgeName.indexOf("Takuetsu") > -1);

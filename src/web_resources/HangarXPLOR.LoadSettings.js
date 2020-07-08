@@ -1,0 +1,31 @@
+
+var HangarXPLOR = HangarXPLOR || {};
+
+HangarXPLOR.LoadSettings = function(callback)
+{
+  chrome.storage.sync.get(null, function(settings) {
+    settings = settings || {};
+    
+    HangarXPLOR = HangarXPLOR || {};
+    HangarXPLOR._type = settings._type || 'HasShipOrIsUpgradeOrIsAddOn';
+    HangarXPLOR._sort = settings._sort || 'Value';
+    HangarXPLOR._pageNo = settings._pageNo || 1;
+    HangarXPLOR._pageCount = settings._pageCount || 9999;
+    HangarXPLOR._logEnabled = settings._logEnabled || true;
+    HangarXPLOR._cacheHash = settings._cacheHash || 0;
+    
+    HangarXPLOR._feature          = HangarXPLOR._feature       || {};
+    HangarXPLOR._feature.LTI      = settings._feature_LTI      || '';
+    HangarXPLOR._feature.Warbond  = settings._feature_Warbond  || '';
+    HangarXPLOR._feature.Giftable = settings._feature_Giftable || '';
+    HangarXPLOR._feature.Meltable = settings._feature_Meltable || '';
+    HangarXPLOR._feature.Upgraded = settings._feature_Upgraded || '';
+    HangarXPLOR._feature.Valuable = settings._feature_Valuable || '';
+    HangarXPLOR._feature.Reward   = settings._feature_Reward   || '';
+    HangarXPLOR._feature.Summary  = settings._feature_Summary  || 'count';
+    
+    HangarXPLOR.Log('Loaded Settings', settings);
+    
+    if (typeof callback === 'function') callback.call(this);
+  });
+}
