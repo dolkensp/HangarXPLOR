@@ -11,7 +11,7 @@ HangarXPLOR.LoadSettings = function(callback)
     settings = settings || {};
     
     HangarXPLOR = HangarXPLOR || {};
-    HangarXPLOR._type = settings._type || 'IsUpgradeOrHasShip';
+    HangarXPLOR._type = settings._type || 'HasShipOrIsUpgradeOrIsAddOn';
     HangarXPLOR._sort = settings._sort || 'Value';
     HangarXPLOR._pageNo = settings._pageNo || 1;
     HangarXPLOR._pageCount = settings._pageCount || 9999;

@@ -67,11 +67,12 @@ HangarXPLOR.DrawUI = function()
   $controls1.append(HangarXPLOR.Dropdown('Filter:', [
     { Value: 'All', Text: 'All Types', Class: 'first', Selected: HangarXPLOR._type == 'All' },
     { Value: 'HasShip', Text: 'All Ships', Selected: HangarXPLOR._type == 'HasShip' },
-    { Value: 'IsUpgradeOrHasShip', Text: 'All Ships & Upgrades', Selected: HangarXPLOR._type == 'IsUpgradeOrHasShip' },
+    { Value: 'HasShipOrIsUpgradeOrIsAddOn', Text: 'Ships/Upgrades/Add Ons', Selected: HangarXPLOR._type == 'HasShipOrIsUpgradeOrIsAddOn' },
     { Value: 'IsShip', Text: 'Standalone Ships', Selected: HangarXPLOR._type == 'IsShip' },
     { Value: 'IsPackage', Text: 'Game Packages', Selected: HangarXPLOR._type == 'IsPackage' },
     { Value: 'IsCombo', Text: 'Combo Packs', Selected: HangarXPLOR._type == 'IsCombo' },
     { Value: 'IsExtra', Text: 'All Extras', Class: 'split', Selected: HangarXPLOR._type == 'IsExtra' },
+    { Value: 'IsUpgradeOrIsAddOn', Text: 'Upgrades/Add Ons', Selected: HangarXPLOR._type == 'IsUpgradeOrIsAddOn' },
     { Value: 'IsAddOn', Text: 'Add Ons', Selected: HangarXPLOR._type == 'IsAddOn' },
     { Value: 'IsPaint', Text: 'Paints', Selected: HangarXPLOR._type == 'IsPaint' },
     { Value: 'IsComponent', Text: 'Components', Selected: HangarXPLOR._type == 'IsComponent' },
