@@ -67,12 +67,12 @@ HangarXPLOR.DrawUI = function()
   $controls1.append(HangarXPLOR.Dropdown('Filter:', [
     { Value: 'All', Text: 'All Types', Class: 'first', Selected: HangarXPLOR._type == 'All' },
     { Value: 'HasShip', Text: 'All Ships', Selected: HangarXPLOR._type == 'HasShip' },
-    { Value: 'HasShipOrIsUpgradeOrIsAddOn', Text: 'Ships/Upgrades/Add Ons', Selected: HangarXPLOR._type == 'HasShipOrIsUpgradeOrIsAddOn' },
+    { Value: 'HasShipOrIsUpgradeOrIsAddOn', Text: 'All Ships & Upgrades & Add Ons', Selected: HangarXPLOR._type == 'HasShipOrIsUpgradeOrIsAddOn' },
     { Value: 'IsShip', Text: 'Standalone Ships', Selected: HangarXPLOR._type == 'IsShip' },
     { Value: 'IsPackage', Text: 'Game Packages', Selected: HangarXPLOR._type == 'IsPackage' },
     { Value: 'IsCombo', Text: 'Combo Packs', Selected: HangarXPLOR._type == 'IsCombo' },
     { Value: 'IsExtra', Text: 'All Extras', Class: 'split', Selected: HangarXPLOR._type == 'IsExtra' },
-    { Value: 'IsUpgradeOrIsAddOn', Text: 'Upgrades/Add Ons', Selected: HangarXPLOR._type == 'IsUpgradeOrIsAddOn' },
+    { Value: 'IsUpgradeOrIsAddOn', Text: 'Upgrades & Add Ons', Selected: HangarXPLOR._type == 'IsUpgradeOrIsAddOn' },
     { Value: 'IsAddOn', Text: 'Add Ons', Selected: HangarXPLOR._type == 'IsAddOn' },
     { Value: 'IsPaint', Text: 'Paints', Selected: HangarXPLOR._type == 'IsPaint' },
     { Value: 'IsComponent', Text: 'Components', Selected: HangarXPLOR._type == 'IsComponent' },
@@ -82,7 +82,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsModel', Text: 'Models', Selected: HangarXPLOR._type == 'IsModel' },
     { Value: 'IsPlant', Text: 'Plants', Selected: HangarXPLOR._type == 'IsPlant' },
     { Value: 'IsPoster', Text: 'Posters', Selected: HangarXPLOR._type == 'IsPoster' },
-  ], '168px', 'js-custom-filter', function(e, value) {
+  ], '300px', 'js-custom-filter', function(e, value) {
     HangarXPLOR._type = value; HangarXPLOR.SaveSettings();
     HangarXPLOR.Render();
     HangarXPLOR.RefreshPager();
@@ -94,7 +94,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'Purchased', Text: 'Pledge Date', Selected: HangarXPLOR._sort == 'Purchased' },
     { Value: 'Name', Text: 'Pledge Name', Selected: HangarXPLOR._sort == 'Name' },
     { Value: 'Value', Text: 'Pledge Value', Selected: HangarXPLOR._sort == 'Value' },
-  ], '137px', 'js-custom-sort', function(e, value) {
+  ], '150px', 'js-custom-sort', function(e, value) {
     HangarXPLOR._sort = value; HangarXPLOR.SaveSettings();
     HangarXPLOR.Render();
     HangarXPLOR.RefreshPager();
@@ -107,7 +107,7 @@ HangarXPLOR.DrawUI = function()
     { Value: '20', Text: '20 per page', Selected: HangarXPLOR._pageCount == 20 },
     { Value: '50', Text: '50 per page', Selected: HangarXPLOR._pageCount == 50 },
     { Value: '100', Text: '100 per page', Selected: HangarXPLOR._pageCount == 100 },
-  ], '140px', 'js-custom-pager', HangarXPLOR.Render ));
+  ], '150px', 'js-custom-pager', HangarXPLOR.Render ));
   
   var toggleHandler = function(e, label, value)
   {
