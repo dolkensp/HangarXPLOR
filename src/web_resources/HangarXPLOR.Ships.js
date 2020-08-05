@@ -137,6 +137,7 @@ HangarXPLOR._ships = [
   { 'name': 'Retaliator Base', 'thumbnail': '/media/bp86xpkhi47etr/heap_infobox/Retaliator_engine_shot_a.jpg' },
   { 'name': 'Retaliator Bomber', 'thumbnail': '/media/kz6mu0tt0u06er/heap_infobox/Retaliator-Ortho_v2.jpg' },
   { 'name': 'Retaliator', 'thumbnail': '/media/kz6mu0tt0u06er/heap_infobox/Retaliator-Ortho_v2.jpg' },
+  { 'name': 'ROC', 'thumbnail': 'https://media.robertsspaceindustries.com/u39m0vmntr3pk/heap_infobox.jpg' },
   { 'name': 'Sabre Comet', 'thumbnail': '/media/8pmglyd0scvhar/heap_infobox/Sabre_variant_sale_img.jpg' },
   { 'name': 'Sabre Raven', 'thumbnail': '/media/l2eiovh45ypuyr/heap_infobox/RavenTop_Masked.jpg' },
   { 'name': 'Sabre', 'thumbnail': '/media/wnqvrpoomrpp6r/heap_infobox/Concept_citcon2015_5.jpg' },
