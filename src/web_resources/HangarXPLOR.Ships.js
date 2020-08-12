@@ -145,6 +145,8 @@ HangarXPLOR._ships = [
   { 'name': 'SRV', 'thumbnail': '/media/v5lxymbukofr3/heap_infobox.jpg' },
   { 'name': 'Starfarer Gemini', 'thumbnail': '/media/4pgpl7n71hijzr/heap_infobox/Gemini2338.jpg' },
   { 'name': 'Starfarer', 'thumbnail': '/media/k4f44vqnex0m1r/heap_infobox/SF-Chris-O-2.jpg' },
+  { 'name': 'Talon Shrike', 'thumbnail': 'https://media.robertsspaceindustries.com/h2kfgwyfc656i/heap_infobox.jpg' },
+  { 'name': 'Talon', 'thumbnail': 'https://media.robertsspaceindustries.com/5aou1wl6cnihj/heap_infobox.jpg' },
   { 'name': 'Terrapin', 'thumbnail': '/media/lbhilnq9i8t2mr/heap_infobox/Anvil_Terrapin_Piece_03_Surveilance_v3.jpg' },
   { 'name': 'Valkyrie Liberator', 'thumbnail': '/media/l87lynolh4pxyr/heap_infobox/128934g7tt.jpg' },
   { 'name': 'Valkyrie', 'thumbnail': '/media/2fsa0bb3f4e19r/heap_infobox/Valkyrie-Blue-Formation.png' },
