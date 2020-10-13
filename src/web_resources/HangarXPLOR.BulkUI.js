@@ -12,6 +12,11 @@ HangarXPLOR._callbacks.GiftConfirm = HangarXPLOR._callbacks.GiftConfirm || funct
 HangarXPLOR._callbacks.Melt = HangarXPLOR._callbacks.Melt || function() { window.alert('Coming Soon') }
 HangarXPLOR._callbacks.MeltConfirm = HangarXPLOR._callbacks.MeltConfirm || function() { window.alert('Coming Soon') }
 
+HangarXPLOR._callbacks.ClearCache = HangarXPLOR._callbacks.ClearCache || function() { 
+  chrome.storage.local.clear(); 
+  setTimeout(function(){ document.location.reload(); }, 500);
+}
+
 // Render UI controls
 HangarXPLOR.BulkUI = function()
 {
@@ -35,8 +40,9 @@ HangarXPLOR.BulkUI = function()
   HangarXPLOR.$bulkUI.$inner = $('<div>', { class: 'inner content-block1 loading' });
   HangarXPLOR.$bulkUI.$value = $('<div>', { class: 'value' });
   HangarXPLOR.$bulkUI.$actions = $('<div>', { class: 'actions' });
-  HangarXPLOR.$bulkUI.$downloads = $('<div>', { class: 'actions' });
+  HangarXPLOR.$bulkUI.$downloads = $('<div>', { class: 'actions downloads' });
   HangarXPLOR.$bulkUI.$loading = $('<div>', { class: 'status value' });
+  HangarXPLOR.$bulkUI.$settings = $('<div>', { class: 'actions settings' });
   
   HangarXPLOR.$bulkUI.addClass(HangarXPLOR._feature.Summary);
   
@@ -47,6 +53,7 @@ HangarXPLOR.BulkUI = function()
     HangarXPLOR.$bulkUI.$value,
     HangarXPLOR.$bulkUI.$actions,
     HangarXPLOR.$bulkUI.$downloads,
+    HangarXPLOR.$bulkUI.$settings,
     $('<div>', { class: 'top-line-thin' }),
     $('<div>', { class: 'top-line' }),
     $('<div>', { class: 'corner corner-top-right' }),
@@ -174,6 +181,9 @@ HangarXPLOR.RefreshBulkUI = function()
     ),
     $('<br>')
   );
+  
+  HangarXPLOR.$bulkUI.$settings.empty();
+  HangarXPLOR.$bulkUI.$settings.append(HangarXPLOR.Button('Clear cache', 'settings clear-cache', HangarXPLOR._callbacks.ClearCache));
 
   HangarXPLOR.$bulkUI.$actions.empty();
   
