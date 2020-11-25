@@ -28,6 +28,18 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     'XIAN': 'Xi\'an',
   };
 
+  HangarXPLOR.GetPledgeList = function($target) {
+    return $target.map(function() { 
+      var $pledge = this;
+      var pledge = {};
+      pledge.name = $('.js-pledge-name', $pledge).val();
+      pledge.id = $('.js-pledge-id', $pledge).val();
+      pledge.cost = $('.js-pledge-value', $pledge).val();
+      pledge.date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
+      return pledge;
+    }).get();
+  }
+
   HangarXPLOR.GetShipList = function($target) {
     return $target.map(function() { 
       var $pledge = this;
@@ -82,4 +94,31 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     $download.attr('type', 'text/csv');
     $download[0].click();
   }
+
+
+  HangarXPLOR._callbacks.DownloadPledgeJSON = function(e) {
+    e.preventDefault();
+    
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetPledgeList($target), null, 2)));
+    $download.attr('download', 'pledgelist.json');
+    $download.attr('type', 'text/json');
+    $download[0].click();
+  }
+  
+  HangarXPLOR._callbacks.DownloadPledgeCSV = function(e) {
+    e.preventDefault();
+    
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    
+    var buffer = "Name, ID, Cost, Date\n";
+    buffer = buffer + HangarXPLOR.GetPledgeList($target).map(function(pledge) { return ['"' + pledge.name + '"', pledge.id, '"' + pledge.cost + '"', '"' + pledge.date + '"' ].join(',')}).join('\n')
+
+    $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
+    $download.attr('download', 'pledgelist.csv');
+    $download.attr('type', 'text/csv');
+    $download[0].click();
+  }
+
 })();
