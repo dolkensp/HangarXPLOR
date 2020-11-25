@@ -61,4 +61,4 @@ deploy:
   release: HangarXPLOR Browser Extensions
   description: View [ReadMe](https://github.com/dolkensp/HangarXPLOR/blob/master/README.md) for more instructions.
   on:
-    branch: master
+    branch: release
