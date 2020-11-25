@@ -28,7 +28,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     'XIAN': 'Xi\'an',
   };
 
-  HangarXPLOR.GetShipList = function($target) {
+  HangarXPLOR.GetPledgeList = function($target) {
     return $target.map(function() { 
       var $pledge = this;
       var pledge = {};
@@ -37,6 +37,28 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
       pledge.cost = $('.js-pledge-value', $pledge).val();
       pledge.lti = $('.title:contains(Lifetime Insurance)', $pledge).length > 0;
       pledge.date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
+      pledge.warbond = pledge.name.toLowerCase().indexOf('warbond') > -1;
+      pledge.ships = $('.kind:contains(Ship)', this).parent().map(function() {
+        var $ship = this;
+        var shipName = $('.title', $ship).text();
+        shipName = shipName.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
+        shipName = shipName.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
+        shipName = shipName.replace(/["',]/gi, '');
+        return shipName;
+      }).get()
+      return pledge;
+    }).get();
+  }
+
+  HangarXPLOR.GetShipList = function($target) {
+    return $target.map(function() { 
+      var $pledge = this;
+      var pledge = {};
+      pledge.pledge = $('.js-pledge-name', $pledge).val();
+      pledge.id = $('.js-pledge-id', $pledge).val();
+      pledge.cost = $('.js-pledge-value', $pledge).val();
+      pledge.lti = $('.title:contains(Lifetime Insurance)', $pledge).length > 0;
+      pledge.pledge_date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
       pledge.warbond = pledge.name.toLowerCase().indexOf('warbond') > -1;
 
       return $('.kind:contains(Ship)', this).parent().map(function() {
@@ -82,4 +104,31 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     $download.attr('type', 'text/csv');
     $download[0].click();
   }
+
+
+  HangarXPLOR._callbacks.DownloadPledgeJSON = function(e) {
+    e.preventDefault();
+    
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetPledgeList($target), null, 2)));
+    $download.attr('download', 'pledgelist.json');
+    $download.attr('type', 'text/json');
+    $download[0].click();
+  }
+  
+  HangarXPLOR._callbacks.DownloadPledgeCSV = function(e) {
+    e.preventDefault();
+    
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    
+    var buffer = "Name, ID, Cost, Date, Lti, Warbond, Ships\n";
+    buffer = buffer + HangarXPLOR.GetPledgeList($target).map(function(pledge) { return [ '"' + pledge.name + '"', '"' + pledge.id + '"', '"' + pledge.cost + '"', '"' + pledge.date + '"', pledge.lti, pledge.warbond,  '"' + pledge.ships.join(',') + '"'].join(',')}).join('\n')
+
+    $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
+    $download.attr('download', 'pledgelist.csv');
+    $download.attr('type', 'text/csv');
+    $download[0].click();
+  }
+
 })();

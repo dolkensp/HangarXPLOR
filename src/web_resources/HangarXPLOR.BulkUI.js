@@ -52,8 +52,15 @@ HangarXPLOR.BulkUI = function()
     $('<div>', { class: 'corner corner-top-right' }),
     $('<div>', { class: 'corner corner-bottom-right' }));
   
-  HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download CSV', 'download js-download-csv', HangarXPLOR._callbacks.DownloadCSV));
-  HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download JSON', 'download js-download-json', HangarXPLOR._callbacks.DownloadJSON));
+    HangarXPLOR.$bulkUI.$downloads.append($('<div>', { style: 'clear:both' }));
+    HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download SHIP CSV', 'download js-download-csv', HangarXPLOR._callbacks.DownloadCSV));
+    HangarXPLOR.$bulkUI.$downloads.append($('<div>', { style: 'clear:both' }));
+    HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download SHIP JSON', 'download js-download-json', HangarXPLOR._callbacks.DownloadJSON));
+    HangarXPLOR.$bulkUI.$downloads.append($('<div>', { style: 'clear:both' }));
+    HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download PLEDGE CSV', 'download js-download-pledge-csv', HangarXPLOR._callbacks.DownloadPledgeCSV));
+    HangarXPLOR.$bulkUI.$downloads.append($('<div>', { style: 'clear:both' }));
+    HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download PLEDGE JSON', 'download js-download-pledge-json', HangarXPLOR._callbacks.DownloadPledgeJSON));
+    HangarXPLOR.$bulkUI.$downloads.append($('<div>', { style: 'clear:both' }));
 
   bulkHeight = $('.js-bulk-ui').height();
   positionUI();
