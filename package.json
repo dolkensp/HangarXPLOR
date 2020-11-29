@@ -31,5 +31,8 @@
             "chrome": true
         }
     },
-    "eslintIgnore": [ "src/vendor/**/*.js", "*.min.js" ]
+    "eslintIgnore": [ "src/vendor/**/*.js", "*.min.js" ],
+    "scripts": {
+        "generate-ships-file": "node scripts/generate_ships_file.js"
+    }
 }
