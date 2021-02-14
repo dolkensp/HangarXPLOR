@@ -4,14 +4,18 @@ HangarXPLOR.Billing =  window.HangarXPLOR.Billing || {};
 HangarXPLOR.Billing.Bills = [];
 
 HangarXPLOR.Billing.Load = function() {
+    /* eslint-disable no-undef */
     window.WscOverlay = new RSI.WscOverlay({});
+    /* eslint-enable no-undef */
     window.Page.initBilling();
 };
 
 HangarXPLOR.Billing.LoadData = function() {
     let page = 1;
     let page_size = 100; // 100 is max
-    while(true) {
+
+    let continue_parsing = true;
+    while(continue_parsing) {
         
         // --- request page
         var xmlHttp = new XMLHttpRequest();
@@ -49,7 +53,7 @@ HangarXPLOR.Billing.LoadData = function() {
         if(order_items.length == page_size) {
             page++;
         } else {
-            break;
+            continue_parsing = false;
         }
     }
     
