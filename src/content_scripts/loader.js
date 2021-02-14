@@ -11,6 +11,7 @@
     'web_resources/fuse.min.js', // Fuzzy Search Library
     'web_resources/HangarXPLOR.js',
     // 'web_resources/HangarXPLOR.Debug.js', // Uncomment to debug third party hangar HTML
+    'web_resources/HangarXPLOR.Billing.js',
     'web_resources/HangarXPLOR.Download.js',
     'web_resources/HangarXPLOR.Toggle.js',
     'web_resources/HangarXPLOR.Templates.js',
@@ -79,7 +80,7 @@
       case 'storage.local.clear.request': chrome.storage.local.clear(function() { window.postMessage({ type: "storage.clear.response", callbackIndex: event.data.callbackIndex }, "*") }); break;
     }
   });
-  
+
   var loadScript = function() {
     if (scripts.length == 0) return;
     

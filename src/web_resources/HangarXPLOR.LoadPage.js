@@ -10,9 +10,16 @@ HangarXPLOR.LoadPage = function(pageNo)
   
   var url = '/account/pledges?page=' + pageNo;
   
-  if (pageNo == 1 && document.location.search == '?page=1')
+  if(pageNo == 1) {
+    // TODO should this be place somewhere else? - it just needs to be done before we process the items
+    // so that we have the billing data already in order to link to it  
+    HangarXPLOR.Billing.LoadData();
+
+    if(document.location.search == '?page=1') {
       return HangarXPLOR.ProcessPage(document.body, pageNo);
-  
+    }
+  }
+
   HangarXPLOR.Log('Loading', url);
   
   var $page = $('<div>');

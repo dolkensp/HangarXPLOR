@@ -221,6 +221,12 @@ HangarXPLOR.ProcessItem = function()
       this.displayName = titleParts[0] + ' - ' + titleParts[1] + ltiSuffix + ' (' + this.pledgeId + ')';
     else
       this.displayName = titleParts[0] + ' - ' + titleParts[1] + ' (' + this.pledgeId + ')';
+
+    // --- invoice button
+    let slug = HangarXPLOR.Billing.getBill(titleParts[1], this);
+    if(slug !== null) {
+      $('.items', this).prepend('<a class="shadow-button trans-02s trans-color more__button-print js-print-invoice" data-order-slug="' + slug.slug + '"><span class="label js-label trans-02s">Retrieve invoice</span><span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span><span class="left-section"></span><span class="right-section"></span></a>');
+    }
     
     this.sortName = this.displayName.replace(/^.*? - (.*)$/, '$1');
     
