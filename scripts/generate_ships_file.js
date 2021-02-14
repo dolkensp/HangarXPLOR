@@ -57,13 +57,17 @@ axios.get(URL)
                 console.log("Fetched %d ships and vehicles", processedShips.length);
                 console.log("%d missing fleetyard links", missing_shipyard_links.length);
     
-    
-                // TODO: Handle missing links e.g. some special edition ships do not have their own page on fleetyard... 
-                // if(missing_shipyard_links.length > 0) {
-                //     missing_shipyard_links.forEach(ship_id => {
-                //         
-                //     });
-                // }
+
+                // --- find missing links
+                if(missing_shipyard_links.length > 0) {
+                    missing_shipyard_links.forEach(ship_id => {
+                        for(let i = 0; i < processedShips.length; i++) {
+                            if(ship_id != i && processedShips[ship_id].name.includes(processedShips[i].name)) {
+                                processedShips[ship_id]['fleetyard'] = processedShips[i]['fleetyard'];
+                            }
+                        }
+                    });
+                }
                 
                 const content = 'var HangarXPLOR = HangarXPLOR || {};'
                             + '\n\n' 

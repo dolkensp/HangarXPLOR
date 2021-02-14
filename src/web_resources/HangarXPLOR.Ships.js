@@ -124,7 +124,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Constellation Phoenix Emerald",
 		"url": "/pledge/ships/rsi-constellation/Constellation-Phoenix-Emerald",
-		"thumbnail": "/media/kkakjxny421xfr/heap_infobox/Connie_Emerald.jpg"
+		"thumbnail": "/media/kkakjxny421xfr/heap_infobox/Connie_Emerald.jpg",
+		"fleetyard": "https://fleetyards.net/ships/constellation-phoenix"
 	},
 	{
 		"name": "Freelancer",
@@ -171,7 +172,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Cutlass Black Best In Show Edition",
 		"url": "/pledge/ships/drake-cutlass/Cutlass-Black-Best-In-Show-Edition",
-		"thumbnail": "https://media.robertsspaceindustries.com/vt0f0g30nua1v/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/vt0f0g30nua1v/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/cutlass-black"
 	},
 	{
 		"name": "Avenger Stalker",
@@ -230,12 +232,14 @@ HangarXPLOR._ships = [
 	{
 		"name": "Caterpillar Pirate Edition",
 		"url": "/pledge/ships/drake-caterpillar/Caterpillar-Pirate-Edition",
-		"thumbnail": "/media/56cjes33yzdj6r/heap_infobox/Pirate_05.jpg"
+		"thumbnail": "/media/56cjes33yzdj6r/heap_infobox/Pirate_05.jpg",
+		"fleetyard": "https://fleetyards.net/ships/caterpillar"
 	},
 	{
 		"name": "Caterpillar Best In Show Edition",
 		"url": "/pledge/ships/drake-caterpillar/Caterpillar-Best-In-Show-Edition",
-		"thumbnail": "https://media.robertsspaceindustries.com/1r1vf9peutpr0/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/1r1vf9peutpr0/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/caterpillar"
 	},
 	{
 		"name": "Retaliator Bomber",
@@ -306,7 +310,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Mustang Alpha Vindicator",
 		"url": "/pledge/ships/mustang/Mustang-Alpha-Vindicator",
-		"thumbnail": "https://media.robertsspaceindustries.com/iohmvf24h4rsz/heap_infobox.png"
+		"thumbnail": "https://media.robertsspaceindustries.com/iohmvf24h4rsz/heap_infobox.png",
+		"fleetyard": "https://fleetyards.net/ships/mustang-alpha"
 	},
 	{
 		"name": "Redeemer",
@@ -359,7 +364,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Carrack w/C8X",
 		"url": "/pledge/ships/carrack/Carrack-W-C8X",
-		"thumbnail": "https://media.robertsspaceindustries.com/twlkwwqy2mmk2/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/twlkwwqy2mmk2/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/carrack"
 	},
 	{
 		"name": "Carrack Expedition w/C8X",
@@ -369,7 +375,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Carrack Expedition",
 		"url": "/pledge/ships/carrack/Carrack-Expedition",
-		"thumbnail": "https://media.robertsspaceindustries.com/gpfapokelyewn/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/gpfapokelyewn/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/carrack"
 	},
 	{
 		"name": "Herald",
@@ -422,7 +429,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Reclaimer Best In Show Edition",
 		"url": "/pledge/ships/reclaimer/Reclaimer-Best-In-Show-Edition",
-		"thumbnail": "https://media.robertsspaceindustries.com/81432ksmdzn30/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/81432ksmdzn30/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/reclaimer"
 	},
 	{
 		"name": "Javelin",
@@ -529,7 +537,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "P72 Archimedes Emerald",
 		"url": "/pledge/ships/p72-archimedes/P72-Archimedes-Emerald",
-		"thumbnail": "/media/o94ip9isoyjmhr/heap_infobox/Archimedes-Sku-Image-V3.jpg"
+		"thumbnail": "/media/o94ip9isoyjmhr/heap_infobox/Archimedes-Sku-Image-V3.jpg",
+		"fleetyard": "https://fleetyards.net/ships/p-72-archimedes"
 	},
 	{
 		"name": "Blade",
@@ -738,7 +747,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Hammerhead Best In Show Edition",
 		"url": "/pledge/ships/hammerhead/Hammerhead-Best-In-Show-Edition",
-		"thumbnail": "https://media.robertsspaceindustries.com/tmuyqtlpfh64d/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/tmuyqtlpfh64d/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/hammerhead"
 	},
 	{
 		"name": "Nova",
@@ -821,7 +831,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Valkyrie Liberator Edition",
 		"url": "/pledge/ships/anvil-valkyrie/Valkyrie-Liberator-Edition",
-		"thumbnail": "/media/l87lynolh4pxyr/heap_infobox/128934g7tt.jpg"
+		"thumbnail": "/media/l87lynolh4pxyr/heap_infobox/128934g7tt.jpg",
+		"fleetyard": "https://fleetyards.net/ships/valkyrie"
 	},
 	{
 		"name": "Kraken",
@@ -885,12 +896,14 @@ HangarXPLOR._ships = [
 	{
 		"name": "Anvil Ballista Snowblind",
 		"url": "/pledge/ships/anvil-ballista/Anvil-Ballista-Snowblind",
-		"thumbnail": "/media/a5nzp9tgvq2i5r/heap_infobox/Ballista_Snowblind-Min.jpg"
+		"thumbnail": "/media/a5nzp9tgvq2i5r/heap_infobox/Ballista_Snowblind-Min.jpg",
+		"fleetyard": "https://fleetyards.net/ships/ballista"
 	},
 	{
 		"name": "Anvil Ballista Dunestalker",
 		"url": "/pledge/ships/anvil-ballista/Anvil-Ballista-Dunestalker",
-		"thumbnail": "/media/rjxw89rs3sk5wr/heap_infobox/Ballista_Dunestalker-Min.jpg"
+		"thumbnail": "/media/rjxw89rs3sk5wr/heap_infobox/Ballista_Dunestalker-Min.jpg",
+		"fleetyard": "https://fleetyards.net/ships/ballista"
 	},
 	{
 		"name": "Nautilus ",
@@ -901,7 +914,8 @@ HangarXPLOR._ships = [
 	{
 		"name": "Nautilus Solstice Edition",
 		"url": "/pledge/ships/aegis-nautilus/Nautilus-Solstice-Edition",
-		"thumbnail": "https://media.robertsspaceindustries.com/mp9p2pzrvdxw9/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/mp9p2pzrvdxw9/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/nautilus"
 	},
 	{
 		"name": "Mantis",
@@ -942,12 +956,14 @@ HangarXPLOR._ships = [
 	{
 		"name": "Argo Mole Carbon Edition",
 		"url": "/pledge/ships/argo-mole/Argo-Mole-Carbon-Edition",
-		"thumbnail": "https://media.robertsspaceindustries.com/ugpy6i9pbgbax/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/ugpy6i9pbgbax/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/mole"
 	},
 	{
 		"name": "Argo Mole Talus Edition",
 		"url": "/pledge/ships/argo-mole/Argo-Mole-Talus-Edition",
-		"thumbnail": "https://media.robertsspaceindustries.com/ghac95q2ncobp/heap_infobox.jpg"
+		"thumbnail": "https://media.robertsspaceindustries.com/ghac95q2ncobp/heap_infobox.jpg",
+		"fleetyard": "https://fleetyards.net/ships/mole"
 	},
 	{
 		"name": "Origin G12",
