@@ -24,6 +24,13 @@ HangarXPLOR.Billing.getBill = function(name, element) {
                 return bills[i];
             }
         }
+
+        let fuse = new Fuse(bills, {keys: ['name']})
+        let results = fuse.search(name);
+
+        if(results.length > 0) {
+            return results[0];
+        }
     }
 
     return null;
