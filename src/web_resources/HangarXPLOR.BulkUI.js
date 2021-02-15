@@ -175,10 +175,6 @@ HangarXPLOR.RefreshBulkUI = function()
     $('<br>')
   );
 
-  // TODO Not sure if this should be here but it definitley needs to be called after everything has been rendered, otherwise
-  // it breaks the plugin
-  HangarXPLOR.Billing.Load(); 
-
   HangarXPLOR.$bulkUI.$actions.empty();
   
   if (HangarXPLOR.BulkEnabled && HangarXPLOR._meltable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Melt ' + HangarXPLOR._meltable.length + ' Items', 'reclaim rm js-bulk-reclaim', HangarXPLOR._callbacks.Melt));

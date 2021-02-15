@@ -3,13 +3,6 @@ HangarXPLOR.Billing =  window.HangarXPLOR.Billing || {};
 
 HangarXPLOR.Billing.Bills = [];
 
-HangarXPLOR.Billing.Load = function() {
-    /* eslint-disable no-undef */
-    window.WscOverlay = new RSI.WscOverlay({});
-    /* eslint-enable no-undef */
-    window.Page.initBilling();
-};
-
 HangarXPLOR.Billing.LoadData = function() {
     let page = 1;
     let page_size = 100; // 100 is max
