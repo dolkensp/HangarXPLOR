@@ -223,18 +223,37 @@ HangarXPLOR.ProcessItem = function()
       this.displayName = titleParts[0] + ' - ' + titleParts[1] + ' (' + this.pledgeId + ')';
     
     // --- invoice button
-    let slug = HangarXPLOR.Billing.getBill(titleParts[1], this);
-    if(slug !== null) {
-      $('.items', this)
-        .prepend(
-          '<a class="shadow-button trans-02s trans-color more__button-print js-print-invoice" data-order-slug="' + slug.slug + '"><span class="label js-label trans-02s">Retrieve invoice</span><span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span><span class="left-section"></span><span class="right-section"></span></a>'
-        );
-      $('[data-order-slug]', this)
-        .click(event => {
-          let slug = event.currentTarget.dataset.orderSlug;
-          window.open('https://robertsspaceindustries.com/account/billing/order/' + slug, 'Bill', 'scrollbars=yes,resizable=yes,top=0,left=0,width=640,height=360,toolbar=no');
-        });
-    }
+    // Note: We load and add the button when the user clicks the arrow to expand the item because we have to async
+    // load the billing data since async XMLHttpRequest are deprecated.
+    let arrow_element = $('a.arrow.js-expand-arrow', this)[0];
+    let element = this;
+
+    arrow_element.onclick = function() { 
+      // --- if we haven't loaded all bills yet, we ignore this
+      if(!HangarXPLOR.Billing.DoneLoading) {
+        return;
+      }
+
+      // --- if this property exist then the button has already been added
+      if(element.hasOwnProperty('billSlug')) {
+        return;
+      }
+
+      let slug = HangarXPLOR.Billing.getBill(titleParts[1], element);
+      element.billSlug = slug;
+      if(slug !== null) {
+        $('.items', element)
+          .prepend(
+            '<a class="shadow-button trans-02s trans-color more__button-print js-print-invoice" data-order-slug="' + slug.slug + '"><span class="label js-label trans-02s">Retrieve invoice</span><span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span><span class="left-section"></span><span class="right-section"></span></a>'
+          );
+        $('[data-order-slug]', element)
+          .click(event => {
+            let slug = event.currentTarget.dataset.orderSlug;
+            window.open('https://robertsspaceindustries.com/account/billing/order/' + slug, 'Bill', 'scrollbars=yes,resizable=yes,top=0,left=0,width=640,height=360,toolbar=no');
+          });
+      }
+    };
+    
     
     this.sortName = this.displayName.replace(/^.*? - (.*)$/, '$1');
     
