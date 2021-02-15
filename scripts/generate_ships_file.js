@@ -10,18 +10,13 @@ const fields = {
 
 axios.get(URL)
     .then((response) => {
-
-        const processedShips = [];
-
-        const axios_promises = [];
-        const missing_shipyard_links = [];
-
         let parsedBody = response.data;
 
         if(parsedBody.success === 1) {
             let ships = parsedBody.data;
 
-            for(let i = 0; i < ships.length; i++) { 
+            let processedShips = [];
+            for(let i = 0; i < ships.length; i++) {
                 let ship = ships[i];
                 let data = {};
 
@@ -32,57 +27,21 @@ axios.get(URL)
                         current = current[path[j]];
                     }
                     data[key] = current;
-
-                    // --- handle the external fleetyard link
-                    if(key === 'url') {
-                        let exploded = current.split('/');
-                        let ship_name =  exploded[exploded.length - 1].toLowerCase();
-
-                        let fleetyard_api_url = ('https://api.fleetyards.net/v1/models/' + ship_name);
-
-                        axios_promises.push(axios.get(fleetyard_api_url).then(function (response) {
-                            data['fleetyard'] = ('https://fleetyards.net/ships/' + response.data.slug);
-                        })
-                        .catch(function (error) {
-                            missing_shipyard_links.push(i);
-                        }));
-                    }
                 }
 
                 processedShips.push(data);
             }
-
-            // --- wait for all fleetyards request to be resolved
-            Promise.all(axios_promises).then(responses => {
-                console.log("Fetched %d ships and vehicles", processedShips.length);
-                console.log("%d missing fleetyard links", missing_shipyard_links.length);
-    
-
-                // --- find missing links
-                if(missing_shipyard_links.length > 0) {
-                    missing_shipyard_links.forEach(ship_id => {
-                        for(let i = 0; i < processedShips.length; i++) {
-                            if(ship_id != i && processedShips[ship_id].name.includes(processedShips[i].name)) {
-                                processedShips[ship_id]['fleetyard'] = processedShips[i]['fleetyard'];
-                            }
-                        }
-                    });
-                }
-                
-                const content = 'var HangarXPLOR = HangarXPLOR || {};'
-                            + '\n\n' 
-                            + 'HangarXPLOR._ships = ' + JSON.stringify(processedShips, null, '\t');
-                fs.writeFile('src/web_resources/HangarXPLOR.Ships.js', content, "utf-8", function (error) {
-                    if (error) {
-                        console.error("Failed to write the 'HangarXPLOR.Ships.js' file", error);
-                    };
-                    console.log("Successfully created the 'HangarXPLOR.Ships.js' file");
-                });
-    
+            console.log("Fetched %d ships and vehicles", processedShips.length);
+            
+            const content = 'var HangarXPLOR = HangarXPLOR || {};'
+                        + '\n\n' 
+                        + 'HangarXPLOR._ships = ' + JSON.stringify(processedShips, null, '\t');
+            fs.writeFile('src/web_resources/HangarXPLOR.Ships.js', content, "utf-8", function (error) {
+                if (error) {
+                    console.error("Failed to write the 'HangarXPLOR.Ships.js' file", error);
+                };
+                console.log("Successfully created the 'HangarXPLOR.Ships.js' file");
             });
-            
-
-            
         }
     })
     .catch(error => {
