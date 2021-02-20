@@ -235,25 +235,43 @@ HangarXPLOR.ProcessItem = function()
       }
 
       // --- if this property exist then the button has already been added
-      if(element.hasOwnProperty('billSlug')) {
+      if(element.hasOwnProperty('billsLoaded')) {
         return;
       }
 
-      let slug = HangarXPLOR.Billing.getBill(titleParts[1], element);
-      element.billSlug = slug;
-      if(slug !== null) {
+      let bills;
+      if(element.isUpgraded) {
+        bills = HangarXPLOR.Billing.getBill(
+          titleParts[1], element.getElementsByClassName('date-col')[0].lastChild.data.trim(), 
+          element.isUpgraded, element.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '')
+        );
+      } else {
+        bills = HangarXPLOR.Billing.getBill(titleParts[1], element.getElementsByClassName('date-col')[0].lastChild.data.trim())
+      }
+
+      element.billsLoaded = true;
+      if(bills.length > 0) {
+
         $('.items', element)
           .prepend(
-            '<a class="shadow-button trans-02s trans-color more__button-print js-print-invoice" data-order-slug="' + slug.slug + '"><span class="label js-label trans-02s">Retrieve invoice</span><span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span><span class="left-section"></span><span class="right-section"></span></a>'
+            '<a class="shadow-button trans-02s trans-color" data-order-slug="' + bills[0].slug + '"><span class="label js-label trans-02s">Invoice</span><span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span><span class="left-section"></span><span class="right-section"></span></a>'
           );
+
+        if(bills.length === 2) {
+          $('.items', element)
+            .prepend(
+              '<a class="shadow-button trans-02s trans-color" data-order-slug="' + bills[1].slug + '"><span class="label js-label trans-02s">Upgrade Invoice</span><span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span><span class="left-section"></span><span class="right-section"></span></a>'
+            );
+        }
+        
         $('[data-order-slug]', element)
           .click(event => {
             let slug = event.currentTarget.dataset.orderSlug;
-            window.open('https://robertsspaceindustries.com/account/billing/order/' + slug, 'Bill', 'scrollbars=yes,resizable=yes,top=0,left=0,width=640,height=360,toolbar=no');
+            window.open('https://robertsspaceindustries.com/account/billing/order/' + slug, 'Bill', 'scrollbars=yes,resizable=yes,top=0,left=0,width=640,height=360,toolbar=no')
+                  .focus();
           });
       }
     };
-    
     
     this.sortName = this.displayName.replace(/^.*? - (.*)$/, '$1');
     

@@ -1,6 +1,7 @@
 var HangarXPLOR = window.HangarXPLOR || {};
 HangarXPLOR.Billing =  window.HangarXPLOR.Billing || {};
 
+HangarXPLOR.Billing.Keys = [];
 HangarXPLOR.Billing.Bills = [];
 HangarXPLOR.Billing.DoneLoading = false;
 
@@ -8,32 +9,55 @@ HangarXPLOR.Billing.LoadData = function() {
     HangarXPLOR.Billing.parseBills(1);
 };
 
-HangarXPLOR.Billing.getBill = function(name, element) {
-    let date = element.getElementsByClassName('date-col')[0].lastChild.data.trim();
+HangarXPLOR.Billing.getBill = function(name, date, isUpgraded = false, upgradedName = null) {
     const bills = HangarXPLOR.Billing.Bills[HangarXPLOR.Billing.parseDate(date)];
 
     if(typeof bills === 'undefined') {
-        return null;
+        return [null];
     }
 
-    if(bills.length == 1) {
-        return bills[0];
-    } else if(bills.length > 1) {
-        for(let i = 0; i < bills.length; i++) {
-            if(bills[i]['name'].includes(name.toLowerCase())) {
-                return bills[i];
-            }
+    let bill = null;
+    // --- find bill
+    for(let i = 0; i < bills.length; i++) {
+        if(bills[i]['name'].includes(name.toLowerCase())) {
+            bill = bills[i];
         }
+    }
 
+    if(bill === null) {
         let fuse = new Fuse(bills, {keys: ['name']})
         let results = fuse.search(name);
 
         if(results.length > 0) {
-            return results[0];
+            bill = results[0];
         }
     }
 
-    return null;
+    // --- if this item was upgraded then also try to find the bill for the upgrade
+    if(bill !== null && isUpgraded) {
+        let upgraded_bill = null;
+        let processing = false;
+
+        for(let i in HangarXPLOR.Billing.Keys) {
+            let key = HangarXPLOR.Billing.Keys[i];
+            if(processing) {
+                upgraded_bill = this.getBill(upgradedName, key)[0];
+                if(upgraded_bill !== null) {
+                    break;
+                }
+            } 
+            // --- only start looking into the bills once we are past the billing date of the orginal item
+            else if(key === bill.date) {
+                processing = true;
+            }
+        }
+
+        if(upgraded_bill !== null) {
+            return [bill, upgraded_bill];
+        }
+    }
+
+    return [bill];
 }
 
 HangarXPLOR.Billing.parseDate = function(date) {
@@ -61,7 +85,12 @@ HangarXPLOR.Billing.parseBills = function(pageNo) {
                 let order_slug = order_items[i].querySelector('[data-order-slug]');
                 let order_date = HangarXPLOR.Billing.parseDate( new Date(order_items[i].getElementsByClassName('col date')[0].lastChild.data.trim()));
                 
-                // --- if the order slug is null then no voice exists (e.g. cancelled, payment failed, etc.)
+                if(HangarXPLOR.Billing.Keys.length === 0 || HangarXPLOR.Billing.Keys[HangarXPLOR.Billing.Keys.length - 1] !== order_date) {
+                    HangarXPLOR.Billing.Keys.push(order_date);
+                }
+
+
+                // --- if the order slug is null then no invoice exists (e.g. cancelled, payment failed, etc.)
                 if(order_slug !== null) {
                     order_slug = order_slug.dataset.orderSlug;
                     
@@ -80,6 +109,7 @@ HangarXPLOR.Billing.parseBills = function(pageNo) {
             if(order_items.length == page_size) {
                 HangarXPLOR.Billing.parseBills(pageNo + 1);
             } else {
+                HangarXPLOR.Billing.Keys.reverse();
                 HangarXPLOR.Billing.DoneLoading = true;
             }
         }
