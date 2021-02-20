@@ -234,7 +234,7 @@ HangarXPLOR.ProcessItem = function()
         return;
       }
 
-      // --- if this property exist then the button has already been added
+      // --- if this property existthen the button has already been added
       if(element.hasOwnProperty('billsLoaded')) {
         return;
       }
@@ -242,8 +242,8 @@ HangarXPLOR.ProcessItem = function()
       let bills;
       if(element.isUpgraded) {
         bills = HangarXPLOR.Billing.getBill(
-          titleParts[1], element.getElementsByClassName('date-col')[0].lastChild.data.trim(), 
-          element.isUpgraded, element.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, '')
+          element.originalName.replace(/^(?:Standalone Ship|Package|Combo|Add-ons|Extras) - /, ''), element.getElementsByClassName('date-col')[0].lastChild.data.trim(), 
+          element.isUpgraded, (element.shipName || titleParts[1])
         );
       } else {
         bills = HangarXPLOR.Billing.getBill(titleParts[1], element.getElementsByClassName('date-col')[0].lastChild.data.trim())

@@ -3,6 +3,7 @@ HangarXPLOR.Billing =  window.HangarXPLOR.Billing || {};
 
 HangarXPLOR.Billing.Keys = [];
 HangarXPLOR.Billing.Bills = [];
+HangarXPLOR.Billing.UpgradeBills = [];
 HangarXPLOR.Billing.DoneLoading = false;
 
 HangarXPLOR.Billing.LoadData = function() {
@@ -10,45 +11,51 @@ HangarXPLOR.Billing.LoadData = function() {
 };
 
 HangarXPLOR.Billing.getBill = function(name, date, isUpgraded = false, upgradedName = null) {
-    const bills = HangarXPLOR.Billing.Bills[HangarXPLOR.Billing.parseDate(date)];
+    date = HangarXPLOR.Billing.parseDate(date);
+    const bills = HangarXPLOR.Billing.Bills[date];
 
     if(typeof bills === 'undefined') {
-        return [null];
+        return [];
     }
 
-    let bill = null;
-    // --- find bill
-    for(let i = 0; i < bills.length; i++) {
-        if(bills[i]['name'].includes(name.toLowerCase())) {
-            bill = bills[i];
+    name = name.toLowerCase();
+
+    let findBill = function(bills, name) {
+        let bill = null;
+
+        for(let i = 0; i < bills.length; i++) {
+            if(bills[i]['name'].includes(name)) {
+                bill = bills[i];
+            }
         }
-    }
-
-    if(bill === null) {
-        let fuse = new Fuse(bills, {keys: ['name']})
-        let results = fuse.search(name);
-
-        if(results.length > 0) {
-            bill = results[0];
+    
+        if(bill === null) {
+            let fuse = new Fuse(bills, {keys: ['name']})
+            let results = fuse.search(name);
+    
+            if(results.length > 0) {
+                bill = results[0];
+            }
         }
+
+        return bill;
     }
+
+    let bill = findBill(bills, name);
 
     // --- if this item was upgraded then also try to find the bill for the upgrade
     if(bill !== null && isUpgraded) {
+        upgradedName = upgradedName.toLowerCase();
         let upgraded_bill = null;
-        let processing = false;
-
-        for(let i in HangarXPLOR.Billing.Keys) {
-            let key = HangarXPLOR.Billing.Keys[i];
-            if(processing) {
-                upgraded_bill = this.getBill(upgradedName, key)[0];
+        for(let key in HangarXPLOR.Billing.UpgradeBills) {
+            if(key >= date) { // exploits lexicographic ordering - might be a bit hacky but avoids creating new Date objects
+                upgraded_bill = findBill(HangarXPLOR.Billing.UpgradeBills[key], upgradedName);
                 if(upgraded_bill !== null) {
-                    break;
+                    let splitted = upgraded_bill.name.split(/( to )/gm);
+                    if(splitted.length === 2 && splitted[1].indexOf(upgradedName)) {
+                        break;
+                    } 
                 }
-            } 
-            // --- only start looking into the bills once we are past the billing date of the orginal item
-            else if(key === bill.date) {
-                processing = true;
             }
         }
 
@@ -57,7 +64,11 @@ HangarXPLOR.Billing.getBill = function(name, date, isUpgraded = false, upgradedN
         }
     }
 
-    return [bill];
+    if(bill !== null) {
+        return [bill];
+    }
+
+    return [];
 }
 
 HangarXPLOR.Billing.parseDate = function(date) {
@@ -93,16 +104,28 @@ HangarXPLOR.Billing.parseBills = function(pageNo) {
                 // --- if the order slug is null then no invoice exists (e.g. cancelled, payment failed, etc.)
                 if(order_slug !== null) {
                     order_slug = order_slug.dataset.orderSlug;
-                    
-                    if(!(order_date in HangarXPLOR.Billing.Bills)) {
-                        HangarXPLOR.Billing.Bills[order_date] = [];
-                    }  
-                    
-                    HangarXPLOR.Billing.Bills[order_date].push({
+
+                    let bill = {
                         'name': order_name.toLowerCase(),
                         'slug': order_slug,
                         'date': order_date,
-                    });
+                    };
+                    
+                    if(bill.name.startsWith('upgrade') || bill.name.startsWith('ship upgrades ')) {
+                        if(!(order_date in HangarXPLOR.Billing.UpgradeBills)) {
+                            HangarXPLOR.Billing.UpgradeBills[order_date] = [];
+                        }  
+                        
+                        HangarXPLOR.Billing.UpgradeBills[order_date].push(bill);
+                    } else {
+                        if(!(order_date in HangarXPLOR.Billing.Bills)) {
+                            HangarXPLOR.Billing.Bills[order_date] = [];
+                        }  
+                        
+                        HangarXPLOR.Billing.Bills[order_date].push(bill);
+                    }
+
+                    
                 }
             }
 
