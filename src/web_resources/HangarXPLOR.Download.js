@@ -54,11 +54,11 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     return $target.map(function() { 
       var $pledge = this;
       var pledge = {};
-      pledge.pledge = $('.js-pledge-name', $pledge).val();
+      pledge.name = $('.js-pledge-name', $pledge).val();
       pledge.id = $('.js-pledge-id', $pledge).val();
       pledge.cost = $('.js-pledge-value', $pledge).val();
       pledge.lti = $('.title:contains(Lifetime Insurance)', $pledge).length > 0;
-      pledge.pledge_date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
+      pledge.date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
       pledge.warbond = pledge.name.toLowerCase().indexOf('warbond') > -1;
 
       return $('.kind:contains(Ship)', this).parent().map(function() {
@@ -105,11 +105,10 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     $download[0].click();
   }
 
-
   HangarXPLOR._callbacks.DownloadPledgeJSON = function(e) {
     e.preventDefault();
     
-    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    var $target = $(HangarXPLOR._inventory);
     
     $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetPledgeList($target), null, 2)));
     $download.attr('download', 'pledgelist.json');
@@ -120,7 +119,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
   HangarXPLOR._callbacks.DownloadPledgeCSV = function(e) {
     e.preventDefault();
     
-    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    var $target = $(HangarXPLOR._inventory);
     
     var buffer = "Name, ID, Cost, Date, Lti, Warbond, Ships\n";
     buffer = buffer + HangarXPLOR.GetPledgeList($target).map(function(pledge) { return [ '"' + pledge.name + '"', '"' + pledge.id + '"', '"' + pledge.cost + '"', '"' + pledge.date + '"', pledge.lti, pledge.warbond,  '"' + pledge.ships.join(',') + '"'].join(',')}).join('\n')
