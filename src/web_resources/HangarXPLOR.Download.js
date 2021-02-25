@@ -29,7 +29,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
   };
 
   HangarXPLOR.GetPledgeList = function($target) {
-    return $target.map(function() { 
+   return $target.map(function() { 
       var $pledge = this;
       var pledge = {};
       pledge.name = $('.js-pledge-name', $pledge).val();
