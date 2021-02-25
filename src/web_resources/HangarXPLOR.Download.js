@@ -40,11 +40,15 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
       pledge.warbond = pledge.name.toLowerCase().indexOf('warbond') > -1;
       pledge.ships = $('.kind:contains(Ship)', this).parent().map(function() {
         var $ship = this;
+        var manufacturer = $('.liner span', $ship).text();
+        manufacturer = _manufacturerShortMap[manufacturer] || manufacturer;
         var shipName = $('.title', $ship).text();
         shipName = shipName.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
         shipName = shipName.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
         shipName = shipName.replace(/["',]/gi, '');
-        return shipName;
+        return {
+          manufacturer: manufacturer,
+          name: shipName};
       }).get()
       return pledge;
     }).get();
@@ -122,7 +126,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     var $target = $(HangarXPLOR._inventory);
     
     var buffer = "Name, ID, Cost, Date, Lti, Warbond, Ships\n";
-    buffer = buffer + HangarXPLOR.GetPledgeList($target).map(function(pledge) { return [ '"' + pledge.name + '"', '"' + pledge.id + '"', '"' + pledge.cost + '"', '"' + pledge.date + '"', pledge.lti, pledge.warbond,  '"' + pledge.ships.join(',') + '"'].join(',')}).join('\n')
+    buffer = buffer + HangarXPLOR.GetPledgeList($target).map(function(pledge) { return [ '"' + pledge.name + '"', '"' + pledge.id + '"', '"' + pledge.cost + '"', '"' + pledge.date + '"', pledge.lti, pledge.warbond,  '"' + pledge.ships.map((ship) => ship.manufacturer + ' ' + ship.name).join(',') + '"'].join(',')}).join('\n')
 
     $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
     $download.attr('download', 'pledgelist.csv');
