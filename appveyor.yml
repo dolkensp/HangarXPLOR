@@ -53,7 +53,7 @@ artifacts:
 deploy:
   provider: GitHub
   auth_token:
-    secure: Yi3KGQnx6Ui4ise0Dss0CRYo4FXHnN9xqWfol7mbKk13e13QDPQgNVfjPHGAg0ec
+    secure: aUq4uwUlXb5KVgS/n7ZlghMMJlYMIOOm+4Lyhj147OvUtU/8i5v9b+yi3KCisxzk
   artifact: /.*\.zip/
   draft: false
   prerelease: false
@@ -61,4 +61,4 @@ deploy:
   release: HangarXPLOR Browser Extensions
   description: View [ReadMe](https://github.com/dolkensp/HangarXPLOR/blob/master/README.md) for more instructions.
   on:
-    branch: master
+    branch: release
