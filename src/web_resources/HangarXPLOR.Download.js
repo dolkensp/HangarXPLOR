@@ -114,7 +114,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     
     var $target = $(HangarXPLOR._inventory);
     
-    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetPledgeList($target), null, 2)));
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({fileType: "PledgeJSON", version: 1, buybacks: HangarXPLOR.GetPledgeList($target)}, null, 2)));
     $download.attr('download', 'pledgelist.json');
     $download.attr('type', 'text/json');
     $download[0].click();
@@ -125,7 +125,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     
     var $target = $(HangarXPLOR._inventory);
     
-    var buffer = "Name, ID, Cost, Date, Lti, Warbond, Ships\n";
+    var buffer = "PledgeCSVv1 Name, ID, Cost, Date, Lti, Warbond, Ships\n";
     buffer = buffer + HangarXPLOR.GetPledgeList($target).map(function(pledge) { return [ '"' + pledge.name + '"', '"' + pledge.id + '"', '"' + pledge.cost + '"', '"' + pledge.date + '"', pledge.lti, pledge.warbond,  '"' + pledge.ships.map((ship) => ship.manufacturer + ' ' + ship.name).join(',') + '"'].join(',')}).join('\n')
 
     $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
