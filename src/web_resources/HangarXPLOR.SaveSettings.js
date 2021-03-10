@@ -13,6 +13,7 @@ HangarXPLOR.SaveSettings = function()
   settings._pageCount        = HangarXPLOR._pageCount || 10;
   settings._logEnabled       = HangarXPLOR._logEnabled || false;
   settings._cacheHash        = HangarXPLOR._cacheHash || 0;
+  settings._cacheSalt        = HangarXPLOR._cacheSalt || btoa(Math.random());
   
   settings._feature_LTI      = HangarXPLOR._feature.LTI      || '';
   settings._feature_Warbond  = HangarXPLOR._feature.Warbond  || '';

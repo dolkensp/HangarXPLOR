@@ -12,6 +12,7 @@ HangarXPLOR.SaveCache = function(callback)
   });
   
   cacheItems['cache:count'] = HangarXPLOR._raw.length;
+  cacheItems['cache:hash'] = HangarXPLOR._activeHash;
   
   delete HangarXPLOR._raw;
   

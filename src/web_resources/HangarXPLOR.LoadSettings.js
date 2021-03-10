@@ -13,6 +13,7 @@ HangarXPLOR.LoadSettings = function(callback)
     HangarXPLOR._pageCount = settings._pageCount || 10;
     HangarXPLOR._logEnabled = settings._logEnabled || false;
     HangarXPLOR._cacheHash = settings._cacheHash || 0;
+    HangarXPLOR._cacheSalt = settings._cacheSalt || btoa(Math.random());
     
     HangarXPLOR._feature          = HangarXPLOR._feature       || {};
     HangarXPLOR._feature.LTI      = settings._feature_LTI      || '';

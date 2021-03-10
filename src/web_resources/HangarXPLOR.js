@@ -9,6 +9,7 @@ HangarXPLOR._upgradeCount  = HangarXPLOR._upgradeCount || 0;
 HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
 HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
+HangarXPLOR._cacheSalt     = HangarXPLOR._cacheSalt || btoa(Math.random());
 
 var RSI = RSI || {};
 
@@ -26,7 +27,14 @@ HangarXPLOR.Initialize = function()
       HangarXPLOR.UpdateStatus(0);
       
       RSI.Api.Account.pledgeLog((payload) => {
-        HangarXPLOR._activeHash = payload.data.rendered.length + ':' + payload.data.rendered.substr(39, 20);
+
+        var today = new Date().toISOString();
+        var safetySalt = '';
+
+        // CIG Released ship naming in March 2021, which requires us to invalidate cache
+        if (today.substr(0, 7) == '2021-03') safetySalt = today.substr(0, 13) + ':';
+
+        HangarXPLOR._activeHash = safetySalt + payload.data.rendered.length + ':' + btoa(payload.data.rendered.substr(39, 20)) + ':' + HangarXPLOR._cacheSalt;
         
         HangarXPLOR.LoadCache(HangarXPLOR.LoadPage);
       });
