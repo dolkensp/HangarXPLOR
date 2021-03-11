@@ -253,7 +253,7 @@ HangarXPLOR.ProcessItem = function()
 
     if (this.hasShip) this.displayName += ltiSuffix;
       
-    if (HangarXPLOR._setting.NoPledgeID != true) this.displayName += ' - (' + this.pledgeId + ')';
+    if (HangarXPLOR._setting.NoPledgeID != true) this.displayName += ' (' + this.pledgeId + ')';
     
     this.sortName = this.displayName; // .replace(/^.*? - (.*)$/, '$1');
     
