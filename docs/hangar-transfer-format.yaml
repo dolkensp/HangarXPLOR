@@ -1,0 +1,115 @@
+openapi: 3.0.1
+info:
+  title: Hangar Transfer Format
+  description: |
+    This is a draft specification for a file format which will facilitate the transfer of hangar data between different community managed tools
+  version: 0.0.1
+servers:
+- url: /
+tags:
+- name: erkul.games
+- name: FleetYards.net
+- name: HangarXPLOR
+  description: Browser Plugin to manage your RSI hangar
+  externalDocs:
+    description: Find out more
+    url: https://docs.hangarxplor.space
+- name: StarShip42.com
+paths:
+  /download:
+    get:
+      tags:
+      - HangarXPLOR
+      summary: Downloads the contents of your hangar from the RSI website
+      operationId: addPet
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: "#/components/schemas/hangarxplor.ship.json"
+components:
+  schemas:
+    hangarxplor.ship.json:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: Carrack
+        manufacturer:
+          type: string
+          example: Anvil Aerospace
+          enum:
+          - Aegis Dynamics
+          - Anvil Aerospace
+          - Aopoa
+          - Argo
+          - Banu
+          - Consolidated Outland
+          - Crusader
+          - Drake
+          - Esperia
+          - Greycat Industries
+          - Kruger Intergalactic
+          - Musashi Industrial and Starflight Concern
+          - Origin
+          - Roberts Space Industries
+          - Tumbril
+          - Vanduul
+          - Xi'an
+        manufacturer_code:
+          type: string
+          example: ANVL
+          enum:
+          - AEGI
+          - ANVL
+          - AOPO
+          - ARGO
+          - BANU
+          - CNOU
+          - CRUS
+          - DRAK
+          - ESPR
+          - GRIN
+          - KRIN
+          - MISC
+          - ORIG
+          - RSI
+          - TUMB
+          - VAND
+          - XIAN
+        nickname:
+          type: string
+          example: Serenity
+        lti:
+          type: boolean
+          example: true
+        warbond:
+          type: boolean
+          example: true
+        package_id:
+          type: string
+          example: "12345678"
+        pledge:
+          type: string
+          example: Standalone Ship - Anvil Carrack Warbond - LTI
+        pledge_date:
+          type: string
+          format: date
+          example: 2016-12-08
+        cost:
+          type: string
+          format: currency
+          example: $350 USD
+        type:
+          type: string
+          example: ship
+          default: ship
+          enum:
+          - ship
