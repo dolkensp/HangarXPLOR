@@ -47,6 +47,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
         ship.name = $('.title', $ship).text();
         ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
         ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
+        ship.nickname = $('.custom-name-text', $ship).text();
         ship.lti = pledge.lti;
         ship.warbond = pledge.warbond;
         ship.package_id = pledge.id;
@@ -74,6 +75,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     
     var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
     
+    // TODO: CSV support will need to be careful of user-entered data...
     var buffer = "Manufacturer, Ship, Lti, Warbond, ID, Pledge, Cost, Date\n";
     buffer = buffer + HangarXPLOR.GetShipList($target).map(function(ship) { return [ '"' + ship.manufacturer + '"', '"' + ship.name + '"', ship.lti, ship.warbond, ship.package_id, '"' + ship.pledge + '"', '"' + ship.cost + '"', '"' + ship.pledge_date + '"' ].join(',')}).join('\n')
 

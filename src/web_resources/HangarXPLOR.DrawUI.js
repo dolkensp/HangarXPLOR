@@ -33,6 +33,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsModel', Text: 'Models', Selected: HangarXPLOR._type == 'IsModel' },
     { Value: 'IsPlant', Text: 'Plants', Selected: HangarXPLOR._type == 'IsPlant' },
     { Value: 'IsPoster', Text: 'Posters', Selected: HangarXPLOR._type == 'IsPoster' },
+    { Value: 'IsNameable', Text: 'Nameable', Class: 'split', Selected: HangarXPLOR._type == 'IsNameable' },
   ], '158px', 'js-custom-filter', function(e, value) { HangarXPLOR._type = value; HangarXPLOR.SaveSettings(); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); /* HangarXPLOR.ResetBulkUI(); */ }));
   
   $controls1.append(HangarXPLOR.Dropdown([
