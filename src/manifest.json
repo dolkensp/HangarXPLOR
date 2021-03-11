@@ -27,6 +27,7 @@
   "web_accessible_resources": [
     "web_resources/shims.chrome.storage.js",
     "web_resources/fuse.min.js",
+    "web_resources/HangarXPLOR.Billing.js",
     "web_resources/HangarXPLOR.BulkUI.js",
     "web_resources/HangarXPLOR.Button.js",
     "web_resources/HangarXPLOR.Components.js",
