@@ -14,6 +14,7 @@
         "jszip": "^3.1.5"
     },
     "devDependencies": {
+        "axios": "^0.21.1",
         "eslint": "^5.0.1"
     },
     "eslintConfig": {
@@ -31,5 +32,11 @@
             "chrome": true
         }
     },
-    "eslintIgnore": [ "src/vendor/**/*.js", "*.min.js" ]
+    "eslintIgnore": [
+        "src/vendor/**/*.js",
+        "*.min.js"
+    ],
+    "scripts": {
+        "generate-ships-file": "node scripts/generate_ships_file.js"
+    }
 }

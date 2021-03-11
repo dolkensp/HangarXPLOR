@@ -184,6 +184,7 @@ HangarXPLOR.ProcessItem = function()
       for (i = 0, j = HangarXPLOR._ships.length; i < j; i++) {
         if (this.shipName.toLowerCase().indexOf(HangarXPLOR._ships[i].name.toLowerCase()) > -1) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._ships[i].thumbnail + '")'});
+          $('.items', this).prepend('<a href="' + HangarXPLOR._ships[i].url + '" target="_blank" class="shadow-button trans-02s trans-color"><span class="label js-label trans-02s">Ship Page</span><span class="icon trans-02s"><span class="effect trans-opacity trans-03s"></span></span><span class="left-section"></span><span class="right-section"></span></a>');
           break;
         }
       }
