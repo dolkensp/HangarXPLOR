@@ -1,7 +1,71 @@
 
 var HangarXPLOR = HangarXPLOR || {};
 
-HangarXPLOR._ships = [
+/* Overrides for the ship matrix */
+/*******************************
+ * key:         The name as expected from ship-matrix (if different)
+ * name:        The name as expected from hangar
+ * displayName: The name as displayed by HangarXPLOR
+ * thumbnail:   The thumbnail displayed by HangarXPLOR
+ * 
+ * url:         The url of the details page
+ * focus:       The focus of the ship
+ */
+HangarXPLOR._ships = {
+  'X1 Base': {
+    name: 'X1'
+  },
+  'F7A Hornet': {
+    thumbnail: ''
+  },
+  'F7C Hornet': {
+    name: 'Hornet F7C',
+    displayName: 'F7C Hornet',
+  },
+  'F8A Lightning': {
+    focus: 'Heavy Fighter',
+    url: 'https://robertsspaceindustries.com/galactapedia/article/bZwQ7r6nkE-f8a-lightning',
+    // thumbnail: 'https://cig-galactapedia-prod.s3.amazonaws.com/upload/07841eb5-c02a-49b6-a422-2fc5449f8580'
+  },
+  'F8C Lightning Civilian': {
+    displayName: 'F8C Lightning: Civilian',
+    // thumbnail: '/media/6yu51ic3y27b6r/heap_infobox/F8C.png'
+  },
+  'F8C Lightning Executive Edition': {
+    displayName: 'F8C Lightning: Executive Edition',
+    // thumbnail: '/media/ldeqyuto9lb46r/heap_infobox/F8C-Executive.png'
+  },
+  'A2 Hercules': {
+    name: 'Hercules Starlifter A2'
+  },
+  'C2 Hercules': {
+    name: 'Hercules Starlifter C2'
+  },
+  'M2 Hercules': {
+    name: 'Hercules Starlifter M2'
+  },
+  '600i Explorer': {
+    name: '600i Exploration Module'
+  },
+  '600i Touring': {
+    name: '600i Touring  Module'
+  },
+  'Argo Mole Talus Edition': {
+    name: 'Argo Mole - Talus Edition',
+    displayName: 'Mole: Talus Edition'
+  },
+  'Argo Mole Carbon Edition': {
+    name: 'Argo Mole - Carbon Edition',
+    displayName: 'Mole: Carbon Edition'
+  },
+  'Scythe': {
+    name: 'Captured Vanduul Scythe',
+    displayName: 'Scythe'
+  }
+};
+
+
+HangarXPLOR._ships2 = [
   { 'name': 'Origin 100 Series Pack', 'thumbnail': '/media/jhifpuskfsm4gr/heap_infobox/Origin_100_All_100s_LineUP_Front_sm-Min.jpg' },
   { 'name': '100i', 'thumbnail': '/media/bapnpk9usqxxhr/heap_infobox/100i.jpg' },
   { 'name': '125a', 'thumbnail': '/media/vkuyeedcipouyr/heap_infobox/125a.jpg' },

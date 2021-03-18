@@ -69,8 +69,8 @@ HangarXPLOR.BindBulkUI = function()
     if (!e.originalEvent.isButton)
     {
       $('.row', this).removeClass('js-selected');
-      this.isSelected = !this.isSelected;
-      if (this.isSelected) $('.row', this).addClass('js-selected');
+      this.filters.is_selected = !this.filters.is_selected;
+      if (this.filters.is_selected) $('.row', this).addClass('js-selected');
       
       HangarXPLOR.RefreshBulkUI();
     }
@@ -117,14 +117,14 @@ HangarXPLOR.RefreshBulkUI = function()
   HangarXPLOR._selectedMelt = 0.00;
   HangarXPLOR._totalMelt = 0.00;
   HangarXPLOR._selected = $.grep(HangarXPLOR._inventory, function(item) {
-    HangarXPLOR._totalMelt += item.meltValue;
-    if (item.isSelected) {
-      HangarXPLOR._selectedMelt += item.meltValue;
-      if (item.isMeltable) HangarXPLOR._meltable.push(item);
-      if (item.isGiftable) HangarXPLOR._giftable.push(item);
-      if (item.isUpgrade) HangarXPLOR._selectedUpgrades += 1;
-      if (item.isPackage) HangarXPLOR._selectedPackages += 1;
-      if (item.hasShip) HangarXPLOR._selectedShips += $('.kind:contains(Ship)', item).length;
+    HangarXPLOR._totalMelt += item.melt_value;
+    if (item.filters.is_selected) {
+      HangarXPLOR._selectedMelt += item.melt_value;
+      if (item.filters.is_meltable) HangarXPLOR._meltable.push(item);
+      if (item.filters.is_giftable) HangarXPLOR._giftable.push(item);
+      if (item.filters.is_upgrade)  HangarXPLOR._selectedUpgrades += 1;
+      if (item.filters.is_package)  HangarXPLOR._selectedPackages += 1;
+      if (item.filters.has_ship)    HangarXPLOR._selectedShips += $('.kind:contains(Ship)', item).length;
       return true;
     }
     return false
@@ -184,7 +184,7 @@ HangarXPLOR.RefreshBulkUI = function()
 
 HangarXPLOR.ResetBulkUI = function()
 {
-  for (var i = 0, j = HangarXPLOR._inventory.length; i < j; i++) HangarXPLOR._inventory.isSelected = false;
+  for (var i = 0, j = HangarXPLOR._inventory.length; i < j; i++) HangarXPLOR._inventory.filters.is_selected = false;
   
   $('.row', HangarXPLOR.$list).removeClass('js-selected');  
   

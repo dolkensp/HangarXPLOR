@@ -15,32 +15,99 @@ var RSI = RSI || {};
 
 HangarXPLOR.Initialize = function()
 {
-  HangarXPLOR.LoadSettings(function() {
-    var $lists = $('.list-items');
-    
-    if ($lists.length == 1) {
-      HangarXPLOR.BulkUI();
-      HangarXPLOR.$list = $($lists[0]);
-      HangarXPLOR.$list.addClass('js-inventory');
-      $lists = undefined;
+  $.ajax({ 
+    url: '/ship-matrix/index', 
+    method: 'GET', 
+    dataType: 'json', 
+    success: (response) => { 
       
-      HangarXPLOR.UpdateStatus(0);
+      var customShips = HangarXPLOR._ships;
       
-      RSI.Api.Account.pledgeLog((payload) => {
+      HangarXPLOR._shipMatrix = response.data
+        .map((ship) => {
+          var rsiShip = {
+            name: ship.name
+              .replace(/^Aegis /i, '')
+              .replace(/^Anvil /i, '')
+              .replace(/^Aopoa /i, '')
+              .replace(/^Argo /i, '')
+              .replace(/^Banu /i, '')
+              .replace(/^CNOU /i, '')
+              .replace(/^Drake /i, '')
+              .replace(/^Esperia /i, '')
+              .replace(/^Greycat /i, '')
+              .replace(/^Kruger /i, '')
+              .replace(/^MISC /i, '')
+              .replace(/^Origin /i, '')
+              .replace(/^RSI /i, '')
+              .replace(/^Tumbril /i, '')
+              .replace(/^Vanduul /i, '')
+              .replace(/^Xi'an /i, '')
+              .trim(),
+            thumbnail: ship.media[0].images.heap_infobox,
+            url: ship.url,
+            focus: ship.focus,
+          };
+          
+          var customShip = HangarXPLOR._ships[rsiShip.name];
 
-        var today = new Date().toISOString();
-        var safetySalt = '';
+          delete customShips[rsiShip.name];
 
-        // CIG Released ship naming in March 2021, which requires us to invalidate cache
-        if (today.substr(0, 7) == '2021-03') safetySalt = today.substr(0, 13) + ':';
+          return $.extend({}, rsiShip, customShip);
+        })
+      
+        .concat($.map(customShips, (ship, key) => {
+          if (ship.name == undefined) ship.name = key;
+          return ship;
+        }))
+      
+        .sort((a, b) => {
+          if (a.name.length > b.name.length) return -1;
+          if (a.name < b.name) return 0;
+          return 1;
+        });
 
-        HangarXPLOR._activeHash = safetySalt + payload.data.rendered.length + ':' + btoa(payload.data.rendered.substr(39, 20)) + ':' + HangarXPLOR._cacheSalt;
+        HangarXPLOR._ships3 = customShips;
+      
+      HangarXPLOR._componentMatrix = []
+        .concat($.map(HangarXPLOR._components, (component, key) => {
+          if (component.name == undefined) component.name = key;
+          return component;
+        }))
+        .sort((a, b) => {
+          if (a.name.length > b.name.length) return -1;
+          if (a.name < b.name) return -1;
+          return 1;
+        });
+      
+      HangarXPLOR.LoadSettings(function() {
+        var $lists = $('.list-items');
         
-        HangarXPLOR.LoadCache(HangarXPLOR.LoadPage);
+        if ($lists.length == 1) {
+          HangarXPLOR.BulkUI();
+          HangarXPLOR.$list = $($lists[0]);
+          HangarXPLOR.$list.addClass('js-inventory');
+          $lists = undefined;
+          
+          HangarXPLOR.UpdateStatus(0);
+          
+          RSI.Api.Account.pledgeLog((payload) => {
+    
+            var today = new Date().toISOString();
+            var safetySalt = '';
+    
+            // CIG Released ship naming in March 2021, which requires us to invalidate cache
+            if (today.substr(0, 7) == '2021-03') safetySalt = today.substr(0, 13) + ':';
+    
+            HangarXPLOR._activeHash = safetySalt + payload.data.rendered.length + ':' + btoa(payload.data.rendered.substr(39, 20)) + ':' + HangarXPLOR._cacheSalt;
+            
+            HangarXPLOR.LoadCache(HangarXPLOR.LoadPage);
+          });
+          
+        } else {
+          HangarXPLOR.Log('Error locating inventory');
+        }
       });
-      
-    } else {
-      HangarXPLOR.Log('Error locating inventory');
     }
   });
 }

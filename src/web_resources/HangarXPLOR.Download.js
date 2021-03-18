@@ -47,11 +47,13 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
         ship.name = $('.title', $ship).text();
         ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
         ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
-        ship.nickname = $('.custom-name-text', $ship).text();
         ship.lti = pledge.lti;
         ship.warbond = pledge.warbond;
-        ship.package_id = pledge.id;
-        ship.pledge = pledge.name;
+        
+        var nickname = $('.custom-name-text', $ship);
+        ship.ship_name = nickname.length > 0 ? nickname : ship.name;
+        ship.package_id  = pledge.pledge_id;
+        ship.pledge_name = pledge.pledge_name;
         ship.pledge_date = pledge.date;
         ship.cost = pledge.cost;
         return ship;
@@ -62,6 +64,7 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
   HangarXPLOR._callbacks.DownloadJSON = function(e) {
     e.preventDefault();
     
+    // TODO: Check why
     var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
     
     $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetShipList($target), null, 2)));

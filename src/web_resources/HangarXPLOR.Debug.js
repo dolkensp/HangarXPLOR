@@ -32,7 +32,7 @@ if ($.cookie('debug') == "true") {
     {
       var $items = $('li', $lists[1]);
         
-      $items.each(HangarXPLOR.ProcessItem);
+      $items.each(HangarXPLOR.ParsePledge);
       HangarXPLOR.LoadPage(pageNo + 1);
       
     } else {

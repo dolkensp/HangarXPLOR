@@ -13,7 +13,7 @@ HangarXPLOR.LoadCache = function(callback)
     {
       HangarXPLOR._fromCache = true;
       
-      for (var i = 0; i < cache['cache:count']; i++) { HangarXPLOR.ProcessItem.apply($(cache['cache:' + i])[0]) }
+      for (var i = 0; i < cache['cache:count']; i++) { HangarXPLOR.ParsePledge.apply($(cache['cache:' + i])[0]) }
       
       HangarXPLOR.DrawUI();
       return;
