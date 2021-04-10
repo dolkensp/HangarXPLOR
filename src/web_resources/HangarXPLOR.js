@@ -3,7 +3,7 @@ var HangarXPLOR = HangarXPLOR || {};
 
 HangarXPLOR.$list = null;                            // Element where we display the pledges
 HangarXPLOR._inventory = [];                         // Inventory containing all pledges
-HangarXPLOR._debugRoot = $('#HangarXPLOR-js-1').attr('src').replace(/(.*)web_resources.*/, "$1");
+HangarXPLOR._debugRoot = $('#HangarXPLOR-js-0').attr('src').replace(/(.*)web_resources.*/, "$1");
 HangarXPLOR._shipCount     = HangarXPLOR._shipCount || 0;
 HangarXPLOR._upgradeCount  = HangarXPLOR._upgradeCount || 0;
 HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
@@ -21,7 +21,7 @@ HangarXPLOR.Initialize = function()
     dataType: 'json', 
     success: (response) => { 
       
-      var customShips = HangarXPLOR._ships;
+      var customShips = $.extend({}, HangarXPLOR._ships);
       
       HangarXPLOR._shipMatrix = response.data
         .map((ship) => {
@@ -66,8 +66,6 @@ HangarXPLOR.Initialize = function()
           if (a.name < b.name) return 0;
           return 1;
         });
-
-        HangarXPLOR._ships3 = customShips;
       
       HangarXPLOR._componentMatrix = []
         .concat($.map(HangarXPLOR._components, (component, key) => {

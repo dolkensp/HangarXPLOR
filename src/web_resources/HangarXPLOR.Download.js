@@ -2,33 +2,26 @@
 var HangarXPLOR = HangarXPLOR || {};
 
 HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
+HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
 
 (function() {
 
   var $download = $('<a />');
   $download.hide();
   $(document.body).append($download);
-
-  var _manufacturerShortMap = {
-    'ANVL': 'Anvil',
-    'AEGS': 'Aegis',
-    'AOPOA': 'Aopoa',
-    'ARGO': 'Argo',
-    'BANU': 'Banu',
-    'CNOU': 'Consolidated',
-    'CRSD': 'Crusader',
-    'DRAK': 'Drake',
-    'ESPERIA': 'Esperia',
-    'KRGR': 'Kruger',
-    'MISC': 'MISC',
-    'ORIG': 'Origin',
-    'RSI': 'RSI',
-    'TMBL': 'Tumbril',
-    'VANDUUL': 'Vanduul',
-    'XIAN': 'Xi\'an',
-  };
+  
+  
+  $.ajax({
+    url: $('#HangarXPLOR-ajax-ship-codes-json').data('ajax'),
+    method: 'GET',
+    dataType: 'json',
+    success: function(data) {
+      $.map(data, (ship) => { HangarXPLOR._exportByName[ship.ship_name.toLowerCase()] = ship });
+    }
+  });
 
   HangarXPLOR.GetShipList = function($target) {
+    
     return $target.map(function() { 
       var $pledge = this;
       var pledge = {};
@@ -41,21 +34,38 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
 
       return $('.kind:contains(Ship)', this).parent().map(function() {
         var $ship = this;
-        var ship = {};
-        ship.manufacturer = $('.liner span', $ship).text();
-        ship.manufacturer = _manufacturerShortMap[ship.manufacturer] || ship.manufacturer;
-        ship.name = $('.title', $ship).text();
-        ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
-        ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
-        ship.lti = pledge.lti;
-        ship.warbond = pledge.warbond;
+        var ship_name = $('.title', $ship).text().trim();
+        ship_name = ship_name.replace(/^(?:Aegis|Anvil|Aopoa|Banu|CNOU|Crusader|Drake|Greycat Industrial|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '').trim();
+        var lookup = ship_name.toLowerCase();
+        var nickname = $('.custom-name-text', $ship).text();
         
-        var nickname = $('.custom-name-text', $ship);
-        ship.ship_name = nickname.length > 0 ? nickname : ship.name;
-        ship.package_id  = pledge.pledge_id;
-        ship.pledge_name = pledge.pledge_name;
+        for (i = 0, j = HangarXPLOR._shipMatrix.length; i < j; i++) {
+          if (lookup.indexOf(HangarXPLOR._shipMatrix[i].name.toLowerCase()) > -1 || lookup.indexOf((HangarXPLOR._shipMatrix[i].displayName || 'NOTFOUND').toLowerCase()) > -1) {
+
+            HangarXPLOR.Log('Matched', HangarXPLOR._shipMatrix[i].name, 'in', lookup);
+
+            lookup = (HangarXPLOR._shipMatrix[i].export || HangarXPLOR._shipMatrix[i].name).toLowerCase().trim();
+            break;
+          }
+        }
+        
+        var ship = HangarXPLOR._exportByName[lookup] || {
+          unidentified: 'Please report this ship to the plugin developers at https://github.com/dolkensp/HangarXPLOR/issues',
+          ship_code: ($('.liner span', $ship).text().trim() + '_' + ship_name).replace(/[^a-z0-9]/gi, '_').replace(/__+/gi, '_'),
+          manufacturer_name: $('.liner', $ship).text().trim().replace(/\(.*\)/, '').trim(),
+        };
+        
+        ship.manufacturer_code = $('.liner span', $ship).text().trim();
+        ship.lti         = pledge.lti;
+        ship.name        = ship_name;
+        ship.warbond     = pledge.warbond;
+        ship.entity_type = 'ship';
+        ship.ship_name   = nickname.length > 0 ? nickname : ship.ship_name;
+        ship.pledge_id   = pledge.id;
+        ship.pledge_name = pledge.name;
         ship.pledge_date = pledge.date;
-        ship.cost = pledge.cost;
+        ship.pledge_cost = pledge.cost;
+        
         return ship;
       }).get()
     }).sort(function(a, b) { return a.manufacturer == b.manufacturer ? (a.name < b.name ? -2 : 2) : (a.manufacturer < b.manufacturer ? -1 : 1); }).get();

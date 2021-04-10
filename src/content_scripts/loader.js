@@ -47,6 +47,10 @@
     'web_resources/shims.chrome.storage.js'
   ];
   
+  var ajax = [
+    'web_resources/ship-codes.json'
+  ];
+  
   var templates = [ ];
   
   for (var i = 0, j = styles.length; i < j; i++) {
@@ -70,8 +74,6 @@
     document.body.appendChild(script);
   }
   
-  i = 1;
-  
   window.addEventListener('message', function(event) {
     if (event.source != window) return;
     if ((event.data.type || false) == false) return;
@@ -89,6 +91,18 @@
       case 'storage.local.clear.request': chrome.storage.local.clear(function() { window.postMessage({ type: "storage.clear.response", callbackIndex: event.data.callbackIndex }, "*") }); break;
     }
   });
+  
+  for (i = 0, j = ajax.length; i < j; i++) {
+    var ajaxURL = chrome.extension.getURL(ajax[i]);
+    console.log('Loading', ajaxURL);
+    var script = document.createElement('script');
+    script.id = (namespace + '-ajax-' + ajax[i++]).replace('web_resources/', '').replace(/[. ]/, '-');
+    script.type = 'text/x-ajax-url';
+    script.dataset.ajax = ajaxURL;
+    document.body.appendChild(script);
+  }
+  
+  i = 0;
   
   var loadScript = function() {
     if (scripts.length == 0) return;
@@ -108,5 +122,5 @@
     document.body.appendChild(script);
   };
   
-  loadScript();
+  loadScript();  
 }()

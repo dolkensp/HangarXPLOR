@@ -25,6 +25,7 @@
     "run_at": "document_end"
   }],
   "web_accessible_resources": [
+    "web_resources/ship-codes.json",
     "web_resources/shims.chrome.storage.js",
     "web_resources/fuse.min.js",
     "web_resources/HangarXPLOR.BulkUI.js",
