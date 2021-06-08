@@ -345,8 +345,10 @@ HangarXPLOR.ProcessItem = function()
     }
     
     this.displayName = titlePartsFirst + ' - ' + titlePartsMiddle
+    
     if (this.hasShip) this.displayName += ltiSuffix
-    this.displayName += ' (' + this.pledgeId + ')';
+
+    if (HangarXPLOR._setting.NoPledgeID != true) this.displayName += ' (' + this.pledgeId + ')';
 
     this.sortName = this.displayName.replace(/^.*? - (.*)$/, '$1');
     
