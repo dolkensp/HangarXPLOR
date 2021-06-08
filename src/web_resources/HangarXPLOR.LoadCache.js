@@ -7,7 +7,9 @@ HangarXPLOR.LoadCache = function(callback)
   
   chrome.storage.local.get(null, (cache) => {
     
-    if (HangarXPLOR._cacheHash == HangarXPLOR._activeHash && cache['cache:count'] > 0)
+    if (HangarXPLOR._cacheHash == HangarXPLOR._activeHash &&
+        cache['cache:hash'] == HangarXPLOR._cacheHash &&
+        cache['cache:count'] > 0)
     {
       HangarXPLOR._fromCache = true;
       

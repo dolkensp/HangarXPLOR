@@ -2,9 +2,28 @@
 <html>
   <head>
     <title>HangarXPLOR Settings</title>
-    <script src="HangarXPLOR.Settings.js"></script>
+    <style>
+      body {
+        width: 300px; 
+        background: url(https://robertsspaceindustries.com/rsi/static/images/gridbg.png) repeat center top,
+                    url(https://robertsspaceindustries.com/rsi/static/images/bg_bengalinterior.jpg) no-repeat top,
+                    url(https://robertsspaceindustries.com/rsi/static/images/noisebg.gif) repeat top;
+        color: #4ee0ff;
+      }
+    </style>
   </head>
   <body>
     <h1>Settings</h1>
+    <p>Disclaimer: This is really ugly for now. I'm sorry.</p>
+    <h2>Actions</h2>
+    <ul>
+      <!--
+        <li><input id="noPledgeID" type="checkbox" name="noPledgeID">Hide Pledge ID</input></li>
+        <li><input id="noPrefix"   type="checkbox" name="noPrefix">Hide Pledge Prefix</input></li>
+        <li><input id="noNickname" type="checkbox" name="noNickname">Hide Nicknames</input></li>
+      -->
+      <li><button id="clearCache">Clear Cache</button></li>
+    </ul>
+    <script src="HangarXPLOR.Settings.js"></script>
   </body>
 </html>

@@ -76,6 +76,7 @@ HangarXPLOR.CleanPledgeName = function(pledgeName)
   pledgeName = pledgeName.replace(/^Original and Veteran Backers Reward/i, 'Reward - AMX-1 Repair Bot');
   pledgeName = pledgeName.replace(/^Hangar Fees Reward/i, 'Reward - Free Hangar Fees');
   pledgeName = pledgeName.replace(/^Christmas 2014 reward!/i, 'Reward - Holiday Wreath - Christmas 2014');
+  pledgeName = pledgeName.replace(/^Christmas Reward!/i, 'Reward - Holiday Wreath - Christmas 2015');
   pledgeName = pledgeName.replace(/^#YOU'RE A STAR CITIZEN/i, 'Reward - Vanguard Harbinger - You\'re A Star Citizen');
   pledgeName = pledgeName.replace(/^15 Million Reward/i, 'Reward - Digital 42-page Upgrade Handbook - 15 Million');
   pledgeName = pledgeName.replace(/^16 Million Reward/i, 'Reward - Laser Pistol side arm- 16 Million');
@@ -83,30 +84,43 @@ HangarXPLOR.CleanPledgeName = function(pledgeName)
   pledgeName = pledgeName.replace(/^19 Million Reward/i, 'Reward - Jane\'s Fighting Ships style manual - 19 Million');
   pledgeName = pledgeName.replace(/^20 Million Reward/i, 'Reward - Fishtank Mark 1 - 20 Million');
   pledgeName = pledgeName.replace(/^23 Million Reward/i, 'Reward - Takuetsu Prestige Khartu-Al Model - 23 Million');
+  pledgeName = pledgeName.replace(/^200 Million Commemorative Coin/i, 'Reward - Commemorative Coin - 200 Million');
+  pledgeName = pledgeName.replace(/^300 Million Reward/i, 'Reward - S-38 \'One Empire\' Pistol - 300 Million');
   pledgeName = pledgeName.replace(/^(\d+)M (Reward - .+)$/i, '$2 - $1 Million');
-  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?"?PAX Australia (\d+)( Trophy)?"?/i, 'Trophy - PAX Australia $2');
-  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?"?Gamescom (\d+)( Trophy)?"?/i, 'Trophy - Gamescom $2');
-  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?"?CitizenCon (\d+)( Subscriber)?( Trophy)?"?/i, 'Trophy - CitizenCon $2');
+  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?"?PAX Australia (\d+)(.*?) Trophy"?/i, 'Trophy - PAX Australia $2');
+  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?"?Gamescom (\d+)(.*?) Trophy"?/i, 'Trophy - Gamescom $2');
+  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?"?CitizenCon (\d+)( Subscriber)? Trophy"?/i, 'Trophy - CitizenCon $2');
+  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?"?CitizenCon (\d+)"?/i, 'Reward - CitizenCon $2');
+  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?(.*?) Painting/i, 'Decoration - $2 Painting');
+  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?(.*?) Statue/i, 'Decoration - $2 Statue');
+  pledgeName = pledgeName.replace(/^(Decorations - |Add-Ons - )?(.*?) Model/i, 'Models - $2');
   pledgeName = pledgeName.replace(/^December 2014 Backer Reward/i, 'Reward - Takuetsu Mustang Model - December 2014');
   pledgeName = pledgeName.replace(/^(Hornet|Freelancer|Decorations - CitizenCon \d+) Poster/i, 'Posters - $1');
   pledgeName = pledgeName.replace(/ Poster$/i, '');
-  pledgeName = pledgeName.replace(/^Space Globes/i, 'Space Globe');
+  pledgeName = pledgeName.replace(/^(.*) (Helmet|Armor|Armor Set)$/i, 'Equipment - $1 $2');
+  pledgeName = pledgeName.replace(/^Masters of Design Series ?- ?(.*)$/i, 'Decoration - $1');
+  pledgeName = pledgeName.replace(/(.*) T-Shirt$/i, 'Equipment - $1 T-Shirt');
+  pledgeName = pledgeName.replace(/T-Shirt (.*)$/i, 'Equipment - $1 T-Shirt');
+  pledgeName = pledgeName.replace(/^(.*) Best in Show Livery Upgrade/i, 'Paints - $1 Best in Show Livery');
+  pledgeName = pledgeName.replace(/^Space Globe /i, 'Space Globes ');
   pledgeName = pledgeName.replace(/^Standalone Ship - Drake Dragonfly Ride Together Two-Pack/i, 'Combo - Drake Dragonfly Ride Together Two-Pack');
   pledgeName = pledgeName.replace(/^Add-ons - (.*) Mega(?: |-)Pack$/i, 'Combo - $1 Mega Pack');
   pledgeName = pledgeName.replace(/ - Holiday 20\d\d$/i, '');
   pledgeName = pledgeName.replace(/"Be A Hero"$/i, 'Be A Hero');
   pledgeName = pledgeName.replace(/^Cross-Chassis Upgrades/i, 'Ship Upgrades');
-  pledgeName = pledgeName.replace(/^(.*) Skin$/i, 'Skins - $1');
+  pledgeName = pledgeName.replace(/^(.*) Skin$/i, 'Paints - $1');
   pledgeName = pledgeName.replace(/^Freelancer MIS upgrade$/i, 'Ship Upgrades - Freelancer MIS Upgrade');
   pledgeName = pledgeName.replace(/^F7A Military Hornet Upgrade$/i, 'Ship Upgrades - F7A Military Hornet Upgrade');
   pledgeName = pledgeName.replace(/ Upgrade$/i, '');
   pledgeName = pledgeName.replace(/^You Got Our Backs (Electro Skin Hull)$/i, 'Ship Upgrades - You Got Our Backs (Electro Skin Hull)');
   pledgeName = pledgeName.replace(/^Next Generation Aurora$/i, 'Package - Next Generation Aurora - LTI');
   pledgeName = pledgeName.replace(/Discount Pack/i, 'Pack');
+  pledgeName = pledgeName.replace(/Watch the Skies Tip Line Reward/i, 'Reward - Watch the Skies Tip Line');
   pledgeName = pledgeName.replace(/Tumbril Cyclone LTI Presale/i, 'Tumbril Cyclone - LTI');
   pledgeName = pledgeName.replace(/^(Aegis Dynamics Idris Corvette|Aegis Dynamics Retaliator Heavy Bomber|Anvil Gladiator Bomber|Banu Merchantman|Captured Vanduul Fighter|Drake Interplanetary Caterpillar|Idris Corvette|MISC Freelancer|MISC Starfarer Tanker|ORIGIN M50 Interceptor|RSI Aurora LN|RSI Aurora LX|RSI Constellation|ORIGIN 350R Racer|Xi'An Scout - +Khartu)( - LTI)?$/i, 'Standalone Ship - $1$2');
   pledgeName = pledgeName.replace(/^(Digital )?(Advanced Hunter|Arbiter|Bounty Hunter|Colonel|Cutlass|Freelancer|Mercenary|Pirate|Rear Admiral|Scout|Specter|Weekend Warrior)( - LTI)?$/i, 'Package - $1$2$3');
   pledgeName = pledgeName.replace("  ", " ").trim();
+
   // TODO: Add pre-processing for Reliant Variants Here if required
   
   // Package - Mustang Omega : AMD Edition
@@ -118,6 +132,7 @@ HangarXPLOR.CleanPledgeName = function(pledgeName)
 
 HangarXPLOR.CleanShipName = function(shipName)
 {
+  // These just standardize some naming
   shipName = shipName.replace('Origin 600i Exploration Module', 'Origin 600i');
   shipName = shipName.replace('M50 Interceptor', 'M50');
   shipName = shipName.replace('M50', 'M50 Interceptor');
@@ -219,11 +234,13 @@ HangarXPLOR.ProcessItem = function()
     this.pledgeValue = $('.js-pledge-value', this).val();
     this.componentName = $component.prev().text();
     this.shipName = $.map($ship, $.text).join(", ");
+
     this.shipName = HangarXPLOR.CleanShipName(this.shipName);
     if (debug) {
       console.log('ProcessItem this.shipName', this.shipName);
     }
       
+    this.nickname = $('.custom-name-text', this).text();
     this.meltValue = parseFloat(this.pledgeValue.replace("$", "").replace(",", "").replace(" USD", ""));
     if (debug) {
       console.log('ProcessItem this.meltValue', this.meltValue);
@@ -232,25 +249,28 @@ HangarXPLOR.ProcessItem = function()
     this.hasValue = this.meltValue > 0;
     this.hasLTI = $('.title:contains(Lifetime Insurance)', this).length > 0;
     this.hasShip = $ship.length > 0;
+    this.hasNickname = this.nickname.length > 0;
     this.isMeltable = $('.js-reclaim', this).length > 0;
     this.isUpgraded = $('.upgraded', this).length > 0;
+    this.isNameable = $('.contains-nameable', this).length > 0;
     this.isGiftable = $('.label:contains(Gift)', this).length > 0 && this.meltValue < 1001;
     this.isPackage = ($('.title:contains(Squadron 42 Digital Download)', this).length + $('.title:contains(Star Citizen Digital Download)', this).length) > 0;
     this.isShip = $ship.length == 1;
     this.isCombo = $ship.length > 1;
     this.isUpgrade = (titlePartsFirst == "Ship Upgrades" || titlePartsFirst == "Upgrade");
     this.isAddOn = (titlePartsFirst == "Add-Ons");
-    this.isPaint = (titlePartsFirst == "Paints");
+    this.isPaint = (titlePartsFirst == "Paints") || (pledgeName.indexOf("Livery") > 0) || $('.kind:contains(Skin)', this).length > 0;
     this.isTrophy = (titlePartsFirst == "Trophy");
     this.isPoster = (titlePartsFirst == "Posters");
     this.isFishtank = (titlePartsFirst == "Fishtank");
     this.isReward = (titlePartsFirst == "Reward" || pledgeName.indexOf("VIP") == 0 || pledgeName.indexOf("Referral") == 0); // TODO: Add UEE Towel and Omni Role Combat Armor (ORC) MK9 to this (May 09, 2014)
     this.isSpacePlant = (titlePartsFirst == "Space Plant");
     this.isSpaceGlobe = (titlePartsFirst == "Space Globes");
-    this.isModel = (pledgeName.indexOf("Takuetsu") > -1);
+    this.isModel = (pledgeName.indexOf("Takuetsu") > -1) || (pledgeName.indexOf("Models - ") > -1);
     this.isFlair = $('.kind:contains(Hangar decoration)', this).length > 0;
     this.isDecoration = !this.isModel && !this.isPoster && this.isFlair && !this.isFishtank &&!this.isPlant;
     this.isComponent = $('.kind:contains(Component)', this).length > 0;
+    this.isEquipment = $('.kind:contains(FPS Equipment)', this).length > 0;
     this.isWarbond = this.originalName.toLowerCase().indexOf('warbond') > -1 || this.originalName.toLowerCase().indexOf(' wb') > -1;
     this.isSelected = false;
     
@@ -305,6 +325,13 @@ HangarXPLOR.ProcessItem = function()
       titlePartsFirst = "Ship";
       titlePartsMiddle = this.shipName;
     } 
+    if (this.isDecoration) titlePartsFirst = "Decoration";
+    if (this.isModel) titlePartsFirst = "Model";
+    if (this.isEquipment) titlePartsFirst = "Equipment";
+    if (this.isComponent) titlePartsFirst = "Component";
+    if ((this.isDecoration ? 1 : 0) +
+        (this.isEquipment ? 1 : 0) +
+        (this.isPaint ? 1 : 0) > 1)titlePartsFirst = "Loot";
     if (this.isCombo) titlePartsFirst = "Combo";
     if (this.isPackage) titlePartsFirst = "Package";
     if (this.isUpgrade) titlePartsFirst = "Upgrade";

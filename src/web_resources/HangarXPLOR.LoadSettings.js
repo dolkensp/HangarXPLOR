@@ -13,6 +13,7 @@ HangarXPLOR.LoadSettings = function(callback)
     HangarXPLOR._pageCount = settings._pageCount || 9999;
     HangarXPLOR._logEnabled = settings._logEnabled || true;
     HangarXPLOR._cacheHash = settings._cacheHash || 0;
+    HangarXPLOR._cacheSalt          = settings._cacheSalt || btoa(Math.random());
     
     HangarXPLOR._feature          = HangarXPLOR._feature       || {};
     HangarXPLOR._feature.LTI      = settings._feature_LTI      || '';
@@ -23,6 +24,11 @@ HangarXPLOR.LoadSettings = function(callback)
     HangarXPLOR._feature.Valuable = settings._feature_Valuable || '';
     HangarXPLOR._feature.Reward   = settings._feature_Reward   || '';
     HangarXPLOR._feature.Summary  = settings._feature_Summary  || 'count';
+
+    HangarXPLOR._setting            = HangarXPLOR._setting         || {};
+    HangarXPLOR._setting.NoPledgeID = settings._setting_NoPledgeID || false;
+    HangarXPLOR._setting.NoPrefix   = settings._setting_NoPrefix   || false;
+    HangarXPLOR._setting.NoNickname = settings._setting_NoNickname || false;
     
     HangarXPLOR.Log('Loaded Settings', settings);
     
