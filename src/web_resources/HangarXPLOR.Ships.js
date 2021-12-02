@@ -50,6 +50,7 @@ HangarXPLOR._ships = [
   { 'name': 'Cutlass Blue', 'thumbnail': '/media/8d5ywktt23231r/heap_infobox/Blue-WR-Orth_000000.jpg' },
   { 'name': 'Cutlass Red', 'thumbnail': '/media/anznazc3gf5oar/heap_infobox/Slide_Cut-Red.jpg' },
   { 'name': 'Cutlass', 'thumbnail': '/media/7tcxllnna6a9hr/heap_infobox/Drake_cutlass_storefront_visual.jpg' },
+  { 'name': 'Corsair', 'thumbnail': 'https://media.robertsspaceindustries.com/2xatcl9uglt91/heap_infobox.jpg' },
   { 'name': 'Cyclone-AA', 'thumbnail': '/media/wk9v710a3544zr/heap_infobox/03_AA_Cyclone-1.jpg' },
   { 'name': 'Cyclone-RC', 'thumbnail': '/media/jq8ph9r2m9dtbr/heap_infobox/05_RC_Cyclone-1.jpg' },
   { 'name': 'Cyclone-RN', 'thumbnail': '/media/uwsxls7k000byr/heap_infobox/06_RN_Cyclone.jpg' },
