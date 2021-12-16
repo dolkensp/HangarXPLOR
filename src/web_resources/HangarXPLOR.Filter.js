@@ -21,6 +21,9 @@ HangarXPLOR.Filter = function (list, filter) {
     case "HasShip":
       list = $.grep(list, function (item) { return item.hasShip });
       break;
+    case "HasShipOrIsUpgradeOrIsAddOn":
+      list = $.grep(list, function(item) { return item.hasShip || item.isUpgrade || item.isAddOn; });
+      break;      
     case "IsNameable":
       list = $.grep(list, function (item) { return item.isNameable });
       break;
@@ -37,16 +40,19 @@ HangarXPLOR.Filter = function (list, filter) {
       list = $.grep(list, function (item) { return !item.isPackage && item.hasShip });
       break;
     case "IsWarbond":
-      list = $.grep(list, function (item) { return item.isWarbond && (item.hasShip || item.isUpgrade) });
+      list = $.grep(list, function(item) { return item.isWarbond && (item.hasShip || item.isUpgrade || item.isAddOn); });
       break;
     case "!IsWarbond":
-      list = $.grep(list, function (item) { return !item.isWarbond && (item.hasShip || item.isUpgrade) });
+      list = $.grep(list, function(item) { return !item.isWarbond && (item.hasShip || item.isUpgrade || item.isAddOn); });
       break;
     case "IsCombo":
       list = $.grep(list, function (item) { return item.isCombo });
       break;
     case "IsUpgrade":
       list = $.grep(list, function (item) { return item.isUpgrade });
+      break;
+    case "IsUpgradeOrIsAddOn":
+      list = $.grep(list, function(item) { return item.isUpgrade || item.isAddOn; });
       break;
     case "IsUpgraded":
       list = $.grep(list, function (item) { return item.isUpgraded });
@@ -61,7 +67,7 @@ HangarXPLOR.Filter = function (list, filter) {
       list = $.grep(list, function (item) { return item.isPaint });
       break;
     case "IsExtra":
-      list = $.grep(list, function (item) { return item.isAddOn || item.isUpgrade });
+      list = $.grep(list, function(item) { return item.isAddOn || item.isPaint || item.isComponent || item.isUpgrade; });
       break;
     case "IsFlair":
       list = $.grep(list, function (item) { return item.isFlair });

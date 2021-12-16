@@ -2,6 +2,7 @@
 var HangarXPLOR = window.HangarXPLOR || {};
 HangarXPLOR.Loading = HangarXPLOR.Loading || false;
 HangarXPLOR.BulkEnabled = HangarXPLOR.BulkEnabled || false;
+HangarXPLOR.SummaryBothCashAndCount = true;
 
 HangarXPLOR.$bulkUI = null;
 
@@ -38,8 +39,6 @@ HangarXPLOR.BulkUI = function()
   HangarXPLOR.$bulkUI.$downloads = $('<div>', { class: 'actions' });
   HangarXPLOR.$bulkUI.$loading = $('<div>', { class: 'status value' });
   
-  HangarXPLOR.$bulkUI.addClass(HangarXPLOR._feature.Summary);
-  
   $billing.append(HangarXPLOR.$bulkUI);
   HangarXPLOR.$bulkUI.append(HangarXPLOR.$bulkUI.$inner);
   HangarXPLOR.$bulkUI.$inner.append(
@@ -61,7 +60,6 @@ HangarXPLOR.BulkUI = function()
 
 HangarXPLOR.BindBulkUI = function()
 {
-
   HangarXPLOR.$bulkUI.$inner.removeClass('loading');
   HangarXPLOR.$list.addClass(HangarXPLOR._feature.Summary);
   HangarXPLOR.$list.on('click.HangarXPLOR', 'a', function(e) { e.originalEvent.isButton = true; });
@@ -78,7 +76,6 @@ HangarXPLOR.BindBulkUI = function()
   
   HangarXPLOR.$bulkUI.$value.bind('click', function() {
     
-    HangarXPLOR.$bulkUI.removeClass(HangarXPLOR._feature.Summary);
     HangarXPLOR.$list.removeClass(HangarXPLOR._feature.Summary);
     
     switch (HangarXPLOR._feature.Summary)
@@ -86,8 +83,7 @@ HangarXPLOR.BindBulkUI = function()
       case "cash": HangarXPLOR._feature.Summary = "count"; break;
       case "count": HangarXPLOR._feature.Summary = "cash"; break;
     }
-    
-    HangarXPLOR.$bulkUI.addClass(HangarXPLOR._feature.Summary);
+
     HangarXPLOR.$list.addClass(HangarXPLOR._feature.Summary);
     
     HangarXPLOR.SaveSettings();
@@ -105,6 +101,51 @@ HangarXPLOR.UpdateStatus = function()
     $('<span>', { class: 'label', text: 'Please Wait' }),
     $('<br>')
   );
+}
+
+function AppendValues(parent, title, upgradeCount, shipCount, packageCount, meltAmount)
+{
+  var className;
+  if (!HangarXPLOR.SummaryBothCashAndCount) {
+    className = HangarXPLOR._feature.Summary;
+  }
+  if (!className || className == "count") {
+    parent.append(
+      $('<span>', { class: 'count' }).append(
+        $('<span>', { class: 'label', text: title }),
+        $('<span>', { class: 'amount', text: upgradeCount }),
+        $('<span>', { class: 'label-short', text: 'CCUs' }),
+        $('<span>', { class: 'amount', text: shipCount }),
+        $('<span>', { class: 'label-short', text: 'Ships' }),
+        $('<span>', { class: 'amount', text: packageCount }),
+        $('<span>', { class: 'label', text: 'Packages' })
+      )
+    );
+  }
+  if (!className) {
+    parent.append(
+      $('<br>')
+    );
+  }
+  if (!className || className == "cash") {
+    parent.append(
+      $('<span>', { class: 'cash' }).append(
+        $('<span>', { class: 'label', text: title }),
+        $('<span>', { class: 'amount', text: meltAmount.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD' }),
+      )
+    );
+  }
+  parent.append(
+    $('<br>')
+  );
+}
+
+function AppendAllValues()
+{
+  if (HangarXPLOR._selected.length > 0) {
+    AppendValues(HangarXPLOR.$bulkUI.$value, 'Selected', HangarXPLOR._selectedUpgrades, HangarXPLOR._selectedShips, HangarXPLOR._selectedPackages, HangarXPLOR._selectedMelt);
+  }
+  AppendValues(HangarXPLOR.$bulkUI.$value, 'Total', HangarXPLOR._upgradeCount, HangarXPLOR._shipCount, HangarXPLOR._packageCount, HangarXPLOR._totalMelt);
 }
 
 HangarXPLOR.RefreshBulkUI = function()
@@ -131,8 +172,7 @@ HangarXPLOR.RefreshBulkUI = function()
   });
   
   /*
-  if (HangarXPLOR._selected.length > 0)
-  {
+  if (HangarXPLOR._selected.length > 0) {
     HangarXPLOR.$bulkUI.show();
   } else {
     HangarXPLOR.$bulkUI.hide();
@@ -140,46 +180,12 @@ HangarXPLOR.RefreshBulkUI = function()
   */
   
   HangarXPLOR.$bulkUI.$value.empty();
-
-  if (HangarXPLOR._selected.length > 0) {
-    HangarXPLOR.$bulkUI.$value.append(
-      $('<span>', { class: 'count' }).append(
-        $('<span>', { class: 'amount', text: HangarXPLOR._selectedUpgrades }),
-        $('<span>', { class: 'label-short', text: 'CCUs' }),
-        $('<span>', { class: 'amount', text: HangarXPLOR._selectedShips }),
-        $('<span>', { class: 'label-short', text: 'Ships' }),
-        $('<span>', { class: 'amount', text: HangarXPLOR._selectedPackages }),
-        $('<span>', { class: 'label', text: 'Packages' })
-      ),
-      $('<span>', { class: 'cash' }).append(
-        $('<span>', { class: 'amount', text: HangarXPLOR._selectedMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD' }),
-        $('<span>', { class: 'label', text: 'Selected' })
-      ),
-      $('<br>')
-    );
-  }
-  
-  HangarXPLOR.$bulkUI.$value.append(
-    $('<span>', { class: 'count' }).append(
-      $('<span>', { class: 'amount', text: HangarXPLOR._upgradeCount }),
-      $('<span>', { class: 'label-short', text: 'CCUs' }),
-      $('<span>', { class: 'amount', text: HangarXPLOR._shipCount }),
-      $('<span>', { class: 'label-short', text: 'Ships' }),
-      $('<span>', { class: 'amount', text: HangarXPLOR._packageCount }),
-      $('<span>', { class: 'label', text: 'Packages' })
-    ),
-    $('<span>', { class: 'cash' }).append(
-      $('<span>', { class: 'amount', text: HangarXPLOR._totalMelt.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD' }),
-      $('<span>', { class: 'label', text: 'Total Spend' })
-    ),
-    $('<br>')
-  );
+  AppendAllValues();
 
   HangarXPLOR.$bulkUI.$actions.empty();
   
   if (HangarXPLOR.BulkEnabled && HangarXPLOR._meltable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Melt ' + HangarXPLOR._meltable.length + ' Items', 'reclaim rm js-bulk-reclaim', HangarXPLOR._callbacks.Melt));
   if (HangarXPLOR.BulkEnabled && HangarXPLOR._giftable.length > 0) HangarXPLOR.$bulkUI.$actions.append(HangarXPLOR.Button('Gift ' + HangarXPLOR._giftable.length + ' Items', 'gift js-bulk-gift', HangarXPLOR._callbacks.Gift));
-  
 }
 
 HangarXPLOR.ResetBulkUI = function()

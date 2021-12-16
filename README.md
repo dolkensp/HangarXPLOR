@@ -15,6 +15,13 @@ Current features include:
 * Export your ships in [Hangar Transfer Format](https://docs.starcitizen.fans/) for use with other apps
 * Export your ships in CSV format
 
+TODO:(pv) 
+* Add note field for each item (so that I can mention specific plans for specific item(s)) 
+  * This may require hooking in to cloud database/storage (Firebase?) to persist data 
+  * May be able to just use `$.cookie('HangarXPLOR.Type', value)` type of logic 
+* Add ability to re-order the list on-demand and persist the order 
+  * May be able to just use `$.cookie('HangarXPLOR.Type', value)` type of logic 
+
 ## Browser Support 
 
 * [Google Chrome Extension](https://chrome.google.com/webstore/detail/hangarxplor/bhkgemjdepodofcnmekdobmmbifemhkc/)

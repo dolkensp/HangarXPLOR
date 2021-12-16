@@ -74,48 +74,91 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
     'F7C_Hornet_Wildfire': 'Hornet_F7C',
   };
 
-  HangarXPLOR.GetShipList = function($target) {
+  HangarXPLOR.GetShipList = function() {
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory); //: HangarXPLOR._filtered);
+    // console.log('GetShipList $target', JSON.stringify($target));
     return $target.map(function() { 
       var $pledge = this;
-      var pledge = {};
-      pledge.name = $('.js-pledge-name', $pledge).val();
-      pledge.id = $('.js-pledge-id', $pledge).val();
-      pledge.cost = $('.js-pledge-value', $pledge).val();
-      pledge.lti = $('.title:contains(Lifetime Insurance)', $pledge).length > 0;
-      pledge.date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
-      pledge.warbond = pledge.name.toLowerCase().indexOf('warbond') > -1;
+      var item = {};
+      item.name = $('.js-pledge-name', $pledge).val();
+      
+      item.id = $pledge.pledgeId; // $('.js-pledge-id', $pledge).val();
+      item.cost = $pledge.meltValue; // $('.js-pledge-value', $pledge).val();
+      item.lti = $pledge.hasLTI; // $('.title:contains(Lifetime Insurance)', $pledge).length > 0;
+      item.date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
+      item.warbond = $pledge.isWarbond; // item.name.toLowerCase().indexOf('warbond') > -1;
+      item.giftable = $pledge.isGiftable;
+      item.pledge = $pledge.displayName;
+      item.package = $pledge.isPackage ? 1 : 0;
 
-      return $('.kind:contains(Ship)', this).parent().map(function() {
-        var $ship = this;
-        var ship = {};
-        ship.name = $('.title', $ship).text().trim();
-        ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Aopoa|Argo|Banu|CNOU|Crusader|Drake|Esperia Vanduul|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Captured Vanduul|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
-        ship.name = _shipNameCorrection[ship.name] || ship.name;
-        ship.manufacturer_code = $('.liner span', $ship).text();
-        ship.manufacturer_name = _manufacturerNameByCode[ship.manufacturer_code] || ship.manufacturer_code;
-        ship.manufacturer_code = _manufacturerCodeByName[ship.manufacturer_name] || ship.manufacturer_code;
-        ship.ship_code = ship.manufacturer_code + '_' + ship.name.replace(/Aurora [A-Z]+/gi, 'Aurora').replace(/ - .*/gi, '').replace(/-/gi, '').replace(/ /gi, '_');
-        ship.ship_code = _shipCodeCorrection[ship.ship_code] || ship.ship_code;
-        ship.ship_name = $('.custom-name-text', $ship).text() || ship.name;
-        ship.ship_serial = $('.liner:contains(Serial)',  $ship).text().replace(/Serial: /, '') || null;
-        ship.pledge_id = pledge.id;
-        ship.pledge_name = pledge.name;
-        ship.pledge_date = new Date(Date.parse(pledge.date)).toISOString().substr(0, 10);
-        ship.pledge_cost = pledge.cost;
-        ship.lti = pledge.lti;
-        ship.warbond = pledge.warbond;
-        return ship;
-      }).get()
-    }).sort(function(a, b) { return a.manufacturer == b.manufacturer ? (a.name < b.name ? -2 : 2) : (a.manufacturer < b.manufacturer ? -1 : 1); }).get();
+      if (this.isUpgrade) {
+        // console.log('GetDownloadItems $pledge', JSON.stringify($pledge));
+        var parts = /^(.+?) - (.+?)( - .+)? \(\d+\)$/m.exec(item.pledge)
+        // console.log('GetDownloadItems parts', JSON.stringify(parts));
+        item.type = parts[1];
+        item.manufacturer = 'N/A';
+        item.name = parts[2];
+        return item;
+      } else {
+        return $('.kind:contains(Ship)', this).parent().map(function() {
+          var $ship = this;
+          // console.log('GetDownloadItems $ship', JSON.stringify($ship));          
+          var ship = Object.assign({}, item);
+          ship.name = $('.title', $ship).text().trim();
+          ship.name = HangarXPLOR.CleanShipName(ship.name);
+          ship.name = ship.name.replace(/^\s*(?:Aegis|Anvil|Banu|Drake|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '');
+          ship.manufacturer_code = $('.liner span', $ship).text();
+          ship.manufacturer_name = _manufacturerNameByCode[ship.manufacturer_code] || ship.manufacturer_code;
+          ship.manufacturer_code = _manufacturerCodeByName[ship.manufacturer_name] || ship.manufacturer_code;
+          ship.ship_code = ship.manufacturer_code + '_' + ship.name.replace(/Aurora [A-Z]+/gi, 'Aurora').replace(/ - .*/gi, '').replace(/-/gi, '').replace(/ /gi, '_');
+          ship.ship_code = _shipCodeCorrection[ship.ship_code] || ship.ship_code;
+          ship.ship_name = $('.custom-name-text', $ship).text() || ship.name;
+          ship.ship_serial = $('.liner:contains(Serial)',  $ship).text().replace(/Serial: /, '') || null;
+          ship.pledge_id = pledge.id;
+          ship.pledge_name = pledge.name;
+          ship.pledge_date = new Date(Date.parse(pledge.date)).toISOString().substr(0, 10);
+          ship.pledge_cost = pledge.cost;
+          ship.lti = pledge.lti;
+          ship.warbond = pledge.warbond;
+          ship.type = 'Ship';
+          item.cost = 0; // Don't report cost for remaining ships in this Package/Combo
+          item.package = 0; // Don't report package for remaining ships in this Package/Combo
+          return ship;
+        })
+        // Sort any inner ships by manufacturer and then name
+        .sort(function(a, b) {
+          if (a.manufacturer < b.manufacturer) {
+            return -1
+          }
+          if (a.manufacturer > b.manufacturer) {
+            return 1
+          }
+          if (a.name < b.name) {
+            return -1
+          }
+          if (a.name > b.name) {
+            return 1
+          }
+          return 0;
+        })
+        .get()
+      }
+    })
+    .get();
   }
   
   HangarXPLOR._callbacks.DownloadJSON = function(e) {
     e.preventDefault();
     
-    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    var items = HangarXPLOR.GetShipList();
+
+    var buffer = JSON.stringify(items, null, 2);
+
+    // console.log('DownloadJSON buffer\n', buffer);
+    // return;
     
-    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetShipList($target), null, 2)));
-    $download.attr('download', 'shiplist.json');
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(buffer));
+    $download.attr('download', 'HangarItems.json');
     $download.attr('type', 'text/json');
     $download[0].click();
   }
@@ -123,14 +166,32 @@ HangarXPLOR._callbacks = HangarXPLOR._callbacks || {};
   HangarXPLOR._callbacks.DownloadCSV = function(e) {
     e.preventDefault();
     
-    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+    var items = HangarXPLOR.GetShipList();
     
     // TODO: CSV support will need to be careful of user-entered data...
+    //var buffer = "Pledge,Type,Manufacturer,Name,ID,Cost,Date,LTI,Warbond,Package,Giftable\r\n"; // Other header idea (would need to adjust below)
     var buffer = "Manufacturer, Ship, Lti, Warbond, ID, Pledge, Cost, Date\n";
-    buffer = buffer + HangarXPLOR.GetShipList($target).map(function(ship) { return [ '"' + ship.manufacturer_code + '"', '"' + ship.name + '"', ship.lti, ship.warbond, ship.pledge_id, '"' + ship.pledge_name + '"', '"' + ship.pledge_cost + '"', '"' + ship.pledge_date + '"' ].join(',')}).join('\n')
+    buffer = buffer + items.map(function(item) {
+        return [
+            '"' + item.manufacturer_code + '"',
+            '"' + item.name + '"',
+            item.lti,
+            item.warbond,
+            item.pledge_id,
+            '"' + item.pledge_name + '"',
+            '"' + item.pledge_cost + '"',
+            '"' + item.pledge_date + '"' 
+        ]
+        .join(',')
+    })
+    .join('\n')
+
+
+    // console.log('DownloadCSV buffer\n', buffer);
+    // return;
 
     $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
-    $download.attr('download', 'shiplist.csv');
+    $download.attr('download', 'HangarItems.csv');
     $download.attr('type', 'text/csv');
     $download[0].click();
   }

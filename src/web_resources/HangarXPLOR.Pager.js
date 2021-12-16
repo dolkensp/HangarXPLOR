@@ -9,7 +9,7 @@ HangarXPLOR.RefreshPager = function() {
 }
 
 // Render a toggle that sets the value of an element
-HangarXPLOR.Pager = function(options, width, className, callback)
+HangarXPLOR.Pager = function(title, options, width, className, callback)
 {
   width = width || '150px';
   className = className || 'js-custom-pager';
@@ -42,7 +42,7 @@ HangarXPLOR.Pager = function(options, width, className, callback)
     $left.empty();
     $right.empty();
     
-    $left.append(HangarXPLOR.Dropdown(options, width, className, function(e, pageCount) {
+    $left.append(HangarXPLOR.Dropdown(title, options, width, className, function(e, pageCount) {
       HangarXPLOR._pageNo = 1;
       HangarXPLOR._pageCount = pageCount;
       
