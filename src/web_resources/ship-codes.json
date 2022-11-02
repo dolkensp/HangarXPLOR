@@ -96,14 +96,14 @@
     "manufacturer_name": "Aegis Dynamics"
   },
   {
-    "ship_code": "AEGS_Retaliator_Bomber",
-    "ship_name": "Retaliator Bomber",
+    "ship_code": "AEGS_Retaliator",
+    "ship_name": "Retaliator",
     "manufacturer_code": "AEGS",
     "manufacturer_name": "Aegis Dynamics"
   },
   {
-    "ship_code": "AEGS_Retaliator",
-    "ship_name": "Retaliator",
+    "ship_code": "AEGS_Retaliator_Bomber",
+    "ship_name": "Retaliator Bomber",
     "manufacturer_code": "AEGS",
     "manufacturer_name": "Aegis Dynamics"
   },
@@ -126,6 +126,12 @@
     "manufacturer_name": "Aegis Dynamics"
   },
   {
+    "ship_code": "AEGS_Vanguard",
+    "ship_name": "Vanguard Warden",
+    "manufacturer_code": "AEGS",
+    "manufacturer_name": "Aegis Dynamics"
+  },
+  {
     "ship_code": "AEGS_Vanguard_Harbinger",
     "ship_name": "Vanguard Harbinger",
     "manufacturer_code": "AEGS",
@@ -144,12 +150,6 @@
     "manufacturer_name": "Aegis Dynamics"
   },
   {
-    "ship_code": "AEGS_Vanguard",
-    "ship_name": "Vanguard Warden",
-    "manufacturer_code": "AEGS",
-    "manufacturer_name": "Aegis Dynamics"
-  },
-  {
     "ship_code": "AEGS_Vulcan",
     "ship_name": "Vulcan",
     "manufacturer_code": "AEGS",
@@ -164,6 +164,18 @@
   {
     "ship_code": "ANVL_Ballista",
     "ship_name": "Ballista",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Ballista_Dunestalker",
+    "ship_name": "Ballista Dunestalker",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Ballista_Snowblind",
+    "ship_name": "Ballista Snowblind",
     "manufacturer_code": "ANVL",
     "manufacturer_name": "Anvil Aerospace"
   },
@@ -192,50 +204,14 @@
     "manufacturer_name": "Anvil Aerospace"
   },
   {
+    "ship_code": "ANVL_Centurion",
+    "ship_name": "Centurion",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
     "ship_code": "ANVL_Crucible",
     "ship_name": "Crucible",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
-    "ship_code": "ANVL_Hornet_F7C",
-    "ship_name": "F7C Hornet",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
-    "ship_code": "ANVL_Hornet_F7C_Wildfire",
-    "ship_name": "F7C Hornet Wildfire",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
-    "ship_code": "ANVL_Hornet_F7CM_Heartseeker",
-    "ship_name": "F7C-M Hornet Heartseeker",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
-    "ship_code": "ANVL_Hornet_F7CM",
-    "ship_name": "F7C-M Super Hornet",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
-    "ship_code": "ANVL_Hornet_F7CR",
-    "ship_name": "F7C-R Hornet Tracker",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
-    "ship_code": "ANVL_Hornet_F7CS",
-    "ship_name": "F7C-S Hornet Ghost",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
-    "ship_code": "ANVL_Lightning_F8C",
-    "ship_name": "F8C Lightning",
     "manufacturer_code": "ANVL",
     "manufacturer_name": "Anvil Aerospace"
   },
@@ -252,8 +228,74 @@
     "manufacturer_name": "Anvil Aerospace"
   },
   {
+    "ship_code": "ANVL_Hornet_F7A",
+    "ship_name": "F7A Hornet",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Hornet_F7C",
+    "ship_name": "F7C Hornet",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Hornet_F7C_Wildfire",
+    "ship_name": "F7C Hornet Wildfire",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Hornet_F7CM",
+    "ship_name": "F7C-M Super Hornet",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Hornet_F7CM_Heartseeker",
+    "ship_name": "F7C-M Hornet Heartseeker",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Hornet_F7CR",
+    "ship_name": "F7C-R Hornet Tracker",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Hornet_F7CS",
+    "ship_name": "F7C-S Hornet Ghost",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
     "ship_code": "ANVL_Hurricane",
     "ship_name": "Hurricane",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Legionnaire",
+    "ship_name": "Legionnaire",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Liberator",
+    "ship_name": "Liberator",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Lightning_F8C",
+    "ship_name": "F8C Lightning",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "ANVL_Spartan",
+    "ship_name": "Spartan",
     "manufacturer_code": "ANVL",
     "manufacturer_name": "Anvil Aerospace"
   },
@@ -264,40 +306,16 @@
     "manufacturer_name": "Anvil Aerospace"
   },
   {
-    "ship_code": "ANVL_Valkyrie_Liberator",
-    "ship_name": "Valkyrie Liberator",
-    "manufacturer_code": "ANVL",
-    "manufacturer_name": "Anvil Aerospace"
-  },
-  {
     "ship_code": "ANVL_Valkyrie",
     "ship_name": "Valkyrie",
     "manufacturer_code": "ANVL",
     "manufacturer_name": "Anvil Aerospace"
   },
   {
-    "ship_code": "XIAN_Scout",
-    "ship_name": "Khartu-al",
-    "manufacturer_code": "XIAN",
-    "manufacturer_name": "Aopoa"
-  },
-  {
-    "ship_code": "XIAN_Nox",
-    "ship_name": "Nox",
-    "manufacturer_code": "XIAN",
-    "manufacturer_name": "Aopoa"
-  },
-  {
-    "ship_code": "XIAN_Nox_Kue",
-    "ship_name": "Nox Kue",
-    "manufacturer_code": "XIAN",
-    "manufacturer_name": "Aopoa"
-  },
-  {
-    "ship_code": "XIAN_Santok_yai",
-    "ship_name": "San'tok.yāi",
-    "manufacturer_code": "XIAN",
-    "manufacturer_name": "Aopoa"
+    "ship_code": "ANVL_Valkyrie_Liberator",
+    "ship_name": "Valkyrie Liberator",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
   },
   {
     "ship_code": "ARGO_MOLE",
@@ -330,6 +348,12 @@
     "manufacturer_name": "ARGO Astronautics"
   },
   {
+    "ship_code": "ARGO_RAFT",
+    "ship_name": "RAFT",
+    "manufacturer_code": "ARGO",
+    "manufacturer_name": "ARGO Astronautics"
+  },
+  {
     "ship_code": "ARGO_SRV",
     "ship_name": "SRV",
     "manufacturer_code": "ARGO",
@@ -348,14 +372,26 @@
     "manufacturer_name": "Banu Souli"
   },
   {
-    "ship_code": "CNOU_Mustang_Beta",
-    "ship_name": "Mustang Beta",
+    "ship_code": "CNOU_HoverQuad",
+    "ship_name": "HoverQuad",
     "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
   {
     "ship_code": "CNOU_Mustang_Alpha",
     "ship_name": "Mustang Alpha",
+    "manufacturer_code": "CNOU",
+    "manufacturer_name": "Consolidated Outland"
+  },
+  {
+    "ship_code": "CNOU_Mustang_Alpha_Vindicator",
+    "ship_name": "Mustang Alpha Vindicator",
+    "manufacturer_code": "CNOU",
+    "manufacturer_name": "Consolidated Outland"
+  },
+  {
+    "ship_code": "CNOU_Mustang_Beta",
+    "ship_name": "Mustang Beta",
     "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
@@ -384,14 +420,26 @@
     "manufacturer_name": "Consolidated Outland"
   },
   {
+    "ship_code": "CNOU_Pioneer",
+    "ship_name": "Pioneer",
+    "manufacturer_code": "CNOU",
+    "manufacturer_name": "Consolidated Outland"
+  },
+  {
+    "ship_code": "CRUS_Ares_Inferno",
+    "ship_name": "Ares Inferno",
+    "manufacturer_code": "CRSD",
+    "manufacturer_name": "Crusader Industries"
+  },
+  {
     "ship_code": "CRUS_Ares_Ion",
     "ship_name": "Ares Ion",
     "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
-    "ship_code": "CRUS_Ares_Inferno",
-    "ship_name": "Ares Inferno",
+    "ship_code": "CRUS_Genesis_Starliner",
+    "ship_name": "Genesis Starliner",
     "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
@@ -414,8 +462,20 @@
     "manufacturer_name": "Crusader Industries"
   },
   {
-    "ship_code": "CRUS_Genesis_Starliner",
-    "ship_name": "Genesis Starliner",
+    "ship_code": "CRUS_Spirit_A1",
+    "ship_name": "Spirit A1",
+    "manufacturer_code": "CRSD",
+    "manufacturer_name": "Crusader Industries"
+  },
+  {
+    "ship_code": "CRUS_Spirit_C1",
+    "ship_name": "Spirit C1",
+    "manufacturer_code": "CRSD",
+    "manufacturer_name": "Crusader Industries"
+  },
+  {
+    "ship_code": "CRUS_Spirit_E1",
+    "ship_name": "Spirit E1",
     "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
@@ -468,6 +528,12 @@
     "manufacturer_name": "Drake Interplanetary"
   },
   {
+    "ship_code": "DRAK_Cutlass_Steel",
+    "ship_name": "Cutlass Steel",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
     "ship_code": "DRAK_Dragonfly",
     "ship_name": "Dragonfly Black",
     "manufacturer_code": "DRAK",
@@ -488,6 +554,24 @@
   {
     "ship_code": "DRAK_Herald",
     "ship_name": "Herald",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
+    "ship_code": "DRAK_Kraken",
+    "ship_name": "Kraken",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
+    "ship_code": "DRAK_Kraken_Privateer",
+    "ship_name": "Kraken Privateer",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
+    "ship_code": "DRAK_Mule",
+    "ship_name": "Mule",
     "manufacturer_code": "DRAK",
     "manufacturer_name": "Drake Interplanetary"
   },
@@ -516,6 +600,12 @@
     "manufacturer_name": "Esperia"
   },
   {
+    "ship_code": "GAMA_Railen",
+    "ship_name": "Railen",
+    "manufacturer_code": "GAMA",
+    "manufacturer_name": "Gatac Manufacture"
+  },
+  {
     "ship_code": "GRIN_PTV",
     "ship_name": "PTV",
     "manufacturer_code": "GRIN",
@@ -528,10 +618,16 @@
     "manufacturer_name": "Greycat Industrial"
   },
   {
-    "ship_code": "KRIG_P72_Archimedes",
-    "ship_name": "P-72 Archimedes",
-    "manufacturer_code": "KRIG",
-    "manufacturer_name": "Kruger Intergalactic"
+    "ship_code": "GRIN_ROC_DS",
+    "ship_name": "ROC-DS",
+    "manufacturer_code": "GRIN",
+    "manufacturer_name": "Greycat Industrial"
+  },
+  {
+    "ship_code": "GRIN_STV",
+    "ship_name": "STV",
+    "manufacturer_code": "GRIN",
+    "manufacturer_name": "Greycat Industrial"
   },
   {
     "ship_code": "KRIG_P52_Merlin",
@@ -540,14 +636,26 @@
     "manufacturer_name": "Kruger Intergalactic"
   },
   {
-    "ship_code": "KRIG_P72_Archimedes_Emerald",
+    "ship_code": "KRIG_P72_Archimedes",
     "ship_name": "P-72 Archimedes",
+    "manufacturer_code": "KRIG",
+    "manufacturer_name": "Kruger Intergalactic"
+  },
+  {
+    "ship_code": "KRIG_P72_Archimedes_Emerald",
+    "ship_name": "P-72 Archimedes Emerald",
     "manufacturer_code": "KRIG",
     "manufacturer_name": "Kruger Intergalactic"
   },
   {
     "ship_code": "MISC_Endeavor",
     "ship_name": "Endeavor",
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
+  },
+  {
+    "ship_code": "MISC_Expanse",
+    "ship_name": "Expanse",
     "manufacturer_code": "MISC",
     "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
@@ -602,6 +710,12 @@
   {
     "ship_code": "MISC_Hull_E",
     "ship_name": "Hull E",
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
+  },
+  {
+    "ship_code": "MISC_Odyssey",
+    "ship_name": "Odyssey",
     "manufacturer_code": "MISC",
     "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
@@ -708,8 +822,14 @@
     "manufacturer_name": "Origin Jumpworks"
   },
   {
+    "ship_code": "ORIG_400i",
+    "ship_name": "400i",
+    "manufacturer_code": "ORIG",
+    "manufacturer_name": "Origin Jumpworks"
+  },
+  {
     "ship_code": "ORIG_600i",
-    "ship_name": "600i",
+    "ship_name": "600i Explorer",
     "manufacturer_code": "ORIG",
     "manufacturer_name": "Origin Jumpworks"
   },
@@ -727,7 +847,7 @@
   },
   {
     "ship_code": "ORIG_85X",
-    "ship_name": "85X Limited",
+    "ship_name": "85X",
     "manufacturer_code": "ORIG",
     "manufacturer_name": "Origin Jumpworks"
   },
@@ -756,12 +876,6 @@
     "manufacturer_name": "Origin Jumpworks"
   },
   {
-    "ship_code": "ORIG_m50",
-    "ship_name": "M50",
-    "manufacturer_code": "ORIG",
-    "manufacturer_name": "Origin Jumpworks"
-  },
-  {
     "ship_code": "ORIG_X1",
     "ship_name": "X1",
     "manufacturer_code": "ORIG",
@@ -776,6 +890,12 @@
   {
     "ship_code": "ORIG_X1_Velocity",
     "ship_name": "X1 Velocity",
+    "manufacturer_code": "ORIG",
+    "manufacturer_name": "Origin Jumpworks"
+  },
+  {
+    "ship_code": "ORIG_m50",
+    "ship_name": "M50",
     "manufacturer_code": "ORIG",
     "manufacturer_name": "Origin Jumpworks"
   },
@@ -846,14 +966,8 @@
     "manufacturer_name": "Roberts Space Industries"
   },
   {
-    "ship_code": "RSI_Perseus",
-    "ship_name": "Perseus",
-    "manufacturer_code": "RSI",
-    "manufacturer_name": "Roberts Space Industries"
-  },
-  {
-    "ship_code": "RSI_Ursa_Rover",
-    "ship_name": "Ursa Rover",
+    "ship_code": "RSI_Constellation_Taurus",
+    "ship_name": "Constellation Taurus",
     "manufacturer_code": "RSI",
     "manufacturer_name": "Roberts Space Industries"
   },
@@ -870,8 +984,26 @@
     "manufacturer_name": "Roberts Space Industries"
   },
   {
+    "ship_code": "RSI_Perseus",
+    "ship_name": "Perseus",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
     "ship_code": "RSI_Polaris",
     "ship_name": "Polaris",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Scorpius",
+    "ship_name": "Scorpius",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Ursa_Rover",
+    "ship_name": "Ursa Rover",
     "manufacturer_code": "RSI",
     "manufacturer_name": "Roberts Space Industries"
   },
@@ -906,14 +1038,14 @@
     "manufacturer_name": "Tumbril Land Systems"
   },
   {
-    "ship_code": "TMBL_Cyclone_TR",
-    "ship_name": "Cyclone TR",
+    "ship_code": "TMBL_Cyclone_RN",
+    "ship_name": "Cyclone RN",
     "manufacturer_code": "TMBL",
     "manufacturer_name": "Tumbril Land Systems"
   },
   {
-    "ship_code": "TMBL_Cyclone_RN",
-    "ship_name": "Cyclone RN",
+    "ship_code": "TMBL_Cyclone_TR",
+    "ship_name": "Cyclone TR",
     "manufacturer_code": "TMBL",
     "manufacturer_name": "Tumbril Land Systems"
   },
@@ -932,12 +1064,6 @@
   {
     "ship_code": "TMBL_Ranger_RC",
     "ship_name": "Ranger RC",
-    "manufacturer_code": "TMBL",
-    "manufacturer_name": "Tumbril Land Systems"
-  },
-  {
-    "ship_code": "TMBL_Ranger_RV",
-    "ship_name": "Ranger RV",
     "manufacturer_code": "TMBL",
     "manufacturer_name": "Tumbril Land Systems"
   },
@@ -964,5 +1090,29 @@
     "ship_name": "Scythe",
     "manufacturer_code": "VNCL",
     "manufacturer_name": "Vanduul"
+  },
+  {
+    "ship_code": "XIAN_Nox",
+    "ship_name": "Nox",
+    "manufacturer_code": "XIAN",
+    "manufacturer_name": "Aopoa"
+  },
+  {
+    "ship_code": "XIAN_Nox_Kue",
+    "ship_name": "Nox Kue",
+    "manufacturer_code": "XIAN",
+    "manufacturer_name": "Aopoa"
+  },
+  {
+    "ship_code": "XIAN_Santok_yai",
+    "ship_name": "San'tok.yai",
+    "manufacturer_code": "XIAN",
+    "manufacturer_name": "Aopoa"
+  },
+  {
+    "ship_code": "XIAN_Scout",
+    "ship_name": "Khartu-Al",
+    "manufacturer_code": "XIAN",
+    "manufacturer_name": "Aopoa"
   }
 ]
