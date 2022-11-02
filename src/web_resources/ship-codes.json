@@ -338,13 +338,13 @@
   {
     "ship_code": "BANU_Defender",
     "ship_name": "Defender",
-    "manufacturer_name": "BANU",
+    "manufacturer_code": "BANU",
     "manufacturer_name": "Banu Souli"
   },
   {
     "ship_code": "BANU_Merchantman",
     "ship_name": "Merchantman",
-    "manufacturer_name": "BANU",
+    "manufacturer_code": "BANU",
     "manufacturer_name": "Banu Souli"
   },
   {
@@ -386,43 +386,43 @@
   {
     "ship_code": "CRUS_Ares_Ion",
     "ship_name": "Ares Ion",
-    "manufacturer_name": "CRSD",
+    "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
     "ship_code": "CRUS_Ares_Inferno",
     "ship_name": "Ares Inferno",
-    "manufacturer_name": "CRSD",
+    "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
     "ship_code": "CRUS_Hercules_Starlifter_A2",
     "ship_name": "Hercules Starlifter A2",
-    "manufacturer_name": "CRSD",
+    "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
     "ship_code": "CRUS_Hercules_Starlifter_C2",
     "ship_name": "Hercules Starlifter C2",
-    "manufacturer_name": "CRSD",
+    "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
     "ship_code": "CRUS_Hercules_Starlifter_M2",
     "ship_name": "Hercules Starlifter M2",
-    "manufacturer_name": "CRSD",
+    "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
     "ship_code": "CRUS_Genesis_Starliner",
     "ship_name": "Genesis Starliner",
-    "manufacturer_name": "CRSD",
+    "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
     "ship_code": "CRUS_Star_Runner",
     "ship_name": "Mercury Star Runner",
-    "manufacturer_name": "CRSD",
+    "manufacturer_code": "CRSD",
     "manufacturer_name": "Crusader Industries"
   },
   {
@@ -548,122 +548,122 @@
   {
     "ship_code": "MISC_Endeavor",
     "ship_name": "Endeavor",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Freelancer",
     "ship_name": "Freelancer",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Freelancer_DUR",
     "ship_name": "Freelancer DUR",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Freelancer_MAX",
     "ship_name": "Freelancer MAX",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Freelancer_MIS",
     "ship_name": "Freelancer MIS",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Hull_A",
     "ship_name": "Hull A",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Hull_B",
     "ship_name": "Hull B",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Hull_C",
     "ship_name": "Hull C",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Hull_D",
     "ship_name": "Hull D",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Hull_E",
     "ship_name": "Hull E",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Prospector",
     "ship_name": "Prospector",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Razor",
     "ship_name": "Razor",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Razor_EX",
     "ship_name": "Razor EX",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Razor_LX",
     "ship_name": "Razor LX",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Reliant",
     "ship_name": "Reliant Kore",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Reliant_Mako",
     "ship_name": "Reliant Mako",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Reliant_Sen",
     "ship_name": "Reliant Sen",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Reliant_Tana",
     "ship_name": "Reliant Tana",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Starfarer",
     "ship_name": "Starfarer",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "MISC_Starfarer_Gemini",
     "ship_name": "Starfarer Gemini",
-    "manufacturer_name": "Musashi Industrial & Starflight Concern",
-    "manufacturer_code": "MISC"
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
   },
   {
     "ship_code": "ORIG_100i",
