@@ -38,6 +38,7 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
         ship_name = ship_name.replace(/^(?:Aegis|Anvil|Aopoa|Banu|CNOU|Crusader|Drake|Greycat Industrial|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '').trim();
         var lookup = ship_name.toLowerCase();
         var nickname = $('.custom-name-text', $ship).text();
+        var i, j;
         
         for (i = 0, j = HangarXPLOR._shipMatrix.length; i < j; i++) {
           if (lookup.indexOf(HangarXPLOR._shipMatrix[i].name.toLowerCase()) > -1 || lookup.indexOf((HangarXPLOR._shipMatrix[i].displayName || 'NOTFOUND').toLowerCase()) > -1) {
