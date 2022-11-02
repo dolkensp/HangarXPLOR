@@ -1,7 +1,7 @@
 
 var HangarXPLOR = HangarXPLOR || {};
 
-HangarXPLOR.ParseSkin = function(pledgeName)
+HangarXPLOR.ParseSkin = function()
 {
   // Fix Best in Show Livery - Christmas 2019
   $('.title:contains(Livery Upgrade)', this).after('<div class="kind">Skin</div>');
