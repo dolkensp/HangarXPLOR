@@ -67,11 +67,11 @@
   for (i = 0, j = templates.length; i < j; i++) {
     var templateURL = chrome.extension.getURL(templates[i].url);
     console.log('Loading', templateURL);
-    var script = document.createElement('script');
-    script.id = templates[i].id;
-    script.type = 'text/x-jsmart-tmpl';
-    script.src = templateURL;
-    document.body.appendChild(script);
+    var template = document.createElement('script');
+    template.id = templates[i].id;
+    template.type = 'text/x-jsmart-tmpl';
+    template.src = templateURL;
+    document.body.appendChild(template);
   }
   
   window.addEventListener('message', function(event) {
