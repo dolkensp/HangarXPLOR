@@ -350,37 +350,37 @@
   {
     "ship_code": "CNOU_Mustang_Beta",
     "ship_name": "Mustang Beta",
-    "manufacturer_name": "CNOU",
+    "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
   {
     "ship_code": "CNOU_Mustang_Alpha",
     "ship_name": "Mustang Alpha",
-    "manufacturer_name": "CNOU",
+    "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
   {
     "ship_code": "CNOU_Mustang_Delta",
     "ship_name": "Mustang Delta",
-    "manufacturer_name": "CNOU",
+    "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
   {
     "ship_code": "CNOU_Mustang_Gamma",
     "ship_name": "Mustang Gamma",
-    "manufacturer_name": "CNOU",
+    "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
   {
     "ship_code": "CNOU_Mustang_Omega",
     "ship_name": "Mustang Omega",
-    "manufacturer_name": "CNOU",
+    "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
   {
     "ship_code": "CNOU_Nomad",
     "ship_name": "Nomad",
-    "manufacturer_name": "CNOU",
+    "manufacturer_code": "CNOU",
     "manufacturer_name": "Consolidated Outland"
   },
   {
