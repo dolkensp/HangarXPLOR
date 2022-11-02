@@ -22,7 +22,7 @@ HangarXPLOR.ParsePledge = function()
 
   if (pledgeName.length > 0) {
 
-    pledgeName = pledgeName.replace(/  /gi, " ")
+    pledgeName = pledgeName.replace(/ {2}/gi, " ")
                            .replace(/^add-ons - /i, '')
                            .replace(/^standalone ship - /i, '')
                            .replace(/^combo - /i, '')
