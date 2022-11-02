@@ -28,6 +28,7 @@ HangarXPLOR.ParseShip = function()
                                                 .replace(/ promo wb/i, '');
     
     var found = false;
+    var i, j;
     for (i = 0, j = HangarXPLOR._shipMatrix.length; i < j; i++) {
       if (this.ship_name.toLowerCase().indexOf(HangarXPLOR._shipMatrix[i].name.toLowerCase()) > -1) {
 
