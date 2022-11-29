@@ -53,15 +53,15 @@ HangarXPLOR.ParsePledge = function()
     HangarXPLOR.ParseCoupon.apply(this, [ pledgeName ]);
     HangarXPLOR.ParseHangar.apply(this, [ pledgeName ]);
 
+    this.melt_value              = parseFloat(this.pledge_cost.replace("$", "").replace(",", "").replace(" USD", ""));
+    if (this.melt_value != this.melt_value) this.melt_value = 0; // NaN safety
+
     this.filters.has_squadron    = $('.title:contains(Squadron 42 Digital Download)', this).length > 0;
     this.filters.has_starcitizen = $('.title:contains(Star Citizen Digital Download)', this).length > 0;
     this.filters.is_warbond      = this.pledge_name.toLowerCase().indexOf(' warbond') > -1 || this.pledge_name.toLowerCase().indexOf(' wb') > -1 || this.pledge_name.toLowerCase().indexOf(' war bond') > -1;
     this.filters.is_meltable     = $('.js-reclaim', this).length > 0;
     this.filters.is_giftable     = $('.label:contains(Gift)', this).length > 0 && this.melt_value <= 1000;
     this.filters.is_package      = this.filters.has_squadron || this.filters.has_starcitizen;
-
-    this.melt_value              = parseFloat(this.pledge_cost.replace("$", "").replace(",", "").replace(" USD", ""));
-    if (this.melt_value != this.melt_value) this.melt_value = 0; // NaN safety
     this.filters.has_value       = this.melt_value > 0;
 
     // TODO: Support for js-pledge-configuration-value

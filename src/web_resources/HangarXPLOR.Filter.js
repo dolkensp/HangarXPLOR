@@ -4,10 +4,10 @@ var HangarXPLOR = HangarXPLOR || {};
 HangarXPLOR.Filter = function (list, filter) {
   switch (filter) {
     case "HasLTI":
-      list = $.grep(list, function (item) { return item.filters.has_lti });
+      list = $.grep(list, function (item) { return item.filters.is_lti });
       break;
     case "!HasLTI":
-      list = $.grep(list, function (item) { return !item.filters.has_lti });
+      list = $.grep(list, function (item) { return !item.filters.is_lti });
       break;
     case "IsGiftable":
       list = $.grep(list, function (item) { return item.filters.is_giftable });
