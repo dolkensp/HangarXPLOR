@@ -7,6 +7,7 @@ var HangarXPLOR = HangarXPLOR || {};
  * name:        The name as expected from hangar
  * displayName: The name as displayed by HangarXPLOR
  * thumbnail:   The thumbnail displayed by HangarXPLOR
+ * export:      Redirect export to another populated ship profile
  * 
  * url:         The url of the details page
  * focus:       The focus of the ship
@@ -39,6 +40,18 @@ HangarXPLOR._ships = {
     export: 'F8C Lightning'
     // thumbnail: '/media/ldeqyuto9lb46r/heap_infobox/F8C-Executive.png'
   },
+  'A1 Spirit': {
+    name: 'A1 Spirit',
+    export: 'Spirit A1'
+  },
+  'C1 Spirit': {
+    name: 'C1 Spirit',
+    export: 'Spirit C1'
+  },
+  'E1 Spirit': {
+    name: 'E1 Spirit',
+    export: 'Spirit E1'
+  },
   'A2 Hercules': {
     name: 'Hercules Starlifter A2'
   },
@@ -47,6 +60,14 @@ HangarXPLOR._ships = {
   },
   'M2 Hercules': {
     name: 'Hercules Starlifter M2'
+  },
+  'Genesis': {
+    name: 'Genesis Starliner',
+    export: 'Genesis Starliner'
+  },
+  'Mercury': {
+    name: 'Mercury Star Runner',
+    export: 'Mercury Star Runner'
   },
   'Caterpillar Pirate Edition': {
     name: 'Caterpillar Pirate',
@@ -63,7 +84,7 @@ HangarXPLOR._ships = {
     export: '600i'
   },
   '600i Touring': {
-    name: '600i Touring  Module',
+    name: '600i Touring Module',
     export: '600i Touring'
   },
   'Argo Mole Talus Edition': {

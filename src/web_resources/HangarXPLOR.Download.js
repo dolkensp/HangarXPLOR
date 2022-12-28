@@ -35,7 +35,7 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
       return $('.kind:contains(Ship)', this).parent().map(function() {
         var $ship = this;
         var ship_name = $('.title', $ship).text().trim();
-        ship_name = ship_name.replace(/^(?:Aegis|Anvil|Aopoa|Banu|CNOU|Crusader|Drake|Greycat Industrial|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '').trim();
+        ship_name = ship_name.replace(/^(?:Aegis|Anvil|Aopoa|Banu|CNOU|Crusader|Drake|Greycat Industrial|Greycat|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '').trim();
         var lookup = ship_name.toLowerCase();
         var nickname = $('.custom-name-text', $ship).text();
         var i, j;
@@ -54,6 +54,7 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
           unidentified: 'Please report this ship to the plugin developers at https://github.com/dolkensp/HangarXPLOR/issues',
           ship_code: ($('.liner span', $ship).text().trim() + '_' + ship_name).replace(/[^a-z0-9]/gi, '_').replace(/__+/gi, '_'),
           manufacturer_name: $('.liner', $ship).text().trim().replace(/\(.*\)/, '').trim(),
+          lookup: lookup,
         };
         
         ship.manufacturer_code = $('.liner span', $ship).text().trim();

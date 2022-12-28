@@ -534,6 +534,12 @@
     "manufacturer_name": "Drake Interplanetary"
   },
   {
+    "ship_code": "DRAK_Cutter",
+    "ship_name": "Cutter",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
     "ship_code": "DRAK_Dragonfly",
     "ship_name": "Dragonfly Black",
     "manufacturer_code": "DRAK",
@@ -829,7 +835,7 @@
   },
   {
     "ship_code": "ORIG_600i",
-    "ship_name": "600i Explorer",
+    "ship_name": "600i",
     "manufacturer_code": "ORIG",
     "manufacturer_name": "Origin Jumpworks"
   },
@@ -972,6 +978,12 @@
     "manufacturer_name": "Roberts Space Industries"
   },
   {
+    "ship_code": "RSI_Galaxy",
+    "ship_name": "Galaxy",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
     "ship_code": "RSI_Mantis",
     "ship_name": "Mantis",
     "manufacturer_code": "RSI",
@@ -1105,7 +1117,7 @@
   },
   {
     "ship_code": "XIAN_Santok_yai",
-    "ship_name": "San'tok.yai",
+    "ship_name": "San'tok.yāi",
     "manufacturer_code": "XIAN",
     "manufacturer_name": "Aopoa"
   },
