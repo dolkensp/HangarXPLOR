@@ -10,11 +10,12 @@ HangarXPLOR._giftableCount = HangarXPLOR._giftableCount || 0;
 HangarXPLOR._packageCount  = HangarXPLOR._packageCount || 0;
 HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
 HangarXPLOR._cacheSalt     = HangarXPLOR._cacheSalt || btoa(Math.random());
+HangarXPLOR._initCount     = HangarXPLOR._initCount || 0;
 
 var RSI = RSI || {};
 
 HangarXPLOR.Initialize = function()
-{
+{  
   $.ajax({ 
     url: '/ship-matrix/index', 
     method: 'GET', 
