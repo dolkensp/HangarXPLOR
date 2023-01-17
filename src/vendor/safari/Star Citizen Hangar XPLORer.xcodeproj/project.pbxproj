@@ -1,0 +1,973 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A37BF3C7295C07D100D00B06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BF3C6295C07D100D00B06 /* AppDelegate.swift */; };
+		A37BF3C9295C07D100D00B06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BF3C8295C07D100D00B06 /* SceneDelegate.swift */; };
+		A37BF3CC295C07D100D00B06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3CA295C07D100D00B06 /* LaunchScreen.storyboard */; };
+		A37BF3CF295C07D100D00B06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3CD295C07D100D00B06 /* Main.storyboard */; };
+		A37BF3D8295C07D100D00B06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BF3D7295C07D100D00B06 /* AppDelegate.swift */; };
+		A37BF3DB295C07D100D00B06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3D9295C07D100D00B06 /* Main.storyboard */; };
+		A37BF3E3295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A37BF3E2295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A37BF3ED295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A37BF3EC295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A37BF3F3295C07D100D00B06 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3B6295C07D000D00B06 /* Main.html */; };
+		A37BF3F4295C07D100D00B06 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3B6295C07D000D00B06 /* Main.html */; };
+		A37BF3F5295C07D100D00B06 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3B8295C07D000D00B06 /* Icon.png */; };
+		A37BF3F6295C07D100D00B06 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3B8295C07D000D00B06 /* Icon.png */; };
+		A37BF3F7295C07D100D00B06 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3B9295C07D000D00B06 /* Style.css */; };
+		A37BF3F8295C07D100D00B06 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3B9295C07D000D00B06 /* Style.css */; };
+		A37BF3F9295C07D100D00B06 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3BA295C07D000D00B06 /* Script.js */; };
+		A37BF3FA295C07D100D00B06 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3BA295C07D000D00B06 /* Script.js */; };
+		A37BF3FB295C07D100D00B06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BF3BB295C07D000D00B06 /* ViewController.swift */; };
+		A37BF3FC295C07D100D00B06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BF3BB295C07D000D00B06 /* ViewController.swift */; };
+		A37BF3FD295C07D100D00B06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3BC295C07D100D00B06 /* Assets.xcassets */; };
+		A37BF3FE295C07D100D00B06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A37BF3BC295C07D100D00B06 /* Assets.xcassets */; };
+		A37BF3FF295C07D100D00B06 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BF3BE295C07D100D00B06 /* SafariWebExtensionHandler.swift */; };
+		A37BF400295C07D100D00B06 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37BF3BE295C07D100D00B06 /* SafariWebExtensionHandler.swift */; };
+		A37BF41C295C07D100D00B06 /* screenshots in Resources */ = {isa = PBXBuildFile; fileRef = A37BF412295C07D100D00B06 /* screenshots */; };
+		A37BF41D295C07D100D00B06 /* web_resources in Resources */ = {isa = PBXBuildFile; fileRef = A37BF413295C07D100D00B06 /* web_resources */; };
+		A37BF41E295C07D100D00B06 /* manifest.firefox.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF414295C07D100D00B06 /* manifest.firefox.json */; };
+		A37BF41F295C07D100D00B06 /* manifest.chrome.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF415295C07D100D00B06 /* manifest.chrome.json */; };
+		A37BF420295C07D100D00B06 /* manifest.edge.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF416295C07D100D00B06 /* manifest.edge.json */; };
+		A37BF421295C07D100D00B06 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = A37BF417295C07D100D00B06 /* icons */; };
+		A37BF422295C07D100D00B06 /* ui_resources in Resources */ = {isa = PBXBuildFile; fileRef = A37BF418295C07D100D00B06 /* ui_resources */; };
+		A37BF423295C07D100D00B06 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF419295C07D100D00B06 /* manifest.json */; };
+		A37BF424295C07D100D00B06 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		A37BF425295C07D100D00B06 /* content_scripts in Resources */ = {isa = PBXBuildFile; fileRef = A37BF41B295C07D100D00B06 /* content_scripts */; };
+		A37BF426295C07D100D00B06 /* screenshots in Resources */ = {isa = PBXBuildFile; fileRef = A37BF412295C07D100D00B06 /* screenshots */; };
+		A37BF427295C07D100D00B06 /* web_resources in Resources */ = {isa = PBXBuildFile; fileRef = A37BF413295C07D100D00B06 /* web_resources */; };
+		A37BF428295C07D100D00B06 /* manifest.firefox.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF414295C07D100D00B06 /* manifest.firefox.json */; };
+		A37BF429295C07D100D00B06 /* manifest.chrome.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF415295C07D100D00B06 /* manifest.chrome.json */; };
+		A37BF42A295C07D100D00B06 /* manifest.edge.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF416295C07D100D00B06 /* manifest.edge.json */; };
+		A37BF42B295C07D100D00B06 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = A37BF417295C07D100D00B06 /* icons */; };
+		A37BF42C295C07D100D00B06 /* ui_resources in Resources */ = {isa = PBXBuildFile; fileRef = A37BF418295C07D100D00B06 /* ui_resources */; };
+		A37BF42D295C07D100D00B06 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = A37BF419295C07D100D00B06 /* manifest.json */; };
+		A37BF42E295C07D100D00B06 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		A37BF42F295C07D100D00B06 /* content_scripts in Resources */ = {isa = PBXBuildFile; fileRef = A37BF41B295C07D100D00B06 /* content_scripts */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A37BF3E4295C07D100D00B06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A37BF3B0295C07D000D00B06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A37BF3E1295C07D100D00B06;
+			remoteInfo = "Star Citizen Hangar XPLORer Extension (iOS)";
+		};
+		A37BF3EE295C07D100D00B06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A37BF3B0295C07D000D00B06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A37BF3EB295C07D100D00B06;
+			remoteInfo = "Star Citizen Hangar XPLORer Extension (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A37BF406295C07D100D00B06 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A37BF3E3295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF40D295C07D100D00B06 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A37BF3ED295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A37BF3B7295C07D000D00B06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
+		A37BF3B8295C07D000D00B06 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		A37BF3B9295C07D000D00B06 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		A37BF3BA295C07D000D00B06 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		A37BF3BB295C07D000D00B06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A37BF3BC295C07D100D00B06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A37BF3BE295C07D100D00B06 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		A37BF3C3295C07D100D00B06 /* Star Citizen Hangar XPLORer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Citizen Hangar XPLORer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37BF3C6295C07D100D00B06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A37BF3C8295C07D100D00B06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A37BF3CB295C07D100D00B06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A37BF3CE295C07D100D00B06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A37BF3D0295C07D100D00B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A37BF3D5295C07D100D00B06 /* Star Citizen Hangar XPLORer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Star Citizen Hangar XPLORer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37BF3D7295C07D100D00B06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A37BF3DA295C07D100D00B06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A37BF3DC295C07D100D00B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A37BF3DD295C07D100D00B06 /* Star Citizen Hangar XPLORer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Star Citizen Hangar XPLORer.entitlements"; sourceTree = "<group>"; };
+		A37BF3E2295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Star Citizen Hangar XPLORer Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37BF3E7295C07D100D00B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A37BF3EC295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Star Citizen Hangar XPLORer Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37BF3F1295C07D100D00B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A37BF3F2295C07D100D00B06 /* Star Citizen Hangar XPLORer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Star Citizen Hangar XPLORer.entitlements"; sourceTree = "<group>"; };
+		A37BF412295C07D100D00B06 /* screenshots */ = {isa = PBXFileReference; lastKnownFileType = folder; name = screenshots; path = ../../../screenshots; sourceTree = "<group>"; };
+		A37BF413295C07D100D00B06 /* web_resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web_resources; path = ../../../web_resources; sourceTree = "<group>"; };
+		A37BF414295C07D100D00B06 /* manifest.firefox.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.firefox.json; path = ../../../manifest.firefox.json; sourceTree = "<group>"; };
+		A37BF415295C07D100D00B06 /* manifest.chrome.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.chrome.json; path = ../../../manifest.chrome.json; sourceTree = "<group>"; };
+		A37BF416295C07D100D00B06 /* manifest.edge.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.edge.json; path = ../../../manifest.edge.json; sourceTree = "<group>"; };
+		A37BF417295C07D100D00B06 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../../icons; sourceTree = "<group>"; };
+		A37BF418295C07D100D00B06 /* ui_resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ui_resources; path = ../../../ui_resources; sourceTree = "<group>"; };
+		A37BF419295C07D100D00B06 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../manifest.json; sourceTree = "<group>"; };
+		A37BF41B295C07D100D00B06 /* content_scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = content_scripts; path = ../../../content_scripts; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A37BF3C0295C07D100D00B06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3D2295C07D100D00B06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3DF295C07D100D00B06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3E9295C07D100D00B06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A37BF3AF295C07D000D00B06 = {
+			isa = PBXGroup;
+			children = (
+				A37BF3B4295C07D000D00B06 /* Shared (App) */,
+				A37BF3BD295C07D100D00B06 /* Shared (Extension) */,
+				A37BF3C5295C07D100D00B06 /* iOS (App) */,
+				A37BF3D6295C07D100D00B06 /* macOS (App) */,
+				A37BF3E6295C07D100D00B06 /* iOS (Extension) */,
+				A37BF3F0295C07D100D00B06 /* macOS (Extension) */,
+				A37BF3C4295C07D100D00B06 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A37BF3B4295C07D000D00B06 /* Shared (App) */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF3BB295C07D000D00B06 /* ViewController.swift */,
+				A37BF3BC295C07D100D00B06 /* Assets.xcassets */,
+				A37BF3B5295C07D000D00B06 /* Resources */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		A37BF3B5295C07D000D00B06 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF3B6295C07D000D00B06 /* Main.html */,
+				A37BF3B8295C07D000D00B06 /* Icon.png */,
+				A37BF3B9295C07D000D00B06 /* Style.css */,
+				A37BF3BA295C07D000D00B06 /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A37BF3BD295C07D100D00B06 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF411295C07D100D00B06 /* Resources */,
+				A37BF3BE295C07D100D00B06 /* SafariWebExtensionHandler.swift */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		A37BF3C4295C07D100D00B06 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF3C3295C07D100D00B06 /* Star Citizen Hangar XPLORer.app */,
+				A37BF3D5295C07D100D00B06 /* Star Citizen Hangar XPLORer.app */,
+				A37BF3E2295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */,
+				A37BF3EC295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A37BF3C5295C07D100D00B06 /* iOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF3C6295C07D100D00B06 /* AppDelegate.swift */,
+				A37BF3C8295C07D100D00B06 /* SceneDelegate.swift */,
+				A37BF3CA295C07D100D00B06 /* LaunchScreen.storyboard */,
+				A37BF3CD295C07D100D00B06 /* Main.storyboard */,
+				A37BF3D0295C07D100D00B06 /* Info.plist */,
+			);
+			path = "iOS (App)";
+			sourceTree = "<group>";
+		};
+		A37BF3D6295C07D100D00B06 /* macOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF3D7295C07D100D00B06 /* AppDelegate.swift */,
+				A37BF3D9295C07D100D00B06 /* Main.storyboard */,
+				A37BF3DC295C07D100D00B06 /* Info.plist */,
+				A37BF3DD295C07D100D00B06 /* Star Citizen Hangar XPLORer.entitlements */,
+			);
+			path = "macOS (App)";
+			sourceTree = "<group>";
+		};
+		A37BF3E6295C07D100D00B06 /* iOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF3E7295C07D100D00B06 /* Info.plist */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		A37BF3F0295C07D100D00B06 /* macOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF3F1295C07D100D00B06 /* Info.plist */,
+				A37BF3F2295C07D100D00B06 /* Star Citizen Hangar XPLORer.entitlements */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		A37BF411295C07D100D00B06 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A37BF412295C07D100D00B06 /* screenshots */,
+				A37BF413295C07D100D00B06 /* web_resources */,
+				A37BF414295C07D100D00B06 /* manifest.firefox.json */,
+				A37BF415295C07D100D00B06 /* manifest.chrome.json */,
+				A37BF416295C07D100D00B06 /* manifest.edge.json */,
+				A37BF417295C07D100D00B06 /* icons */,
+				A37BF418295C07D100D00B06 /* ui_resources */,
+				A37BF419295C07D100D00B06 /* manifest.json */,
+				A37BF41B295C07D100D00B06 /* content_scripts */,
+			);
+			name = Resources;
+			path = "Shared (Extension)";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A37BF3C2295C07D100D00B06 /* Star Citizen Hangar XPLORer (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A37BF407295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer (iOS)" */;
+			buildPhases = (
+				A37BF3BF295C07D100D00B06 /* Sources */,
+				A37BF3C0295C07D100D00B06 /* Frameworks */,
+				A37BF3C1295C07D100D00B06 /* Resources */,
+				A37BF406295C07D100D00B06 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A37BF3E5295C07D100D00B06 /* PBXTargetDependency */,
+			);
+			name = "Star Citizen Hangar XPLORer (iOS)";
+			productName = "Star Citizen Hangar XPLORer (iOS)";
+			productReference = A37BF3C3295C07D100D00B06 /* Star Citizen Hangar XPLORer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A37BF3D4295C07D100D00B06 /* Star Citizen Hangar XPLORer (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A37BF40E295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer (macOS)" */;
+			buildPhases = (
+				A37BF3D1295C07D100D00B06 /* Sources */,
+				A37BF3D2295C07D100D00B06 /* Frameworks */,
+				A37BF3D3295C07D100D00B06 /* Resources */,
+				A37BF40D295C07D100D00B06 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A37BF3EF295C07D100D00B06 /* PBXTargetDependency */,
+			);
+			name = "Star Citizen Hangar XPLORer (macOS)";
+			productName = "Star Citizen Hangar XPLORer (macOS)";
+			productReference = A37BF3D5295C07D100D00B06 /* Star Citizen Hangar XPLORer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A37BF3E1295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A37BF403295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer Extension (iOS)" */;
+			buildPhases = (
+				A37BF3DE295C07D100D00B06 /* Sources */,
+				A37BF3DF295C07D100D00B06 /* Frameworks */,
+				A37BF3E0295C07D100D00B06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Star Citizen Hangar XPLORer Extension (iOS)";
+			productName = "Star Citizen Hangar XPLORer Extension (iOS)";
+			productReference = A37BF3E2295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		A37BF3EB295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A37BF40A295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer Extension (macOS)" */;
+			buildPhases = (
+				A37BF3E8295C07D100D00B06 /* Sources */,
+				A37BF3E9295C07D100D00B06 /* Frameworks */,
+				A37BF3EA295C07D100D00B06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Star Citizen Hangar XPLORer Extension (macOS)";
+			productName = "Star Citizen Hangar XPLORer Extension (macOS)";
+			productReference = A37BF3EC295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A37BF3B0295C07D000D00B06 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					A37BF3C2295C07D100D00B06 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					A37BF3D4295C07D100D00B06 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					A37BF3E1295C07D100D00B06 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					A37BF3EB295C07D100D00B06 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = A37BF3B3295C07D000D00B06 /* Build configuration list for PBXProject "Star Citizen Hangar XPLORer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A37BF3AF295C07D000D00B06;
+			productRefGroup = A37BF3C4295C07D100D00B06 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A37BF3C2295C07D100D00B06 /* Star Citizen Hangar XPLORer (iOS) */,
+				A37BF3D4295C07D100D00B06 /* Star Citizen Hangar XPLORer (macOS) */,
+				A37BF3E1295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension (iOS) */,
+				A37BF3EB295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A37BF3C1295C07D100D00B06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF3F5295C07D100D00B06 /* Icon.png in Resources */,
+				A37BF3CC295C07D100D00B06 /* LaunchScreen.storyboard in Resources */,
+				A37BF3F3295C07D100D00B06 /* Main.html in Resources */,
+				A37BF3F9295C07D100D00B06 /* Script.js in Resources */,
+				A37BF3FD295C07D100D00B06 /* Assets.xcassets in Resources */,
+				A37BF3CF295C07D100D00B06 /* Main.storyboard in Resources */,
+				A37BF3F7295C07D100D00B06 /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3D3295C07D100D00B06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF3F6295C07D100D00B06 /* Icon.png in Resources */,
+				A37BF3F8295C07D100D00B06 /* Style.css in Resources */,
+				A37BF3DB295C07D100D00B06 /* Main.storyboard in Resources */,
+				A37BF3FA295C07D100D00B06 /* Script.js in Resources */,
+				A37BF3FE295C07D100D00B06 /* Assets.xcassets in Resources */,
+				A37BF3F4295C07D100D00B06 /* Main.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3E0295C07D100D00B06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF42E295C07D100D00B06 /* (null) in Resources */,
+				A37BF428295C07D100D00B06 /* manifest.firefox.json in Resources */,
+				A37BF426295C07D100D00B06 /* screenshots in Resources */,
+				A37BF42F295C07D100D00B06 /* content_scripts in Resources */,
+				A37BF42A295C07D100D00B06 /* manifest.edge.json in Resources */,
+				A37BF42B295C07D100D00B06 /* icons in Resources */,
+				A37BF42D295C07D100D00B06 /* manifest.json in Resources */,
+				A37BF42C295C07D100D00B06 /* ui_resources in Resources */,
+				A37BF427295C07D100D00B06 /* web_resources in Resources */,
+				A37BF429295C07D100D00B06 /* manifest.chrome.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3EA295C07D100D00B06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF424295C07D100D00B06 /* (null) in Resources */,
+				A37BF41E295C07D100D00B06 /* manifest.firefox.json in Resources */,
+				A37BF41C295C07D100D00B06 /* screenshots in Resources */,
+				A37BF425295C07D100D00B06 /* content_scripts in Resources */,
+				A37BF420295C07D100D00B06 /* manifest.edge.json in Resources */,
+				A37BF421295C07D100D00B06 /* icons in Resources */,
+				A37BF423295C07D100D00B06 /* manifest.json in Resources */,
+				A37BF422295C07D100D00B06 /* ui_resources in Resources */,
+				A37BF41D295C07D100D00B06 /* web_resources in Resources */,
+				A37BF41F295C07D100D00B06 /* manifest.chrome.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A37BF3BF295C07D100D00B06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF3FB295C07D100D00B06 /* ViewController.swift in Sources */,
+				A37BF3C7295C07D100D00B06 /* AppDelegate.swift in Sources */,
+				A37BF3C9295C07D100D00B06 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3D1295C07D100D00B06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF3FC295C07D100D00B06 /* ViewController.swift in Sources */,
+				A37BF3D8295C07D100D00B06 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3DE295C07D100D00B06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF3FF295C07D100D00B06 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37BF3E8295C07D100D00B06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37BF400295C07D100D00B06 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A37BF3E5295C07D100D00B06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A37BF3E1295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension (iOS) */;
+			targetProxy = A37BF3E4295C07D100D00B06 /* PBXContainerItemProxy */;
+		};
+		A37BF3EF295C07D100D00B06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A37BF3EB295C07D100D00B06 /* Star Citizen Hangar XPLORer Extension (macOS) */;
+			targetProxy = A37BF3EE295C07D100D00B06 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A37BF3B6295C07D000D00B06 /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A37BF3B7295C07D000D00B06 /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		A37BF3CA295C07D100D00B06 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A37BF3CB295C07D100D00B06 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A37BF3CD295C07D100D00B06 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A37BF3CE295C07D100D00B06 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A37BF3D9295C07D100D00B06 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A37BF3DA295C07D100D00B06 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A37BF401295C07D100D00B06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A37BF402295C07D100D00B06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A37BF404295C07D100D00B06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor.extension;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A37BF405295C07D100D00B06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor.extension;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A37BF408295C07D100D00B06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A37BF409295C07D100D00B06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A37BF40B295C07D100D00B06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/Star Citizen Hangar XPLORer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor.extension;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A37BF40C295C07D100D00B06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/Star Citizen Hangar XPLORer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor.extension;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A37BF40F295C07D100D00B06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "macOS (App)/Star Citizen Hangar XPLORer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A37BF410295C07D100D00B06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "macOS (App)/Star Citizen Hangar XPLORer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Star Citizen Hangar XPLORer";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ddrit.hangarxplor;
+				PRODUCT_NAME = "Star Citizen Hangar XPLORer";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A37BF3B3295C07D000D00B06 /* Build configuration list for PBXProject "Star Citizen Hangar XPLORer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A37BF401295C07D100D00B06 /* Debug */,
+				A37BF402295C07D100D00B06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A37BF403295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer Extension (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A37BF404295C07D100D00B06 /* Debug */,
+				A37BF405295C07D100D00B06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A37BF407295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A37BF408295C07D100D00B06 /* Debug */,
+				A37BF409295C07D100D00B06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A37BF40A295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer Extension (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A37BF40B295C07D100D00B06 /* Debug */,
+				A37BF40C295C07D100D00B06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A37BF40E295C07D100D00B06 /* Build configuration list for PBXNativeTarget "Star Citizen Hangar XPLORer (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A37BF40F295C07D100D00B06 /* Debug */,
+				A37BF410295C07D100D00B06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A37BF3B0295C07D000D00B06 /* Project object */;
+}

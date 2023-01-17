@@ -54,7 +54,7 @@
   var templates = [ ];
   
   for (var i = 0, j = styles.length; i < j; i++) {
-    var styleURL = chrome.extension.getURL(styles[i]);
+    var styleURL = chrome.runtime.getURL(styles[i]);
     console.log('Loading', styleURL);
     var style = document.createElement('link');
     style.id = namespace + '-css-' + i;
@@ -65,7 +65,7 @@
   }
   
   for (i = 0, j = templates.length; i < j; i++) {
-    var templateURL = chrome.extension.getURL(templates[i].url);
+    var templateURL = chrome.runtime.getURL(templates[i].url);
     console.log('Loading', templateURL);
     var template = document.createElement('script');
     template.id = templates[i].id;
@@ -93,7 +93,7 @@
   });
   
   for (i = 0, j = ajax.length; i < j; i++) {
-    var ajaxURL = chrome.extension.getURL(ajax[i]);
+    var ajaxURL = chrome.runtime.getURL(ajax[i]);
     console.log('Loading', ajaxURL);
     var script = document.createElement('script');
     script.id = (namespace + '-ajax-' + ajax[i++]).replace('web_resources/', '').replace(/[. ]/, '-');
@@ -107,7 +107,7 @@
   var loadScript = function() {
     if (scripts.length == 0) return;
     
-    var scriptURL = chrome.extension.getURL(scripts.pop());
+    var scriptURL = chrome.runtime.getURL(scripts.pop());
     console.log('Loading', scriptURL);
     var script = document.createElement('script');
     script.id = namespace + '-js-' + i++;

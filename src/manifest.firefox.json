@@ -3,5 +3,11 @@
     "gecko": {
       "id": "HangarXPLOR@ddrit.com"
     }
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "HangarXPLOR@ddrit.com"
+    }
   }
 }

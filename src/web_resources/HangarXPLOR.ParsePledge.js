@@ -18,7 +18,7 @@ HangarXPLOR.ParsePledge = function()
   var pledgeName  = $('.js-pledge-name', this).val() || '';
   var $wrapper    = $('.wrapper-col', this);
   
-  var h3Text     = $('h3', this).contents().filter(function() { return this.nodeType == 3 && this.nodeValue.trim().length > 0 })[0];
+  var h3Text     = $('.title-col h3', this)[0];
 
   if (pledgeName.length > 0) {
 

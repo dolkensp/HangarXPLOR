@@ -202,3 +202,7 @@ publish
 *.xpi
 *.crx
 package-lock.json
+
+
+.DS_Store
+xcuserdata

@@ -84,11 +84,5 @@
               "debug/*.html"
           ]
       }
-  ],
-
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "HangarXPLOR@ddrit.com"
-    }
-  }
+  ]
 }

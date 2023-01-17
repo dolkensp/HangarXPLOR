@@ -4,7 +4,7 @@ var JSZip = require('jszip');
 
 var support = [ 'chrome', 'firefox', 'edge' ];
 
-var manifest_master = JSON.parse(fs.readFileSync('src/manifest.json', 'utf8'));
+var manifest_master = JSON.parse(fs.readFileSync('src/manifest.core.json', 'utf8'));
 
 manifest_master.version = process.argv[2];
 
