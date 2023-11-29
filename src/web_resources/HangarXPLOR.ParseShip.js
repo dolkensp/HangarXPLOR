@@ -28,18 +28,28 @@ HangarXPLOR.ParseShip = function()
                                                 .replace(/ promo wb/i, '');
     
     var found = false;
-    var i, j;
-    for (i = 0, j = HangarXPLOR._shipMatrix.length; i < j; i++) {
-      if (this.ship_name.toLowerCase().indexOf(HangarXPLOR._shipMatrix[i].name.toLowerCase()) > -1) {
+    var shipIndex = HangarXPLOR._shipMatrix.findIndex(ship => this.ship_name.toLowerCase() === ship.name.toLowerCase());
 
-        HangarXPLOR.Log('Matched', HangarXPLOR._shipMatrix[i].name, 'in', this.ship_name);
-
-        this.ship_name = (HangarXPLOR._shipMatrix[i].displayName || HangarXPLOR._shipMatrix[i].name);
-        found = true;
-        if (HangarXPLOR._shipMatrix[i].thumbnail != undefined) {
-          $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._shipMatrix[i].thumbnail + '")'});
+    if (shipIndex === -1) {
+      var i, j;
+      for (i = 0, j = HangarXPLOR._shipMatrix.length; i < j; i++) {
+        if (this.ship_name.toLowerCase().indexOf(HangarXPLOR._shipMatrix[i].name.toLowerCase()) > -1) {
+          shipIndex = i;
+          found = true;
+          break;
         }
-        break;
+      }
+    }else{
+      found = true;
+    }
+
+    if (found) {
+      this.ship_name = (HangarXPLOR._shipMatrix[shipIndex].displayName || HangarXPLOR._shipMatrix[shipIndex].name);
+
+      HangarXPLOR.Log('Matched', HangarXPLOR._shipMatrix[shipIndex].name, 'in', this.ship_name);
+
+      if (HangarXPLOR._shipMatrix[shipIndex].thumbnail !== undefined) {
+        $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._shipMatrix[shipIndex].thumbnail + '")'});
       }
     }
 
