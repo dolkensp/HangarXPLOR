@@ -26,8 +26,8 @@
   "content_scripts": [
       {
           "matches": [
-              "https://robertsspaceindustries.com/account/pledges*",
-              "https://www.robertsspaceindustries.com/account/pledges*"
+              "https://robertsspaceindustries.com/*/account/pledges*",
+              "https://www.robertsspaceindustries.com/*/account/pledges*"
           ],
           "js": [
               "content_scripts/loader.js"
