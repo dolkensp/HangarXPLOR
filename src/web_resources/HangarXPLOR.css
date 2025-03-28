@@ -53,3 +53,10 @@
 @media only screen and (max-width: 1024px) {
 .js-bulk-ui .inner { padding: 15px 10px }
 }
+
+
+.js-inventory .wrapper-col label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+}

@@ -66,12 +66,10 @@ HangarXPLOR.BindBulkUI = function()
   HangarXPLOR.$list.addClass(HangarXPLOR._feature.Summary);
   HangarXPLOR.$list.on('click.HangarXPLOR', 'a', function(e) { e.originalEvent.isButton = true; });
   HangarXPLOR.$list.on('click.HangarXPLOR', 'li', function(e) {
-    if (!e.originalEvent.isButton)
-    {
-      $('.row', this).removeClass('js-selected');
+    if (!e.originalEvent.isButton) {
+      const $row = $('.row', this);
       this.filters.is_selected = !this.filters.is_selected;
-      if (this.filters.is_selected) $('.row', this).addClass('js-selected');
-      
+      $row.toggleClass('js-selected', this.filters.is_selected);
       HangarXPLOR.RefreshBulkUI();
     }
   });

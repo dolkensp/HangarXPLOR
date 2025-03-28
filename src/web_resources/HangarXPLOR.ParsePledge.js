@@ -89,11 +89,17 @@ HangarXPLOR.ParsePledge = function()
     // TODO: Support for HangarXPLOR._setting.NoPledgeID
     this.displayName = this.pledge_type + ' - ' + this.displayName + ' (' + this.pledge_id + ')';
     
-    $wrapper.append($("<div>", { class: 'date-col melt-col' }).append($('<label>', { text: 'Melt Value' }), this.pledge_cost));
-    $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge' }), this.pledge_name));
+    $wrapper.append($("<div>", { class: 'date-col melt-col' }).append($('<label>', { text: 'Melt Value: ' }), this.pledge_cost));
+    $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge: ' }), this.pledge_name));
     
     this.sortName = this.displayName;
     h3Text.textContent = this.displayName;
+    
+    // if ($('.basic-infos .image', this).css('background-image') == 'url("https://cdn.robertsspaceindustries.com/static/images/Temp/default-image.png")' &&
+    //     $('.items .image', this).length > 0)
+    // {
+    //     $('.basic-infos .image', this).css({ 'background-image': $($('.items .image', this)[0]).css('background-image') });
+    // }
     
   } else {
     HangarXPLOR.Log('Warning: Error parsing', this.innerHTML);

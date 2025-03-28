@@ -17,7 +17,7 @@ HangarXPLOR._ships = {
     name: 'X1'
   },
   'F7A Hornet': {
-    thumbnail: ''
+    thumbnail: 'https://media.robertsspaceindustries.com/fbn41urx9yszc/heap_infobox.jpg'
   },
   'F7C Hornet': {
     name: 'Hornet F7C',

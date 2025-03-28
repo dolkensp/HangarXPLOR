@@ -1,4 +1,3 @@
-
 /* eslint no-console: "off" */
 !function() {
   var namespace = 'HangarXPLOR';
@@ -115,6 +114,9 @@
     script.src = scriptURL;
     
     script.onload = loadScript;
+    script.onerror = function() {
+      console.error('Failed to load script:', scriptURL);
+    };
     script.onreadystatechange = function() {
       if (this.readyState == 'complete') loadScript();
     }

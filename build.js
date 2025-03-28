@@ -39,7 +39,7 @@ support.forEach((browser, index) => {
   
   addFiles('src');
   
-  // TODO: Copy Files In
-  
-  zip.generateNodeStream({ type:'nodebuffer', compression: 'DEFLATE', streamFiles:true }).pipe(fs.createWriteStream('dist/' + manifest.short_name + '-' + browser + '-v' + manifest.version + '.zip'))
+  // Always use STORE compression method
+  zip.generateNodeStream({ type: 'nodebuffer', compression: 'STORE', streamFiles: true })
+     .pipe(fs.createWriteStream('dist/' + manifest.short_name + '-' + browser + '-v' + manifest.version + '.zip'));
 });
