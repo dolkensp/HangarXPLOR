@@ -31,6 +31,32 @@
 .js-bulk-ui .loading .value { display: none; }
 .js-bulk-ui .loading .status { display: block; }
 
+/* Buyback summary panel styles */
+.js-buyback-bulk-ui .buyback-summary-row { margin-bottom: 10px; }
+.js-buyback-bulk-ui .buyback-summary-row .amount { margin-right: 8px; }
+.js-buyback-bulk-ui .buyback-summary-row .label { width: auto; }
+
+.js-buyback-bulk-ui .buyback-type-breakdown { display: flex; flex-direction: column; gap: 2px; margin: 8px 0; }
+.js-buyback-bulk-ui .buyback-count-row { display: flex; align-items: baseline; }
+.js-buyback-bulk-ui .buyback-count-row .count-num { color: #25e4ff; font-size: 16px; font-family: 'Electrolize'; min-width: 35px; text-align: right; margin-right: 8px; }
+.js-buyback-bulk-ui .buyback-count-row .count-label { color: #6c84a2; font-size: 10px; text-transform: uppercase; font-family: 'Electrolize'; }
+
+/* Buyback extended controls (pager + search, below the blue line) */
+.js-buyback-extended-controls { margin-bottom: 15px; }
+.js-buyback-extended-controls .pager-wrapper { margin-bottom: 10px; }
+.js-buyback-extended-controls .pager .right { float: right; }
+.js-buyback-extended-controls .selectlist > span { width: 75%; }
+
+/* Buyback search styles */
+.js-buyback-search-wrapper { position: relative; margin: 0; display: block; width: 100%; }
+.js-buyback-search-wrapper .js-custom-search { border: 1px solid rgba(22, 42, 63, 0.8); font-size: 12px; color: #387893; width: 100%; padding: 10px 15px; display: block; box-sizing: border-box; transition: all 0.2s; background: rgba(0,0,0,0.2); position: static; }
+.js-buyback-search-wrapper .js-custom-search:focus { border: 1px solid #00B7CA; color: #42C6E7; box-shadow: inset 0 0 20px rgba(0,112,200,0.3); outline: none; }
+.js-buyback-search-wrapper .js-custom-search::placeholder { color: #355e78; }
+
+/* Ensure pledges list clears the controls */
+.available-pledges ul.pledges { clear: both; }
+.js-buyback-inventory { margin-top: 10px; }
+
 .js-custom-controls .controls.js-custom-search-wrapper { position: relative; margin: -10px 0px 0px 10px; padding: 0 0 5px; height: 35px !important; }
 .js-custom-controls .js-custom-search,
 .js-custom-controls .js-custom-search-complete { border: 1px solid rgba(22, 42, 63, 0.8); font-size: 12px; color: #355e78; width: 100%; padding: 10px 15px; display: block; -moz-box-sizing: border-box; box-sizing: border-box; -webkit-transition: all 0.2s !important; -moz-transition: all 0.2s !important; -o-transition: all 0.2s !important; -ms-transition: all 0.2s !important; transition: all 0.2s !important; position: absolute; top: 0; left: 0; z-index: 11; background: transparent; }

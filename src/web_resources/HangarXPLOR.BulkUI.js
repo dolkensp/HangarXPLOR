@@ -94,10 +94,24 @@ HangarXPLOR.BindBulkUI = function()
   
 }
 
-HangarXPLOR.UpdateStatus = function()
+HangarXPLOR.UpdateStatus = function(pageNo)
 {
+  // Handle buyback page
+  if (HangarXPLOR._pageType === 'buyback' && HangarXPLOR.$buybackBulkUI) {
+    HangarXPLOR.$buybackBulkUI.$loading.empty();
+    HangarXPLOR.$buybackBulkUI.$loading.append(
+      $('<span>', { class: 'amount', text: 'Loading' }),
+      $('<span>', { class: 'label', text: pageNo ? 'Page ' + pageNo : 'Please Wait' }),
+      $('<br>')
+    );
+    return;
+  }
+
+  // Handle hangar page
+  if (!HangarXPLOR.$bulkUI) return;
+
   HangarXPLOR.$bulkUI.$loading.empty();
-  
+
   HangarXPLOR.$bulkUI.$loading.append(
     $('<span>', { class: 'amount', text: 'Loading' }),
     $('<span>', { class: 'label', text: 'Please Wait' }),

@@ -27,7 +27,9 @@
       {
           "matches": [
               "https://robertsspaceindustries.com/*/account/pledges*",
-              "https://www.robertsspaceindustries.com/*/account/pledges*"
+              "https://www.robertsspaceindustries.com/*/account/pledges*",
+              "https://robertsspaceindustries.com/*/account/buy-back-pledges*",
+              "https://www.robertsspaceindustries.com/*/account/buy-back-pledges*"
           ],
           "js": [
               "content_scripts/loader.js"
@@ -81,6 +83,15 @@
               "web_resources/HangarXPLOR.Debug.js",
               "web_resources/HangarXPLOR.js",
               "web_resources/HangarXPLOR.css",
+              "web_resources/HangarXPLOR.ParseBuybackPledge.js",
+              "web_resources/HangarXPLOR.LoadBuybackPage.js",
+              "web_resources/HangarXPLOR.ProcessBuybackPage.js",
+              "web_resources/HangarXPLOR.LoadBuybackCache.js",
+              "web_resources/HangarXPLOR.SaveBuybackCache.js",
+              "web_resources/HangarXPLOR.FilterBuyback.js",
+              "web_resources/HangarXPLOR.RenderBuyback.js",
+              "web_resources/HangarXPLOR.DrawBuybackUI.js",
+              "web_resources/HangarXPLOR.BuybackBulkUI.js",
               "debug/*.html"
           ]
       }
