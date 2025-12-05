@@ -43,6 +43,16 @@
     'web_resources/HangarXPLOR.Components.js',
     'web_resources/HangarXPLOR.Button.js',
     'web_resources/HangarXPLOR.BulkUI.js',
+    // Buyback page support
+    'web_resources/HangarXPLOR.BuybackBulkUI.js',
+    'web_resources/HangarXPLOR.DrawBuybackUI.js',
+    'web_resources/HangarXPLOR.RenderBuyback.js',
+    'web_resources/HangarXPLOR.FilterBuyback.js',
+    'web_resources/HangarXPLOR.SaveBuybackCache.js',
+    'web_resources/HangarXPLOR.LoadBuybackCache.js',
+    'web_resources/HangarXPLOR.ProcessBuybackPage.js',
+    'web_resources/HangarXPLOR.LoadBuybackPage.js',
+    'web_resources/HangarXPLOR.ParseBuybackPledge.js',
     'web_resources/shims.chrome.storage.js'
   ];
   

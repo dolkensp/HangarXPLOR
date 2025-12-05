@@ -87,9 +87,9 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
   
   HangarXPLOR._callbacks.DownloadCSV = function(e) {
     e.preventDefault();
-    
+
     var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
-    
+
     // TODO: CSV support will need to be careful of user-entered data...
     var buffer = "Manufacturer, Ship, Lti, Warbond, ID, Pledge, Cost, Date\n";
     buffer = buffer + HangarXPLOR.GetShipList($target).map(function(ship) { return [ '"' + ship.manufacturer_name + '"', '"' + ship.ship_name + '"', ship.lti, ship.warbond, ship.pledge_id, '"' + ship.pledge_name + '"', '"' + ship.pledge_cost + '"', '"' + ship.pledge_date + '"' ].join(',')}).join('\n')
@@ -99,4 +99,88 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
     $download.attr('type', 'text/csv');
     $download[0].click();
   }
+
+  // =============================================
+  // Buyback Export Functions
+  // =============================================
+
+  /**
+   * Gets the buyback list for export
+   * @param {Array} target - Array of buyback items to export (optional, defaults to full inventory)
+   * @returns {Array} Array of buyback item objects
+   */
+  HangarXPLOR.GetBuybackList = function(target) {
+    var items = target || HangarXPLOR._buybackInventory;
+
+    return $.map(items, function(item) {
+      return {
+        type: item.buyback_type,
+        name: item.buyback_name,
+        pledge_id: item.pledge_id,
+        last_modified: item.last_modified,
+        contained: item.contained,
+        is_available: item.is_available
+      };
+    });
+  };
+
+  /**
+   * Downloads buyback inventory as JSON
+   */
+  HangarXPLOR._callbacks.DownloadBuybackJSON = function(e) {
+    e.preventDefault();
+
+    var exportData = {
+      fetched_at: new Date().toISOString(),
+      total_items: HangarXPLOR._buybackInventory.length,
+      counts: HangarXPLOR._buybackCounts,
+      items: HangarXPLOR.GetBuybackList()
+    };
+
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(exportData, null, 2)));
+    $download.attr('download', 'buyback-list.json');
+    $download.attr('type', 'text/json');
+    $download[0].click();
+  };
+
+  /**
+   * Downloads buyback inventory as CSV
+   */
+  HangarXPLOR._callbacks.DownloadBuybackCSV = function(e) {
+    e.preventDefault();
+
+    var fetchedAt = new Date().toISOString();
+    var items = HangarXPLOR.GetBuybackList();
+
+    // CSV header with fetch timestamp as a comment
+    var buffer = "# Fetched: " + fetchedAt + "\n";
+    buffer += "Type,Name,Pledge ID,Last Modified,Contained,Available\n";
+
+    // CSV rows
+    buffer += items.map(function(item) {
+      // Escape quotes in strings
+      var escapeCsv = function(str) {
+        if (str === null || str === undefined) return '""';
+        str = String(str);
+        // Escape double quotes by doubling them
+        str = str.replace(/"/g, '""');
+        return '"' + str + '"';
+      };
+
+      return [
+        escapeCsv(item.type),
+        escapeCsv(item.name),
+        item.pledge_id,
+        escapeCsv(item.last_modified),
+        escapeCsv(item.contained),
+        item.is_available
+      ].join(',');
+    }).join('\n');
+
+    $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
+    $download.attr('download', 'buyback-list.csv');
+    $download.attr('type', 'text/csv');
+    $download[0].click();
+  };
+
 })();

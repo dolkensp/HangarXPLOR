@@ -12,6 +12,27 @@ HangarXPLOR._ltiCount      = HangarXPLOR._ltiCount || 0;
 HangarXPLOR._cacheSalt     = HangarXPLOR._cacheSalt || btoa(Math.random());
 HangarXPLOR._initCount     = HangarXPLOR._initCount || 0;
 
+// Page type detection
+HangarXPLOR._pageType = window.location.pathname.includes('buy-back-pledges') ? 'buyback' : 'hangar';
+
+// Buyback-specific state variables
+HangarXPLOR._buybackInventory = [];                  // Inventory containing all buyback pledges
+HangarXPLOR._buybackFiltered = [];                   // Filtered buyback pledges for display
+HangarXPLOR._buybackRaw = [];                        // Raw HTML for buyback caching
+HangarXPLOR._buybackCounts = {                       // Type counts for summary panel
+  total: 0,
+  ships: 0,
+  paints: 0,
+  upgrades: 0,
+  packages: 0,
+  addons: 0,
+  components: 0,
+  weapons: 0,
+  decorations: 0,
+  subscriber: 0,
+  other: 0
+};
+
 var RSI = RSI || {};
 
 HangarXPLOR.Initialize = function()
@@ -80,31 +101,56 @@ HangarXPLOR.Initialize = function()
         });
       
       HangarXPLOR.LoadSettings(function() {
-        var $lists = $('.list-items');
-        
-        if ($lists.length == 1) {
-          HangarXPLOR.BulkUI();
-          HangarXPLOR.$list = $($lists[0]);
-          HangarXPLOR.$list.addClass('js-inventory');
-          $lists = undefined;
-          
-          HangarXPLOR.UpdateStatus(0);
-          
-          RSI.Api.Account.pledgeLog((payload) => {
-    
+
+        // Branch based on page type
+        if (HangarXPLOR._pageType === 'buyback') {
+          // Buyback page initialization
+          var $pledgesList = $('section.available-pledges ul.pledges');
+
+          if ($pledgesList.length >= 1) {
+            HangarXPLOR.BuybackBulkUI();
+            HangarXPLOR.$list = $($pledgesList[0]);
+            HangarXPLOR.$list.addClass('js-buyback-inventory');
+
+            HangarXPLOR.UpdateStatus(0);
+
+            // Generate a simple hash based on current timestamp for buyback cache
+            // Buyback pages don't have the same pledgeLog API
             var today = new Date().toISOString();
-            var safetySalt = '';
-    
-            // CIG Released ship naming in March 2021, which requires us to invalidate cache
-            if (today.substr(0, 7) == '2021-03') safetySalt = today.substr(0, 13) + ':';
-    
-            HangarXPLOR._activeHash = safetySalt + payload.data.rendered.length + ':' + btoa(payload.data.rendered.substr(39, 20)) + ':' + HangarXPLOR._cacheSalt;
-            
-            HangarXPLOR.LoadCache(HangarXPLOR.LoadPage);
-          });
-          
+            HangarXPLOR._buybackActiveHash = today.substr(0, 10) + ':' + HangarXPLOR._cacheSalt;
+
+            HangarXPLOR.LoadBuybackCache(HangarXPLOR.LoadBuybackPage);
+          } else {
+            HangarXPLOR.Log('Error locating buyback pledges list');
+          }
         } else {
-          HangarXPLOR.Log('Error locating inventory');
+          // Hangar page initialization (existing code)
+          var $lists = $('.list-items');
+
+          if ($lists.length == 1) {
+            HangarXPLOR.BulkUI();
+            HangarXPLOR.$list = $($lists[0]);
+            HangarXPLOR.$list.addClass('js-inventory');
+            $lists = undefined;
+
+            HangarXPLOR.UpdateStatus(0);
+
+            RSI.Api.Account.pledgeLog((payload) => {
+
+              var today = new Date().toISOString();
+              var safetySalt = '';
+
+              // CIG Released ship naming in March 2021, which requires us to invalidate cache
+              if (today.substr(0, 7) == '2021-03') safetySalt = today.substr(0, 13) + ':';
+
+              HangarXPLOR._activeHash = safetySalt + payload.data.rendered.length + ':' + btoa(payload.data.rendered.substr(39, 20)) + ':' + HangarXPLOR._cacheSalt;
+
+              HangarXPLOR.LoadCache(HangarXPLOR.LoadPage);
+            });
+
+          } else {
+            HangarXPLOR.Log('Error locating inventory');
+          }
         }
       });
     }
