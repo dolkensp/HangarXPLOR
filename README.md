@@ -34,16 +34,6 @@ This project aims to improve the default Hangar and Buyback pages at https://rob
 * Edge - On Hold
 * Safari - Not Scheduled
 
-## Documentation
-
-Detailed documentation is available in the [docs/](docs/) folder:
-
-* **[User Guide](docs/USER_GUIDE.md)** - Installation, features, and usage instructions
-* **[Developer Guide](docs/DEVELOPER_GUIDE.md)** - Architecture, build system, and API reference
-* **[Parsing System](docs/PARSING_SYSTEM.md)** - How pledge data is extracted from RSI pages
-* **[UI Components](docs/UI_COMPONENTS.md)** - UI component factories and rendering pipeline
-* **[AI Agent Context](docs/AI_AGENT_CONTEXT.md)** - Comprehensive reference for AI-assisted development
-
 # Screenshots
 
 ![New and improved UI](https://i.imgur.com/RNndHdv.png "New and improved UI")
