@@ -20,6 +20,11 @@ HangarXPLOR.SaveBuybackCache = function(callback) {
   cacheItems['buyback:cache:count'] = HangarXPLOR._buybackRaw.length;
   cacheItems['buyback:cache:hash'] = HangarXPLOR._buybackActiveHash;
 
+  HangarXPLOR._buybackCacheHash = HangarXPLOR._buybackActiveHash;
+
+  // Clean up raw array
+  delete HangarXPLOR._buybackRaw;
+
   // Clear only buyback-related cache keys, not all storage
   chrome.storage.local.get(null, function(existingCache) {
     var keysToRemove = [];
@@ -34,19 +39,16 @@ HangarXPLOR.SaveBuybackCache = function(callback) {
     // Remove old buyback cache keys
     if (keysToRemove.length > 0) {
       chrome.storage.local.remove(keysToRemove, function() {
-        // Save new buyback cache
-        chrome.storage.local.set(cacheItems);
+        // Save new buyback cache, then persist settings
+        chrome.storage.local.set(cacheItems, function() {
+          HangarXPLOR.SaveSettings(callback);
+        });
       });
     } else {
-      // No old keys to remove, just save
-      chrome.storage.local.set(cacheItems);
+      // No old keys to remove, just save and persist settings
+      chrome.storage.local.set(cacheItems, function() {
+        HangarXPLOR.SaveSettings(callback);
+      });
     }
   });
-
-  HangarXPLOR._buybackCacheHash = HangarXPLOR._buybackActiveHash;
-
-  // Clean up raw array
-  delete HangarXPLOR._buybackRaw;
-
-  if (typeof callback === 'function') callback.call(this);
 };
