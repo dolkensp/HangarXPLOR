@@ -89,5 +89,5 @@ support.forEach((browser) => {
 
   console.log('Safari extension directory created: ' + outDir);
   console.log('To convert for Safari, run:');
-  console.log('  xcrun safari-web-extension-converter ' + outDir + ' --project-location dist --app-name HangarXPLOR-Safari');
+  console.log('  xcrun safari-web-extension-converter ' + outDir + ' --project-location dist --app-name HangarXPLOR-Safari --bundle-identifier com.hangarxplor.safari');
 })();

@@ -30,6 +30,9 @@
 .js-bulk-ui .loading .actions,
 .js-bulk-ui .loading .value { display: none; }
 .js-bulk-ui .loading .status { display: block; }
+.js-bulk-ui .still-loading .status { display: block; }
+.js-bulk-ui .still-loading .status .amount { font-size: 13px; color: #6c84a2; }
+.js-bulk-ui .still-loading .status .label  { font-size: 10px; color: #6c84a2; }
 
 .js-custom-controls .controls.js-custom-search-wrapper { position: relative; margin: -10px 0px 0px 10px; padding: 0 0 5px; height: 35px !important; }
 .js-custom-controls .js-custom-search,

@@ -62,7 +62,7 @@ HangarXPLOR.BulkUI = function()
 HangarXPLOR.BindBulkUI = function()
 {
 
-  HangarXPLOR.$bulkUI.$inner.removeClass('loading');
+  HangarXPLOR.$bulkUI.$inner.removeClass('loading').addClass('still-loading');
   HangarXPLOR.$list.addClass(HangarXPLOR._feature.Summary);
   HangarXPLOR.$list.on('click.HangarXPLOR', 'a', function(e) { e.originalEvent.isButton = true; });
   HangarXPLOR.$list.on('click.HangarXPLOR', 'li', function(e) {
@@ -94,15 +94,34 @@ HangarXPLOR.BindBulkUI = function()
   
 }
 
-HangarXPLOR.UpdateStatus = function()
+HangarXPLOR.UpdateStatus = function(pageNo, state, retryCount, retryDelay)
 {
   HangarXPLOR.$bulkUI.$loading.empty();
-  
+
+  var amount, label;
+
+  if (state === 'rate-limited') {
+    amount = 'Rate Limited';
+    label  = 'Retrying in ' + retryDelay + 's (' + retryCount + '/' + HangarXPLOR._maxRetries + ')';
+  } else if (state === 'error') {
+    amount = 'Error';
+    label  = 'Failed on page ' + pageNo;
+  } else {
+    amount = 'Loading';
+    label  = 'Page ' + pageNo + '\u2026';
+  }
+
   HangarXPLOR.$bulkUI.$loading.append(
-    $('<span>', { class: 'amount', text: 'Loading' }),
-    $('<span>', { class: 'label', text: 'Please Wait' }),
+    $('<span>', { class: 'amount', text: amount }),
+    $('<span>', { class: 'label', text: label }),
     $('<br>')
   );
+}
+
+HangarXPLOR.MarkLoadingComplete = function()
+{
+  HangarXPLOR.$bulkUI.$loading.empty();
+  HangarXPLOR.$bulkUI.$inner.removeClass('still-loading');
 }
 
 HangarXPLOR.RefreshBulkUI = function()

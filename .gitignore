@@ -203,6 +203,9 @@ publish
 *.crx
 package-lock.json
 
+# Ignore build output
+dist/
+
 
 .DS_Store
 xcuserdata

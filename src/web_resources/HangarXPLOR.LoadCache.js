@@ -16,6 +16,7 @@ HangarXPLOR.LoadCache = function(callback)
       for (var i = 0; i < cache['cache:count']; i++) { HangarXPLOR.ParsePledge.apply($(cache['cache:' + i])[0]) }
       
       HangarXPLOR.DrawUI();
+      HangarXPLOR.MarkLoadingComplete();
       return;
     }
     
