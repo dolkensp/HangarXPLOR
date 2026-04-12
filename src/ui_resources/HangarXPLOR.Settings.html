@@ -143,6 +143,72 @@
         box-shadow: 0 0 10px rgba(200, 0, 0, 0.1);
       }
       .btn-warn:hover::before { border-left-color: #ff7070; }
+
+      /* ── Toggle rows ─────────────────────────────────────── */
+      .toggles {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #162a3f;
+      }
+
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 2px 0;
+      }
+
+      .toggle-label {
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #6c84a2;
+        transition: color 0.15s;
+      }
+
+      .toggle-row:hover .toggle-label { color: #25e4ff; }
+
+      /* hide the native checkbox */
+      .toggle-row input[type="checkbox"] { display: none; }
+
+      /* track */
+      .toggle-track {
+        position: relative;
+        width: 30px;
+        height: 14px;
+        border: 1px solid rgba(37, 228, 255, 0.2);
+        border-radius: 7px;
+        background: rgba(0, 0, 0, 0.4);
+        flex-shrink: 0;
+        transition: background 0.15s, border-color 0.15s;
+      }
+
+      /* dot */
+      .toggle-track::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #6c84a2;
+        transition: transform 0.15s, background 0.15s;
+      }
+
+      /* checked state */
+      .toggle-row input:checked ~ .toggle-track {
+        background: rgba(37, 228, 255, 0.12);
+        border-color: rgba(37, 228, 255, 0.5);
+      }
+      .toggle-row input:checked ~ .toggle-track::after {
+        transform: translateX(16px);
+        background: #25e4ff;
+      }
     </style>
   </head>
   <body>
@@ -151,6 +217,25 @@
 
       <h1>HangarXPLOR</h1>
       <div class="subtitle">Settings</div>
+
+      <div class="section-label">Display</div>
+      <div class="toggles">
+        <label class="toggle-row">
+          <span class="toggle-label">Hide Pledge ID</span>
+          <input type="checkbox" id="noPledgeID">
+          <span class="toggle-track"></span>
+        </label>
+        <label class="toggle-row">
+          <span class="toggle-label">Hide Pledge Prefix</span>
+          <input type="checkbox" id="noPrefix">
+          <span class="toggle-track"></span>
+        </label>
+        <label class="toggle-row">
+          <span class="toggle-label">Hide Nicknames</span>
+          <input type="checkbox" id="noNickname">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
 
       <div class="section-label">Cache</div>
       <div class="actions">

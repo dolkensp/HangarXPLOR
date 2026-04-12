@@ -86,8 +86,9 @@ HangarXPLOR.ParsePledge = function()
     if (this.filters.is_package)  HangarXPLOR._packageCount += 1;
     if (this.filters.is_giftable) HangarXPLOR._giftableCount += 1;
     
-    // TODO: Support for HangarXPLOR._setting.NoPledgeID
-    this.displayName = this.pledge_type + ' - ' + this.displayName + ' (' + this.pledge_id + ')';
+    var prefix = HangarXPLOR._setting.NoPrefix   ? '' : this.pledge_type + ' - ';
+    var suffix = HangarXPLOR._setting.NoPledgeID ? '' : ' (' + this.pledge_id + ')';
+    this.displayName = prefix + this.displayName + suffix;
     
     $wrapper.append($("<div>", { class: 'date-col melt-col' }).append($('<label>', { text: 'Melt Value: ' }), this.pledge_cost));
     $wrapper.append($("<div>", { class: 'items-col pledge-col' }).append($('<label>', { text: 'Base Pledge: ' }), this.pledge_name));
