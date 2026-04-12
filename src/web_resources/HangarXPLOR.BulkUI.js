@@ -199,6 +199,22 @@ HangarXPLOR.RefreshBulkUI = function()
   
 }
 
+// React to summary mode changes relayed from the settings popup via loader.js
+window.addEventListener('message', function(event) {
+  if (event.source !== window) return;
+  if (event.data.type !== 'feature.summary.changed') return;
+  var value = event.data.value;
+  if (value !== 'cash' && value !== 'count') return;
+  if (!HangarXPLOR.$bulkUI) return;
+
+  HangarXPLOR.$bulkUI.removeClass('cash count');
+  HangarXPLOR.$list && HangarXPLOR.$list.removeClass('cash count');
+  HangarXPLOR._feature.Summary = value;
+  HangarXPLOR.$bulkUI.addClass(value);
+  HangarXPLOR.$list && HangarXPLOR.$list.addClass(value);
+  HangarXPLOR.RefreshBulkUI();
+});
+
 HangarXPLOR.ResetBulkUI = function()
 {
   for (var i = 0, j = HangarXPLOR._inventory.length; i < j; i++) HangarXPLOR._inventory.filters.is_selected = false;

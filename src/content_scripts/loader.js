@@ -91,6 +91,13 @@
     }
   });
   
+  // Relay storage changes that can be applied instantly into the page world
+  chrome.storage.onChanged.addListener(function(changes, area) {
+    if (area === 'sync' && changes._feature_Summary) {
+      window.postMessage({ type: 'feature.summary.changed', value: changes._feature_Summary.newValue }, '*');
+    }
+  });
+
   for (i = 0, j = ajax.length; i < j; i++) {
     var ajaxURL = chrome.runtime.getURL(ajax[i]);
     console.log('Loading', ajaxURL);

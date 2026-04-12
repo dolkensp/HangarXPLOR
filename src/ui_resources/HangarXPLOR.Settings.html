@@ -200,6 +200,15 @@
         transition: transform 0.15s, background 0.15s;
       }
 
+      /* hint text */
+      .hint {
+        font-size: 9px;
+        letter-spacing: 0.05em;
+        color: #3a5068;
+        line-height: 1.4;
+        margin-top: 2px;
+      }
+
       /* checked state */
       .toggle-row input:checked ~ .toggle-track {
         background: rgba(37, 228, 255, 0.12);
@@ -235,6 +244,16 @@
           <input type="checkbox" id="noNickname">
           <span class="toggle-track"></span>
         </label>
+      </div>
+
+      <div class="section-label">Summary Panel</div>
+      <div class="toggles">
+        <label class="toggle-row">
+          <span class="toggle-label">Show Hangar Value</span>
+          <input type="checkbox" id="summaryValue">
+          <span class="toggle-track"></span>
+        </label>
+        <p class="hint">You can also click the summary panel to toggle this.</p>
       </div>
 
       <div class="section-label">Cache</div>
