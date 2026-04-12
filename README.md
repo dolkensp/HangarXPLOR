@@ -21,7 +21,55 @@ Current features include:
 * [Firefox Add-On](https://addons.mozilla.org/en-US/firefox/addon/star-citizen-hangar-xplorer/)
 * [Opera Add-On](https://addons.opera.com/en-gb/extensions/details/star-citizen-hangar-xplorer/)
 * Edge - On Hold
-* Safari - Not Scheduled
+* Safari - See below for manual build instructions
+
+## Building for Safari
+
+Safari Web Extensions must be wrapped in a native macOS app using Xcode. Requirements:
+- macOS with Xcode installed (not just the Command Line Tools)
+- Safari 16.4 or later
+
+**Steps:**
+
+1. Ensure `xcode-select` points at Xcode.app, not the standalone Command Line Tools (required for `safari-web-extension-converter` to be found):
+   ```
+   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+   ```
+
+2. Build the extension (replace `1.0.0.0` with the desired version):
+   ```
+   npm install
+   node build.js 1.0.0.0
+   ```
+
+3. Convert the output directory to an Xcode project:
+   ```
+   xcrun safari-web-extension-converter dist/HangarXPLOR-safari-v1.0.0.0 \
+     --project-location dist \
+     --app-name HangarXPLOR-Safari \
+     --bundle-identifier com.hangarxplor.safari
+   ```
+
+4. Build the Xcode project from the command line. Note: the scheme name includes a platform suffix — use the macOS one:
+   ```
+   xcodebuild -project dist/HangarXPLOR-Safari/HangarXPLOR-Safari.xcodeproj \
+     -scheme "HangarXPLOR-Safari (macOS)" \
+     -configuration Debug \
+     -destination 'platform=macOS' \
+     build
+   ```
+   If you're unsure of the scheme names for a given project, you can list them with:
+   ```
+   xcodebuild -project dist/HangarXPLOR-Safari/HangarXPLOR-Safari.xcodeproj -list
+   ```
+
+5. Open the built `.app` from `~/Library/Developer/Xcode/DerivedData/` to register the extension with Safari.
+
+6. Enable unsigned extensions in Safari. This must be repeated each time Safari is relaunched:
+   - Go to **Safari → Settings → Advanced** and enable **"Show features for web developers"**
+   - In the **Develop** menu that appears in the menu bar, click **"Allow Unsigned Extensions"** and enter your password when prompted
+
+7. In Safari, go to **Safari → Settings → Extensions**, enable HangarXPLOR, and grant permission for `robertsspaceindustries.com`.
 
 # Screenshots
 
