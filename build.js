@@ -40,8 +40,10 @@ support.forEach((browser) => {
   addFiles('src');
   
   // Always use STORE compression method
-  zip.generateNodeStream({ type: 'nodebuffer', compression: 'STORE', streamFiles: true })
-     .pipe(fs.createWriteStream('dist/' + manifest.short_name + '-' + browser + '-v' + manifest.version + '.zip'));
+  zip.generateAsync({ type: 'nodebuffer', compression: 'STORE' })
+     .then(function(content) {
+       fs.writeFileSync('dist/' + manifest.short_name + '-' + browser + '-v' + manifest.version + '.zip', content);
+     });
 });
 
 // Safari requires a directory (not a zip) for xcrun safari-web-extension-converter
