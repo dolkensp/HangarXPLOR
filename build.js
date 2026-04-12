@@ -33,7 +33,7 @@ support.forEach((browser) => {
       files = fs.readdirSync(filePath);
       files.forEach(function(file) { addFiles(path.join(filePath, file)) });
     } else {
-      zip.file(filePath.substr(4), fs.readFileSync(filePath, 'binary'), { binary: true });
+      zip.file(filePath.substr(4).replace(/\\/g, '/'), fs.readFileSync(filePath, 'binary'), { binary: true });
     }
   }
   
