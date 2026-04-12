@@ -2,28 +2,163 @@
 <html>
   <head>
     <title>HangarXPLOR Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
     <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
       body {
-        width: 300px; 
-        background: url(https://robertsspaceindustries.com/rsi/static/images/gridbg.png) repeat center top,
-                    url(https://robertsspaceindustries.com/rsi/static/images/bg_bengalinterior.jpg) no-repeat top,
-                    url(https://robertsspaceindustries.com/rsi/static/images/noisebg.gif) repeat top;
-        color: #4ee0ff;
+        width: 300px;
+        background:
+          url(https://robertsspaceindustries.com/rsi/static/images/gridbg.png) repeat center top,
+          url(https://robertsspaceindustries.com/rsi/static/images/bg_bengalinterior.jpg) no-repeat center top / cover,
+          url(https://robertsspaceindustries.com/rsi/static/images/noisebg.gif) repeat top;
+        color: #25e4ff;
+        font-family: 'Electrolize', sans-serif;
+        font-size: 12px;
       }
+
+      /* ── Panel shell ─────────────────────────────────────── */
+      .panel {
+        position: relative;
+        background:
+          url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-top.png') repeat-x top left,
+          url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-bottom.png') repeat-x bottom left,
+          rgba(0, 0, 0, 0.72);
+        padding: 18px 20px 20px;
+      }
+
+      /* corner decorations matching BulkUI */
+      .panel::before,
+      .panel::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-color: #25e4ff;
+        border-style: solid;
+        opacity: 0.6;
+      }
+      .panel::before { top: 6px;    right: 6px;    border-width: 2px 2px 0 0; }
+      .panel::after  { bottom: 6px; right: 6px;    border-width: 0 2px 2px 0; }
+
+      /* top and bottom accent lines */
+      .panel .line-top,
+      .panel .line-bottom {
+        position: absolute;
+        left: 20px; right: 20px;
+        height: 1px;
+      }
+      .panel .line-top    { top: 0;    background: linear-gradient(90deg, transparent, #25e4ff55, transparent); }
+      .panel .line-bottom { bottom: 0; background: linear-gradient(90deg, transparent, #25e4ff33, transparent); }
+
+      /* ── Heading ─────────────────────────────────────────── */
+      h1 {
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #25e4ff;
+        margin-bottom: 2px;
+      }
+
+      .subtitle {
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #6c84a2;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #162a3f;
+      }
+
+      /* ── Section label ───────────────────────────────────── */
+      .section-label {
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #6c84a2;
+        margin-bottom: 8px;
+      }
+
+      /* ── Buttons ─────────────────────────────────────────── */
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        padding: 8px 12px;
+        background: rgba(0, 183, 202, 0.07);
+        border: 1px solid rgba(37, 228, 255, 0.25);
+        color: #25e4ff;
+        font-family: 'Electrolize', sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-align: left;
+        transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+        outline: none;
+      }
+
+      .btn:hover {
+        background: rgba(0, 183, 202, 0.15);
+        border-color: rgba(37, 228, 255, 0.6);
+        box-shadow: 0 0 10px rgba(37, 228, 255, 0.15);
+      }
+
+      .btn:active {
+        background: rgba(0, 183, 202, 0.25);
+      }
+
+      /* play-triangle icon matching the download buttons in BulkUI */
+      .btn::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 4px 0 4px 7px;
+        border-color: transparent transparent transparent #25e4ff;
+        opacity: 0.7;
+        flex-shrink: 0;
+      }
+
+      /* ── Danger variant (clear cache is destructive-ish) ─── */
+      .btn-warn {
+        border-color: rgba(37, 228, 255, 0.18);
+        color: #6c84a2;
+      }
+      .btn-warn::before { border-left-color: #6c84a2; }
+      .btn-warn:hover {
+        background: rgba(200, 0, 0, 0.1);
+        border-color: rgba(200, 80, 80, 0.5);
+        color: #ff7070;
+        box-shadow: 0 0 10px rgba(200, 0, 0, 0.1);
+      }
+      .btn-warn:hover::before { border-left-color: #ff7070; }
     </style>
   </head>
   <body>
-    <h1>Settings</h1>
-    <p>Disclaimer: This is really ugly for now. I'm sorry.</p>
-    <h2>Actions</h2>
-    <ul>
-      <!--
-        <li><input id="noPledgeID" type="checkbox" name="noPledgeID">Hide Pledge ID</input></li>
-        <li><input id="noPrefix"   type="checkbox" name="noPrefix">Hide Pledge Prefix</input></li>
-        <li><input id="noNickname" type="checkbox" name="noNickname">Hide Nicknames</input></li>
-      -->
-      <li><button id="clearCache">Clear Cache</button></li>
-    </ul>
+    <div class="panel">
+      <div class="line-top"></div>
+
+      <h1>HangarXPLOR</h1>
+      <div class="subtitle">Settings</div>
+
+      <div class="section-label">Cache</div>
+      <div class="actions">
+        <button class="btn btn-warn" id="clearCache">Clear Cache</button>
+      </div>
+
+      <div class="line-bottom"></div>
+    </div>
     <script src="HangarXPLOR.Settings.js"></script>
   </body>
 </html>
