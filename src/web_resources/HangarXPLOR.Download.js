@@ -87,9 +87,9 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
   
   HangarXPLOR._callbacks.DownloadCSV = function(e) {
     e.preventDefault();
-    
+
     var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
-    
+
     // TODO: CSV support will need to be careful of user-entered data...
     var buffer = "Manufacturer, Ship, Lti, Warbond, ID, Pledge, Cost, Date\n";
     buffer = buffer + HangarXPLOR.GetShipList($target).map(function(ship) { return [ '"' + ship.manufacturer_name + '"', '"' + ship.ship_name + '"', ship.lti, ship.warbond, ship.pledge_id, '"' + ship.pledge_name + '"', '"' + ship.pledge_cost + '"', '"' + ship.pledge_date + '"' ].join(',')}).join('\n')
@@ -97,6 +97,74 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
     $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
     $download.attr('download', 'shiplist.csv');
     $download.attr('type', 'text/csv');
+    $download[0].click();
+  }
+
+  HangarXPLOR.GetUpgradeList = function($target) {
+
+    return $target.map(function() {
+      var $pledge = this;
+
+      if (!this.filters || !this.filters.is_upgrade) return null;
+
+      var upgrade = this.upgrade_data ? { ...this.upgrade_data } : {};
+
+      upgrade.entity_type = 'upgrade';
+      upgrade.lti         = this.filters.is_lti === true;
+      upgrade.warbond     = this.filters.is_warbond === true;
+      upgrade.pledge_id   = $('.js-pledge-id', $pledge).val();
+      upgrade.pledge_name = $('.js-pledge-name', $pledge).val();
+      upgrade.pledge_date = $('.date-col:first', $pledge).text().replace(/created:\s+/gi, '').trim();
+      upgrade.pledge_cost = $('.js-pledge-value', $pledge).val();
+
+      return upgrade;
+    }).get().filter(function(upgrade) { return upgrade !== null });
+  }
+
+  HangarXPLOR.GetCombinedList = function($target) {
+    return {
+      ships:    HangarXPLOR.GetShipList($target),
+      upgrades: HangarXPLOR.GetUpgradeList($target)
+    };
+  }
+
+  HangarXPLOR._callbacks.DownloadUpgradesJSON = function(e) {
+    e.preventDefault();
+
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetUpgradeList($target), null, 2)));
+    $download.attr('download', 'upgradelist.json');
+    $download.attr('type', 'text/json');
+    $download[0].click();
+  }
+
+  HangarXPLOR._callbacks.DownloadUpgradesCSV = function(e) {
+    e.preventDefault();
+
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+
+    var buffer = "Pledge ID, Pledge, Cost, Date, Upgrade ID, Upgrade, From, To, Lti, Warbond\n";
+    buffer = buffer + HangarXPLOR.GetUpgradeList($target).map(function(upgrade) {
+      var from_name = upgrade.match_items && upgrade.match_items[0] ? upgrade.match_items[0].name : '';
+      var to_name   = upgrade.target_items && upgrade.target_items[0] ? upgrade.target_items[0].name : '';
+      return [ upgrade.pledge_id, '"' + upgrade.pledge_name + '"', '"' + upgrade.pledge_cost + '"', '"' + upgrade.pledge_date + '"', upgrade.id, '"' + upgrade.name + '"', '"' + from_name + '"', '"' + to_name + '"', upgrade.lti, upgrade.warbond ].join(',');
+    }).join('\n')
+
+    $download.attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(buffer));
+    $download.attr('download', 'upgradelist.csv');
+    $download.attr('type', 'text/csv');
+    $download[0].click();
+  }
+
+  HangarXPLOR._callbacks.DownloadCombinedJSON = function(e) {
+    e.preventDefault();
+
+    var $target = $(HangarXPLOR._selected.length > 0 ? HangarXPLOR._selected : HangarXPLOR._inventory);
+
+    $download.attr('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(HangarXPLOR.GetCombinedList($target), null, 2)));
+    $download.attr('download', 'hangar.json');
+    $download.attr('type', 'text/json');
     $download[0].click();
   }
 })();
