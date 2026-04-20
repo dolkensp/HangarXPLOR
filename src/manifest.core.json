@@ -16,6 +16,11 @@
       "https://robertsspaceindustries.com/*",
       "https://www.robertsspaceindustries.com/*"
   ],
+  "optional_host_permissions": [
+      "https://*/*",
+      "http://localhost/*",
+      "https://localhost/*"
+  ],
   "action": {
       "default_icon": {
           "48": "icons/icon_48-fill.png",
