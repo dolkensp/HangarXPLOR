@@ -241,10 +241,6 @@ function addTrusted() {
 
     setStatus('Requesting ' + pattern + ' ...');
 
-    // Firefox requires permissions.request to be called synchronously inside the user-gesture handler. Any async hop
-    // before this call (e.g. chrome.storage.sync.get) breaks the gesture chain and Firefox rejects the dialog silently.
-    // Chrome tolerates the async hop; Firefox does not. Dedup is handled by the onAdded listener, which already noops
-    // when the origin is already in the stored list — so no pre-check needed here.
     chrome.permissions.request({ origins: [pattern] }, function(granted) {
         if (chrome.runtime.lastError) {
             setStatus(chrome.runtime.lastError.message || 'Permission request failed.', 'error');
@@ -254,8 +250,7 @@ function addTrusted() {
         if (!granted) {
             setStatus('Permission declined.', 'error');
         }
-        // Success path: onAdded handles storage + render. Nothing to
-        // do here — and the popup is probably gone anyway.
+
     });
 }
 
