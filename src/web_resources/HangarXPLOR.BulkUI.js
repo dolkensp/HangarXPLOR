@@ -124,6 +124,22 @@ HangarXPLOR.MarkLoadingComplete = function()
 {
   HangarXPLOR.$bulkUI.$loading.empty();
   HangarXPLOR.$bulkUI.$inner.removeClass('still-loading');
+
+  // Phase 2 of trusted-sites: snapshot the parsed inventory so the relay content script (running on trusted origins) 
+  // can serve it without having to access the RSI tab. Last load always wins.
+  if (typeof HangarXPLOR.GetCombinedList === 'function' && chrome && chrome.storage && chrome.storage.local) {
+    try {
+      var combined = HangarXPLOR.GetCombinedList($(HangarXPLOR._inventory));
+      var snapshot = {
+        generatedAt: new Date().toISOString(),
+        ships:       combined.ships,
+        upgrades:    combined.upgrades
+      };
+      chrome.storage.local.set({ 'cache:parsed_export': snapshot });
+    } catch (e) {
+      HangarXPLOR.Log('snapshot failed', e);
+    }
+  }
 }
 
 HangarXPLOR.RefreshBulkUI = function()

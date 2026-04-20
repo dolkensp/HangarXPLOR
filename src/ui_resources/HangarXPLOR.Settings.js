@@ -93,6 +93,90 @@ function writeTrustedSites(sites, callback) {
     chrome.storage.sync.set({ _setting_TrustedSites: sites }, callback || function() {});
 }
 
+var RELAY_SCRIPT_FILE = 'content_scripts/trusted-site-relay.js';
+var RELAY_ID_PREFIX   = 'trusted-site-relay:';
+var RSI_EXCLUDE = [
+    'https://robertsspaceindustries.com/*',
+    'https://*.robertsspaceindustries.com/*'
+];
+
+function relayIdForPattern(pattern) {
+    return RELAY_ID_PREFIX + pattern;
+}
+
+function registerRelayForOrigin(pattern) {
+    chrome.scripting.registerContentScripts([{
+        id: relayIdForPattern(pattern),
+        matches: [pattern],
+        excludeMatches: RSI_EXCLUDE,
+        js: [RELAY_SCRIPT_FILE],
+        runAt: 'document_start',
+        persistAcrossSessions: true,
+        world: 'ISOLATED'
+    }], function() {
+        if (chrome.runtime.lastError) {
+            // Apparently the most common cause of error is that the script is already installed. We will then try to
+            // update instead.
+            chrome.scripting.updateContentScripts([{
+                id: relayIdForPattern(pattern),
+                matches: [pattern],
+                excludeMatches: RSI_EXCLUDE,
+                js: [RELAY_SCRIPT_FILE],
+                runAt: 'document_start'
+            }], function() {
+                if (chrome.runtime.lastError) {
+                    console.warn('HangarXPLOR: failed to register relay for', pattern, chrome.runtime.lastError.message);
+                }
+            });
+        }
+    });
+}
+
+function unregisterRelayForOrigin(pattern) {
+    chrome.scripting.unregisterContentScripts({ ids: [relayIdForPattern(pattern)] }, function() {
+        if (chrome.runtime.lastError) {
+            var msg = chrome.runtime.lastError.message || '';
+            if (msg.indexOf('Nonexistent script ID') === -1) {
+                console.warn('HangarXPLOR: failed to unregister relay for', pattern, msg);
+            }
+        }
+    });
+}
+
+// Walk the trusted-sites list and make sure every entry has a relay registered, and no orphan relays remain for 
+// origins that are no longer trusted. Runs after reconcileAndRender writes the storage.
+function syncRelayRegistrations(trustedPatterns) {
+    chrome.scripting.getRegisteredContentScripts({}, function(registered) {
+        if (chrome.runtime.lastError) {
+            console.warn('HangarXPLOR: cannot list registered scripts', chrome.runtime.lastError.message);
+            return;
+        }
+
+        var wantedSet = {};
+        trustedPatterns.forEach(function(p) { wantedSet[relayIdForPattern(p)] = p });
+
+        var haveSet = {};
+        registered.forEach(function(s) {
+            if (s.id && s.id.indexOf(RELAY_ID_PREFIX) === 0) haveSet[s.id] = true;
+        });
+
+        // Register any wanted-but-missing.
+        Object.keys(wantedSet).forEach(function(id) {
+            if (!haveSet[id]) registerRelayForOrigin(wantedSet[id]);
+        });
+
+        // Unregister any registered-but-unwanted.
+        var toUnregister = Object.keys(haveSet).filter(function(id) { return !wantedSet[id] });
+        if (toUnregister.length > 0) {
+            chrome.scripting.unregisterContentScripts({ ids: toUnregister }, function() {
+                if (chrome.runtime.lastError) {
+                    console.warn('HangarXPLOR: failed to prune relays', chrome.runtime.lastError.message);
+                }
+            });
+        }
+    });
+}
+
 // Reconcile our stored trusted-sites list with Chrome's actual granted origins. Runs on every popup open and catches 
 // drift against Chrome's list of trusted sites for the extension (i.e. chrome://extensions/?id=<hangarXPLOR_id> sites)
 function reconcileAndRender() {
@@ -153,6 +237,9 @@ function reconcileAndRender() {
             } else {
                 renderFromStorage();
             }
+
+            // Keep relay registrations in sync with the reconciled list.
+            syncRelayRegistrations(chromeOrigins);
         });
     });
 }
@@ -231,6 +318,8 @@ chrome.permissions.onAdded.addListener(function(permissions) {
             trustedInput.value = '';
             setStatus('Added ' + added.join(', '), 'success');
             renderTrustedList();
+            // Register the relay for each newly-added origin.
+            added.forEach(registerRelayForOrigin);
         });
     });
 });
@@ -246,6 +335,8 @@ chrome.permissions.onRemoved.addListener(function(permissions) {
         writeTrustedSites(filtered, function() {
             setStatus('Removed ' + permissions.origins.join(', '), 'success');
             renderTrustedList();
+            // Unregister relays for origins that lost their grant.
+            permissions.origins.forEach(unregisterRelayForOrigin);
         });
     });
 });

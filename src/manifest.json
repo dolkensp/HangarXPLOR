@@ -10,7 +10,8 @@
   "manifest_version": 3,
   "permissions": [
       "storage",
-      "unlimitedStorage"
+      "unlimitedStorage",
+      "scripting"
   ],
   "host_permissions": [
       "https://robertsspaceindustries.com/*",
