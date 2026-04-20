@@ -8,6 +8,11 @@
     "128": "icons/icon_128.png"
   },
   "manifest_version": 3,
+  "browser_specific_settings": {
+      "gecko": {
+          "id": "hangarxplor@extension"
+      }
+  },
   "permissions": [
       "storage",
       "unlimitedStorage",
