@@ -125,34 +125,20 @@ function registerRelayForOrigin(pattern) {
                 excludeMatches: RSI_EXCLUDE,
                 js: [RELAY_SCRIPT_FILE],
                 runAt: 'document_start'
-            }], function() {
-                if (chrome.runtime.lastError) {
-                    console.warn('HangarXPLOR: failed to register relay for', pattern, chrome.runtime.lastError.message);
-                }
-            });
+            }]);
         }
     });
 }
 
 function unregisterRelayForOrigin(pattern) {
-    chrome.scripting.unregisterContentScripts({ ids: [relayIdForPattern(pattern)] }, function() {
-        if (chrome.runtime.lastError) {
-            var msg = chrome.runtime.lastError.message || '';
-            if (msg.indexOf('Nonexistent script ID') === -1) {
-                console.warn('HangarXPLOR: failed to unregister relay for', pattern, msg);
-            }
-        }
-    });
+    chrome.scripting.unregisterContentScripts({ ids: [relayIdForPattern(pattern)] });
 }
 
 // Walk the trusted-sites list and make sure every entry has a relay registered, and no orphan relays remain for 
 // origins that are no longer trusted. Runs after reconcileAndRender writes the storage.
 function syncRelayRegistrations(trustedPatterns) {
     chrome.scripting.getRegisteredContentScripts({}, function(registered) {
-        if (chrome.runtime.lastError) {
-            console.warn('HangarXPLOR: cannot list registered scripts', chrome.runtime.lastError.message);
-            return;
-        }
+        if (chrome.runtime.lastError) return;
 
         var wantedSet = {};
         trustedPatterns.forEach(function(p) { wantedSet[relayIdForPattern(p)] = p });
@@ -170,11 +156,7 @@ function syncRelayRegistrations(trustedPatterns) {
         // Unregister any registered-but-unwanted.
         var toUnregister = Object.keys(haveSet).filter(function(id) { return !wantedSet[id] });
         if (toUnregister.length > 0) {
-            chrome.scripting.unregisterContentScripts({ ids: toUnregister }, function() {
-                if (chrome.runtime.lastError) {
-                    console.warn('HangarXPLOR: failed to prune relays', chrome.runtime.lastError.message);
-                }
-            });
+            chrome.scripting.unregisterContentScripts({ ids: toUnregister });
         }
     });
 }
