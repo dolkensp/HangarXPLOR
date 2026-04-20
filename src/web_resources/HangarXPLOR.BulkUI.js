@@ -35,7 +35,7 @@ HangarXPLOR.BulkUI = function()
   HangarXPLOR.$bulkUI.$inner = $('<div>', { class: 'inner content-block1 loading' });
   HangarXPLOR.$bulkUI.$value = $('<div>', { class: 'value' });
   HangarXPLOR.$bulkUI.$actions = $('<div>', { class: 'actions' });
-  HangarXPLOR.$bulkUI.$downloads = $('<div>', { class: 'actions' });
+  HangarXPLOR.$bulkUI.$downloads = $('<div>', { class: 'actions downloads' });
   HangarXPLOR.$bulkUI.$loading = $('<div>', { class: 'status value' });
   
   HangarXPLOR.$bulkUI.addClass(HangarXPLOR._feature.Summary);
@@ -54,6 +54,8 @@ HangarXPLOR.BulkUI = function()
   
   HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download CSV', 'download js-download-csv', HangarXPLOR._callbacks.DownloadCSV));
   HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download JSON', 'download js-download-json', HangarXPLOR._callbacks.DownloadJSON));
+  HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download Upgrades CSV', 'download js-download-upgrades-csv', HangarXPLOR._callbacks.DownloadUpgradesCSV));
+  HangarXPLOR.$bulkUI.$downloads.append(HangarXPLOR.Button('Download Upgrades JSON', 'download js-download-upgrades-json', HangarXPLOR._callbacks.DownloadUpgradesJSON));
 
   bulkHeight = $('.js-bulk-ui').height();
   positionUI();
@@ -122,6 +124,22 @@ HangarXPLOR.MarkLoadingComplete = function()
 {
   HangarXPLOR.$bulkUI.$loading.empty();
   HangarXPLOR.$bulkUI.$inner.removeClass('still-loading');
+
+  // Phase 2 of trusted-sites: snapshot the parsed inventory so the relay content script (running on trusted origins) 
+  // can serve it without having to access the RSI tab. Last load always wins.
+  if (typeof HangarXPLOR.GetCombinedList === 'function' && chrome && chrome.storage && chrome.storage.local) {
+    try {
+      var combined = HangarXPLOR.GetCombinedList($(HangarXPLOR._inventory));
+      var snapshot = {
+        generatedAt: new Date().toISOString(),
+        ships:       combined.ships,
+        upgrades:    combined.upgrades
+      };
+      chrome.storage.local.set({ 'cache:parsed_export': snapshot });
+    } catch (e) {
+      HangarXPLOR.Log('snapshot failed', e);
+    }
+  }
 }
 
 HangarXPLOR.RefreshBulkUI = function()

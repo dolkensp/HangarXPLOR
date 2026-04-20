@@ -8,13 +8,24 @@
     "128": "icons/icon_128.png"
   },
   "manifest_version": 3,
+  "browser_specific_settings": {
+      "gecko": {
+          "id": "hangarxplor@extension"
+      }
+  },
   "permissions": [
       "storage",
-      "unlimitedStorage"
+      "unlimitedStorage",
+      "scripting"
   ],
   "host_permissions": [
       "https://robertsspaceindustries.com/*",
       "https://www.robertsspaceindustries.com/*"
+  ],
+  "optional_host_permissions": [
+      "https://*/*",
+      "http://localhost/*",
+      "https://localhost/*"
   ],
   "action": {
       "default_icon": {
