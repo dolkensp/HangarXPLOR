@@ -93,7 +93,9 @@ function writeTrustedSites(sites, callback) {
     chrome.storage.sync.set({ _setting_TrustedSites: sites }, callback || function() {});
 }
 
-var RELAY_SCRIPT_FILE = 'content_scripts/trusted-site-relay.js';
+// Leading slash forces resolution from extension root on both browsers. Firefox otherwise resolves this relative to
+// the popup's URL (moz-extension://.../ui_resources/), producing a 404.
+var RELAY_SCRIPT_FILE = '/content_scripts/trusted-site-relay.js';
 var RELAY_ID_PREFIX   = 'trusted-site-relay:';
 var RSI_EXCLUDE = [
     'https://robertsspaceindustries.com/*',
