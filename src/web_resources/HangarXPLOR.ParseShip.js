@@ -36,9 +36,13 @@ HangarXPLOR.ParseShip = function()
 
         this.ship_name = (HangarXPLOR._shipMatrix[i].displayName || HangarXPLOR._shipMatrix[i].name);
         found = true;
-        // RSI's own image already shows the pledge (often with its paint); only CCU'd pledges show the original hull
-        var ownImage = ($('.basic-infos .image', this).attr('style') || '').indexOf('url(') > -1 && !/default-image/.test($('.basic-infos .image', this).attr('style'));
-        if (HangarXPLOR._shipMatrix[i].thumbnail != undefined && (this.filters.is_upgraded || !ownImage)) {
+        // Use the matrix image, which is usually newer than an old pledge's, except where RSI's own image likely
+        // shows a paint bundled with the pledge ("Hermes plus Tripline Paint"). CCU'd pledges and RSI's placeholder
+        // always get the matrix image: RSI's image then shows the original hull, or nothing.
+        var imageStyle = $('.basic-infos .image', this).attr('style') || '';
+        var ownImage = imageStyle.indexOf('url(') > -1 && !/default-image/.test(imageStyle);
+        var hasPaint = $('.kind:contains(Skin)', this).length > 0 || /\b(paints?|livery|liveries|skins?)\b/i.test(this.pledge_name || '');
+        if (HangarXPLOR._shipMatrix[i].thumbnail != undefined && (this.filters.is_upgraded || !ownImage || !hasPaint)) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._shipMatrix[i].thumbnail + '")'});
         }
         break;
