@@ -14,19 +14,29 @@ HangarXPLOR._initCount     = HangarXPLOR._initCount || 0;
 
 var RSI = RSI || {};
 
+// Lower-case a name, collapse dotted acronyms ("A.T.L.S." -> "atls") and turn any other punctuation into
+// single spaces, padded with a space either side so whole words can be found with indexOf(' word ').
+HangarXPLOR.NormalizeName = function(name)
+{
+  return ' ' + (name || '').toLowerCase()
+    .replace(/\b[a-z](?:\.[a-z])+\.?(?![a-z0-9])/g, function(acronym) { return acronym.replace(/\./g, ''); })
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim() + ' ';
+}
+
+// Matrix names are matched against every pledge, so normalize each one only once
+HangarXPLOR._normalizedNames = {};
+
 // True when needle appears in haystack as whole words, so "Mk I" doesn't match inside "Mk II".
 // Punctuation is ignored: "Argo Mole - Carbon Edition" matches "Argo Mole Carbon Edition".
+// haystack must already be passed through NormalizeName; callers do that once per title, not once per needle.
 HangarXPLOR.ContainsName = function(haystack, needle)
 {
   if (!needle) return false;
-  var normalize = function(s) { return ' ' + s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim() + ' '; };
-  haystack = normalize(haystack);
-  needle = normalize(needle).trim();
-  if (!needle) return false;
-  var isWord = function(c) { return c !== undefined && /[a-z0-9]/i.test(c); };
-  for (var i = haystack.indexOf(needle); i > -1; i = haystack.indexOf(needle, i + 1))
-    if (!isWord(haystack[i - 1]) && !isWord(haystack[i + needle.length])) return true;
-  return false;
+  var normalized = HangarXPLOR._normalizedNames[needle];
+  if (normalized === undefined) normalized = HangarXPLOR._normalizedNames[needle] = HangarXPLOR.NormalizeName(needle);
+  // Both sides are space-padded, so a match can't start or end part-way through a word
+  return normalized.length > 2 && haystack.indexOf(normalized) > -1;
 }
 
 // Longest names first, so the first match is the most specific ("Sabre Raven" before "Sabre")

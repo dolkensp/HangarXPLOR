@@ -39,10 +39,11 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
         var lookup = ship_name.toLowerCase();
         var nickname = $('.custom-name-text', $ship).text();
         var i, j;
-        
+        var haystack = HangarXPLOR.NormalizeName(title);
+
         for (i = 0, j = HangarXPLOR._shipMatrix.length; i < j; i++) {
           // Match on the full title: some overrides keep the manufacturer ('Argo Mole - Carbon Edition')
-          if (HangarXPLOR.ContainsName(title, HangarXPLOR._shipMatrix[i].name) || HangarXPLOR.ContainsName(title, HangarXPLOR._shipMatrix[i].displayName)) {
+          if (HangarXPLOR.ContainsName(haystack, HangarXPLOR._shipMatrix[i].name) || HangarXPLOR.ContainsName(haystack, HangarXPLOR._shipMatrix[i].displayName)) {
 
             HangarXPLOR.Log('Matched', HangarXPLOR._shipMatrix[i].name, 'in', lookup);
 
