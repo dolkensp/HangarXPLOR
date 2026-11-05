@@ -45,6 +45,7 @@ HangarXPLOR.DrawUI = function()
     { Value: 'IsComponent', Text: 'Components', Selected: HangarXPLOR._type == 'IsComponent' },
     { Value: 'IsEquipment', Text: 'Equipment', Selected: HangarXPLOR._type == 'IsEquipment' },
     { Value: 'IsUpgrade', Text: 'Upgrades', Selected: HangarXPLOR._type == 'IsUpgrade' },
+    { Value: 'IsCoupon', Text: 'Coupons', Selected: HangarXPLOR._type == 'IsCoupon' },
     // { Value: 'IsFlair', Text: 'All Flair', Class: 'split', Selected: HangarXPLOR._type == 'IsFlair' },
     { Value: 'IsDecoration', Text: 'Decorations', Class: 'split', Selected: HangarXPLOR._type == 'IsDecoration' },
     // { Value: 'IsModel', Text: 'Models', Selected: HangarXPLOR._type == 'IsModel' },

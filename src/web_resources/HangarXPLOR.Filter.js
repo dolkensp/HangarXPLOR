@@ -54,6 +54,9 @@ HangarXPLOR.Filter = function (list, filter) {
     case "IsUpgrade":
       list = $.grep(list, function (item) { return item.filters.is_upgrade });
       break;
+    case "IsCoupon":
+      list = $.grep(list, function (item) { return item.filters.is_coupon });
+      break;
     case "HasValue":
       list = $.grep(list, function (item) { return item.filters.has_value });
       break;
