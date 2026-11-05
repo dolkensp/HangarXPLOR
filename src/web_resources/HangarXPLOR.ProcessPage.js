@@ -21,7 +21,7 @@ HangarXPLOR.ProcessPage = function($page, pageNo)
     HangarXPLOR._lastFirstPledgeId = firstId;
   }
 
-  if (!isEmpty && !isDuplicate) $items.each(HangarXPLOR.ParsePledge);
+  if (!isEmpty && !isDuplicate) $items.each(HangarXPLOR.SafeParsePledge);
 
   // Draw the UI shell on first page load so the user sees results immediately,
   // then just re-render on subsequent pages while the rest of the hangar loads.

@@ -74,16 +74,16 @@ HangarXPLOR.Filter = function (list, filter) {
       break;
 
     case "IsDecoration":
-      list = $.grep(list, function (item) { return item.filters.is_decoration });
+      list = $.grep(list, function (item) { return item.filters.has_decoration && !item.filters.has_ship });
       break;
     case "IsComponent":
-      list = $.grep(list, function (item) { return item.filters.is_component });
+      list = $.grep(list, function (item) { return item.filters.has_component && !item.filters.has_ship });
       break;
     case "IsSkin":
       list = $.grep(list, function (item) { return item.filters.has_skin && !item.filters.has_ship });
       break;
     case "IsEquipment":
-      list = $.grep(list, function (item) { return item.filters.is_equipment });
+      list = $.grep(list, function (item) { return item.filters.has_equipment && !item.filters.has_ship });
       break;
 
     case "IsReward":

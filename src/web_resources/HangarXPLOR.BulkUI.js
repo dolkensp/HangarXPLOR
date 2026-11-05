@@ -217,7 +217,7 @@ window.addEventListener('message', function(event) {
 
 HangarXPLOR.ResetBulkUI = function()
 {
-  for (var i = 0, j = HangarXPLOR._inventory.length; i < j; i++) HangarXPLOR._inventory.filters.is_selected = false;
+  for (var i = 0, j = HangarXPLOR._inventory.length; i < j; i++) HangarXPLOR._inventory[i].filters.is_selected = false;
   
   $('.row', HangarXPLOR.$list).removeClass('js-selected');  
   

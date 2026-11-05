@@ -39,7 +39,7 @@ HangarXPLOR.Render = function()
   }
   //--- Empty Buffer
   else if (buffer.length == 0) {
-    buffer.push($('<h4>', { class: 'empy-list', text: 'Your hangar is empty.' }));
+    buffer.push($('<h4>', { class: 'empty-list', text: HangarXPLOR._inventory.length > 0 ? 'No items match the current filters.' : 'Your hangar is empty.' }));
   }
 
   HangarXPLOR._totalRecords = buffer.length;
