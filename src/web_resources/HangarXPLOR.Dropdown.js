@@ -10,7 +10,8 @@ HangarXPLOR.Dropdown = function(options, width, className, callback)
   width = width || '150px';
   
   var $ul = $('<ul>', { class: 'body', style: 'display: none' });
-  var $style = $('<div>', { class: 'js-selectlist selectlist' });
+  // No .js-selectlist: RSI attaches its own SelectList widget to those, which toggles the list a second time
+  var $style = $('<div>', { class: 'selectlist' });
   var $label = $('<span>', { text: options[0].Text });
   var $value = $('<input>', { type: 'hidden', class: className, value: options[0].Value });
   var $dropdown = $('<div>', { style: 'width: ' + width });

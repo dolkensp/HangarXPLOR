@@ -17,7 +17,8 @@ HangarXPLOR.Pager = function(options, width, className, callback)
   HangarXPLOR.Log('Rendering Pagination', HangarXPLOR._totalRecords, HangarXPLOR._pageNo, HangarXPLOR._pageCount, className);
   
   var $control = $('<div>', { class: 'options-selector pager-wrapper ' + className });
-  var $pager = $('<div>', { class: 'pager clearfix js-pager' });
+  // No .js-pager: RSI binds a change handler to it that navigates away to the input's value
+  var $pager = $('<div>', { class: 'pager clearfix' });
   var $left = $('<div>', { class: 'left' });
   var $right = $('<div>', { class: 'right' });
   var maxButtons = 5;
@@ -69,7 +70,7 @@ HangarXPLOR.Pager = function(options, width, className, callback)
       
       var $this = $(this);
       
-      var newPage = $this.attr('rel');
+      var newPage = parseInt($this.attr('rel'), 10);
       
       if (newPage != HangarXPLOR._pageNo) {
         HangarXPLOR._pageNo = newPage;

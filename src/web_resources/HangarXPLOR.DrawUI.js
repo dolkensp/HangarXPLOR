@@ -15,7 +15,22 @@ HangarXPLOR.DrawUI = function()
 
   $controls.append($controls1, $controls2, $controls3);
   
-  $('.js-pager').remove();
+  // RSI no longer tags its native pagers with .js-pager, so also match them by location.
+  // A leftover native pager reloads the page on click, which loses the current search.
+  $('.js-pager, .billing-title-pager-wrapper .pager').remove();
+  
+  var pagerOptions = function() {
+    return [
+      { Value: '9999', Text: 'Display All', Class: 'first', Selected: HangarXPLOR._pageCount == 9999 },
+      { Value: '10', Text: '10 per page', Selected: HangarXPLOR._pageCount == 10 },
+      { Value: '20', Text: '20 per page', Selected: HangarXPLOR._pageCount == 20 },
+      { Value: '50', Text: '50 per page', Selected: HangarXPLOR._pageCount == 50 },
+      { Value: '100', Text: '100 per page', Selected: HangarXPLOR._pageCount == 100 },
+    ];
+  };
+  
+  // Filtering changes the result count, so start back on the first page
+  var resetPage = function() { HangarXPLOR._pageNo = 1; };
   
   $controls1.append(HangarXPLOR.Dropdown([
     { Value: 'All', Text: 'All Types', Class: 'first', Selected: HangarXPLOR._type == 'All' },
@@ -36,7 +51,7 @@ HangarXPLOR.DrawUI = function()
     // { Value: 'IsPlant', Text: 'Plants', Selected: HangarXPLOR._type == 'IsPlant' },
     // { Value: 'IsPoster', Text: 'Posters', Selected: HangarXPLOR._type == 'IsPoster' },
     { Value: 'IsSelected', Text: 'Selected', Class: 'split', Selected: HangarXPLOR._type == 'IsSelected' },
-  ], '158px', 'js-custom-filter', function(e, value) { HangarXPLOR._type = value; HangarXPLOR.SaveSettings(); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); /* HangarXPLOR.ResetBulkUI(); */ }));
+  ], '158px', 'js-custom-filter', function(e, value) { HangarXPLOR._type = value; resetPage(); HangarXPLOR.SaveSettings(); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); /* HangarXPLOR.ResetBulkUI(); */ }));
   
   $controls1.append(HangarXPLOR.Dropdown([
     { Value: 'Purchased', Text: 'Pledge Date', Selected: HangarXPLOR._sort == 'Purchased' },
@@ -44,17 +59,18 @@ HangarXPLOR.DrawUI = function()
     { Value: 'Value', Text: 'Pledge Value', Selected: HangarXPLOR._sort == 'Value' },
   ], '137px', 'js-custom-sort', function(e, value) { HangarXPLOR._sort = value; HangarXPLOR.SaveSettings(); HangarXPLOR.Render(); HangarXPLOR.RefreshPager(); }));
   
-  $controls1.append(HangarXPLOR.Pager([
-    { Value: '9999', Text: 'Display All', Class: 'first', Selected: HangarXPLOR._pageCount == 9999 },
-    { Value: '10', Text: '10 per page', Selected: HangarXPLOR._pageCount == 10 },
-    { Value: '20', Text: '20 per page', Selected: HangarXPLOR._pageCount == 20 },
-    { Value: '50', Text: '50 per page', Selected: HangarXPLOR._pageCount == 50 },
-    { Value: '100', Text: '100 per page', Selected: HangarXPLOR._pageCount == 100 },
-  ], '140px', 'js-custom-pager', HangarXPLOR.Render ));
+  $controls1.append(HangarXPLOR.Pager(pagerOptions(), '140px', 'js-custom-pager', HangarXPLOR.Render ));
+  
+  // Replace the native bottom pager with ours, scrolling back up to the top of the list
+  $('.bottom.billing-title-pager-wrapper').first().append(HangarXPLOR.Pager(pagerOptions(), '140px', 'js-custom-pager js-custom-pager-bottom', function() {
+    HangarXPLOR.Render();
+    $('html, body').scrollTop($controls.offset().top - 150);
+  }));
   
   var toggleHandler = function(e, label, value)
   {
     HangarXPLOR._feature[label] = value;
+    resetPage();
     
     HangarXPLOR.SaveSettings();
     HangarXPLOR.Render();

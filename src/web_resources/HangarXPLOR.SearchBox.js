@@ -10,6 +10,8 @@ HangarXPLOR.SearchBox = function()
   const $searchBoxMirror = $('<input>', { class: 'js-custom-search-complete', disabled: 'disabled' });
 
   $searchBox.keyup(function() {
+      // A new search term starts back on the first page of results
+      if (this.value !== HangarXPLOR._searchTerm) HangarXPLOR._pageNo = 1;
       HangarXPLOR.Render();
       HangarXPLOR.RefreshPager();
   });
