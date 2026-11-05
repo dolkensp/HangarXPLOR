@@ -116,14 +116,3 @@ HangarXPLOR._ships = {
     export: 'Nautilus Solstice'
   },
 };
-
-/* Pledges whose own RSI image should never be replaced by the ship matrix thumbnail */
-/*******************************
- * Use for liveries that are part of the pledge itself rather than a separate paint item,
- * so the matrix entry (e.g. plain "Nova") can't tell them apart. Each name is matched as
- * whole words against the pledge name and the ship's title.
- */
-HangarXPLOR._keepPledgeImage = [
-  'Nova Tank Badlands', // #110: Original Concept Nova Tank Badlands
-  'Nova Badlands',
-];

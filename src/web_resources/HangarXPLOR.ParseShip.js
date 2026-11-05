@@ -42,11 +42,7 @@ HangarXPLOR.ParseShip = function()
         // always get the matrix image: RSI's image then shows the original hull, or nothing.
         var imageStyle = $('.basic-infos .image', this).attr('style') || '';
         var ownImage = imageStyle.indexOf('url(') > -1 && !/default-image/.test(imageStyle);
-        var pledgeName = HangarXPLOR.NormalizeName(this.pledge_name);
-        var keepListed = $.grep(HangarXPLOR._keepPledgeImage || [], function(name) {
-          return HangarXPLOR.ContainsName(pledgeName, name) || HangarXPLOR.ContainsName(haystack, name);
-        }).length > 0;
-        var hasPaint = keepListed || $('.kind:contains(Skin)', this).length > 0 || /\b(paints?|livery|liveries|skins?)\b/i.test(this.pledge_name || '');
+        var hasPaint = $('.kind:contains(Skin)', this).length > 0 || /\b(paints?|livery|liveries|skins?)\b/i.test(this.pledge_name || '');
         if (HangarXPLOR._shipMatrix[i].thumbnail != undefined && (this.filters.is_upgraded || !ownImage || !hasPaint)) {
           $('.basic-infos .image', this).css({ 'background-image': 'url("' + HangarXPLOR._shipMatrix[i].thumbnail + '")'});
         }
