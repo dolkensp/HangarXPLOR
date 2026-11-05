@@ -102,32 +102,26 @@
     "manufacturer_name": "Anvil Aerospace"
   },
   {
-    "ship_code": "RSI_Constellation_Aquila",
-    "ship_name": "Constellation Aquila",
+    "ship_code": "RSI_Constellation_Mk_IV_Aquila",
+    "ship_name": "Constellation Mk IV Aquila",
     "manufacturer_code": "RSI",
     "manufacturer_name": "Roberts Space Industries"
   },
   {
-    "ship_code": "RSI_Constellation_Andromeda",
-    "ship_name": "Constellation Andromeda",
+    "ship_code": "RSI_Constellation_Mk_IV_Andromeda",
+    "ship_name": "Constellation Mk IV Andromeda",
     "manufacturer_code": "RSI",
     "manufacturer_name": "Roberts Space Industries"
   },
   {
-    "ship_code": "RSI_Constellation_Taurus",
-    "ship_name": "Constellation Taurus",
+    "ship_code": "RSI_Constellation_Mk_IV_Taurus",
+    "ship_name": "Constellation Mk IV Taurus",
     "manufacturer_code": "RSI",
     "manufacturer_name": "Roberts Space Industries"
   },
   {
-    "ship_code": "RSI_Constellation_Phoenix",
-    "ship_name": "Constellation Phoenix",
-    "manufacturer_code": "RSI",
-    "manufacturer_name": "Roberts Space Industries"
-  },
-  {
-    "ship_code": "RSI_Constellation_Phoenix_Emerald",
-    "ship_name": "Constellation Phoenix Emerald",
+    "ship_code": "RSI_Constellation_Mk_IV_Phoenix",
+    "ship_name": "Constellation Mk IV Phoenix",
     "manufacturer_code": "RSI",
     "manufacturer_name": "Roberts Space Industries"
   },
@@ -170,12 +164,6 @@
   {
     "ship_code": "DRAK_Cutlass_Blue",
     "ship_name": "Cutlass Blue",
-    "manufacturer_code": "DRAK",
-    "manufacturer_name": "Drake Interplanetary"
-  },
-  {
-    "ship_code": "DRAK_Cutlass_Black_Best_In_Show_Edition_2949",
-    "ship_name": "Cutlass Black Best In Show Edition 2949",
     "manufacturer_code": "DRAK",
     "manufacturer_name": "Drake Interplanetary"
   },
@@ -236,18 +224,6 @@
   {
     "ship_code": "DRAK_Caterpillar",
     "ship_name": "Caterpillar",
-    "manufacturer_code": "DRAK",
-    "manufacturer_name": "Drake Interplanetary"
-  },
-  {
-    "ship_code": "DRAK_Caterpillar_Pirate_Edition",
-    "ship_name": "Caterpillar Pirate Edition",
-    "manufacturer_code": "DRAK",
-    "manufacturer_name": "Drake Interplanetary"
-  },
-  {
-    "ship_code": "DRAK_Caterpillar_Best_In_Show_Edition_2949",
-    "ship_name": "Caterpillar Best In Show Edition 2949",
     "manufacturer_code": "DRAK",
     "manufacturer_name": "Drake Interplanetary"
   },
@@ -432,12 +408,6 @@
     "manufacturer_name": "Aegis Dynamics"
   },
   {
-    "ship_code": "AEGS_Reclaimer_Best_In_Show_Edition_2949",
-    "ship_name": "Reclaimer Best In Show Edition 2949",
-    "manufacturer_code": "AEGS",
-    "manufacturer_name": "Aegis Dynamics"
-  },
-  {
     "ship_code": "AEGS_Javelin",
     "ship_name": "Javelin",
     "manufacturer_code": "AEGS",
@@ -536,6 +506,12 @@
   {
     "ship_code": "AEGS_Sabre_Peregrine",
     "ship_name": "Sabre Peregrine",
+    "manufacturer_code": "AEGS",
+    "manufacturer_name": "Aegis Dynamics"
+  },
+  {
+    "ship_code": "AEGS_Sabre_Raven_EX",
+    "ship_name": "Sabre Raven EX",
     "manufacturer_code": "AEGS",
     "manufacturer_name": "Aegis Dynamics"
   },
@@ -739,7 +715,7 @@
   },
   {
     "ship_code": "RSI_Lynx",
-    "ship_name": "Lynx ",
+    "ship_name": "Lynx",
     "manufacturer_code": "RSI",
     "manufacturer_name": "Roberts Space Industries"
   },
@@ -794,12 +770,6 @@
   {
     "ship_code": "AEGS_Hammerhead",
     "ship_name": "Hammerhead",
-    "manufacturer_code": "AEGS",
-    "manufacturer_name": "Aegis Dynamics"
-  },
-  {
-    "ship_code": "AEGS_Hammerhead_Best_In_Show_Edition_2949",
-    "ship_name": "Hammerhead Best In Show Edition 2949",
     "manufacturer_code": "AEGS",
     "manufacturer_name": "Aegis Dynamics"
   },
@@ -943,7 +913,7 @@
   },
   {
     "ship_code": "ANVL_Ballista",
-    "ship_name": "Ballista ",
+    "ship_name": "Ballista",
     "manufacturer_code": "ANVL",
     "manufacturer_name": "Anvil Aerospace"
   },
@@ -961,7 +931,7 @@
   },
   {
     "ship_code": "AEGS_Nautilus",
-    "ship_name": "Nautilus ",
+    "ship_name": "Nautilus",
     "manufacturer_code": "AEGS",
     "manufacturer_name": "Aegis Dynamics"
   },
@@ -985,7 +955,7 @@
   },
   {
     "ship_code": "ANVL_C8X_Pisces_Expedition",
-    "ship_name": "C8X Pisces Expedition ",
+    "ship_name": "C8X Pisces Expedition",
     "manufacturer_code": "ANVL",
     "manufacturer_name": "Anvil Aerospace"
   },
@@ -997,7 +967,7 @@
   },
   {
     "ship_code": "CRUS_Ares_Inferno",
-    "ship_name": "Ares Inferno ",
+    "ship_name": "Ares Inferno",
     "manufacturer_code": "CRUS",
     "manufacturer_name": "Crusader Industries"
   },
@@ -1171,7 +1141,7 @@
   },
   {
     "ship_code": "CRUS_A1_Spirit",
-    "ship_name": "A1 Spirit ",
+    "ship_name": "A1 Spirit",
     "manufacturer_code": "CRUS",
     "manufacturer_name": "Crusader Industries"
   },
@@ -1309,7 +1279,7 @@
   },
   {
     "ship_code": "ANVL_F7C_M_Super_Hornet_Mk_II",
-    "ship_name": "F7C-M Super Hornet Mk II ",
+    "ship_name": "F7C-M Super Hornet Mk II",
     "manufacturer_code": "ANVL",
     "manufacturer_name": "Anvil Aerospace"
   },
@@ -1346,6 +1316,12 @@
   {
     "ship_code": "ARGO_ATLS_GEO",
     "ship_name": "ATLS GEO",
+    "manufacturer_code": "ARGO",
+    "manufacturer_name": "ARGO Astronautics"
+  },
+  {
+    "ship_code": "ARGO_ATLS_IKTI_Akuma",
+    "ship_name": "ATLS IKTI Akuma",
     "manufacturer_code": "ARGO",
     "manufacturer_name": "ARGO Astronautics"
   },
@@ -1498,6 +1474,126 @@
     "ship_name": "UTV",
     "manufacturer_code": "GRIN",
     "manufacturer_name": "Greycat Industrial"
+  },
+  {
+    "ship_code": "ORIG_M80",
+    "ship_name": "M80",
+    "manufacturer_code": "ORIG",
+    "manufacturer_name": "Origin Jumpworks"
+  },
+  {
+    "ship_code": "AEGS_Tiburon",
+    "ship_name": "Tiburon",
+    "manufacturer_code": "AEGS",
+    "manufacturer_name": "Aegis Dynamics"
+  },
+  {
+    "ship_code": "ANVL_Odin",
+    "ship_name": "Odin",
+    "manufacturer_code": "ANVL",
+    "manufacturer_name": "Anvil Aerospace"
+  },
+  {
+    "ship_code": "DRAK_Pitbull",
+    "ship_name": "Pitbull",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
+    "ship_code": "MISC_Starlite",
+    "ship_name": "Starlite",
+    "manufacturer_code": "MISC",
+    "manufacturer_name": "Musashi Industrial & Starflight Concern"
+  },
+  {
+    "ship_code": "GAMA_Tyilui",
+    "ship_name": "Tyilui",
+    "manufacturer_code": "GAMA",
+    "manufacturer_name": "Gatac Manufacture"
+  },
+  {
+    "ship_code": "GREY_Basher",
+    "ship_name": "Basher",
+    "manufacturer_code": "GREY",
+    "manufacturer_name": "Grey's Market"
+  },
+  {
+    "ship_code": "KRIG_S_65_Stingray",
+    "ship_name": "S-65 Stingray",
+    "manufacturer_code": "KRIG",
+    "manufacturer_name": "Kruger Intergalactic"
+  },
+  {
+    "ship_code": "RSI_Constellation_Mk_V_Centaurus",
+    "ship_name": "Constellation Mk V Centaurus",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Skylark",
+    "ship_name": "Skylark",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Constellation_Aquila",
+    "ship_name": "Constellation Aquila",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Constellation_Andromeda",
+    "ship_name": "Constellation Andromeda",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Constellation_Taurus",
+    "ship_name": "Constellation Taurus",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Constellation_Phoenix",
+    "ship_name": "Constellation Phoenix",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "RSI_Constellation_Phoenix_Emerald",
+    "ship_name": "Constellation Phoenix Emerald",
+    "manufacturer_code": "RSI",
+    "manufacturer_name": "Roberts Space Industries"
+  },
+  {
+    "ship_code": "DRAK_Cutlass_Black_Best_In_Show_Edition_2949",
+    "ship_name": "Cutlass Black Best In Show Edition 2949",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
+    "ship_code": "DRAK_Caterpillar_Pirate_Edition",
+    "ship_name": "Caterpillar Pirate Edition",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
+    "ship_code": "DRAK_Caterpillar_Best_In_Show_Edition_2949",
+    "ship_name": "Caterpillar Best In Show Edition 2949",
+    "manufacturer_code": "DRAK",
+    "manufacturer_name": "Drake Interplanetary"
+  },
+  {
+    "ship_code": "AEGS_Reclaimer_Best_In_Show_Edition_2949",
+    "ship_name": "Reclaimer Best In Show Edition 2949",
+    "manufacturer_code": "AEGS",
+    "manufacturer_name": "Aegis Dynamics"
+  },
+  {
+    "ship_code": "AEGS_Hammerhead_Best_In_Show_Edition_2949",
+    "ship_name": "Hammerhead Best In Show Edition 2949",
+    "manufacturer_code": "AEGS",
+    "manufacturer_name": "Aegis Dynamics"
   },
   {
     "ship_code": "ARGO_MOLE_Carbon",

@@ -62,7 +62,7 @@ async function main() {
 
     newEntries.push({
       ship_code:         shipCode,
-      ship_name:         ship.name,
+      ship_name:         ship.name.trim(), // some matrix names carry a trailing space
       manufacturer_code: mfrCode,
       manufacturer_name: mfrName,
     });

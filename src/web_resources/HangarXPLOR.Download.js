@@ -16,7 +16,7 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
     method: 'GET',
     dataType: 'json',
     success: function(data) {
-      $.map(data, (ship) => { HangarXPLOR._exportByName[ship.ship_name.toLowerCase()] = ship });
+      $.map(data, (ship) => { HangarXPLOR._exportByName[ship.ship_name.toLowerCase().trim()] = ship });
     }
   });
 
@@ -34,14 +34,16 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
 
       return $('.kind:contains(Ship)', this).parent().map(function() {
         var $ship = this;
-        var ship_name = $('.title', $ship).text().trim();
-        ship_name = ship_name.replace(/^(?:Aegis|Anvil|Aopoa|Banu|CNOU|Crusader|Drake|Greycat Industrial|Greycat|Esperia|Kruger|MISC|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '').trim();
+        var title = $('.title', $ship).text().trim();
+        var ship_name = title.replace(/^(?:Aegis|Anvil|Aopoa|Argo|Banu|CNOU|Consolidated Outland|Crusader|Drake|Esperia|Gatac|Greycat Industrial|Greycat|Grey's Market|Grey's|Kruger|MISC|Mirai|Origin|RSI|Tumbril|Vanduul|Xi'an)[^a-z0-9]+/gi, '').trim();
         var lookup = ship_name.toLowerCase();
         var nickname = $('.custom-name-text', $ship).text();
         var i, j;
-        
+        var haystack = HangarXPLOR.NormalizeName(title);
+
         for (i = 0, j = HangarXPLOR._shipMatrix.length; i < j; i++) {
-          if (lookup.indexOf(HangarXPLOR._shipMatrix[i].name.toLowerCase()) > -1 || lookup.indexOf((HangarXPLOR._shipMatrix[i].displayName || 'NOTFOUND').toLowerCase()) > -1) {
+          // Match on the full title: some overrides keep the manufacturer ('Argo Mole - Carbon Edition')
+          if (HangarXPLOR.ContainsName(haystack, HangarXPLOR._shipMatrix[i].name) || HangarXPLOR.ContainsName(haystack, HangarXPLOR._shipMatrix[i].displayName)) {
 
             HangarXPLOR.Log('Matched', HangarXPLOR._shipMatrix[i].name, 'in', lookup);
 
@@ -50,6 +52,10 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
           }
         }
         
+        // Hangar titles sometimes differ from the matrix by dots ("A.T.L.S.") or an " Edition" suffix
+        var known = [ lookup, lookup.replace(/\./g, ''), lookup.replace(/\s+edition$/, '') ].filter((name) => HangarXPLOR._exportByName[name])[0];
+        if (known) lookup = known;
+
         var ship = HangarXPLOR._exportByName[lookup] ? { ...HangarXPLOR._exportByName[lookup] } : {
           unidentified: 'Please report this ship to the plugin developers at https://github.com/dolkensp/HangarXPLOR/issues',
           ship_code: ($('.liner span', $ship).text().trim() + '_' + ship_name).replace(/[^a-z0-9]/gi, '_').replace(/__+/gi, '_'),
@@ -70,7 +76,7 @@ HangarXPLOR._exportByName = HangarXPLOR._exportByName || {};
         
         return ship;
       }).get()
-    }).sort(function(a, b) { return a.manufacturer == b.manufacturer ? (a.name < b.name ? -2 : 2) : (a.manufacturer < b.manufacturer ? -1 : 1); }).get();
+    }).sort(function(a, b) { return a.manufacturer_name == b.manufacturer_name ? (a.name < b.name ? -1 : a.name > b.name ? 1 : 0) : (a.manufacturer_name < b.manufacturer_name ? -1 : 1); }).get();
   }
   
   HangarXPLOR._callbacks.DownloadJSON = function(e) {

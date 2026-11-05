@@ -14,6 +14,37 @@ HangarXPLOR._initCount     = HangarXPLOR._initCount || 0;
 
 var RSI = RSI || {};
 
+// Lower-case a name, collapse dotted acronyms ("A.T.L.S." -> "atls") and turn any other punctuation into
+// single spaces, padded with a space either side so whole words can be found with indexOf(' word ').
+HangarXPLOR.NormalizeName = function(name)
+{
+  return ' ' + (name || '').toLowerCase()
+    .replace(/\b[a-z](?:\.[a-z])+\.?(?![a-z0-9])/g, function(acronym) { return acronym.replace(/\./g, ''); })
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim() + ' ';
+}
+
+// Matrix names are matched against every pledge, so normalize each one only once
+HangarXPLOR._normalizedNames = {};
+
+// True when needle appears in haystack as whole words, so "Mk I" doesn't match inside "Mk II".
+// Punctuation is ignored: "Argo Mole - Carbon Edition" matches "Argo Mole Carbon Edition".
+// haystack must already be passed through NormalizeName; callers do that once per title, not once per needle.
+HangarXPLOR.ContainsName = function(haystack, needle)
+{
+  if (!needle) return false;
+  var normalized = HangarXPLOR._normalizedNames[needle];
+  if (normalized === undefined) normalized = HangarXPLOR._normalizedNames[needle] = HangarXPLOR.NormalizeName(needle);
+  // Both sides are space-padded, so a match can't start or end part-way through a word
+  return normalized.length > 2 && haystack.indexOf(normalized) > -1;
+}
+
+// Longest names first, so the first match is the most specific ("Sabre Raven" before "Sabre")
+HangarXPLOR.ByLongestName = function(a, b)
+{
+  return b.name.length - a.name.length || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
+}
+
 HangarXPLOR.Initialize = function()
 {  
   $.ajax({ 
@@ -50,9 +81,11 @@ HangarXPLOR.Initialize = function()
             focus: ship.focus,
           };
           
-          var customShip = HangarXPLOR._ships[rsiShip.name];
+          // Overrides may be keyed by the stripped name or by the raw matrix name (e.g. 'Argo Mole Talus Edition')
+          var customShip = HangarXPLOR._ships[rsiShip.name] || HangarXPLOR._ships[ship.name.trim()];
 
           delete customShips[rsiShip.name];
+          delete customShips[ship.name.trim()];
 
           return $.extend({}, rsiShip, customShip);
         })
@@ -62,22 +95,14 @@ HangarXPLOR.Initialize = function()
           return ship;
         }))
       
-        .sort((a, b) => {
-          if (a.name.length > b.name.length) return -1;
-          if (a.name < b.name) return 0;
-          return 1;
-        });
+        .sort(HangarXPLOR.ByLongestName);
       
       HangarXPLOR._componentMatrix = []
         .concat($.map(HangarXPLOR._components, (component, key) => {
           if (component.name == undefined) component.name = key;
           return component;
         }))
-        .sort((a, b) => {
-          if (a.name.length > b.name.length) return -1;
-          if (a.name < b.name) return -1;
-          return 1;
-        });
+        .sort(HangarXPLOR.ByLongestName);
       
       HangarXPLOR.LoadSettings(function() {
         var $lists = $('.list-items');

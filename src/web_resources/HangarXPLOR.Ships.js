@@ -40,6 +40,11 @@ HangarXPLOR._ships = {
     export: 'F8C Lightning'
     // thumbnail: '/media/ldeqyuto9lb46r/heap_infobox/F8C-Executive.png'
   },
+  'F7C-M Super Hornet Heartseeker Mk II': {
+    // Not in the ship matrix (only the Mk I is), so without this it falls through as unidentified.
+    // The export redirects to the same hull, as there is no Heartseeker Mk II code in ship-codes.json.
+    export: 'F7C-M Super Hornet Mk II'
+  },
   'A1 Spirit': {
     name: 'A1 Spirit',
     export: 'Spirit A1'
