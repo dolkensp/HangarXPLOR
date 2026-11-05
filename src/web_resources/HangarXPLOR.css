@@ -17,10 +17,10 @@
 .js-custom-controls .mrn5 { margin-right: -5px; }
 .js-custom-controls .content .row { margin-left: 0xp; }
 
-/* Kinds inferred from an item's title (InferKinds) are only needed for parsing. Show them only on image cards,
-   where RSI's own .kind styling applies; in the plain "Also contains" list they render unstyled and overlap. */
-.kind.inferred { display: none; }
-.with-images .kind.inferred { display: block; }
+/* Kinds inferred from an item's title (InferKinds) are only needed for parsing. RSI has no .kind styling in the
+   plain "Also contains" list (.without-images), where they render as large text overlapping the next item.
+   On image cards (.with-images) they sit where RSI's own .kind does and pick up its styling, so leave them. */
+.without-images .kind.inferred { display: none; }
 
 .js-bulk-ui { top: 160px; left: 0px; z-index: 102; position: fixed; background: rgba(12,19,25,0.9); }
 .js-bulk-ui .inner { padding: 15px 20px 15px 20px; background: url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-top.png') repeat-x top left, url('https://robertsspaceindustries.com/rsi/static/images/common/fading-bars-bottom.png') repeat-x bottom left, rgba(0,0,0,0.4); }
