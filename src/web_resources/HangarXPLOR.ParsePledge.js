@@ -43,7 +43,18 @@ HangarXPLOR.SafeParsePledge = function()
     HangarXPLOR.ParsePledge.apply(this, arguments);
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.warn('HangarXPLOR: skipped a pledge it could not parse', e, this);
+    console.warn('HangarXPLOR: could not fully parse a pledge, showing it unclassified', e, this);
+
+    // ParsePledge only adds the pledge to the inventory as its last step, so a failure would hide it.
+    // Keep it visible under All Types, with the fields that filtering, sorting and bulk totals rely on.
+    if (HangarXPLOR._inventory.indexOf(this) === -1) {
+      this.filters = this.filters || {};
+      this.filters.is_selected = false;
+      if (typeof this.melt_value !== 'number' || this.melt_value !== this.melt_value) this.melt_value = 0;
+      this.displayName = this.displayName || $('.js-pledge-name', this).val() || '';
+      this.sortName = this.sortName || this.displayName;
+      HangarXPLOR._inventory.push(this);
+    }
   }
 }
 
