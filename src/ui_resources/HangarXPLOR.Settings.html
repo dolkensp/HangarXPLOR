@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>HangarXPLOR Settings</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,6 +219,107 @@
         transform: translateX(16px);
         background: #25e4ff;
       }
+
+      /* ── Trusted sites ───────────────────────────────────── */
+      .trusted-add {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
+      .trusted-add input[type="text"] {
+        flex: 1;
+        min-width: 0;
+        padding: 6px 8px;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(37, 228, 255, 0.25);
+        color: #25e4ff;
+        font-family: 'Electrolize', sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+
+      .trusted-add input[type="text"]:focus {
+        border-color: rgba(37, 228, 255, 0.6);
+        box-shadow: 0 0 8px rgba(37, 228, 255, 0.2);
+      }
+
+      .trusted-add input[type="text"]::placeholder {
+        color: #3a5068;
+      }
+
+      .trusted-add .btn {
+        flex-shrink: 0;
+        width: auto;
+        padding: 6px 10px;
+      }
+
+      .trusted-list {
+        list-style: none;
+        margin-bottom: 8px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #162a3f;
+      }
+
+      .trusted-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 4px 0;
+      }
+
+      .trusted-origin {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+        color: #25e4ff;
+      }
+
+      .trusted-remove {
+        flex-shrink: 0;
+        background: none;
+        border: 1px solid rgba(37, 228, 255, 0.18);
+        color: #6c84a2;
+        font-family: 'Electrolize', sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s, color 0.15s;
+      }
+
+      .trusted-remove:hover {
+        background: rgba(200, 0, 0, 0.1);
+        border-color: rgba(200, 80, 80, 0.5);
+        color: #ff7070;
+      }
+
+      .trusted-empty {
+        font-size: 9px;
+        letter-spacing: 0.05em;
+        color: #3a5068;
+        font-style: italic;
+        padding: 2px 0;
+      }
+
+      .trusted-status {
+        font-size: 9px;
+        letter-spacing: 0.05em;
+        color: #6c84a2;
+        min-height: 1.2em;
+        margin-bottom: 4px;
+      }
+
+      .trusted-status.error { color: #ff7070; }
+      .trusted-status.success { color: #3ac96b; }
     </style>
   </head>
   <body>
@@ -255,6 +357,14 @@
         </label>
         <p class="hint">You can also click the summary panel to toggle this.</p>
       </div>
+
+      <div class="section-label">Trusted Sites</div>
+      <div class="trusted-add">
+        <input type="text" id="trustedInput" placeholder="https://example.com" spellcheck="false" autocomplete="off">
+        <button class="btn" id="trustedAdd">Add</button>
+      </div>
+      <div class="trusted-status" id="trustedStatus"></div>
+      <ul class="trusted-list" id="trustedList"></ul>
 
       <div class="section-label">Cache</div>
       <div class="actions">
