@@ -26,6 +26,8 @@
 .js-bulk-ui .value .label-short { width: 40px; }
 .js-bulk-ui .actions a { margin-left: 20px; margin-top: 5px; }
 .js-bulk-ui .actions a:first-child { margin-left: 0px !important; }
+.js-bulk-ui .actions.downloads { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 5px; }
+.js-bulk-ui .actions.downloads a { margin-left: 0 !important; margin-top: 0 !important; }
 .js-bulk-ui .status { display: none; }
 .js-bulk-ui .loading .actions,
 .js-bulk-ui .loading .value { display: none; }
